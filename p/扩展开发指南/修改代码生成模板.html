@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>修改代码生成模板 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec" open><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html" class="active">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">扩展开发指南 / <b>修改代码生成模板</b></div><article><h1 id="修改代码生成模板"><a class="anchor" href="#修改代码生成模板">#</a>修改代码生成模板</h1><cite>
+**本文引用的文件**   
+- [GenController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/controller/GenController.java)
+- [IGenTableService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/service/IGenTableService.java)
+- [GenTableServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/service/GenTableServiceImpl.java)
+- [VelocityUtils.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/util/VelocityUtils.java)
+- [VelocityInitializer.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/util/VelocityInitializer.java)
+- [GenConfig.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/config/GenConfig.java)
+- [domain.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/domain.java.vm)
+- [mapper.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/mapper.java.vm)
+- [service.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/service.java.vm)
+- [serviceImpl.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/serviceImpl.java.vm)
+- [controller.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/controller.java.vm)
+- [sub-domain.java.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/java/sub-domain.java.vm)
+- [mapper.xml.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/xml/mapper.xml.vm)
+- [sql.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/sql/sql.vm)
+- [api.js.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/js/api.js.vm)
+- [index.vue.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/vue/index.vue.vm)
+- [index-tree.vue.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/vue/index-tree.vue.vm)
+- [v3/index.vue.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/vue/v3/index.vue.vm)
+- [v3/index-tree.vue.vm](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/vue/v3/index-tree.vue.vm)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构与模板定位">项目结构与模板定位</a></li>
+<li><a href="#核心职责边界gencontroller--与-igentableservice">核心职责边界：GenController 与 IGenTableService</a></li>
+<li><a href="#从数据库表到前后端文件的完整生成链路">从数据库表到前后端文件的完整生成链路</a></li>
+<li><a href="#velocity-模板体系与关键变量">Velocity 模板体系与关键变量</a></li>
+<li><a href="#按目标修改模板的实操指南">按目标修改模板的实操指南</a></li>
+<li><a href="#重新生成下载-zip-与替换已有代码的流程">重新生成、下载 ZIP 与替换已有代码的流程</a></li>
+<li><a href="#模板调试建议">模板调试建议</a></li>
+<li><a href="#版本兼容性与注意事项">版本兼容性与注意事项</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#总结">总结</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本指南面向需要修改 RuoYi-Cloud 代码生成器行为的技术人员。该系统是开源 RuoYi-Cloud 3.6.5 的重命名二次开发，根 Maven 模块为 <code>zealux-ai</code>、版本 <code>3.6.5</code>；前端源码以独立仓库 <code>zealux-ai-ui-master</code> 为准，而 <code>zealux-ai-master/zealux-ai-ui</code> 是同一份源码的重复拷贝，不参与构建。</p>
+<p>代码生成器的核心能力不是手工编写业务接口，而是根据数据库中已配置的表结构信息，自动产出后端 Java 实体、Mapper、Service、Controller 和前端 Vue 页面、API 调用脚本。因此，修改模板的本质是调整“数据库元数据 → Velocity 上下文 → Velocity 模板 → 最终代码文件”这一流水线。</p>
+<h2 id="项目结构与模板定位"><a class="anchor" href="#项目结构与模板定位">#</a>项目结构与模板定位</h2><p>代码生成器位于 <code>zealux-ai-modules/zealux-ai-gen</code> 模块中，主要涉及三类文件：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>位置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制器入口</td>
+<td><code>zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/controller/GenController.java</code></td>
+<td>暴露 <code>/gen/**</code> 操作接口，接收预览、下载、生成、同步等请求</td>
+</tr>
+<tr>
+<td>服务层</td>
+<td><code>zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/service/IGenTableService.java</code> 与其实现类</td>
+<td>封装表结构读取、校验、Velocity 渲染、ZIP 打包与本地写盘逻辑</td>
+</tr>
+<tr>
+<td>Velocity 模板</td>
+<td><code>zealux-ai-modules/zealux-ai-gen/src/main/resources/vm/**</code></td>
+<td>定义后端 Java、XML、SQL、JS 与前端 Vue 的代码结构</td>
+</tr>
+<tr>
+<td>模板工具</td>
+<td><code>util/VelocityUtils.java</code>、<code>util/VelocityInitializer.java</code></td>
+<td>初始化 Velocity 引擎、构造模板上下文、选择模板列表与输出文件名</td>
+</tr>
+<tr>
+<td>生成配置</td>
+<td><code>config/GenConfig.java</code></td>
+<td>提供作者、包名、表前缀、是否允许覆盖本地文件等运行时配置</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Controller[&quot;GenController&lt;br/&gt;HTTP 接口&quot;] --&gt; Service[&quot;IGenTableService / GenTableServiceImpl&lt;br/&gt;生成流程编排&quot;]
+    Service --&gt; Mapper[&quot;GenTableMapper / GenTableColumnMapper&lt;br/&gt;读取表结构&quot;]
+    Service --&gt; VInit[&quot;VelocityInitializer&lt;br/&gt;初始化 Velocity 引擎&quot;]
+    Service --&gt; VUtil[&quot;VelocityUtils&lt;br/&gt;准备上下文、选择模板、计算文件名&quot;]
+    VInit --&gt; Engine[&quot;Apache Velocity 引擎&quot;]
+    VUtil --&gt; Templates[&quot;resources/vm/**&lt;br/&gt;Velocity 模板集合&quot;]
+    Service --&gt; Output[&quot;Java 文件 / XML / SQL / JS / Vue / ZIP&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:1-216</span></li>
+<li><span class="fileref">IGenTableService.java:1-121</span></li>
+<li><span class="fileref">GenTableServiceImpl.java:1-521</span></li>
+<li><span class="fileref">VelocityUtils.java:1-408</span></li>
+<li><span class="fileref">VelocityInitializer.java:1-34</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:1-216</span></li>
+<li><span class="fileref">VelocityUtils.java:130-224</span></li>
+<li><span class="fileref">VelocityInitializer.java:17-33</span></li>
+</ul>
+<h2 id="核心职责边界：GenController-与-IGenTableService"><a class="anchor" href="#核心职责边界：GenController-与-IGenTableService">#</a>核心职责边界：GenController 与 IGenTableService</h2><h3 id="GenController：HTTP-路由与权限控制"><a class="anchor" href="#GenController：HTTP-路由与权限控制">#</a>GenController：HTTP 路由与权限控制</h3><p><code>GenController</code> 是代码生成模块对外暴露的操作入口，所有生成相关请求都以 <code>/gen</code> 为根路径。它的主要职责包括：</p>
+<ul>
+<li>接收前端对“代码生成列表、数据库表列表、字段列表、导入表结构、编辑保存、删除、预览、下载、生成到本地、同步数据库、批量生成”的请求。</li>
+<li>使用 <code>@RequiresPermissions</code> 控制权限，例如 <code>tool:gen:list</code>、<code>tool:gen:query</code>、<code>tool:gen:import</code>、<code>tool:gen:edit</code>、<code>tool:gen:remove</code>、<code>tool:gen:preview</code>、<code>tool:gen:code</code>。</li>
+<li>使用 <code>@Log</code> 记录导入、更新、删除、生成代码等操作日志。</li>
+<li>不直接处理表结构查询或模板渲染，而是委托给 <code>IGenTableService</code> 与 <code>IGenTableColumnService</code>。</li>
+</ul>
+<p>关键接口映射如下：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>方法</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gen/list</code></td>
+<td>GET</td>
+<td>分页查询已配置的代码生成任务</td>
+</tr>
+<tr>
+<td><code>/gen/{tableId}</code></td>
+<td>GET</td>
+<td>获取某个任务的详情、字段行与关联表</td>
+</tr>
+<tr>
+<td><code>/gen/db/list</code></td>
+<td>GET</td>
+<td>分页查询数据库可导入的表</td>
+</tr>
+<tr>
+<td><code>/gen/column/{tableId}</code></td>
+<td>GET</td>
+<td>查询某张表的字段信息</td>
+</tr>
+<tr>
+<td><code>/gen/importTable</code></td>
+<td>POST</td>
+<td>导入数据库表结构并写入 <code>gen_table</code>、<code>gen_table_column</code></td>
+</tr>
+<tr>
+<td><code>/gen</code></td>
+<td>PUT</td>
+<td>修改保存业务名称、包名、功能名、模板类型等生成参数</td>
+</tr>
+<tr>
+<td><code>/gen/{tableIds}</code></td>
+<td>DELETE</td>
+<td>删除代码生成配置</td>
+</tr>
+<tr>
+<td><code>/gen/preview/{tableId}</code></td>
+<td>GET</td>
+<td>预览生成的全部文件内容</td>
+</tr>
+<tr>
+<td><code>/gen/download/{tableName}</code></td>
+<td>GET</td>
+<td>下载单个表的 ZIP 代码包</td>
+</tr>
+<tr>
+<td><code>/gen/genCode/{tableName}</code></td>
+<td>GET</td>
+<td>将后端代码写到本地磁盘（受 <code>allowOverwrite</code> 控制）</td>
+</tr>
+<tr>
+<td><code>/gen/synchDb/{tableName}</code></td>
+<td>GET</td>
+<td>同步数据库表结构变更到生成配置</td>
+</tr>
+<tr>
+<td><code>/gen/batchGenCode</code></td>
+<td>GET</td>
+<td>批量生成 ZIP 包</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:1-216</span></li>
+</ul>
+<h3 id="IGenTableService：生成流程编排与状态维护"><a class="anchor" href="#IGenTableService：生成流程编排与状态维护">#</a>IGenTableService：生成流程编排与状态维护</h3><p><code>IGenTableService</code> 是代码生成服务的公开契约。它不包含 HTTP 注解，也不关心请求来自浏览器还是其他系统；它关注的是“给定一张表或一组表，如何把数据库元数据转换成代码”。</p>
+<p>其核心方法分为四类：</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>代表方法</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询</td>
+<td><code>selectGenTableList</code>、<code>selectDbTableList</code>、<code>selectGenTableById</code>、<code>selectGenTableAll</code></td>
+<td>查询已配置任务、数据库表、单个任务</td>
+</tr>
+<tr>
+<td>维护</td>
+<td><code>updateGenTable</code>、<code>deleteGenTableByIds</code>、<code>importGenTable</code></td>
+<td>更新生成配置、删除配置、导入表结构</td>
+</tr>
+<tr>
+<td>生成</td>
+<td><code>previewCode</code>、<code>downloadCode</code>、<code>generatorCode</code></td>
+<td>预览、下载 ZIP、生成到本地磁盘</td>
+</tr>
+<tr>
+<td>同步与校验</td>
+<td><code>synchDb</code>、<code>validateEdit</code></td>
+<td>同步数据库字段变化、校验树形或主子表配置</td>
+</tr>
+</tbody></table>
+<p>需要注意：<strong>GenController 只负责把请求转发给 IGenTableService，真正的模板加载、Velocity 上下文构造、模板遍历、字节流与文件写入都在服务层完成。</strong></p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">IGenTableService.java:1-121</span></li>
+</ul>
+<h2 id="从数据库表到前后端文件的完整生成链路"><a class="anchor" href="#从数据库表到前后端文件的完整生成链路">#</a>从数据库表到前后端文件的完整生成链路</h2><h3 id="整体流程图"><a class="anchor" href="#整体流程图">#</a>整体流程图</h3><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant UI as &quot;前端界面&quot;
+    participant Gateway as &quot;网关&quot;
+    participant GenController as &quot;GenController&quot;
+    participant Service as &quot;IGenTableService&quot;
+    participant Impl as &quot;GenTableServiceImpl&quot;
+    participant Mapper as &quot;GenTableMapper / ColumnMapper&quot;
+    participant VInit as &quot;VelocityInitializer&quot;
+    participant VUtil as &quot;VelocityUtils&quot;
+    participant Templates as &quot;vm/** 模板&quot;
+    participant Output as &quot;Java/XML/SQL/JS/Vue 或 ZIP&quot;
+
+    UI-&gt;&gt;Gateway: &quot;点击预览、下载或生成&quot;
+    Gateway-&gt;&gt;GenController: &quot;/gen/**&quot;
+    GenController-&gt;&gt;Service: &quot;调用 previewCode / downloadCode / generatorCode&quot;
+    Service-&gt;&gt;Impl: &quot;委托具体实现&quot;
+    Impl-&gt;&gt;Mapper: &quot;读取 gen_table、gen_table_column&quot;
+    Impl-&gt;&gt;VInit: &quot;initVelocity()&quot;
+    Impl-&gt;&gt;VUtil: &quot;prepareContext(table)&quot;
+    Impl-&gt;&gt;VUtil: &quot;getTemplateList(tplCategory, tplWebType)&quot;
+    loop &quot;每个模板&quot;
+        Impl-&gt;&gt;Templates: &quot;Velocity.getTemplate(模板路径)&quot;
+        Templates--&gt;&gt;Impl: &quot;渲染后的字符串&quot;
+        alt &quot;预览&quot;
+            Impl--&gt;&gt;Service: &quot;Map&lt;模板路径, 内容&gt;&quot;
+        else &quot;下载 ZIP&quot;
+            Impl-&gt;&gt;Output: &quot;写入 ZipOutputStream&quot;
+        else &quot;生成到本地&quot;
+            Impl-&gt;&gt;Output: &quot;FileUtils.writeStringToFile&quot;
+        end
+    end
+    Service--&gt;&gt;GenController: &quot;结果&quot;
+    GenController--&gt;&gt;UI: &quot;JSON、字节流或成功响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:100-216</span></li>
+<li><span class="fileref">GenTableServiceImpl.java:200-521</span></li>
+<li><span class="fileref">VelocityUtils.java:130-224</span></li>
+<li><span class="fileref">VelocityInitializer.java:17-33</span></li>
+</ul>
+<h3 id="关键阶段说明"><a class="anchor" href="#关键阶段说明">#</a>关键阶段说明</h3><ol>
+<li><p><strong>用户选择表并进入代码生成界面</strong><br>前端通过 <code>/gen/db/list</code> 拉取数据库表，或通过 <code>/gen/{tableId}</code> 拉取已保存的任务及其字段。</p>
+</li>
+<li><p><strong>导入表结构</strong><br><code>/gen/importTable</code> 接收表名数组，调用 <code>selectDbTableListByNames</code> 获取数据库元数据，再调用 <code>importGenTable</code> 写入 <code>gen_table</code> 和 <code>gen_table_column</code>。这一步会把数据库列转换为生成器可用的 <code>GenTableColumn</code> 对象。</p>
+</li>
+<li><p><strong>预览代码</strong><br><code>/gen/preview/{tableId}</code> 返回一个 Map，键是模板路径，值是渲染后的文本。这适合在浏览器中查看尚未落盘的代码。</p>
+</li>
+<li><p><strong>下载 ZIP</strong><br><code>/gen/download/{tableName}</code> 调用 <code>downloadCode</code>，内部用 <code>ZipOutputStream</code> 把所有模板渲染结果打包成字节流返回。</p>
+</li>
+<li><p><strong>生成到本地</strong><br><code>/gen/genCode/{tableName}</code> 会检查 <code>GenConfig.allowOverwrite</code>；如果未开启，直接拒绝。开启后，<code>generatorCode</code> 会跳过 SQL、JS 和部分 Vue 模板，把 Java、XML 等后端文件写入本地磁盘。</p>
+</li>
+<li><p><strong>同步数据库</strong><br><code>/gen/synchDb/{tableName}</code> 比较 <code>gen_table_column</code> 与真实数据库列，新增、更新或删除字段，同时尽量保留用户之前设置的显示类型、必填项、字典类型等。</p>
+</li>
+</ol>
+<h3 id="下载-ZIP-与生成到本地的差异"><a class="anchor" href="#下载-ZIP-与生成到本地的差异">#</a>下载 ZIP 与生成到本地的差异</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>输出目标</th>
+<th>包含模板</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>预览</td>
+<td>内存中的 Map</td>
+<td>全部模板</td>
+<td>调试模板、确认渲染结果</td>
+</tr>
+<tr>
+<td>下载 ZIP</td>
+<td>浏览器下载的字节流</td>
+<td>全部模板，包括 SQL、JS、Vue</td>
+<td>导出完整代码包</td>
+</tr>
+<tr>
+<td>生成到本地</td>
+<td>磁盘文件</td>
+<td>排除 SQL、JS、部分 Vue，仅写 Java/XML 等后端文件</td>
+<td>直接替换项目源码</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:100-216</span></li>
+<li><span class="fileref">GenTableServiceImpl.java:200-521</span></li>
+</ul>
+<h2 id="Velocity-模板体系与关键变量"><a class="anchor" href="#Velocity-模板体系与关键变量">#</a>Velocity 模板体系与关键变量</h2><h3 id="模板位置"><a class="anchor" href="#模板位置">#</a>模板位置</h3><p>Velocity 模板统一位于 <code>zealux-ai-modules/zealux-ai-gen/src/main/resources/vm</code> 下。<code>VelocityInitializer</code> 使用 ClasspathResourceLoader 加载 classpath 下的 <code>.vm</code> 文件，因此部署时模板必须随模块一起编译进 <code>target/classes</code>。</p>
+<p>模板目录与对应产物关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>模板路径</th>
+<th>生成目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vm/java/domain.java.vm</code></td>
+<td>实体类</td>
+<td>根据 <code>GenTableColumn</code> 生成属性、注释与常用注解</td>
+</tr>
+<tr>
+<td><code>vm/java/mapper.java.vm</code></td>
+<td>MyBatis Mapper 接口</td>
+<td>根据表名与类名生成接口</td>
+</tr>
+<tr>
+<td><code>vm/java/service.java.vm</code></td>
+<td>Service 接口</td>
+<td>通常继承公共基础接口</td>
+</tr>
+<tr>
+<td><code>vm/java/serviceImpl.java.vm</code></td>
+<td>Service 实现类</td>
+<td>包含 CRUD 实现</td>
+</tr>
+<tr>
+<td><code>vm/java/controller.java.vm</code></td>
+<td>Spring Controller</td>
+<td>生成 REST 接口、权限、日志、分页等</td>
+</tr>
+<tr>
+<td><code>vm/java/sub-domain.java.vm</code></td>
+<td>主子表子实体</td>
+<td>仅在 <code>tplCategory</code> 为主子表时生成</td>
+</tr>
+<tr>
+<td><code>vm/xml/mapper.xml.vm</code></td>
+<td>MyBatis XML</td>
+<td>生成 SQL 映射</td>
+</tr>
+<tr>
+<td><code>vm/sql/sql.vm</code></td>
+<td>建表/初始化 SQL</td>
+<td>用于预览或导出，一般不直接覆盖业务库</td>
+</tr>
+<tr>
+<td><code>vm/js/api.js.vm</code></td>
+<td>前端 API 调用脚本</td>
+<td>封装 axios 请求</td>
+</tr>
+<tr>
+<td><code>vm/vue/index.vue.vm</code></td>
+<td>普通表单列表页</td>
+<td>CRUD 或主子表模式</td>
+</tr>
+<tr>
+<td><code>vm/vue/index-tree.vue.vm</code></td>
+<td>树形列表页</td>
+<td>树形菜单或层级数据</td>
+</tr>
+<tr>
+<td><code>vm/vue/v3/index.vue.vm</code></td>
+<td>Element Plus Vue3 列表页</td>
+<td>当 <code>tplWebType</code> 为 <code>element-plus</code> 时使用</td>
+</tr>
+<tr>
+<td><code>vm/vue/v3/index-tree.vue.vm</code></td>
+<td>Element Plus Vue3 树形页</td>
+<td>同上，但用于树形</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;输入 GenTable&lt;br/&gt;moduleName / packageName / businessName / className&quot;] --&gt; Context[&quot;VelocityUtils.prepareContext&lt;br/&gt;构造 VelocityContext&quot;]
+    Context --&gt; Select[&quot;VelocityUtils.getTemplateList&lt;br/&gt;根据 tplCategory 与 tplWebType 选择模板&quot;]
+    Select --&gt; Java[&quot;vm/java/*.vm&quot;]
+    Select --&gt; Xml[&quot;vm/xml/mapper.xml.vm&quot;]
+    Select --&gt; Sql[&quot;vm/sql/sql.vm&quot;]
+    Select --&gt; Api[&quot;vm/js/api.js.vm&quot;]
+    Select --&gt; VueCRUD[&quot;vm/vue/index.vue.vm&quot;]
+    Select --&gt; VueTree[&quot;vm/vue/index-tree.vue.vm&quot;]
+    Select --&gt; VueV3[&quot;vm/vue/v3/index.vue.vm&quot;]
+    Select --&gt; VueV3Tree[&quot;vm/vue/v3/index-tree.vue.vm&quot;]
+    Java --&gt; Output[&quot;后端 Java 文件&quot;]
+    Xml --&gt; Output
+    Sql --&gt; Output
+    Api --&gt; Output
+    VueCRUD --&gt; Output
+    VueTree --&gt; Output
+    VueV3 --&gt; Output
+    VueV3Tree --&gt; Output</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">VelocityUtils.java:130-224</span></li>
+<li><span class="fileref">VelocityInitializer.java:17-33</span></li>
+</ul>
+<h3 id="VelocityContext-中的关键变量"><a class="anchor" href="#VelocityContext-中的关键变量">#</a>VelocityContext 中的关键变量</h3><p><code>VelocityUtils.prepareContext</code> 是模板可访问变量的集中定义点。常见变量包括：</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>含义</th>
+<th>常用于</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tableName</code></td>
+<td>数据库表名</td>
+<td>生成类名前缀、包名、路径</td>
+</tr>
+<tr>
+<td><code>className</code> / <code>classNameLower</code></td>
+<td>实体类名与小写形式</td>
+<td>Java 类名、变量名</td>
+</tr>
+<tr>
+<td><code>moduleName</code></td>
+<td>模块名</td>
+<td>分包路径、Vue 视图路径</td>
+</tr>
+<tr>
+<td><code>packageName</code> / <code>basePackage</code></td>
+<td>包名与包前缀</td>
+<td>import、注解包路径</td>
+</tr>
+<tr>
+<td><code>businessName</code> / <code>BusinessName</code></td>
+<td>业务名称</td>
+<td>Controller 路径、业务描述</td>
+</tr>
+<tr>
+<td><code>functionName</code></td>
+<td>功能名称</td>
+<td>页面标题、注释</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>作者</td>
+<td>类头注释</td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>当前时间</td>
+<td>类头注释</td>
+</tr>
+<tr>
+<td><code>pkColumn</code></td>
+<td>主键列</td>
+<td>条件查询、ID 处理</td>
+</tr>
+<tr>
+<td><code>columns</code></td>
+<td>字段集合</td>
+<td>循环生成属性、表单控件、校验规则</td>
+</tr>
+<tr>
+<td><code>table</code></td>
+<td>整个 <code>GenTable</code></td>
+<td>模板中直接取表级配置</td>
+</tr>
+<tr>
+<td><code>dicts</code></td>
+<td>字典集合</td>
+<td>下拉框、字典标签</td>
+</tr>
+<tr>
+<td><code>parentMenuId</code></td>
+<td>父菜单 ID</td>
+<td>菜单与权限前缀</td>
+</tr>
+<tr>
+<td><code>treeCode</code> / <code>treeParentCode</code> / <code>treeName</code></td>
+<td>树形字段</td>
+<td>树形模板</td>
+</tr>
+<tr>
+<td><code>subTable</code> / <code>subTableName</code> / <code>subTableFkName</code></td>
+<td>主子表信息</td>
+<td>主子表模板</td>
+</tr>
+</tbody></table>
+<p>模板中不应硬编码业务常量，而应优先使用这些上下文变量；如果需要新增变量，应在 <code>VelocityUtils.prepareContext</code> 中添加，而不是只在某个模板里局部赋值。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">VelocityUtils.java:20-128</span></li>
+</ul>
+<h2 id="按目标修改模板的实操指南"><a class="anchor" href="#按目标修改模板的实操指南">#</a>按目标修改模板的实操指南</h2><h3 id="修改实体类模板"><a class="anchor" href="#修改实体类模板">#</a>修改实体类模板</h3><p>如果要调整实体类的包名、字段注释、注解或 Lombok 使用方式，应修改 <code>vm/java/domain.java.vm</code>。</p>
+<p>常见修改点：</p>
+<ul>
+<li><strong>包名与导入</strong>：模板通常使用 <code>${packageName}</code>、<code>${basePackage}</code>、<code>${importList}</code>。若新增第三方依赖，可在 <code>VelocityUtils.importList</code> 中追加，或在模板中增加 import。</li>
+<li><strong>类注解</strong>：如需添加 Swagger、MyBatis、审计或自定义注解，应放在类声明附近。</li>
+<li><strong>字段注解</strong>：如 <code>@ApiModel</code>、<code>@ApiModelProperty</code>、<code>@Data</code>、<code>@TableField</code>、<code>@NotBlank</code>、<code>@NotNull</code> 等，应根据字段类型与业务规则插入。</li>
+<li><strong>主键策略</strong>：参考 <code>pkColumn</code> 判断是否为主键，避免对非主键字段误用主键注解。</li>
+<li><strong>日期类型</strong>：根据字段类型决定是否使用 <code>Date</code>、<code>LocalDateTime</code> 或格式化注解。</li>
+</ul>
+<p>注意：不要直接改 <code>target/classes</code> 下的模板，应改源码目录中的 <code>src/main/resources/vm/java/domain.java.vm</code>，然后重新编译模块。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">domain.java.vm</span></li>
+<li><span class="fileref">VelocityUtils.java:20-128</span></li>
+</ul>
+<h3 id="修改-Controller-模板"><a class="anchor" href="#修改-Controller-模板">#</a>修改 Controller 模板</h3><p>Controller 模板位于 <code>vm/java/controller.java.vm</code>。常见需求包括：</p>
+<ul>
+<li><strong>RequestMapping 路径</strong>：通常由 <code>businessName</code> 或 <code>functionName</code> 决定。若需改为固定路径，应在此模板中调整。</li>
+<li><strong>Swagger 注解</strong>：如 <code>@Api</code>、<code>@ApiOperation</code>、<code>@ApiParam</code>，应加在类与方法上。</li>
+<li><strong>权限前缀</strong>：模板通常使用 <code>permissionPrefix</code>，来源于 <code>VelocityUtils.getPermissionPrefix(moduleName, businessName)</code>。</li>
+<li><strong>数据权限</strong>：如 <code>@DataScope</code>，应在查询方法上加，确保列表查询自动附加数据权限过滤。</li>
+<li><strong>日志注解</strong>：结合 <code>GenController</code> 中已有的 <code>@Log</code> 风格，在业务方法上添加操作日志。</li>
+<li><strong>分页参数</strong>：确保列表查询继承或复用框架的分页逻辑。</li>
+</ul>
+<p>如果新增的业务规则要求某些 Controller 方法必须带 <code>@DataScope</code>，应在模板中根据字段或业务名做条件判断，而不是在所有方法上都无条件添加。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">controller.java.vm</span></li>
+<li><span class="fileref">VelocityUtils.java:20-128</span></li>
+</ul>
+<h3 id="修改-Service-与-ServiceImpl-模板"><a class="anchor" href="#修改-Service-与-ServiceImpl-模板">#</a>修改 Service 与 ServiceImpl 模板</h3><ul>
+<li><code>vm/java/service.java.vm</code> 生成 Service 接口。</li>
+<li><code>vm/java/serviceImpl.java.vm</code> 生成 Service 实现类。</li>
+</ul>
+<p>常见修改点：</p>
+<ul>
+<li>是否需要注入额外依赖，如消息队列、外部服务、缓存。</li>
+<li>是否在新增、更新、删除方法中加入事务、审计、幂等校验。</li>
+<li>是否需要在 Service 层加入业务校验，而非只放在 Controller。</li>
+<li>是否要复用公共 BaseService 或通用分页方法。</li>
+<li>是否需要按租户、部门或数据范围组织查询。</li>
+</ul>
+<p>注意：模板改动会影响所有后续生成的 Service，应优先保证向后兼容，避免为个别表引入强耦合分支。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">service.java.vm</span></li>
+<li><span class="fileref">serviceImpl.java.vm</span></li>
+</ul>
+<h3 id="修改-Mapper-与-XML-模板"><a class="anchor" href="#修改-Mapper-与-XML-模板">#</a>修改 Mapper 与 XML 模板</h3><ul>
+<li><code>vm/java/mapper.java.vm</code> 生成 Mapper 接口。</li>
+<li><code>vm/xml/mapper.xml.vm</code> 生成 MyBatis XML。</li>
+</ul>
+<p>常见修改点：</p>
+<ul>
+<li>是否使用分页插件、多数据源、读写分离。</li>
+<li>是否需要根据业务表结构增加自定义 SQL。</li>
+<li>是否需要在 XML 中增加软删除、版本控制、审计字段处理。</li>
+<li>是否需要根据字段类型转换数据库类型与 Java 类型。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">mapper.java.vm</span></li>
+<li><span class="fileref">mapper.xml.vm</span></li>
+</ul>
+<h3 id="修改前端-API-调用模板"><a class="anchor" href="#修改前端-API-调用模板">#</a>修改前端 API 调用模板</h3><p>前端 API 模板位于 <code>vm/js/api.js.vm</code>。它通常会根据 <code>moduleName</code>、<code>businessName</code>、<code>className</code> 生成类似模块化的 JS 函数，供 Vue 页面调用。</p>
+<p>常见修改点：</p>
+<ul>
+<li>API 基础路径，例如是否加 <code>/system</code>、<code>/business</code> 等前缀。</li>
+<li>请求方法：GET、POST、PUT、DELETE。</li>
+<li>参数命名：是否与后端 DTO 一致。</li>
+<li>错误处理：是否统一包装 <code>AjaxResult</code> 或业务响应结构。</li>
+<li>是否添加拦截器、鉴权头、重试机制。</li>
+</ul>
+<p>如果前端存在两套源码，应以 <code>zealux-ai-ui-master/src/api</code> 为准；模板生成的 JS 应与该仓库的现有 API 风格保持一致。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">api.js.vm</span></li>
+</ul>
+<h3 id="修改前端-Vue-页面模板"><a class="anchor" href="#修改前端-Vue-页面模板">#</a>修改前端 Vue 页面模板</h3><p>前端页面模板有两个分支：</p>
+<ul>
+<li><code>vm/vue/index.vue.vm</code> 与 <code>vm/vue/index-tree.vue.vm</code>：适用于传统 Element UI 风格。</li>
+<li><code>vm/vue/v3/index.vue.vm</code> 与 <code>vm/vue/v3/index-tree.vue.vm</code>：适用于 <code>element-plus</code> 的 Vue3 风格。</li>
+</ul>
+<p>选择哪个分支由 <code>tplWebType</code> 决定：</p>
+<table>
+<thead>
+<tr>
+<th><code>tplWebType</code></th>
+<th>使用的 Vue 模板</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认值</td>
+<td><code>vm/vue/index.vue.vm</code> 或 <code>vm/vue/index-tree.vue.vm</code></td>
+</tr>
+<tr>
+<td><code>element-plus</code></td>
+<td><code>vm/vue/v3/index.vue.vm</code> 或 <code>vm/vue/v3/index-tree.vue.vm</code></td>
+</tr>
+</tbody></table>
+<p>常见修改点：</p>
+<ul>
+<li><strong>表单字段</strong>：根据 <code>columns</code> 循环生成输入框、选择框、日期选择器、富文本等。</li>
+<li><strong>验证规则</strong>：根据字段的必填、长度、正则、字典配置生成前端校验。</li>
+<li><strong>搜索栏</strong>：根据查询类型生成查询条件。</li>
+<li><strong>按钮权限</strong>：结合 <code>permissionPrefix</code> 控制新增、修改、删除、导出等按钮。</li>
+<li><strong>菜单与路由</strong>：Vue 模板可能生成页面路径，但实际菜单注册应由系统菜单管理，不应仅靠模板。</li>
+<li><strong>组件引用</strong>：如需要引入自定义组件，应保证模板中组件路径与 <code>zealux-ai-ui-master/src/components</code> 一致。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">index.vue.vm</span></li>
+<li><span class="fileref">index-tree.vue.vm</span></li>
+<li><span class="fileref">v3/index.vue.vm</span></li>
+<li><span class="fileref">v3/index-tree.vue.vm</span></li>
+<li><span class="fileref">VelocityUtils.java:130-159</span></li>
+</ul>
+<h2 id="重新生成、下载-ZIP-与替换已有代码的流程"><a class="anchor" href="#重新生成、下载-ZIP-与替换已有代码的流程">#</a>重新生成、下载 ZIP 与替换已有代码的流程</h2><h3 id="前置准备"><a class="anchor" href="#前置准备">#</a>前置准备</h3><ol>
+<li>确认数据库中存在目标表，并已执行过“导入表结构”。</li>
+<li>在代码生成列表中打开该表，填写或确认以下字段：<ul>
+<li>模块名 <code>moduleName</code></li>
+<li>包名 <code>packageName</code></li>
+<li>业务名 <code>businessName</code></li>
+<li>功能名 <code>functionName</code></li>
+<li>作者 <code>functionAuthor</code></li>
+<li>模板类型 <code>tplCategory</code>：CRUD、树形、主子表</li>
+<li>前端类型 <code>tplWebType</code>：默认或 <code>element-plus</code></li>
+<li>上级菜单、父子节点字段（树形模式）</li>
+<li>子表名与外键（主子表模式）</li>
+<li>生成路径 <code>genPath</code>：默认使用项目源码根目录下的相对路径。</li>
+</ul>
+</li>
+</ol>
+<h3 id="步骤一：修改模板后重新编译"><a class="anchor" href="#步骤一：修改模板后重新编译">#</a>步骤一：修改模板后重新编译</h3><ol>
+<li>修改 <code>src/main/resources/vm</code> 下的对应模板。</li>
+<li>在 <code>zealux-ai-modules/zealux-ai-gen</code> 模块中重新编译，使 <code>target/classes/vm</code> 与源码一致。</li>
+<li>重启 <code>zealux-ai-gen</code> 服务，确保 Velocity 引擎加载新模板。</li>
+</ol>
+<h3 id="步骤二：预览模板效果"><a class="anchor" href="#步骤二：预览模板效果">#</a>步骤二：预览模板效果</h3><ol>
+<li>打开代码生成任务。</li>
+<li>点击“预览”。</li>
+<li>逐个查看实体类、Mapper、Service、Controller、XML、JS、Vue 的渲染结果。</li>
+<li>如发现字段缺失、注解错误或路径异常，回到模板修正，不要直接猜问题所在。</li>
+</ol>
+<h3 id="步骤三：下载-ZIP"><a class="anchor" href="#步骤三：下载-ZIP">#</a>步骤三：下载 ZIP</h3><ol>
+<li>点击“生成代码”→“下载”。</li>
+<li>浏览器会收到一个 ZIP 文件。</li>
+<li>解压后检查：<ul>
+<li>Java 文件是否放入正确模块。</li>
+<li>包名是否与现有项目一致。</li>
+<li>Controller 路径是否符合网关与服务约定。</li>
+<li>Vue 页面路径是否与 <code>zealux-ai-ui-master/src/views</code> 一致。</li>
+<li>API JS 是否被前端正确引用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="步骤四：替换已有代码"><a class="anchor" href="#步骤四：替换已有代码">#</a>步骤四：替换已有代码</h3><p>如果是“生成到本地”，则：</p>
+<ol>
+<li>确认 <code>GenConfig.allowOverwrite</code> 已启用。</li>
+<li>调用 <code>/gen/genCode/{tableName}</code>。</li>
+<li>根据 <code>VelocityUtils.getFileName</code> 计算出的路径找到生成的文件。</li>
+<li>手动或用版本控制系统覆盖已有代码。</li>
+<li>提交变更前，务必对比差异，避免误删手写业务逻辑。</li>
+</ol>
+<p>注意：<code>generatorCode</code> 默认会跳过 SQL、JS、部分 Vue 模板，只写 Java/XML 等后端文件。如果需要同步前端，请使用“下载 ZIP”后再手动合并。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:140-216</span></li>
+<li><span class="fileref">GenTableServiceImpl.java:236-356</span></li>
+<li><span class="fileref">VelocityUtils.java:165-224</span></li>
+<li><span class="fileref">GenConfig.java:1-79</span></li>
+</ul>
+<h2 id="模板调试建议"><a class="anchor" href="#模板调试建议">#</a>模板调试建议</h2><h3 id="使用预览模式"><a class="anchor" href="#使用预览模式">#</a>使用预览模式</h3><p>预览是最安全的调试方式。它不会写磁盘，也不会影响运行中的业务代码。建议每次模板改动都先预览，确认所有模板都符合预期后再下载 ZIP。</p>
+<h3 id="逐步缩小问题范围"><a class="anchor" href="#逐步缩小问题范围">#</a>逐步缩小问题范围</h3><ul>
+<li>如果实体类正常但 Controller 异常，优先检查 <code>controller.java.vm</code>。</li>
+<li>如果后端正常但前端报错，优先检查 <code>api.js.vm</code> 与对应 Vue 模板。</li>
+<li>如果 SQL 有问题，优先检查 <code>sql.vm</code> 和 <code>mapper.xml.vm</code>。</li>
+<li>如果模板变量为空，检查 <code>VelocityUtils.prepareContext</code> 是否正确向 <code>VelocityContext</code> 写入。</li>
+</ul>
+<h3 id="检查模板变量来源"><a class="anchor" href="#检查模板变量来源">#</a>检查模板变量来源</h3><p>遇到模板无法解析的变量时，按以下顺序排查：</p>
+<ol>
+<li>变量是否在 <code>VelocityUtils.prepareContext</code> 中设置。</li>
+<li>变量是否属于 <code>GenTable</code>、<code>GenTableColumn</code>、<code>subTable</code> 等业务对象。</li>
+<li>变量是否只在特定 <code>tplCategory</code> 下可用，例如树形或主子表。</li>
+<li>模板是否使用了错误的变量名大小写。</li>
+</ol>
+<h3 id="区分模板路径与输出路径"><a class="anchor" href="#区分模板路径与输出路径">#</a>区分模板路径与输出路径</h3><p><code>VelocityUtils.getTemplateList</code> 返回的是模板资源路径，例如 <code>vm/java/domain.java.vm</code>；<br><code>VelocityUtils.getFileName</code> 返回的是输出文件路径，例如 <code>main/java/com/.../domain/xxx.java</code>。<br>不要把两者混淆：前者决定“读哪个模板”，后者决定“写到哪里”。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">VelocityUtils.java:130-224</span></li>
+<li><span class="fileref">GenTableServiceImpl.java:200-235</span></li>
+</ul>
+<h2 id="版本兼容性与注意事项"><a class="anchor" href="#版本兼容性与注意事项">#</a>版本兼容性与注意事项</h2><h3 id="继承自-RuoYi-Cloud-3.6.5"><a class="anchor" href="#继承自-RuoYi-Cloud-3.6.5">#</a>继承自 RuoYi-Cloud 3.6.5</h3><p>本项目是 RuoYi-Cloud 3.6.5 的重命名二次开发。文档中提到的架构、分层、注解风格、权限模型、菜单模型都应视为对 RuoYi-Cloud 的延续，而不是从零自研的系统。升级或迁移时应优先参考 RuoYi-Cloud 对应版本的变更，同时检查本项目的重命名差异。</p>
+<h3 id="前端源码以独立仓库为准"><a class="anchor" href="#前端源码以独立仓库为准">#</a>前端源码以独立仓库为准</h3><p><code>zealux-ai-ui-master</code> 是权威前端源码；<code>zealux-ai-master/zealux-ai-ui</code> 是重复拷贝，不参与根 pom 的模块构建。修改前端模板时，应保证生成的内容与 <code>zealux-ai-ui-master/src</code> 的结构兼容。</p>
+<h3 id="没有-CRM-模块落地"><a class="anchor" href="#没有-CRM-模块落地">#</a>没有 CRM 模块落地</h3><p>工作区中没有 <code>crm_</code> 前缀的数据库表，也没有 CRM 模块、CRM 菜单或 CRM 网关路由。任何 CRM 相关设计都属于方案设想，不能当作已实现能力。模板修改不应假设存在 CRM 表或 CRM 接口。</p>
+<h3 id="模板加载机制"><a class="anchor" href="#模板加载机制">#</a>模板加载机制</h3><p>Velocity 使用 ClasspathResourceLoader 从 classpath 加载模板。这意味着：</p>
+<ul>
+<li>模板必须存在于 <code>src/main/resources/vm</code>。</li>
+<li>打包后模板会出现在 <code>target/classes/vm</code>。</li>
+<li>修改模板后必须重新编译并重启服务。</li>
+<li>不要在运行期期望动态热加载模板。</li>
+</ul>
+<h3 id="覆盖本地文件的风险"><a class="anchor" href="#覆盖本地文件的风险">#</a>覆盖本地文件的风险</h3><p><code>/gen/genCode/{tableName}</code> 可以写本地磁盘，但受 <code>GenConfig.allowOverwrite</code> 控制。生产环境建议关闭覆盖，仅使用“下载 ZIP”人工合并，以避免自动化生成覆盖手写业务逻辑。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">VelocityInitializer.java:17-33</span></li>
+<li><span class="fileref">GenConfig.java:1-79</span></li>
+<li><span class="fileref">GenController.java:170-216</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>处理建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>预览时报模板不存在</td>
+<td>模板路径不在 classpath，或未重新编译</td>
+<td>检查 <code>src/main/resources/vm</code>，重新编译模块</td>
+</tr>
+<tr>
+<td>生成的 Java 包名错误</td>
+<td><code>packageName</code> 或 <code>moduleName</code> 配置不对</td>
+<td>在代码生成任务中修正，或检查模板中对变量的使用</td>
+</tr>
+<tr>
+<td>Controller 缺少注解</td>
+<td>模板未插入注解，或模板分支条件不满足</td>
+<td>检查 <code>controller.java.vm</code> 及模板条件</td>
+</tr>
+<tr>
+<td>前端页面找不到 API</td>
+<td><code>api.js.vm</code> 路径或函数名与 Vue 不一致</td>
+<td>对照 <code>zealux-ai-ui-master/src/api</code> 风格修正模板</td>
+</tr>
+<tr>
+<td>Vue 模板样式不符合预期</td>
+<td>选择了旧版 <code>vm/vue</code> 而非 <code>vm/vue/v3</code></td>
+<td>将 <code>tplWebType</code> 改为 <code>element-plus</code>，或改用 v3 模板</td>
+</tr>
+<tr>
+<td>下载 ZIP 中没有 Vue 文件</td>
+<td>“生成到本地”模式默认跳过部分前端模板</td>
+<td>使用“下载 ZIP”，再手动合并前端文件</td>
+</tr>
+<tr>
+<td>生成到本地失败</td>
+<td><code>allowOverwrite</code> 未开启或路径无写权限</td>
+<td>开启配置或改用下载 ZIP</td>
+</tr>
+<tr>
+<td>同步数据库后字段丢失</td>
+<td>字段在数据库中被删除</td>
+<td>确认是否真的要删除；必要时恢复备份</td>
+</tr>
+<tr>
+<td>树形模板报缺少树编码</td>
+<td>树形模式下未配置 <code>treeCode</code>、<code>treeParentCode</code>、<code>treeName</code></td>
+<td>在任务配置中补全树形字段</td>
+</tr>
+<tr>
+<td>主子表模板报缺少子表外键</td>
+<td>未配置 <code>subTableName</code> 或 <code>subTableFkName</code></td>
+<td>在主子表配置中补全</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenTableServiceImpl.java:356-521</span></li>
+<li><span class="fileref">VelocityUtils.java:130-224</span></li>
+</ul>
+<h2 id="总结"><a class="anchor" href="#总结">#</a>总结</h2><p>修改代码生成模板的核心原则是：</p>
+<ol>
+<li><strong>明确职责边界</strong>：<code>GenController</code> 负责 HTTP 接口与权限，<code>IGenTableService</code> 负责生成流程，<code>VelocityUtils</code> 负责模板上下文与模板选择，模板本身只负责代码结构。</li>
+<li><strong>先预览再落盘</strong>：模板调试优先使用预览，下载 ZIP 作为人工合并手段，谨慎使用“生成到本地”。</li>
+<li><strong>优先改模板，不改业务代码</strong>：模板修改影响所有后续生成，应保持通用性，避免为单表写死分支。</li>
+<li><strong>变量驱动模板</strong>：使用 <code>VelocityContext</code> 提供的变量，而不是硬编码表名、包名或路径。</li>
+<li><strong>保持版本兼容</strong>：承认本项目基于 RuoYi-Cloud 3.6.5，前端以独立仓库为准，不把尚未落地的 CRM 设想当成既有能力。</li>
+</ol>
+<p>只要遵循上述边界与流程，就能安全地扩展实体类、Controller、Service、Mapper、Vue 页面与 API 调用的生成行为，同时降低模板变更带来的回归风险。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">← 新增微服务模块</a>
+    <a class="next" href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构与模板定位">项目结构与模板定位</a></li><li class="d2"><a href="#核心职责边界：GenController-与-IGenTableService">核心职责边界：GenController 与 IGenTableService</a></li><li class="d3"><a href="#GenController：HTTP-路由与权限控制">GenController：HTTP 路由与权限控制</a></li><li class="d3"><a href="#IGenTableService：生成流程编排与状态维护">IGenTableService：生成流程编排与状态维护</a></li><li class="d2"><a href="#从数据库表到前后端文件的完整生成链路">从数据库表到前后端文件的完整生成链路</a></li><li class="d3"><a href="#整体流程图">整体流程图</a></li><li class="d3"><a href="#关键阶段说明">关键阶段说明</a></li><li class="d3"><a href="#下载-ZIP-与生成到本地的差异">下载 ZIP 与生成到本地的差异</a></li><li class="d2"><a href="#Velocity-模板体系与关键变量">Velocity 模板体系与关键变量</a></li><li class="d3"><a href="#模板位置">模板位置</a></li><li class="d3"><a href="#VelocityContext-中的关键变量">VelocityContext 中的关键变量</a></li><li class="d2"><a href="#按目标修改模板的实操指南">按目标修改模板的实操指南</a></li><li class="d3"><a href="#修改实体类模板">修改实体类模板</a></li><li class="d3"><a href="#修改-Controller-模板">修改 Controller 模板</a></li><li class="d3"><a href="#修改-Service-与-ServiceImpl-模板">修改 Service 与 ServiceImpl 模板</a></li><li class="d3"><a href="#修改-Mapper-与-XML-模板">修改 Mapper 与 XML 模板</a></li><li class="d3"><a href="#修改前端-API-调用模板">修改前端 API 调用模板</a></li><li class="d3"><a href="#修改前端-Vue-页面模板">修改前端 Vue 页面模板</a></li><li class="d2"><a href="#重新生成、下载-ZIP-与替换已有代码的流程">重新生成、下载 ZIP 与替换已有代码的流程</a></li><li class="d3"><a href="#前置准备">前置准备</a></li><li class="d3"><a href="#步骤一：修改模板后重新编译">步骤一：修改模板后重新编译</a></li><li class="d3"><a href="#步骤二：预览模板效果">步骤二：预览模板效果</a></li><li class="d3"><a href="#步骤三：下载-ZIP">步骤三：下载 ZIP</a></li><li class="d3"><a href="#步骤四：替换已有代码">步骤四：替换已有代码</a></li><li class="d2"><a href="#模板调试建议">模板调试建议</a></li><li class="d3"><a href="#使用预览模式">使用预览模式</a></li><li class="d3"><a href="#逐步缩小问题范围">逐步缩小问题范围</a></li><li class="d3"><a href="#检查模板变量来源">检查模板变量来源</a></li><li class="d3"><a href="#区分模板路径与输出路径">区分模板路径与输出路径</a></li><li class="d2"><a href="#版本兼容性与注意事项">版本兼容性与注意事项</a></li><li class="d3"><a href="#继承自-RuoYi-Cloud-3.6.5">继承自 RuoYi-Cloud 3.6.5</a></li><li class="d3"><a href="#前端源码以独立仓库为准">前端源码以独立仓库为准</a></li><li class="d3"><a href="#没有-CRM-模块落地">没有 CRM 模块落地</a></li><li class="d3"><a href="#模板加载机制">模板加载机制</a></li><li class="d3"><a href="#覆盖本地文件的风险">覆盖本地文件的风险</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d2"><a href="#总结">总结</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

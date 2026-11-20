@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>datasource 数据源模块 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec" open><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html" class="active">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">通用模块(common)设计 / <b>datasource 数据源模块</b></div><article><h1 id="datasource-数据源模块"><a class="anchor" href="#datasource-数据源模块">#</a>datasource 数据源模块</h1><cite>
+**本文引用的文件 **
+- [Master.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/src/main/java/com/zealux/common/datasource/annotation/Master.java)
+- [Slave.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/src/main/java/com/zealux/common/datasource/annotation/Slave.java)
+- [pom.xml（datasource 子模块）](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/pom.xml)
+- [pom.xml（根项目）](file://zealux-ai-master/pom.xml)
+- [application-dev.yml（Nacos 本地配置副本）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/application-dev.yml)
+- [zealux-ai-system-dev.yml（Nacos 本地配置副本）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-system-dev.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#模块定位与依赖">模块定位与依赖</a></li>
+<li><a href="#注解定义master-与-slave">注解定义：@Master 与 @Slave</a></li>
+<li><a href="#动态数据源切换机制">动态数据源切换机制</a></li>
+<li><a href="#nacos-多数据源配置映射">Nacos 多数据源配置映射</a></li>
+<li><a href="#在-mapper-与-service-上的使用方式">在 Mapper 与 Service 上的使用方式</a></li>
+<li><a href="#默认数据源与强制指定数据源的差异">默认数据源与强制指定数据源的差异</a></li>
+<li><a href="#常见问题与排查思路">常见问题与排查思路</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本模块是 zealux-ai-common 中的 <code>zealux-ai-common-datasource</code>，用于为系统提供基于注解的动态数据源切换能力。该模块没有重新实现底层路由逻辑，而是通过引入 Druid 连接池与 MyBatis-Plus 的 dynamic-datasource 组件，并在自身中定义语义更清晰的 <code>@Master</code>、<code>@Slave</code> 两个注解，对外暴露主库和从库的数据源选择策略。</p>
+<p>需要特别说明的是：</p>
+<ul>
+<li>当前仓库中只实现了注解封装；工作区内未找到由本项目维护的 AOP 切面、数据源上下文类或数据库初始化脚本。</li>
+<li>Nacos 本地配置副本中仅定义了名为 <code>master</code> 的主库数据源，未发现名为 <code>slave</code> 的从库配置。</li>
+<li>因此，“读写分离”在本仓库中表现为“通过注解将请求路由到已配置的 named datasource”，并不保证已经部署了真实的从库实例。</li>
+</ul>
+<h2 id="模块定位与依赖"><a class="anchor" href="#模块定位与依赖">#</a>模块定位与依赖</h2><p><code>zealux-ai-common-datasource</code> 是一个轻量公共库，其职责是把业务侧关心的“主库/从库”语义，翻译成 dynamic-datasource 能够识别的数据源名称。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Maven artifactId</td>
+<td><code>zealux-ai-common-datasource</code></td>
+</tr>
+<tr>
+<td>所属父模块</td>
+<td><code>zealux-ai-common</code></td>
+</tr>
+<tr>
+<td>核心依赖</td>
+<td>Druid Spring Boot 3 Starter、dynamic-datasource-spring-boot3-starter</td>
+</tr>
+<tr>
+<td>版本来源</td>
+<td><code>druid.version=1.2.23</code>、<code>dynamic-ds.version=4.3.1</code></td>
+</tr>
+<tr>
+<td>对外暴露</td>
+<td><code>com.zealux.common.datasource.annotation.Master</code>、<code>Slave</code></td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;zealux-ai-common-datasource&quot;
+        MasterAnno[&quot;注解 Master&quot;]
+        SlaveAnno[&quot;注解 Slave&quot;]
+        Druid[&quot;Druid 连接池&quot;]
+        DynamicDs[&quot;MyBatis-Plus dynamic-datasource&quot;]
+    end
+
+    MasterAnno --&gt; DynamicDs
+    SlaveAnno --&gt; DynamicDs
+    DynamicDs --&gt; Druid</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml（datasource 子模块）:1-35</span></li>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml（datasource 子模块）:1-35</span></li>
+<li><span class="fileref">pom.xml（根项目）:32-33</span></li>
+</ul>
+<h2 id="注解定义：@Master-与-@Slave"><a class="anchor" href="#注解定义：@Master-与-@Slave">#</a>注解定义：@Master 与 @Slave</h2><p>模块中只有两个注解，且结构高度对称：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>作用目标</th>
+<th>保留策略</th>
+<th>内部行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Master</code></td>
+<td>类型与方法</td>
+<td>运行时保留</td>
+<td>委托给 dynamic-datasource 的 <code>@DS(&quot;master&quot;)</code></td>
+</tr>
+<tr>
+<td><code>@Slave</code></td>
+<td>类型与方法</td>
+<td>运行时保留</td>
+<td>委托给 dynamic-datasource 的 <code>@DS(&quot;slave&quot;)</code></td>
+</tr>
+</tbody></table>
+<p>这意味着：</p>
+<ul>
+<li>注解本身不保存额外参数，也不包含自定义逻辑。</li>
+<li>真正决定使用哪个数据源的是注解上嵌入的字符串 <code>&quot;master&quot;</code> 或 <code>&quot;slave&quot;</code>。</li>
+<li>这两个注解只是对业务语义的包装，降低直接写 <code>&quot;master&quot;</code>、<code>&quot;slave&quot;</code> 带来的可读性问题。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class Master {
+        &lt;&lt;annotation&gt;&gt;
+        +目标: 类型与方法
+        +运行时保留
+        +委托: DS(&quot;master&quot;)
+    }
+
+    class Slave {
+        &lt;&lt;annotation&gt;&gt;
+        +目标: 类型与方法
+        +运行时保留
+        +委托: DS(&quot;slave&quot;)
+    }
+
+    Master --&gt; DynamicDs : &quot;使用&quot;
+    Slave --&gt; DynamicDs : &quot;使用&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+</ul>
+<h2 id="动态数据源切换机制"><a class="anchor" href="#动态数据源切换机制">#</a>动态数据源切换机制</h2><p>由于本仓库没有暴露自定义的 AOP 切面或 <code>DynamicDataSourceContextHolder</code> 等上下文类，当前实现的数据源选择链路可理解为：</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant 调用方 as &quot;Service 或 Mapper 方法&quot;
+    participant 注解 as &quot;@Master / @Slave&quot;
+    participant DsAnno as &quot;dynamic-datasource @DS&quot;
+    participant 路由 as &quot;dynamic-datasource 路由&quot;
+    participant 连接池 as &quot;Druid 连接池&quot;
+    participant 数据库 as &quot;MySQL 数据库&quot;
+
+    调用方-&gt;&gt;注解: 执行被注解标记的方法
+    注解-&gt;&gt;DsAnno: 解析出数据源名称 master 或 slave
+    DsAnno-&gt;&gt;路由: 根据名称选择数据源
+    路由-&gt;&gt;连接池: 获取对应连接
+    连接池-&gt;&gt;数据库: 执行 SQL
+    数据库--&gt;&gt;连接池: 返回结果
+    连接池--&gt;&gt;路由: 归还连接
+    路由--&gt;&gt;调用方: 返回业务结果</pre></div><p>关键点如下：</p>
+<ol>
+<li>注解的目标是 <code>TYPE</code> 与 <code>METHOD</code>，所以可以加在类上作为默认策略，也可以加在具体方法上覆盖类级别设置。</li>
+<li>当多个注解同时存在时，应以 dynamic-datasource 的规则为准；代码中未给出冲突处理逻辑。</li>
+<li>如果方法上没有 <code>@Master</code> 或 <code>@Slave</code>，则回退到 dynamic-datasource 的默认数据源。</li>
+<li>如果某个服务没有启用 dynamic-datasource starter，或者 Nacos 中没有注册对应 dataId 的配置，则无法完成切换。</li>
+</ol>
+<p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+<li><span class="fileref">pom.xml（datasource 子模块）:20-35</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+<li><span class="fileref">pom.xml（datasource 子模块）:20-35</span></li>
+</ul>
+<h2 id="Nacos-多数据源配置映射"><a class="anchor" href="#Nacos-多数据源配置映射">#</a>Nacos 多数据源配置映射</h2><p>本模块通过 dynamic-datasource 读取以 <code>spring.dynamic.*</code> 开头的配置。本地 Nacos 配置副本显示，system 服务的 dev 配置中包含以下关键路径：</p>
+<table>
+<thead>
+<tr>
+<th>Nacos 配置路径</th>
+<th>当前值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>spring.datasource.druid.stat-view-servlet.enabled</code></td>
+<td><code>true</code></td>
+<td>开启 Druid 监控面板</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.druid.initial-size</code></td>
+<td><code>5</code></td>
+<td>初始连接数</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.druid.min-idle</code></td>
+<td><code>5</code></td>
+<td>最小空闲连接数</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.druid.maxActive</code></td>
+<td><code>20</code></td>
+<td>最大活动连接数</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.druid.validationQuery</code></td>
+<td><code>SELECT 1 FROM DUAL</code></td>
+<td>连接有效性校验语句</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.datasource.master.driver-class-name</code></td>
+<td>MySQL 驱动类</td>
+<td>主库驱动</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.datasource.master.url</code></td>
+<td><code>jdbc:mysql://127.0.0.1:3306/zealux-ai-cloud?...</code></td>
+<td>主库连接地址</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.datasource.master.username</code></td>
+<td><code>root</code></td>
+<td>主库用户名</td>
+</tr>
+<tr>
+<td><code>spring.dynamic.datasource.master.password</code></td>
+<td><code>root</code></td>
+<td>主库密码</td>
+</tr>
+</tbody></table>
+<p>注意：</p>
+<ul>
+<li>本地配置副本中只定义了 <code>master</code>，未定义 <code>slave</code>。</li>
+<li>若方法标注 <code>@Slave</code>，但 Nacos 中没有 <code>spring.dynamic.datasource.slave</code>，运行时可能找不到数据源。</li>
+<li><code>application-dev.yml</code> 中还排除了 Druid 默认的 <code>DruidDataSourceAutoConfigure</code>，这通常是为了让 dynamic-datasource 接管连接池初始化。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;服务启动&quot;]) --&gt; ReadNacos[&quot;读取 Nacos 配置&lt;br/&gt;spring.dynamic.*&quot;]
+    ReadNacos --&gt; CheckMaster{&quot;是否存在 master 数据源?&quot;}
+    CheckMaster --&gt;|是| RegisterMaster[&quot;注册 master 数据源&quot;]
+    CheckMaster --&gt;|否| WarnMaster[&quot;记录 master 缺失&quot;]
+    ReadNacos --&gt; CheckSlave{&quot;是否存在 slave 数据源?&quot;}
+    CheckSlave --&gt;|是| RegisterSlave[&quot;注册 slave 数据源&quot;]
+    CheckSlave --&gt;|否| WarnSlave[&quot;记录 slave 缺失&quot;]
+    RegisterMaster --&gt; Ready([&quot;就绪&quot;])
+    RegisterSlave --&gt; Ready
+    WarnMaster --&gt; Ready
+    WarnSlave --&gt; Ready</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+<li><span class="fileref">application-dev.yml:1-5</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+<li><span class="fileref">application-dev.yml:1-5</span></li>
+</ul>
+<h2 id="在-Mapper-与-Service-上的使用方式"><a class="anchor" href="#在-Mapper-与-Service-上的使用方式">#</a>在 Mapper 与 Service 上的使用方式</h2><h3 id="推荐用法"><a class="anchor" href="#推荐用法">#</a>推荐用法</h3><ul>
+<li>读操作：在查询类 Service 方法上标注 <code>@Slave</code>，使请求默认走从库。</li>
+<li>写操作：在新增、修改、删除方法上标注 <code>@Master</code>，确保写入主库。</li>
+<li>默认策略：如果整个 Service 类都是读操作，可在类上标注 <code>@Slave</code>，方法级不再重复标注。</li>
+<li>混合场景：一个 Service 类同时包含读写方法时，建议只在具体方法上标注，避免类级别默认值干扰。</li>
+</ul>
+<h3 id="示例形式"><a class="anchor" href="#示例形式">#</a>示例形式</h3><p>以下示例仅展示注解位置与语义，不包含具体业务字段或返回值。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>示例形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单个查询方法使用从库</td>
+<td>在 Service 方法上加 <code>@Slave</code></td>
+</tr>
+<tr>
+<td>单个写入方法使用主库</td>
+<td>在 Service 方法上加 <code>@Master</code></td>
+</tr>
+<tr>
+<td>整类默认读从库</td>
+<td>在 Service 类上加 <code>@Slave</code></td>
+</tr>
+<tr>
+<td>覆盖类的默认策略</td>
+<td>在类上加 <code>@Slave</code>，特定写方法再加 <code>@Master</code></td>
+</tr>
+<tr>
+<td>Mapper 层</td>
+<td>若 Mapper 方法属于事务或复杂流程，建议把注解放在 Service 方法上，而不是 Mapper 接口</td>
+</tr>
+</tbody></table>
+<h3 id="不推荐的做法"><a class="anchor" href="#不推荐的做法">#</a>不推荐的做法</h3><ul>
+<li>同时在同一方法上混用多个数据源相关注解。</li>
+<li>把写注解放在只读事务方法上。</li>
+<li>仅在 Mapper 上标注而不在调用链入口标注，导致事务边界判断困难。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+</ul>
+<h2 id="默认数据源与强制指定数据源的差异"><a class="anchor" href="#默认数据源与强制指定数据源的差异">#</a>默认数据源与强制指定数据源的差异</h2><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>默认数据源</th>
+<th>强制指定数据源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>触发方式</td>
+<td>方法上没有 <code>@Master</code> 或 <code>@Slave</code></td>
+<td>方法或类上明确标注 <code>@Master</code> / <code>@Slave</code></td>
+</tr>
+<tr>
+<td>数据来源</td>
+<td>dynamic-datasource 的默认数据源</td>
+<td>注解中指定的 <code>master</code> 或 <code>slave</code></td>
+</tr>
+<tr>
+<td>可控性</td>
+<td>较低，依赖框架默认行为</td>
+<td>较高，由业务代码显式声明</td>
+</tr>
+<tr>
+<td>可读性</td>
+<td>不明确是否读写</td>
+<td>明确表达“读从库”或“写主库”意图</td>
+</tr>
+<tr>
+<td>风险</td>
+<td>默认数据源变化会影响所有未标注方法</td>
+<td>每个方法职责清晰，便于审查</td>
+</tr>
+</tbody></table>
+<p>在现有 Nacos 配置中，<code>master</code> 是唯一可见的 named datasource。若没有额外配置 <code>slave</code>，强制指定 <code>@Slave</code> 并不能自动实现真正的从库隔离，而只是尝试访问名为 <code>slave</code> 的数据源。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+</ul>
+<h2 id="常见问题与排查思路"><a class="anchor" href="#常见问题与排查思路">#</a>常见问题与排查思路</h2><h3 id="1.-事务边界内数据源切换失效"><a class="anchor" href="#1.-事务边界内数据源切换失效">#</a>1. 事务边界内数据源切换失效</h3><p><strong>现象：</strong><br>方法上加了 <code>@Master</code>，但事务内的查询仍走了默认数据源或从库。</p>
+<p><strong>原因分析：</strong></p>
+<ul>
+<li>事务通常在方法进入前创建连接。如果外层方法先开启事务并绑定了一个连接，内层方法的注解可能无法再切换到另一个数据源。</li>
+<li>本模块没有看到自定义的事务拦截器或事务同步策略，因此应遵循 dynamic-datasource 的一般限制：尽量避免在一个事务中跨数据源切换。</li>
+</ul>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li>确认事务注解位于哪个方法上。</li>
+<li>检查该方法是否调用了其他带不同数据源注解的方法。</li>
+<li>将写操作拆分为独立方法，并把事务边界收缩到最短范围。</li>
+<li>如果必须跨库，考虑改为分布式事务方案，而不是依赖简单注解切换。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+<li><span class="fileref">Slave.java:1-22</span></li>
+</ul>
+<h3 id="2.-只读事务与写注解冲突"><a class="anchor" href="#2.-只读事务与写注解冲突">#</a>2. 只读事务与写注解冲突</h3><p><strong>现象：</strong><br>方法标注 <code>@Transactional(readOnly = true)</code>，同时又标注 <code>@Master</code>，写入时报错或未按预期写入。</p>
+<p><strong>原因分析：</strong></p>
+<ul>
+<li>只读事务通常会向数据库发送只读模式提示，某些数据库或中间件会拒绝写操作。</li>
+<li><code>@Master</code> 只负责选择数据源，不负责改变事务的只读属性。</li>
+</ul>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li>移除写方法的只读事务注解。</li>
+<li>将读方法和写方法拆分到不同函数。</li>
+<li>如果确实需要同一个函数既读又写，应将事务改为可写，并确保写操作有明确的事务边界。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Master.java:1-22</span></li>
+</ul>
+<h3 id="3.-找不到-slave-数据源"><a class="anchor" href="#3.-找不到-slave-数据源">#</a>3. 找不到 slave 数据源</h3><p><strong>现象：</strong><br>调用标注 <code>@Slave</code> 的方法后报错，提示找不到名为 <code>slave</code> 的数据源。</p>
+<p><strong>原因分析：</strong></p>
+<ul>
+<li>注解只会告诉 dynamic-datasource 使用 <code>slave</code> 这个名称。</li>
+<li>本地 Nacos 配置副本中只定义了 <code>master</code>，没有 <code>slave</code>。</li>
+</ul>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li>检查 Nacos 中对应服务的 dataId 是否包含 <code>spring.dynamic.datasource.slave</code>。</li>
+<li>确认 slave 数据库连接信息完整：driver、url、username、password。</li>
+<li>验证 slave 数据库实例可达，且账号权限正确。</li>
+<li>如暂时不需要从库，可先移除 <code>@Slave</code>，统一使用 <code>@Master</code> 或默认数据源。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Slave.java:1-22</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+</ul>
+<h3 id="4.-连接池耗尽"><a class="anchor" href="#4.-连接池耗尽">#</a>4. 连接池耗尽</h3><p><strong>现象：</strong><br>高并发下出现连接获取超时、线程阻塞或数据库连接数接近上限。</p>
+<p><strong>原因分析：</strong></p>
+<ul>
+<li>Nacos 配置中 <code>maxActive=20</code>，表示每个数据源的最大活动连接数为 20。</li>
+<li>长事务、慢查询、未关闭的连接或跨数据源事务都会显著消耗连接。</li>
+<li>若后续增加更多 named datasource，总连接数会成倍增长。</li>
+</ul>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li>查看 Druid 监控面板中各数据源的活跃连接、等待队列和慢 SQL。</li>
+<li>检查是否存在长时间未提交的事务。</li>
+<li>排查是否有循环调用、批量任务或定时任务占用大量连接。</li>
+<li>适当调整 <code>initial-size</code>、<code>min-idle</code>、<code>maxActive</code>，并结合压测确定合理值。</li>
+<li>将慢查询优化或拆分，减少单次事务持有连接的时间。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;发现连接池耗尽&quot;]) --&gt; Monitor[&quot;查看 Druid 监控&quot;]
+    Monitor --&gt; SlowSql[&quot;定位慢 SQL&quot;]
+    Monitor --&gt; LongTx[&quot;定位长事务&quot;]
+    SlowSql --&gt; Optimize[&quot;优化 SQL 或索引&quot;]
+    LongTx --&gt; ShortenTx[&quot;缩短事务边界&quot;]
+    Optimize --&gt; TunePool[&quot;调整连接池参数&quot;]
+    ShortenTx --&gt; TunePool
+    TunePool --&gt; Verify[&quot;压测验证恢复情况&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml:1-55</span></li>
+</ul>
+<h3 id="5.-注解没有生效"><a class="anchor" href="#5.-注解没有生效">#</a>5. 注解没有生效</h3><p><strong>现象：</strong><br>加了 <code>@Master</code> 或 <code>@Slave</code>，但 SQL 仍然走默认数据源。</p>
+<p><strong>排查步骤：</strong></p>
+<ol>
+<li>确认目标类或方法已被 Spring 管理。</li>
+<li>确认目标包已被扫描到。</li>
+<li>确认服务引入了 <code>dynamic-datasource-spring-boot3-starter</code>。</li>
+<li>确认 Nacos 中 dataId 正确加载，且 <code>spring.dynamic.*</code> 配置可用。</li>
+<li>检查是否存在外层事务、AOP 或代理导致注解未被解析。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml（datasource 子模块）:20-35</span></li>
+<li><span class="fileref">application-dev.yml:1-5</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>zealux-ai-common-datasource</code> 的核心价值在于用 <code>@Master</code> 和 <code>@Slave</code> 两个轻量注解，把“主库/从库”的业务语义映射到 dynamic-datasource 的 <code>master</code> 与 <code>slave</code> 数据源名称。它本身不包含自定义 AOP 实现，也不维护数据源上下文；真正的路由由 dynamic-datasource 完成，连接池由 Druid 管理。</p>
+<p>在当前仓库中，实际可用的 named datasource 只有 <code>master</code>。因此：</p>
+<ul>
+<li>读写分离在架构意图上是明确的，但在本仓库中尚未体现为真实的双库部署。</li>
+<li>生产接入前应补充 <code>slave</code> 数据源配置，并验证 Nacos 配置、数据库连通性和连接池容量。</li>
+<li>使用时应优先在 Service 方法上标注，控制事务边界，避免在只读事务中进行写操作。</li>
+<li>对于事务内切换失败、连接池耗尽、找不到 slave 等问题，应按本文排查路径逐项确认。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">← datascope 数据权限模块</a>
+    <a class="next" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#模块定位与依赖">模块定位与依赖</a></li><li class="d2"><a href="#注解定义：@Master-与-@Slave">注解定义：@Master 与 @Slave</a></li><li class="d2"><a href="#动态数据源切换机制">动态数据源切换机制</a></li><li class="d2"><a href="#Nacos-多数据源配置映射">Nacos 多数据源配置映射</a></li><li class="d2"><a href="#在-Mapper-与-Service-上的使用方式">在 Mapper 与 Service 上的使用方式</a></li><li class="d3"><a href="#推荐用法">推荐用法</a></li><li class="d3"><a href="#示例形式">示例形式</a></li><li class="d3"><a href="#不推荐的做法">不推荐的做法</a></li><li class="d2"><a href="#默认数据源与强制指定数据源的差异">默认数据源与强制指定数据源的差异</a></li><li class="d2"><a href="#常见问题与排查思路">常见问题与排查思路</a></li><li class="d3"><a href="#1.-事务边界内数据源切换失效">1. 事务边界内数据源切换失效</a></li><li class="d3"><a href="#2.-只读事务与写注解冲突">2. 只读事务与写注解冲突</a></li><li class="d3"><a href="#3.-找不到-slave-数据源">3. 找不到 slave 数据源</a></li><li class="d3"><a href="#4.-连接池耗尽">4. 连接池耗尽</a></li><li class="d3"><a href="#5.-注解没有生效">5. 注解没有生效</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>部署与运维 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec" open><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html" class="active">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">部署与运维 / <b>部署与运维</b></div><article><h1 id="部署与运维"><a class="anchor" href="#部署与运维">#</a>部署与运维</h1><cite>
+**本文引用的文件**
+- [pom.xml](file://zealux-ai-master/pom.xml)
+- [package.json](file://zealux-ai-ui-master/package.json)
+- [start-all.ps1](file://_setup/start-all.ps1)
+- [gateway-watch.ps1](file://_setup/gateway-watch.ps1)
+- [bootstrap.yml（网关）](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（认证服务）](file://zealux-ai-master/zealux-ai-auth/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（系统模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（代码生成模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（定时任务模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（文件模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/resources/bootstrap.yml)
+- [bootstrap.yml（监控模块）](file://zealux-ai-master/zealux-ai-visual/zealux-ai-monitor/src/main/resources/bootstrap.yml)
+- [application-dev.yml（Nacos 共享配置）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/application-dev.yml)
+- [zealux-ai-system-dev.yml（系统模块 Nacos 配置）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-system-dev.yml)
+- [zealux-ai-file-dev.yml（文件模块 Nacos 配置）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-file-dev.yml)
+- [zealux-ai-gen-dev.yml（代码生成模块 Nacos 配置）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-gen-dev.yml)
+- [zealux-ai-job-dev.yml（定时任务模块 Nacos 配置）](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-job-dev.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与容量规划">性能与容量规划</a></li>
+<li><a href="#部署步骤与端口规划">部署步骤与端口规划</a></li>
+<li><a href="#故障排查清单">故障排查清单</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本仓库是开源 RuoYi-Cloud 3.6.5 的重命名二次开发，根 <code>pom.xml</code> 的 artifactId 为 <code>zealux-ai</code>、版本为 <code>3.6.5</code>；前端 <code>package.json</code> 名称仍为 <code>ruoyi@3.6.5</code>。后端多个启动类仍沿用 <code>RuoYi*Application.java</code> 风格，公共库子目录也保留原命名。因此，在描述架构时应明确：它不是从零自研框架，而是基于 Spring Cloud + Nacos + MyBatis-Plus + Druid + MinIO 的微服务后台，并搭配 Vue 2 + Element UI 管理端前端。</p>
+<p>需要特别强调三点现状：</p>
+<ul>
+<li>数据库中不存在任何 <code>crm_</code> 前缀表；此前讨论过的 CRM 建表方案并未在本工作区执行，也不应被描述为已具备能力。</li>
+<li><code>zealux-ai-leads</code> 模块当前只有少量 Java 文件，缺少前端页面、菜单、Nacos 配置和网关路由，且本地 Redis 缺 RediSearch 模块，因此该服务不可运行。</li>
+<li>本地 <code>_setup</code> 下的脚本、JDK、Maven、MariaDB、Redis、Nacos 等属于排查环境产物，不是生产部署模板。</li>
+</ul>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>本项目采用 Maven 多模块后端与独立前端仓库的组合：</p>
+<ul>
+<li>后端根工程：<code>zealux-ai-master</code>，使用 Spring Boot 3.3.5、Spring Cloud 2023.0.3、Spring Cloud Alibaba 2023.0.1.2、Java 17。</li>
+<li>公共库：<code>zealux-ai-common</code>，包含 <code>core</code>、<code>security</code>、<code>log</code>、<code>redis</code>、<code>swagger</code>、<code>datasource</code>、<code>datascope</code>、<code>ruoyi-common-sensitive</code>、<code>ai</code> 等非空子模块。</li>
+<li>网关与服务：<code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-modules</code>（system/gen/job/file/leads）、<code>zealux-ai-visual</code>。</li>
+<li>前端主仓库：<code>zealux-ai-ui-master</code>，源码位于 <code>src/api</code>、<code>src/views</code>、<code>src/store</code>、<code>src/router</code>、<code>src/permission.js</code>、<code>src/components</code>、<code>src/layout</code> 等层次。</li>
+<li>后端内嵌的前端拷贝：<code>zealux-ai-master/zealux-ai-ui</code> 是重复副本，不参与根 <code>pom.xml</code> 构建，应以 <code>zealux-ai-ui-master</code> 为准。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    A[&quot;浏览器&quot;] --&gt; B[&quot;Vue 前端&lt;br/&gt;zealux-ai-ui-master&quot;]
+    B --&gt; C[&quot;API 调用&lt;br/&gt;src/api/*&quot;]
+    C --&gt; D[&quot;网关&lt;br/&gt;zealux-ai-gateway:8080&quot;]
+    D --&gt; E[&quot;认证服务&lt;br/&gt;zealux-ai-auth:9200&quot;]
+    D --&gt; F[&quot;系统模块&lt;br/&gt;zealux-ai-system:9201&quot;]
+    D --&gt; G[&quot;代码生成&lt;br/&gt;zealux-ai-gen:9202&quot;]
+    D --&gt; H[&quot;定时任务&lt;br/&gt;zealux-ai-job:9203&quot;]
+    D --&gt; I[&quot;文件模块&lt;br/&gt;zealux-ai-file:9300&quot;]
+    D --&gt; J[&quot;监控服务&lt;br/&gt;zealux-ai-monitor:9100&quot;]
+    K[&quot;注册中心与配置中心&lt;br/&gt;Nacos:8848&quot;] --- D
+    K --- E
+    K --- F
+    K --- G
+    K --- H
+    K --- I
+    L[&quot;数据库&lt;br/&gt;MySQL/MariaDB:3306&quot;] --- F
+    L --- G
+    L --- H
+    M[&quot;缓存会话与验证码&lt;br/&gt;Redis:6379&quot;] --- E
+    M --- F
+    N[&quot;对象存储或 FastDFS&lt;br/&gt;MinIO/FastDFS&quot;] --- I</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml</span></li>
+<li><span class="fileref">package.json</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th align="right">默认端口</th>
+<th>主要职责</th>
+<th>关键配置位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nacos</td>
+<td align="right">8848</td>
+<td>服务注册发现、配置中心、Sentinel 规则持久化</td>
+<td>本地单机启动参数与 Nacos 共享配置</td>
+</tr>
+<tr>
+<td>网关</td>
+<td align="right">8080</td>
+<td>统一入口、请求缓存、黑名单校验、验证码过滤、动态路由</td>
+<td><code>zealux-ai-gateway/bootstrap.yml</code></td>
+</tr>
+<tr>
+<td>认证服务</td>
+<td align="right">9200</td>
+<td>登录、鉴权、令牌签发与校验</td>
+<td><code>zealux-ai-auth/bootstrap.yml</code>、Nacos 共享配置</td>
+</tr>
+<tr>
+<td>系统模块</td>
+<td align="right">9201</td>
+<td>用户、角色、菜单、数据权限、Druid 监控</td>
+<td><code>zealux-ai-system/bootstrap.yml</code>、<code>zealux-ai-system-dev.yml</code></td>
+</tr>
+<tr>
+<td>代码生成模块</td>
+<td align="right">9202</td>
+<td>模板与代码生成</td>
+<td><code>zealux-ai-gen/bootstrap.yml</code>、<code>zealux-ai-gen-dev.yml</code></td>
+</tr>
+<tr>
+<td>定时任务模块</td>
+<td align="right">9203</td>
+<td>Quartz 调度、JDBC Job Store</td>
+<td><code>zealux-ai-job/bootstrap.yml</code>、<code>zealux-ai-job-dev.yml</code></td>
+</tr>
+<tr>
+<td>文件模块</td>
+<td align="right">9300</td>
+<td>本地上传、FastDFS、MinIO</td>
+<td><code>zealux-ai-file/bootstrap.yml</code>、<code>zealux-ai-file-dev.yml</code></td>
+</tr>
+<tr>
+<td>监控模块</td>
+<td align="right">9100</td>
+<td>Spring Boot Admin 监控</td>
+<td><code>zealux-ai-monitor/bootstrap.yml</code></td>
+</tr>
+<tr>
+<td>前端</td>
+<td align="right">8081</td>
+<td>Vue 2 + Element UI 管理界面</td>
+<td><code>vue.config.js</code>、<code>src/api/*</code>、<code>src/views/*</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>后端整体遵循 Spring Cloud 微服务架构：前端通过网关访问各业务服务；服务通过 Nacos 完成注册与配置拉取；数据库由 MySQL 或 MariaDB 提供，连接池使用 Druid；Redis 用于会话与验证码等缓存；文件模块支持本地路径、FastDFS 与 MinIO。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant 浏览器 as &quot;浏览器&quot;
+    participant 前端 as &quot;Vue 前端&quot;
+    participant 网关 as &quot;网关:8080&quot;
+    participant 认证 as &quot;认证服务:9200&quot;
+    participant 系统 as &quot;系统模块:9201&quot;
+    participant Nacos as &quot;Nacos:8848&quot;
+    participant Redis as &quot;Redis:6379&quot;
+    participant 数据库 as &quot;MySQL/MariaDB:3306&quot;
+
+    浏览器-&gt;&gt;前端: 打开管理端
+    前端-&gt;&gt;网关: 发起 API 请求
+    网关-&gt;&gt;Nacos: 解析服务地址
+    网关-&gt;&gt;认证: 转发认证相关请求
+    认证-&gt;&gt;Redis: 获取或写入验证码/会话
+    认证-&gt;&gt;系统: 调用系统接口
+    系统-&gt;&gt;数据库: 查询或更新业务数据
+    系统--&gt;&gt;认证: 返回结果
+    认证--&gt;&gt;网关: 返回鉴权结果
+    网关--&gt;&gt;前端: 返回 HTTP 响应</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="Nacos：注册中心与配置中心"><a class="anchor" href="#Nacos：注册中心与配置中心">#</a>Nacos：注册中心与配置中心</h3><ul>
+<li>单机模式：本地脚本以 <code>-Dnacos.standalone=true</code> 启动，使用内置存储。</li>
+<li>服务名：各服务的 <code>spring.application.name</code> 来自各自 <code>bootstrap.yml</code>，例如 <code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-system</code>、<code>zealux-ai-gen</code>、<code>zealux-ai-job</code>、<code>zealux-ai-file</code>、<code>zealux-ai-monitor</code>。</li>
+<li>dataId：每个服务通过 <code>shared-configs</code> 引用 <code>application-${spring.profiles.active}.yml</code>，即 <code>application-dev.yml</code>；同时存在按服务命名的 dataId，如 <code>zealux-ai-system-dev.yml</code>、<code>zealux-ai-file-dev.yml</code>、<code>zealux-ai-gen-dev.yml</code>、<code>zealux-ai-job-dev.yml</code>。</li>
+<li>Sentinel：网关还从 Nacos 加载 Sentinel 网关流控规则，dataId 为 <code>sentinel-zealux-ai-gateway</code>，groupId 为 <code>DEFAULT_GROUP</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+<li><span class="fileref">application-dev.yml（Nacos 共享配置）</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-file-dev.yml（文件模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-gen-dev.yml（代码生成模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-job-dev.yml（定时任务模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="Redis：会话与验证码缓存"><a class="anchor" href="#Redis：会话与验证码缓存">#</a>Redis：会话与验证码缓存</h3><ul>
+<li>服务通过 Nacos 中的 <code>zealux-ai-*-dev.yml</code> 配置 Redis 主机、端口和密码。</li>
+<li>系统模块使用 Druid 时显式排除了 Druid 自动装配，避免与动态数据源冲突。</li>
+<li>本地脚本默认未启用 Redis 密码；生产应设置强口令并限制访问网络段。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-gen-dev.yml（代码生成模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-job-dev.yml（定时任务模块 Nacos 配置）</span></li>
+<li><span class="fileref">application-dev.yml（Nacos 共享配置）</span></li>
+</ul>
+<h3 id="MySQL--MariaDB：数据库与连接池"><a class="anchor" href="#MySQL--MariaDB：数据库与连接池">#</a>MySQL / MariaDB：数据库与连接池</h3><ul>
+<li>系统模块使用动态数据源，driver 为 <code>com.mysql.cj.jdbc.Driver</code>，URL 指向 <code>zealux-ai-cloud</code> 库，用户名与密码在本地配置中为 <code>root/root</code>。</li>
+<li>代码生成与定时任务模块直接使用标准 <code>spring.datasource</code>，而非动态数据源。</li>
+<li>Druid 连接池参数包括初始大小、空闲连接、最大连接数、等待超时、空闲驱逐时间、验证语句及慢 SQL 阈值等。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-gen-dev.yml（代码生成模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-job-dev.yml（定时任务模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="MinIO--FastDFS：文件存储"><a class="anchor" href="#MinIO--FastDFS：文件存储">#</a>MinIO / FastDFS：文件存储</h3><ul>
+<li>文件模块的 Nacos 配置中包含本地上传路径、FastDFS 追踪器地址以及 MinIO 的 URL、accessKey、secretKey 和 bucketName。</li>
+<li>本地示例中 MinIO 地址与 FastDFS 地址均指向外部测试地址；生产应替换为内部可用地址并重新创建对应 bucket。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-file-dev.yml（文件模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="网关与安全"><a class="anchor" href="#网关与安全">#</a>网关与安全</h3><ul>
+<li>网关监听 8080 端口，并通过 Spring Cloud Gateway 过滤器实现验证码校验、请求体缓存和黑名单拦截。</li>
+<li>Sentinel 控制台地址与网关流控规则的 dataId、groupId 均在网关 <code>bootstrap.yml</code> 中声明。</li>
+<li>根据本地核查，网关只暴露 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 五类前缀路由；不存在 <code>/leads/**</code> 或 CRM 路由。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+</ul>
+<h3 id="前端"><a class="anchor" href="#前端">#</a>前端</h3><ul>
+<li>前端仓库名称仍为 <code>ruoyi</code>，版本 <code>3.6.5</code>，使用 Node 开发脚本 <code>npm run dev</code>。</li>
+<li>本地脚本会启动前端 devServer 并监听 8081 端口；生产建议构建静态资源后由反向代理或 CDN 托管。</li>
+<li>前端源码组织应关注 <code>src/api</code>、<code>src/views</code>、<code>src/store</code>、<code>src/router</code>、<code>src/permission.js</code>、<code>src/components</code>、<code>src/layout</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">package.json</span></li>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">graph LR
+    Frontend[&quot;前端&lt;br/&gt;zealux-ai-ui-master&quot;] --&gt; Gateway[&quot;网关&lt;br/&gt;zealux-ai-gateway&quot;]
+    Gateway --&gt; Auth[&quot;认证服务&lt;br/&gt;zealux-ai-auth&quot;]
+    Gateway --&gt; System[&quot;系统模块&lt;br/&gt;zealux-ai-system&quot;]
+    Gateway --&gt; Gen[&quot;代码生成&lt;br/&gt;zealux-ai-gen&quot;]
+    Gateway --&gt; Job[&quot;定时任务&lt;br/&gt;zealux-ai-job&quot;]
+    Gateway --&gt; File[&quot;文件模块&lt;br/&gt;zealux-ai-file&quot;]
+    Gateway --&gt; Monitor[&quot;监控服务&lt;br/&gt;zealux-ai-monitor&quot;]
+    Services[&quot;所有后端服务&quot;] --&gt; Nacos[&quot;Nacos:8848&quot;]
+    System --&gt; DB[&quot;MySQL/MariaDB:3306&quot;]
+    Gen --&gt; DB
+    Job --&gt; DB
+    Auth --&gt; Redis[&quot;Redis:6379&quot;]
+    System --&gt; Redis
+    File --&gt; Storage[&quot;MinIO / FastDFS&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-file-dev.yml（文件模块 Nacos 配置）</span></li>
+</ul>
+<h2 id="性能与容量规划"><a class="anchor" href="#性能与容量规划">#</a>性能与容量规划</h2><h3 id="JVM-与进程内存"><a class="anchor" href="#JVM-与进程内存">#</a>JVM 与进程内存</h3><ul>
+<li>本地脚本为 Nacos 分配 <code>-Xms512m -Xmx512m -Xmn256m</code>，为业务服务分配 <code>-Xms256m -Xmx512m</code>。</li>
+<li>生产应按容器规格和业务负载调大堆内存，并开启 GC 日志；对网关、认证、系统模块优先保障堆空间，对定时任务和监控可适当降低内存。</li>
+</ul>
+<h3 id="连接池与线程池"><a class="anchor" href="#连接池与线程池">#</a>连接池与线程池</h3><ul>
+<li>Druid 连接池默认初始 5、最大 20，适合开发；生产应根据并发连接数和数据库实例规格提升 <code>maxActive</code>，并合理设置 <code>maxWait</code>、<code>validationQuery</code>、<code>testWhileIdle</code>。</li>
+<li>定时任务模块使用 Quartz JDBC 模式，线程池大小为 5；高并发任务场景下可增大 <code>thread-count</code>，但需评估数据库压力。</li>
+</ul>
+<h3 id="网络与超时"><a class="anchor" href="#网络与超时">#</a>网络与超时</h3><ul>
+<li>Feign 默认连接与读取超时为 10 秒，压缩开关已启用；生产应在 Nacos 配置中按服务调整超时与重试策略。</li>
+<li>网关 Sentinel 流控规则应从 Nacos 加载，避免把限流规则写死在本地磁盘。</li>
+</ul>
+<h3 id="容量规划建议"><a class="anchor" href="#容量规划建议">#</a>容量规划建议</h3><ul>
+<li>单节点小规模：1 台 8C16G 服务器可同时承载 Nacos、Redis、MariaDB、网关、认证、系统、文件、监控；数据库和缓存建议单独实例以提升稳定性。</li>
+<li>生产规模：网关与认证至少双副本；数据库使用主从或云数据库；Redis 使用集群或哨兵；MinIO 使用分布式桶；Nacos 使用集群模式。</li>
+</ul>
+<p>[本节为通用运维建议，不直接分析具体文件]</p>
+<h2 id="部署步骤与端口规划"><a class="anchor" href="#部署步骤与端口规划">#</a>部署步骤与端口规划</h2><h3 id="单机依赖安装要求"><a class="anchor" href="#单机依赖安装要求">#</a>单机依赖安装要求</h3><table>
+<thead>
+<tr>
+<th>依赖</th>
+<th>推荐版本</th>
+<th>安装要点</th>
+<th align="right">端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JDK</td>
+<td>17</td>
+<td>后端使用 Spring Boot 3.3.5，要求 Java 17</td>
+<td align="right">—</td>
+</tr>
+<tr>
+<td>Nacos</td>
+<td>单机模式</td>
+<td>开发可使用内置存储；生产建议使用 MySQL 持久化</td>
+<td align="right">8848</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>任意稳定版</td>
+<td>会话与验证码缓存；生产需设置密码并限制网络</td>
+<td align="right">6379</td>
+</tr>
+<tr>
+<td>MySQL / MariaDB</td>
+<td>5.7+ 或 MariaDB 10.5+</td>
+<td>初始化 <code>zealux-ai-cloud</code> 数据库；注意字符集与时区</td>
+<td align="right">3306</td>
+</tr>
+<tr>
+<td>MinIO 或 FastDFS</td>
+<td>与仓库 MinIO 8.2.2 兼容</td>
+<td>创建 bucket，配置 endpoint、accessKey、secretKey</td>
+<td align="right">MinIO 默认 9000</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml</span></li>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-file-dev.yml（文件模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="bootstrap.yml-配置模板"><a class="anchor" href="#bootstrap.yml-配置模板">#</a>bootstrap.yml 配置模板</h3><p>以下字段可直接作为生产配置模板的参考项，请替换占位值：</p>
+<ul>
+<li>服务名：填写实际服务名，例如 <code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-system</code>、<code>zealux-ai-gen</code>、<code>zealux-ai-job</code>、<code>zealux-ai-file</code>、<code>zealux-ai-monitor</code>。</li>
+<li>环境：保持 <code>active: dev</code> 或改为 <code>prod</code>，并确保 Nacos 中存在对应的 <code>application-prod.yml</code>。</li>
+<li>Nacos 地址：填写集群或单节点的 <code>server-addr</code>，例如 <code>nacos:8848</code> 或 <code>nacos1:8848,nacos2:8848,nacos3:8848</code>。</li>
+<li>dataId：使用 <code>application-${spring.profiles.active}.yml</code> 作为共享 dataId，并按服务补充 <code>zealux-ai-{service}-dev.yml</code>。</li>
+<li>数据库：填写 <code>jdbc:mysql://host:3306/database?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</code>，并配置用户名与口令。</li>
+<li>Redis：填写 host、port、password。</li>
+<li>MinIO：填写 <code>url</code>、<code>accessKey</code>、<code>secretKey</code>、<code>bucketName</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-file-dev.yml（文件模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="Windows-本地脚本说明"><a class="anchor" href="#Windows-本地脚本说明">#</a>Windows 本地脚本说明</h3><ul>
+<li><code>_setup/start-all.ps1</code>：检查并启动 MariaDB、Redis、Nacos，再按顺序启动 system、auth、gateway、gen、job、file 六个服务，最后启动前端 devServer。它会轮询端口等待依赖就绪，并把日志输出到 <code>_setup/logs</code>。</li>
+<li><code>_setup/gateway-watch.ps1</code>：循环检测 8080 端口是否监听，若网关进程退出则重新启动，用于本地调试网关崩溃恢复。</li>
+</ul>
+<p>这两个脚本都硬编码了本地 JDK、JAR 包路径和日志路径，属于本地开发辅助脚本，不应直接当作生产部署方案。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;执行 start-all.ps1&quot;] --&gt; CheckDB[&quot;检查 MariaDB:3306&quot;]
+    CheckDB --&gt; CheckRedis[&quot;检查 Redis:6379&quot;]
+    CheckRedis --&gt; CheckNacos[&quot;检查 Nacos:8848&quot;]
+    CheckNacos --&gt; StartSystem[&quot;启动 system:9201&quot;]
+    StartSystem --&gt; StartAuth[&quot;启动 auth:9200&quot;]
+    StartAuth --&gt; StartGateway[&quot;启动 gateway:8080&quot;]
+    StartGateway --&gt; StartOthers[&quot;启动 gen:9202、job:9203、file:9300&quot;]
+    StartOthers --&gt; StartFrontend[&quot;启动前端 devServer:8081&quot;]
+    StartFrontend --&gt; WaitForever[&quot;无限等待&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+<li><span class="fileref">gateway-watch.ps1</span></li>
+</ul>
+<h3 id="Docker--Kubernetes-部署建议"><a class="anchor" href="#Docker--Kubernetes-部署建议">#</a>Docker / Kubernetes 部署建议</h3><ul>
+<li>将每个服务打包为独立镜像，镜像基础镜像使用 OpenJDK 17。</li>
+<li>通过 ConfigMap/Secret 注入 Nacos 地址、数据库连接串、Redis 密码、MinIO 凭据；不要把明文凭据写进镜像。</li>
+<li>网关暴露 8080 端口，前端静态资源可由 Nginx 或 Ingress 托管；如需直连前端 devServer，仅用于开发环境。</li>
+<li>使用 Deployment 管理副本数，StatefulSet 或云托管服务承载 Nacos、MySQL、Redis、MinIO。</li>
+<li>健康检查使用 Spring Boot Actuator 暴露的端点；Nacos 可通过 HTTP 探测 8848 端口。</li>
+<li>日志建议输出到 stdout/stderr，并由 Sidecar 或 DaemonSet 收集到集中日志平台。</li>
+</ul>
+<p>[本节为概念性部署建议，不直接分析具体文件]</p>
+<h3 id="服务启动顺序"><a class="anchor" href="#服务启动顺序">#</a>服务启动顺序</h3><p>推荐顺序：</p>
+<ol>
+<li>Nacos</li>
+<li>Redis</li>
+<li>MySQL / MariaDB</li>
+<li>系统模块</li>
+<li>认证服务</li>
+<li>网关</li>
+<li>代码生成、定时任务、文件模块</li>
+<li>监控模块</li>
+<li>前端 devServer 或静态资源</li>
+</ol>
+<p>该顺序与本地脚本一致：认证依赖系统模块提供的 Nacos 配置，网关依赖认证服务对外暴露的路由。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<h3 id="端口规划"><a class="anchor" href="#端口规划">#</a>端口规划</h3><table>
+<thead>
+<tr>
+<th align="right">服务</th>
+<th>端口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">Nacos</td>
+<td>8848</td>
+<td>注册中心与配置中心</td>
+</tr>
+<tr>
+<td align="right">网关</td>
+<td>8080</td>
+<td>统一入口</td>
+</tr>
+<tr>
+<td align="right">认证服务</td>
+<td>9200</td>
+<td>登录与鉴权</td>
+</tr>
+<tr>
+<td align="right">系统模块</td>
+<td>9201</td>
+<td>系统管理接口</td>
+</tr>
+<tr>
+<td align="right">代码生成</td>
+<td>9202</td>
+<td>代码生成接口</td>
+</tr>
+<tr>
+<td align="right">定时任务</td>
+<td>9203</td>
+<td>调度任务</td>
+</tr>
+<tr>
+<td align="right">文件模块</td>
+<td>9300</td>
+<td>文件上传与下载</td>
+</tr>
+<tr>
+<td align="right">监控服务</td>
+<td>9100</td>
+<td>Spring Boot Admin</td>
+</tr>
+<tr>
+<td align="right">前端 devServer</td>
+<td>8081</td>
+<td>本地开发代理</td>
+</tr>
+<tr>
+<td align="right">MySQL / MariaDB</td>
+<td>3306</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td align="right">Redis</td>
+<td>6379</td>
+<td>缓存与会话</td>
+</tr>
+<tr>
+<td align="right">MinIO</td>
+<td>9000</td>
+<td>对象存储</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">bootstrap.yml（代码生成模块）</span></li>
+<li><span class="fileref">bootstrap.yml（定时任务模块）</span></li>
+<li><span class="fileref">bootstrap.yml（文件模块）</span></li>
+<li><span class="fileref">bootstrap.yml（监控模块）</span></li>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<h3 id="日志收集"><a class="anchor" href="#日志收集">#</a>日志收集</h3><ul>
+<li>本地脚本将 Nacos、MariaDB、Redis、各服务、前端 devServer 的 stdout 和 stderr 重定向到 <code>_setup/logs</code>。</li>
+<li>生产建议：<ul>
+<li>后端服务统一输出 JSON 日志到 stdout。</li>
+<li>使用 Filebeat、Fluent Bit 或 Logstash 采集到 Elasticsearch / Loki。</li>
+<li>对 Nacos、数据库、Redis、MinIO 分别保留独立日志目录。</li>
+<li>不要将真实账号、口令、token、api-key 写入日志；示例中涉及凭据的地方应替换为环境变量或密钥管理系统。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+<li><span class="fileref">gateway-watch.ps1</span></li>
+</ul>
+<h2 id="故障排查清单"><a class="anchor" href="#故障排查清单">#</a>故障排查清单</h2><h3 id="Nacos-连接失败"><a class="anchor" href="#Nacos-连接失败">#</a>Nacos 连接失败</h3><ul>
+<li>确认 Nacos 进程已启动，8848 端口处于监听状态。</li>
+<li>检查各服务 <code>bootstrap.yml</code> 中 <code>spring.cloud.nacos.discovery.server-addr</code> 与 <code>config.server-addr</code>。</li>
+<li>检查 Nacos 共享 dataId <code>application-dev.yml</code> 和各服务 dataId <code>zealux-ai-*-dev.yml</code> 是否存在。</li>
+<li>若使用集群，确认所有节点可达，并检查防火墙与 DNS。</li>
+<li>查看 Nacos 启动日志和服务端配置文件。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">bootstrap.yml（系统模块）</span></li>
+<li><span class="fileref">application-dev.yml（Nacos 共享配置）</span></li>
+</ul>
+<h3 id="Redis-无响应"><a class="anchor" href="#Redis-无响应">#</a>Redis 无响应</h3><ul>
+<li>检查 6379 端口是否开放。</li>
+<li>核对 Nacos 中 <code>zealux-ai-*-dev.yml</code> 的 Redis host、port、password。</li>
+<li>如果启用了密码，确保客户端配置与 Redis 配置一致。</li>
+<li>检查 Redis 内存、持久化、AOF/RDB 是否异常。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-gen-dev.yml（代码生成模块 Nacos 配置）</span></li>
+<li><span class="fileref">zealux-ai-job-dev.yml（定时任务模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="MySQL-连接池耗尽"><a class="anchor" href="#MySQL-连接池耗尽">#</a>MySQL 连接池耗尽</h3><ul>
+<li>现象：请求长时间等待、出现连接获取超时或连接池满错误。</li>
+<li>排查：<ul>
+<li>检查 Druid 最大连接数是否过小。</li>
+<li>检查是否有长事务或未关闭连接。</li>
+<li>检查慢 SQL 与高频查询。</li>
+<li>检查数据库连接数上限、CPU 和 IO 瓶颈。</li>
+</ul>
+</li>
+<li>调整：适当提升 <code>maxActive</code>，缩短事务，增加索引，必要时扩容数据库。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-system-dev.yml（系统模块 Nacos 配置）</span></li>
+</ul>
+<h3 id="网关-401--403"><a class="anchor" href="#网关-401--403">#</a>网关 401 / 403</h3><ul>
+<li>401：通常表示未携带有效令牌或令牌过期。</li>
+<li>403：通常表示有令牌但权限不足。</li>
+<li>排查：<ul>
+<li>检查前端是否成功登录并拿到 token。</li>
+<li>检查网关是否正确转发到认证服务。</li>
+<li>检查认证服务是否可正常访问 Redis 与系统模块。</li>
+<li>检查 Nacos 共享配置中 Feign、Sentinel、监控端点等是否影响网关行为。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml（网关）</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）</span></li>
+<li><span class="fileref">application-dev.yml（Nacos 共享配置）</span></li>
+</ul>
+<h3 id="服务启动-OOM"><a class="anchor" href="#服务启动-OOM">#</a>服务启动 OOM</h3><ul>
+<li>现象：服务启动后立即被操作系统或容器管理器杀死。</li>
+<li>排查：<ul>
+<li>检查 JVM 堆大小是否过小。</li>
+<li>检查是否加载了大量静态资源或大字典。</li>
+<li>检查数据库连接池、线程池是否过大。</li>
+<li>检查容器内存限制。</li>
+</ul>
+</li>
+<li>处理：逐步调大 <code>-Xmx</code>，开启 GC 日志，定位大对象来源。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<h3 id="前端-devServer-无法代理后端"><a class="anchor" href="#前端-devServer-无法代理后端">#</a>前端 devServer 无法代理后端</h3><ul>
+<li>现象：浏览器能打开前端，但 API 请求失败。</li>
+<li>排查：<ul>
+<li>确认后端服务已启动，网关 8080 可访问。</li>
+<li>检查前端 devServer 是否启动在 8081。</li>
+<li>检查前端代理目标是否指向网关。</li>
+<li>检查跨域、cookie、token 传递。</li>
+<li>检查本地脚本是否因端口占用而跳过启动某个服务。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">package.json</span></li>
+<li><span class="fileref">start-all.ps1</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本系统是基于 RuoYi-Cloud 3.6.5 的微服务后台，核心依赖为 Nacos、Redis、MySQL/MariaDB 与 MinIO/FastDFS。生产部署应明确区分本地脚本与生产方案：<code>_setup/start-all.ps1</code> 与 <code>_setup/gateway-watch.ps1</code> 仅适用于本地开发；生产应采用容器化部署、集中配置、独立中间件实例、安全凭据管理和集中日志采集。部署时需先启动 Nacos、Redis、数据库，再按 system → auth → gateway → 其他服务的顺序启动后端，最后上线前端静态资源。运维过程中应重点监控 Nacos 连通性、Redis 可用性、数据库连接池、网关鉴权和 JVM 内存。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">← 修改代码生成模板</a>
+    <a class="next" href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#Nacos：注册中心与配置中心">Nacos：注册中心与配置中心</a></li><li class="d3"><a href="#Redis：会话与验证码缓存">Redis：会话与验证码缓存</a></li><li class="d3"><a href="#MySQL--MariaDB：数据库与连接池">MySQL / MariaDB：数据库与连接池</a></li><li class="d3"><a href="#MinIO--FastDFS：文件存储">MinIO / FastDFS：文件存储</a></li><li class="d3"><a href="#网关与安全">网关与安全</a></li><li class="d3"><a href="#前端">前端</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与容量规划">性能与容量规划</a></li><li class="d3"><a href="#JVM-与进程内存">JVM 与进程内存</a></li><li class="d3"><a href="#连接池与线程池">连接池与线程池</a></li><li class="d3"><a href="#网络与超时">网络与超时</a></li><li class="d3"><a href="#容量规划建议">容量规划建议</a></li><li class="d2"><a href="#部署步骤与端口规划">部署步骤与端口规划</a></li><li class="d3"><a href="#单机依赖安装要求">单机依赖安装要求</a></li><li class="d3"><a href="#bootstrap.yml-配置模板">bootstrap.yml 配置模板</a></li><li class="d3"><a href="#Windows-本地脚本说明">Windows 本地脚本说明</a></li><li class="d3"><a href="#Docker--Kubernetes-部署建议">Docker / Kubernetes 部署建议</a></li><li class="d3"><a href="#服务启动顺序">服务启动顺序</a></li><li class="d3"><a href="#端口规划">端口规划</a></li><li class="d3"><a href="#日志收集">日志收集</a></li><li class="d2"><a href="#故障排查清单">故障排查清单</a></li><li class="d3"><a href="#Nacos-连接失败">Nacos 连接失败</a></li><li class="d3"><a href="#Redis-无响应">Redis 无响应</a></li><li class="d3"><a href="#MySQL-连接池耗尽">MySQL 连接池耗尽</a></li><li class="d3"><a href="#网关-401--403">网关 401 / 403</a></li><li class="d3"><a href="#服务启动-OOM">服务启动 OOM</a></li><li class="d3"><a href="#前端-devServer-无法代理后端">前端 devServer 无法代理后端</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

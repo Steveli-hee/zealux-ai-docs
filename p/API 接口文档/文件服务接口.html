@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文件服务接口 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec" open><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html" class="active">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">API 接口文档 / <b>文件服务接口</b></div><article><h1 id="文件服务接口"><a class="anchor" href="#文件服务接口">#</a>文件服务接口</h1><cite>
+**本文引用的文件**
+- [SysFileController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/controller/SysFileController.java)
+- [ISysFileService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/service/ISysFileService.java)
+- [LocalSysFileServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/service/LocalSysFileServiceImpl.java)
+- [MinioSysFileServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/service/MinioSysFileServiceImpl.java)
+- [MinioConfig.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/config/MinioConfig.java)
+- [FileUploadUtils.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/utils/FileUploadUtils.java)
+- [bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/resources/bootstrap.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构与入口">项目结构与入口</a></li>
+<li><a href="#对外接口总览">对外接口总览</a></li>
+<li><a href="#单文件上传接口">单文件上传接口</a></li>
+<li><a href="#批量上传能力现状">批量上传能力现状</a></li>
+<li><a href="#预览与下载接口现状">预览与下载接口现状</a></li>
+<li><a href="#删除接口现状">删除接口现状</a></li>
+<li><a href="#minio-对象存储集成">MinIO 对象存储集成</a></li>
+<li><a href="#本地文件存储实现">本地文件存储实现</a></li>
+<li><a href="#文件大小与类型限制">文件大小与类型限制</a></li>
+<li><a href="#鉴权与安全要求">鉴权与安全要求</a></li>
+<li><a href="#典型请求示例">典型请求示例</a></li>
+<li><a href="#响应结构说明">响应结构说明</a></li>
+<li><a href="#故障排查建议">故障排查建议</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本文面向当前代码仓库中的文件服务，聚焦 <code>zealux-ai-file</code> 模块暴露的文件上传相关接口。该服务基于 RuoYi-Cloud 3.6.5 的二次开发产物，端口为 <code>9300</code>，通过 Spring Boot 的 <code>@RestController</code> 暴露文件上传接口；文件最终可写入 MinIO 对象存储或本地文件系统，具体取决于激活的实现类。</p>
+<p>需要特别注意：当前版本中只存在一个明确的文件上传接口。代码中没有定义统一的 <code>/file/**</code> REST 控制器；实际路径由网关路由决定，后端控制器映射的是 <code>/upload</code>。因此，对外完整 URL 是「网关上下文 + <code>/upload</code>」，而不是某个以 <code>/file/</code> 开头的控制器路径。</p>
+<h2 id="项目结构与入口"><a class="anchor" href="#项目结构与入口">#</a>项目结构与入口</h2><p><code>zealux-ai-file</code> 模块的核心结构如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    A[&quot;RuoYiFileApplication&lt;br/&gt;应用启动类&quot;] --&gt; B[&quot;SysFileController&lt;br/&gt;文件上传控制器&quot;]
+    B --&gt; C[&quot;ISysFileService&lt;br/&gt;文件上传接口&quot;]
+    C --&gt; D[&quot;LocalSysFileServiceImpl&lt;br/&gt;本地文件实现&quot;]
+    C --&gt; E[&quot;MinioSysFileServiceImpl&lt;br/&gt;MinIO 文件实现&quot;]
+    E --&gt; F[&quot;MinioConfig&lt;br/&gt;MinIO 配置&quot;]
+    B --&gt; G[&quot;FileUploadUtils&lt;br/&gt;文件校验与命名工具&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiFileApplication.java</span></li>
+<li><span class="fileref">SysFileController.java:1-48</span></li>
+<li><span class="fileref">ISysFileService.java:1-20</span></li>
+<li><span class="fileref">LocalSysFileServiceImpl.java:1-50</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:1-60</span></li>
+<li><span class="fileref">MinioConfig.java:1-82</span></li>
+<li><span class="fileref">FileUploadUtils.java:1-185</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-25</span></li>
+<li><span class="fileref">SysFileController.java:1-48</span></li>
+</ul>
+<h2 id="对外接口总览"><a class="anchor" href="#对外接口总览">#</a>对外接口总览</h2><p>当前文件服务明确暴露的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th align="right">HTTP 方法</th>
+<th>控制器路径</th>
+<th align="right">是否已实现</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件上传</td>
+<td align="right"><code>POST</code></td>
+<td><code>/upload</code></td>
+<td align="right">已实现</td>
+<td>表单字段为 <code>file</code></td>
+</tr>
+<tr>
+<td>批量上传</td>
+<td align="right">未定义</td>
+<td>无</td>
+<td align="right">未实现</td>
+<td>当前只有一个单文件上传接口</td>
+</tr>
+<tr>
+<td>文件预览</td>
+<td align="right">未定义</td>
+<td>无</td>
+<td align="right">未实现</td>
+<td>可通过返回的 MinIO URL 直接访问</td>
+</tr>
+<tr>
+<td>文件下载</td>
+<td align="right">未定义</td>
+<td>无</td>
+<td align="right">未实现</td>
+<td>未提供专用下载接口</td>
+</tr>
+<tr>
+<td>删除文件</td>
+<td align="right">未定义</td>
+<td>无</td>
+<td align="right">未实现</td>
+<td>控制器中无删除逻辑</td>
+</tr>
+</tbody></table>
+<p>需要注意两点：</p>
+<ol>
+<li>本服务的控制器没有使用 <code>/file</code> 作为根路径，而是直接使用 <code>/upload</code>。</li>
+<li>前端调用时通常经过网关；最终 URL 是「网关地址 + 网关转发规则中的前缀 + <code>/upload</code>」。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+</ul>
+<h2 id="单文件上传接口"><a class="anchor" href="#单文件上传接口">#</a>单文件上传接口</h2><h3 id="接口定义"><a class="anchor" href="#接口定义">#</a>接口定义</h3><ul>
+<li><strong>HTTP 方法</strong>：<code>POST</code></li>
+<li><strong>URL 模式</strong>：<code>/upload</code></li>
+<li><strong>Content-Type</strong>：<code>multipart/form-data</code></li>
+<li><strong>表单字段</strong>：<ul>
+<li><code>file</code>：待上传的文件对象</li>
+</ul>
+</li>
+<li><strong>成功状态码</strong>：<code>200</code></li>
+<li><strong>失败状态码</strong>：通常为 <code>200</code>，但响应体中表示失败；异常可能返回非 <code>200</code>（例如 <code>413</code>、<code>400</code>、<code>500</code>）</li>
+<li><strong>鉴权要求</strong>：控制器本身未做额外鉴权注解；实际鉴权依赖网关、Spring Security 或其他全局安全策略</li>
+<li><strong>文件大小限制</strong>：默认 <code>50 MB</code>，由 <code>FileUploadUtils.DEFAULT_MAX_SIZE</code> 控制</li>
+<li><strong>文件名长度限制</strong>：默认最大 <code>100</code>，由 <code>FileUploadUtils.DEFAULT_FILE_NAME_LENGTH</code> 控制</li>
+</ul>
+<h3 id="处理流程"><a class="anchor" href="#处理流程">#</a>处理流程</h3><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;客户端&quot;
+    participant Gateway as &quot;网关&quot;
+    participant FileService as &quot;zealux-ai-file 服务&quot;
+    participant Controller as &quot;SysFileController&quot;
+    participant Service as &quot;ISysFileService&quot;
+    participant Storage as &quot;MinIO 或本地存储&quot;
+
+    Client-&gt;&gt;Gateway: &quot;POST /{网关前缀}/upload&quot;
+    Gateway-&gt;&gt;FileService: &quot;转发到 zealux-ai-file&quot;
+    FileService-&gt;&gt;Controller: &quot;匹配 POST /upload&quot;
+    Controller-&gt;&gt;Service: &quot;调用 uploadFile(file)&quot;
+    Service-&gt;&gt;Storage: &quot;写入对象存储或本地文件&quot;
+    Storage--&gt;&gt;Service: &quot;返回文件访问地址&quot;
+    Service--&gt;&gt;Controller: &quot;返回 URL&quot;
+    Controller--&gt;&gt;Client: &quot;统一响应 R.ok(SysFile)&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">ISysFileService.java:12-19</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:23-58</span></li>
+<li><span class="fileref">LocalSysFileServiceImpl.java:29-49</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">FileUploadUtils.java:27-35</span></li>
+</ul>
+<h2 id="批量上传能力现状"><a class="anchor" href="#批量上传能力现状">#</a>批量上传能力现状</h2><p>当前代码中只定义了单个 <code>MultipartFile file</code> 参数的上传接口。未发现批量上传的控制器方法，也没有批量上传的工具方法被 <code>SysFileController</code> 调用。因此：</p>
+<ul>
+<li>批量上传接口在当前版本属于<strong>未实现</strong>。</li>
+<li>如果需要批量上传，应新增控制器方法接收多文件列表或数组，并在业务层循环调用 <code>ISysFileService.uploadFile</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">ISysFileService.java:12-19</span></li>
+</ul>
+<h2 id="预览与下载接口现状"><a class="anchor" href="#预览与下载接口现状">#</a>预览与下载接口现状</h2><p>当前 <code>SysFileController</code> 中没有定义预览或下载接口。代码中也没有任何 <code>@GetMapping</code>、<code>@DeleteMapping</code> 或类似的文件读取、删除方法。</p>
+<p>不过，当使用 MinIO 实现时，服务会返回可直接访问的对象存储 URL。也就是说：</p>
+<ul>
+<li><strong>预览</strong>：不需要专门的预览接口，浏览器可以直接打开返回的 MinIO URL。</li>
+<li><strong>下载</strong>：同样可以通过 MinIO URL 触发下载，或者由前端根据 URL 发起下载请求。</li>
+</ul>
+<p>如果未来需要统一的预览/下载 API，应在 <code>SysFileController</code> 中新增对应方法，并复用 <code>ISysFileService</code> 提供的访问地址。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:37-58</span></li>
+</ul>
+<h2 id="删除接口现状"><a class="anchor" href="#删除接口现状">#</a>删除接口现状</h2><p>当前文件服务没有删除文件的控制器方法。MinIO 实现中也没有删除对象的方法调用。因此，删除接口在当前版本属于<strong>未实现</strong>。</p>
+<p>若后续需要删除能力，建议：</p>
+<ol>
+<li>在 <code>ISysFileService</code> 中增加删除方法。</li>
+<li>在 <code>MinioSysFileServiceImpl</code> 中调用 MinIO SDK 的删除对象接口。</li>
+<li>在 <code>SysFileController</code> 中暴露 <code>DELETE</code> 接口。</li>
+<li>在 <code>LocalSysFileServiceImpl</code> 中实现本地文件删除逻辑。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:23-58</span></li>
+</ul>
+<h2 id="MinIO-对象存储集成"><a class="anchor" href="#MinIO-对象存储集成">#</a>MinIO 对象存储集成</h2><h3 id="角色定位"><a class="anchor" href="#角色定位">#</a>角色定位</h3><p>MinIO 是当前代码集成的对象存储服务。<code>MinioSysFileServiceImpl</code> 使用 <code>io.minio.MinioClient</code> 将上传的文件写入 MinIO 的指定桶中，并返回可访问的 URL。</p>
+<p>Redis 在本模块中没有作为文件存储后端出现；它不属于文件服务实现的一部分。系统其他位置可能使用 Redis 缓存与会话，但这与文件持久化无关。</p>
+<h3 id="写入流程"><a class="anchor" href="#写入流程">#</a>写入流程</h3><div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;接收 MultipartFile&quot;] --&gt; Extract[&quot;提取文件名&quot;]
+    Extract --&gt; Stream[&quot;获取输入流&quot;]
+    Stream --&gt; BuildArgs[&quot;构建 PutObjectArgs&quot;]
+    BuildArgs --&gt; SetBucket[&quot;设置桶名&quot;]
+    BuildArgs --&gt; SetObject[&quot;设置对象键&quot;]
+    BuildArgs --&gt; SetStream[&quot;设置文件流与大小&quot;]
+    BuildArgs --&gt; SetContentType[&quot;设置 Content-Type&quot;]
+    SetBucket --&gt; PutObject[&quot;调用 MinioClient.putObject&quot;]
+    SetObject --&gt; PutObject
+    SetStream --&gt; PutObject
+    SetContentType --&gt; PutObject
+    PutObject --&gt; ReturnUrl[&quot;拼接 MinIO 访问 URL&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">MinioSysFileServiceImpl.java:23-58</span></li>
+</ul>
+<h3 id="MinIO-配置项"><a class="anchor" href="#MinIO-配置项">#</a>MinIO 配置项</h3><p><code>MinioConfig</code> 通过 <code>@ConfigurationProperties(prefix = &quot;minio&quot;)</code> 绑定以下属性：</p>
+<table>
+<thead>
+<tr>
+<th>配置键</th>
+<th>含义</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>minio.url</code></td>
+<td>MinIO 服务地址</td>
+<td>构建 <code>MinioClient.endpoint</code></td>
+</tr>
+<tr>
+<td><code>minio.accessKey</code></td>
+<td>访问密钥用户名</td>
+<td>构建 <code>MinioClient.credentials</code></td>
+</tr>
+<tr>
+<td><code>minio.secretKey</code></td>
+<td>访问密钥密码</td>
+<td>构建 <code>MinioClient.credentials</code></td>
+</tr>
+<tr>
+<td><code>minio.bucketName</code></td>
+<td>存储桶名称</td>
+<td>写入对象时使用</td>
+</tr>
+</tbody></table>
+<p><code>MinioConfig</code> 还创建一个 <code>MinioClient</code> Bean，使用上述 <code>url</code>、<code>accessKey</code>、<code>secretKey</code> 初始化客户端。</p>
+<h3 id="bootstrap.yml-中的服务配置"><a class="anchor" href="#bootstrap.yml-中的服务配置">#</a>bootstrap.yml 中的服务配置</h3><p><code>bootstrap.yml</code> 主要声明了服务端口、应用名、环境、Nacos 注册中心与配置中心地址。它没有直接包含 <code>minio.*</code> 配置。按照 Spring Cloud 与 Nacos 的使用方式，MinIO 的配置通常位于 Nacos 配置中心的共享配置或服务配置文件中，而不是写死在仓库内的 <code>bootstrap.yml</code>。</p>
+<p>因此，部署时应确保 Nacos 中存在对应环境的 MinIO 配置，且键名与 <code>MinioConfig</code> 绑定的属性一致。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">MinioConfig.java:11-82</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:11-60</span></li>
+<li><span class="fileref">bootstrap.yml:1-25</span></li>
+</ul>
+<h2 id="本地文件存储实现"><a class="anchor" href="#本地文件存储实现">#</a>本地文件存储实现</h2><p><code>LocalSysFileServiceImpl</code> 实现了同样的 <code>ISysFileService</code> 接口，并通过 <code>@Primary</code> 标记为默认实现。它的行为是把文件写入本地文件系统，然后拼接域名与资源前缀形成访问 URL。</p>
+<p>它依赖三个外部配置值：</p>
+<ul>
+<li><code>file.prefix</code>：本地资源映射路径前缀</li>
+<li><code>file.domain</code>：文件或资源的访问域名</li>
+<li><code>file.path</code>：本地文件存储根路径</li>
+</ul>
+<p>该实现会调用 <code>FileUploadUtils.upload(localFilePath, file)</code>，并把结果拼接成 URL。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">LocalSysFileServiceImpl.java:1-50</span></li>
+<li><span class="fileref">FileUploadUtils.java:45-82</span></li>
+</ul>
+<h2 id="文件大小与类型限制"><a class="anchor" href="#文件大小与类型限制">#</a>文件大小与类型限制</h2><h3 id="文件大小"><a class="anchor" href="#文件大小">#</a>文件大小</h3><p>默认最大文件大小为 <code>50 MB</code>，定义在 <code>FileUploadUtils.DEFAULT_MAX_SIZE</code>。超出时会抛出文件大小超限异常。</p>
+<h3 id="文件名长度"><a class="anchor" href="#文件名长度">#</a>文件名长度</h3><p>默认最大文件名为 <code>100</code>，定义在 <code>FileUploadUtils.DEFAULT_FILE_NAME_LENGTH</code>。超出时会抛出文件名过长异常。</p>
+<h3 id="文件类型"><a class="anchor" href="#文件类型">#</a>文件类型</h3><p><code>FileUploadUtils.assertAllowed</code> 会根据允许扩展名检查文件类型。当传入允许类型为图片、Flash、媒体或视频时，会抛出对应的扩展名校验异常。</p>
+<p>当前 <code>MinioSysFileServiceImpl</code> 直接调用 <code>FileUploadUtils.extractFilename</code>，并没有显式调用 <code>assertAllowed</code>；而 <code>LocalSysFileServiceImpl</code> 调用的是带允许扩展名的 <code>FileUploadUtils.upload</code>。因此，类型校验的实际行为还取决于激活的实现以及底层 <code>FileUploadUtils.upload</code> 使用的默认允许扩展名。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;接收文件&quot;] --&gt; CheckSize[&quot;检查文件大小&quot;]
+    CheckSize --&gt; SizeOK{&quot;是否超过默认大小？&quot;}
+    SizeOK --&gt;|是| SizeError[&quot;抛出文件大小超限异常&quot;]
+    SizeOK --&gt;|否| CheckName[&quot;检查文件名长度&quot;]
+    CheckName --&gt; NameOK{&quot;是否超过默认长度？&quot;}
+    NameOK --&gt;|是| NameError[&quot;抛出文件名过长异常&quot;]
+    NameOK --&gt;|否| CheckType[&quot;检查文件扩展名&quot;]
+    CheckType --&gt; TypeOK{&quot;是否在允许列表中？&quot;}
+    TypeOK --&gt;|否| TypeError[&quot;抛出版本或类型校验异常&quot;]
+    TypeOK --&gt;|是| Success[&quot;生成文件名并继续上传&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">FileUploadUtils.java:27-35</span></li>
+<li><span class="fileref">FileUploadUtils.java:61-82</span></li>
+<li><span class="fileref">FileUploadUtils.java:121-185</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">FileUploadUtils.java:27-35</span></li>
+<li><span class="fileref">FileUploadUtils.java:61-82</span></li>
+<li><span class="fileref">FileUploadUtils.java:121-185</span></li>
+</ul>
+<h2 id="鉴权与安全要求"><a class="anchor" href="#鉴权与安全要求">#</a>鉴权与安全要求</h2><p>从 <code>SysFileController</code> 源码看，上传接口没有使用额外的控制器级鉴权注解。这意味着：</p>
+<ul>
+<li>网关层或全局 Spring Security 配置可能负责认证和授权。</li>
+<li>如果网关未放行该路径，或未携带有效凭证，请求可能在网关或安全过滤器阶段失败。</li>
+<li>不应把该接口视为完全公开的匿名接口，除非已确认网关与安全配置允许匿名访问。</li>
+</ul>
+<p>另外，MinIO 的 <code>accessKey</code> 与 <code>secretKey</code> 属于敏感凭据，部署时应通过 Nacos 等配置中心管理，不得硬编码在源代码或公开文档中。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:20-48</span></li>
+<li><span class="fileref">MinioConfig.java:11-82</span></li>
+</ul>
+<h2 id="典型请求示例"><a class="anchor" href="#典型请求示例">#</a>典型请求示例</h2><h3 id="单文件上传"><a class="anchor" href="#单文件上传">#</a>单文件上传</h3><ul>
+<li><strong>方法</strong>：<code>POST</code></li>
+<li><strong>URL</strong>：<code>/{网关前缀}/upload</code></li>
+<li><strong>Content-Type</strong>：<code>multipart/form-data</code></li>
+<li><strong>表单字段</strong>：<code>file</code></li>
+</ul>
+<p>请求体示意（仅展示结构）：</p>
+<pre><code class="hljs language-text">------FormBoundary
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;example.pdf&quot;
+Content-Type: application/pdf
+
+[二进制文件内容]
+------FormBoundary--</code></pre><h3 id="批量上传"><a class="anchor" href="#批量上传">#</a>批量上传</h3><p>当前版本未实现批量上传接口。若要实现，常见做法是新增一个接收多个 <code>file</code> 字段的接口，并在服务端循环调用现有上传逻辑。</p>
+<h3 id="通过-URL-预览文件"><a class="anchor" href="#通过-URL-预览文件">#</a>通过 URL 预览文件</h3><p>当使用 MinIO 实现时，上传成功后返回的 URL 可以直接用于预览。URL 结构为：</p>
+<pre><code class="hljs">{minio.url}/{minio.bucketName}/{fileName}</code></pre><p>例如：</p>
+<pre><code class="hljs">http://minio.example.com/bucket-name/date-path/base-filename-uuid.ext</code></pre><p>浏览器打开该 URL 后，若 MinIO 桶对该对象设置了可读权限，即可直接预览图片或在线文档；否则需要根据 MinIO 的权限策略调整访问控制。</p>
+<h2 id="响应结构说明"><a class="anchor" href="#响应结构说明">#</a>响应结构说明</h2><p>成功时，控制器返回统一响应对象，其中数据部分包含文件信息。根据控制器逻辑，成功响应中的数据对象包含：</p>
+<ul>
+<li><code>name</code>：从 URL 中提取的文件名</li>
+<li><code>url</code>：文件访问地址</li>
+</ul>
+<p>失败时，控制器捕获异常并记录日志，返回统一响应的失败结构。由于控制器返回的是通用响应对象，具体 JSON 字段取决于 <code>R.fail(e.getMessage())</code> 的实现；不能假设其字段一定只有 <code>msg</code> 和 <code>code</code>。</p>
+<p>MinIO 上传成功后的返回值是一个完整的对象存储 URL，前端可以据此渲染图片或下载文件。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:28-48</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:37-58</span></li>
+</ul>
+<h2 id="故障排查建议"><a class="anchor" href="#故障排查建议">#</a>故障排查建议</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上传报文件大小超限</td>
+<td>文件超过 <code>50 MB</code></td>
+<td>检查客户端文件大小与服务端默认限制</td>
+</tr>
+<tr>
+<td>文件名过长</td>
+<td>原始文件名超过 <code>100</code></td>
+<td>检查客户端上传的文件名</td>
+</tr>
+<tr>
+<td>文件类型不被允许</td>
+<td>扩展名不在允许列表中</td>
+<td>检查 <code>MimeTypeUtils</code> 默认允许类型与 MinIO 配置</td>
+</tr>
+<tr>
+<td>MinIO 连接失败</td>
+<td><code>minio.url</code>、<code>accessKey</code>、<code>secretKey</code> 错误</td>
+<td>检查 Nacos 配置中的 MinIO 参数</td>
+</tr>
+<tr>
+<td>返回 URL 无法访问</td>
+<td>MinIO 桶不可读或 URL 配置错误</td>
+<td>检查 MinIO 桶权限与 <code>minio.url</code></td>
+</tr>
+<tr>
+<td>网关返回未找到</td>
+<td>网关未配置文件服务路由</td>
+<td>检查网关路由是否转发到 <code>zealux-ai-file</code></td>
+</tr>
+<tr>
+<td>本地实现无法访问</td>
+<td>缺少 <code>file.domain</code>、<code>file.prefix</code>、<code>file.path</code></td>
+<td>检查本地存储相关配置</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">FileUploadUtils.java:27-35</span></li>
+<li><span class="fileref">MinioConfig.java:11-82</span></li>
+<li><span class="fileref">LocalSysFileServiceImpl.java:17-49</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>当前文件服务提供了明确的单文件上传接口，但未提供批量上传、预览、下载和删除的统一控制器接口。文件上传成功后，MinIO 实现会返回可直接访问的对象存储 URL，因此预览和下载可以通过该 URL 完成，而不必依赖后端专用接口。</p>
+<p>部署时应重点确认：</p>
+<ol>
+<li>MinIO 的 <code>url</code>、<code>accessKey</code>、<code>secretKey</code>、<code>bucketName</code> 已在 Nacos 中正确配置。</li>
+<li>网关已将文件上传请求转发到 <code>zealux-ai-file</code> 服务。</li>
+<li>文件大小、文件名长度和文件类型限制符合业务需求。</li>
+<li>鉴权策略不会意外拦截文件上传接口。</li>
+<li>不要把 Redis 误认为文件存储后端；当前文件服务只使用 MinIO 或本地文件系统。</li>
+</ol>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">← 认证接口</a>
+    <a class="next" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构与入口">项目结构与入口</a></li><li class="d2"><a href="#对外接口总览">对外接口总览</a></li><li class="d2"><a href="#单文件上传接口">单文件上传接口</a></li><li class="d3"><a href="#接口定义">接口定义</a></li><li class="d3"><a href="#处理流程">处理流程</a></li><li class="d2"><a href="#批量上传能力现状">批量上传能力现状</a></li><li class="d2"><a href="#预览与下载接口现状">预览与下载接口现状</a></li><li class="d2"><a href="#删除接口现状">删除接口现状</a></li><li class="d2"><a href="#MinIO-对象存储集成">MinIO 对象存储集成</a></li><li class="d3"><a href="#角色定位">角色定位</a></li><li class="d3"><a href="#写入流程">写入流程</a></li><li class="d3"><a href="#MinIO-配置项">MinIO 配置项</a></li><li class="d3"><a href="#bootstrap.yml-中的服务配置">bootstrap.yml 中的服务配置</a></li><li class="d2"><a href="#本地文件存储实现">本地文件存储实现</a></li><li class="d2"><a href="#文件大小与类型限制">文件大小与类型限制</a></li><li class="d3"><a href="#文件大小">文件大小</a></li><li class="d3"><a href="#文件名长度">文件名长度</a></li><li class="d3"><a href="#文件类型">文件类型</a></li><li class="d2"><a href="#鉴权与安全要求">鉴权与安全要求</a></li><li class="d2"><a href="#典型请求示例">典型请求示例</a></li><li class="d3"><a href="#单文件上传">单文件上传</a></li><li class="d3"><a href="#批量上传">批量上传</a></li><li class="d3"><a href="#通过-URL-预览文件">通过 URL 预览文件</a></li><li class="d2"><a href="#响应结构说明">响应结构说明</a></li><li class="d2"><a href="#故障排查建议">故障排查建议</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

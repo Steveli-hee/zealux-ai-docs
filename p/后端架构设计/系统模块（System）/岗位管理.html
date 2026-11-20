@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>岗位管理 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="stylesheet" href="../../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html" class="active">岗位管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>岗位管理</b></div><article><h1 id="岗位管理"><a class="anchor" href="#岗位管理">#</a>岗位管理</h1><cite>
+**本文引用的文件**   
+- [SysPostController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysPostController.java)
+- [ISysPostService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/ISysPostService.java)
+- [SysPostServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysPostServiceImpl.java)
+- [SysPost.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysPost.java)
+- [SysPostMapper.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/mapper/SysPostMapper.java)
+- [SysPostMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysPostMapper.xml)
+- [SysUserPost.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysUserPost.java)
+- [SysUserPostMapper.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/mapper/SysUserPostMapper.java)
+- [SysUserPostMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysUserPostMapper.xml)
+- [post.js](file://zealux-ai-ui-master/src/api/system/post.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#架构与数据流">架构与数据流</a></li>
+<li><a href="#实体模型与字段说明">实体模型与字段说明</a></li>
+<li><a href="#岗位增删改查能力">岗位增删改查能力</a></li>
+<li><a href="#岗位状态管理与使用约束">岗位状态管理与使用约束</a></li>
+<li><a href="#用户与岗位的多对多关系">用户与岗位的多对多关系</a></li>
+<li><a href="#rbac-中的角色定位">RBAC 中的角色定位</a></li>
+<li><a href="#前端调用方式">前端调用方式</a></li>
+<li><a href="#唯一性与删除约束处理">唯一性与删除约束处理</a></li>
+<li><a href="#常见问题与排错建议">常见问题与排错建议</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本页面聚焦于系统中“岗位管理”功能，围绕 <code>SysPostController</code>、<code>ISysPostService</code>、<code>SysPostServiceImpl</code>、<code>SysPost</code> 实体以及用户与岗位的关联关系展开。需要明确：本系统是基于 RuoYi-Cloud 3.6.5 的重命名二次开发，岗位模块继承自该框架的通用后台管理能力，并非从零构建的自研权限体系。岗位在 RBAC 中不是权限主体，而是对用户组织结构、角色展示与筛选的一种描述；真正的权限控制由角色、菜单、按钮与数据权限共同完成。</p>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p>岗位相关代码集中在后端模块 <code>zealux-ai-modules/zealux-ai-system</code> 中，前端接口定义位于独立仓库 <code>zealux-ai-ui-master</code>。具体位置如下：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>路径</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制器层</td>
+<td><code>zealux-ai-modules/zealux-ai-system/.../controller/SysPostController.java</code></td>
+<td>暴露 <code>/system/post/**</code> REST 接口，承担权限校验、日志记录、参数校验和响应封装</td>
+</tr>
+<tr>
+<td>服务接口层</td>
+<td><code>.../service/ISysPostService.java</code></td>
+<td>定义岗位查询、新增、修改、删除、唯一性校验、使用计数等契约</td>
+</tr>
+<tr>
+<td>服务实现层</td>
+<td><code>.../service/impl/SysPostServiceImpl.java</code></td>
+<td>实现岗位业务逻辑，包括名称与编码唯一性判断、删除前检查是否被用户使用</td>
+</tr>
+<tr>
+<td>领域实体</td>
+<td><code>.../domain/SysPost.java</code></td>
+<td>描述岗位主表字段及导出注解</td>
+</tr>
+<tr>
+<td>数据访问接口</td>
+<td><code>.../mapper/SysPostMapper.java</code></td>
+<td>声明岗位表的 MyBatis 操作</td>
+</tr>
+<tr>
+<td>SQL 映射</td>
+<td><code>.../resources/mapper/system/SysPostMapper.xml</code></td>
+<td>实现岗位表 <code>sys_post</code> 的增删改查与唯一性查询</td>
+</tr>
+<tr>
+<td>用户岗位关联实体</td>
+<td><code>.../domain/SysUserPost.java</code></td>
+<td>描述用户与岗位的中间表</td>
+</tr>
+<tr>
+<td>用户岗位映射</td>
+<td><code>.../resources/mapper/system/SysUserPostMapper.xml</code></td>
+<td>维护 <code>sys_user_post</code> 关联记录</td>
+</tr>
+<tr>
+<td>前端 API</td>
+<td><code>zealux-ai-ui-master/src/api/system/post.js</code></td>
+<td>封装列表、详情、新增、修改、删除等前端请求</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    FE[&quot;前端&lt;br/&gt;zealux-ai-ui-master/src/api/system/post.js&quot;] --&gt; GW[&quot;网关路由&lt;br/&gt;/system/**&quot;]
+    GW --&gt; CTRL[&quot;SysPostController&lt;br/&gt;REST 控制器&quot;]
+    CTRL --&gt; SVC[&quot;ISysPostService / SysPostServiceImpl&lt;br/&gt;业务服务&quot;]
+    SVC --&gt; MAPPER[&quot;SysPostMapper&lt;br/&gt;MyBatis 接口&quot;]
+    MAPPER --&gt; XML[&quot;SysPostMapper.xml&lt;br/&gt;SQL 映射&quot;]
+    XML --&gt; DB[&quot;数据库&lt;br/&gt;sys_post、sys_user_post&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:1-130</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:1-178</span></li>
+<li><span class="fileref">SysPostMapper.java:1-99</span></li>
+<li><span class="fileref">SysPostMapper.xml:1-122</span></li>
+<li><span class="fileref">post.js:1-44</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:1-130</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:1-178</span></li>
+<li><span class="fileref">SysPostMapper.java:1-99</span></li>
+<li><span class="fileref">SysPostMapper.xml:1-122</span></li>
+<li><span class="fileref">post.js:1-44</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><p>岗位管理的后端能力由四层组成：</p>
+<ol>
+<li><strong>控制器层</strong>：<code>SysPostController</code> 通过 <code>@RequestMapping(&quot;/post&quot;)</code> 暴露岗位接口，并使用 <code>@RequiresPermissions</code> 控制权限点，如 <code>system:post:list</code>、<code>system:post:add</code>、<code>system:post:edit</code>、<code>system:post:remove</code>、<code>system:post:query</code>、<code>system:post:export</code>。</li>
+<li><strong>服务接口层</strong>：<code>ISysPostService</code> 定义岗位查询、新增、修改、删除、唯一性校验、按用户查询岗位 ID 列表等契约。</li>
+<li><strong>服务实现层</strong>：<code>SysPostServiceImpl</code> 组合 <code>SysPostMapper</code> 与 <code>SysUserPostMapper</code>，负责业务规则，尤其是“已分配岗位不能删除”。</li>
+<li><strong>持久化层</strong>：<code>SysPostMapper</code> 与 <code>SysPostMapper.xml</code> 操作 <code>sys_post</code> 表；<code>SysUserPostMapper</code> 与 <code>SysUserPostMapper.xml</code> 操作 <code>sys_user_post</code> 关联表。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SysPostController {
+        +list(post)
+        +export(response, post)
+        +getInfo(postId)
+        +add(post)
+        +edit(post)
+        +remove(postIds)
+        +optionselect()
+    }
+    class ISysPostService {
+        +selectPostList(post)
+        +selectPostAll()
+        +selectPostById(postId)
+        +selectPostListByUserId(userId)
+        +checkPostNameUnique(post)
+        +checkPostCodeUnique(post)
+        +countUserPostById(postId)
+        +deletePostById(postId)
+        +deletePostByIds(postIds)
+        +insertPost(post)
+        +updatePost(post)
+    }
+    class SysPostServiceImpl {
+        -postMapper
+        -userPostMapper
+    }
+    class SysPostMapper {
+        +selectPostList(post)
+        +selectPostAll()
+        +selectPostById(postId)
+        +insertPost(post)
+        +updatePost(post)
+        +deletePostById(postId)
+        +deletePostByIds(postIds)
+        +checkPostNameUnique(name)
+        +checkPostCodeUnique(code)
+    }
+    class SysUserPostMapper {
+        +countUserPostById(postId)
+        +batchUserPost(list)
+        +deleteUserPostByUserId(userId)
+    }
+    SysPostController --&gt; ISysPostService : &quot;调用&quot;
+    SysPostServiceImpl ..|&gt; ISysPostService : &quot;实现&quot;
+    SysPostServiceImpl --&gt; SysPostMapper : &quot;依赖&quot;
+    SysPostServiceImpl --&gt; SysUserPostMapper : &quot;依赖&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:1-130</span></li>
+<li><span class="fileref">ISysPostService.java:1-99</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:1-178</span></li>
+<li><span class="fileref">SysPostMapper.java:1-99</span></li>
+<li><span class="fileref">SysUserPostMapper.java:1-44</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:1-130</span></li>
+<li><span class="fileref">ISysPostService.java:1-99</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:1-178</span></li>
+<li><span class="fileref">SysPostMapper.java:1-99</span></li>
+<li><span class="fileref">SysUserPostMapper.java:1-44</span></li>
+</ul>
+<h2 id="架构与数据流"><a class="anchor" href="#架构与数据流">#</a>架构与数据流</h2><p>以“新增岗位”为例，典型调用链如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant UI as &quot;前端&lt;br/&gt;post.js&quot;
+    participant API as &quot;SysPostController&quot;
+    participant Svc as &quot;SysPostServiceImpl&quot;
+    participant Mapper as &quot;SysPostMapper&quot;
+    participant DB as &quot;数据库&quot;
+
+    UI-&gt;&gt;API: &quot;POST /system/post&quot;
+    API-&gt;&gt;API: &quot;权限校验&lt;br/&gt;@RequiresPermissions&quot;
+    API-&gt;&gt;Svc: &quot;insertPost(SysPost)&quot;
+    Svc-&gt;&gt;Mapper: &quot;insertPost(post)&quot;
+    Mapper-&gt;&gt;DB: &quot;插入 sys_post&quot;
+    DB--&gt;&gt;Mapper: &quot;影响行数&quot;
+    Mapper--&gt;&gt;Svc: &quot;返回结果&quot;
+    Svc--&gt;&gt;API: &quot;返回影响行数&quot;
+    API--&gt;&gt;UI: &quot;统一响应对象&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:73-93</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:139-145</span></li>
+<li><span class="fileref">SysPostMapper.java:75-81</span></li>
+<li><span class="fileref">SysPostMapper.xml:86-107</span></li>
+</ul>
+<p>“修改岗位”流程类似，区别在于 Controller 先校验名称与编码唯一性，再调用 <code>updatePost</code>。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:64-110</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:139-156</span></li>
+<li><span class="fileref">SysPostMapper.xml:86-107</span></li>
+</ul>
+<h2 id="实体模型与字段说明"><a class="anchor" href="#实体模型与字段说明">#</a>实体模型与字段说明</h2><p><code>SysPost</code> 是岗位的主实体，继承基础实体后携带创建人、创建时间、更新人、更新时间等通用审计字段。其核心字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+<th>校验或行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>postId</code></td>
+<td><code>Long</code></td>
+<td>岗位序号，通常由数据库自增生成</td>
+<td>用于标识岗位主键</td>
+</tr>
+<tr>
+<td><code>postCode</code></td>
+<td><code>String</code></td>
+<td>岗位编码</td>
+<td>非空，长度不超过 64；业务上要求全局唯一</td>
+</tr>
+<tr>
+<td><code>postName</code></td>
+<td><code>String</code></td>
+<td>岗位名称</td>
+<td>非空，长度不超过 50；业务上要求全局唯一</td>
+</tr>
+<tr>
+<td><code>postSort</code></td>
+<td><code>Integer</code></td>
+<td>显示顺序</td>
+<td>非空，用于排序展示</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>String</code></td>
+<td>状态</td>
+<td>注释定义为“0 正常、1 停用”，用于启用或禁用岗位</td>
+</tr>
+<tr>
+<td><code>remark</code></td>
+<td><code>String</code></td>
+<td>备注</td>
+<td>可空，用于补充说明</td>
+</tr>
+<tr>
+<td><code>flag</code></td>
+<td><code>boolean</code></td>
+<td>标记字段</td>
+<td>默认 false，用于扩展用途</td>
+</tr>
+</tbody></table>
+<p>数据层映射到 <code>sys_post</code> 表，对应列包括 <code>post_id</code>、<code>post_code</code>、<code>post_name</code>、<code>post_sort</code>、<code>status</code>、<code>create_by</code>、<code>create_time</code>、<code>update_by</code>、<code>update_time</code>、<code>remark</code>。</p>
+<div class="mermaid-wrap"><pre class="mermaid">erDiagram
+  SYS_POST {
+    bigint post_id PK
+    varchar post_code
+    varchar post_name
+    int post_sort
+    string status
+    varchar create_by
+    datetime create_time
+    varchar update_by
+    datetime update_time
+    text remark
+  }
+
+  SYS_USER_POST {
+    bigint user_id FK
+    bigint post_id FK
+  }
+
+  SYS_USER ||--o{ SYS_USER_POST : &quot;拥有&quot;
+  SYS_POST ||--o{ SYS_USER_POST : &quot;被分配&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPost.java:1-124</span></li>
+<li><span class="fileref">SysPostMapper.xml:1-26</span></li>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+<li><span class="fileref">SysUserPostMapper.xml:1-10</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPost.java:1-124</span></li>
+<li><span class="fileref">SysPostMapper.xml:1-26</span></li>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+</ul>
+<h2 id="岗位增删改查能力"><a class="anchor" href="#岗位增删改查能力">#</a>岗位增删改查能力</h2><h3 id="列表查询"><a class="anchor" href="#列表查询">#</a>列表查询</h3><ul>
+<li>接口路径：<code>GET /system/post/list</code></li>
+<li>权限点：<code>system:post:list</code></li>
+<li>支持按岗位编码、状态、岗位名称模糊查询</li>
+<li>返回列表分页结构由 BaseController 封装</li>
+</ul>
+<h3 id="查看详情"><a class="anchor" href="#查看详情">#</a>查看详情</h3><ul>
+<li>接口路径：<code>GET /system/post/{postId}</code></li>
+<li>权限点：<code>system:post:query</code></li>
+<li>返回单个岗位信息</li>
+</ul>
+<h3 id="新增岗位"><a class="anchor" href="#新增岗位">#</a>新增岗位</h3><ul>
+<li>接口路径：<code>POST /system/post</code></li>
+<li>权限点：<code>system:post:add</code></li>
+<li>请求体为 <code>SysPost</code></li>
+<li>新增前校验岗位名称与岗位编码唯一性</li>
+<li>成功后写入创建人与创建时间</li>
+</ul>
+<h3 id="修改岗位"><a class="anchor" href="#修改岗位">#</a>修改岗位</h3><ul>
+<li>接口路径：<code>PUT /system/post</code></li>
+<li>权限点：<code>system:post:edit</code></li>
+<li>请求体为 <code>SysPost</code></li>
+<li>修改前同样校验名称与编码唯一性</li>
+<li>成功后写入更新人与更新时间</li>
+</ul>
+<h3 id="删除岗位"><a class="anchor" href="#删除岗位">#</a>删除岗位</h3><ul>
+<li>接口路径：<code>DELETE /system/post/{postIds}</code></li>
+<li>权限点：<code>system:post:remove</code></li>
+<li>支持批量删除</li>
+<li>删除前检查岗位是否已被用户分配</li>
+</ul>
+<h3 id="导出岗位"><a class="anchor" href="#导出岗位">#</a>导出岗位</h3><ul>
+<li>接口路径：<code>POST /system/post/export</code></li>
+<li>权限点：<code>system:post:export</code></li>
+<li>根据当前查询条件导出 Excel</li>
+</ul>
+<h3 id="岗位选择框"><a class="anchor" href="#岗位选择框">#</a>岗位选择框</h3><ul>
+<li>接口路径：<code>GET /system/post/optionselect</code></li>
+<li>返回所有岗位，供用户选择岗位时使用</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;请求进入&quot;]) --&gt; CheckPerm[&quot;权限校验&lt;br/&gt;@RequiresPermissions&quot;]
+    CheckPerm --&gt; OpType{&quot;操作类型&quot;}
+    OpType --&gt;|列表| ListQuery[&quot;按编码/状态/名称查询&quot;]
+    OpType --&gt;|详情| GetOne[&quot;按 postId 查询&quot;]
+    OpType --&gt;|新增| AddCheck[&quot;校验名称与编码唯一性&quot;]
+    OpType --&gt;|修改| EditCheck[&quot;校验名称与编码唯一性&quot;]
+    OpType --&gt;|删除| DelCheck[&quot;检查是否被用户分配&quot;]
+    AddCheck --&gt; Insert[&quot;写入 sys_post&quot;]
+    EditCheck --&gt; Update[&quot;更新 sys_post&quot;]
+    DelCheck --&gt; Delete[&quot;删除 sys_post&quot;]
+    ListQuery --&gt; Return[&quot;返回分页数据&quot;]
+    GetOne --&gt; Return
+    Insert --&gt; Return
+    Update --&gt; Return
+    Delete --&gt; Return</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:27-130</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:25-178</span></li>
+<li><span class="fileref">SysPostMapper.xml:27-122</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:27-130</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:25-178</span></li>
+</ul>
+<h2 id="岗位状态管理与使用约束"><a class="anchor" href="#岗位状态管理与使用约束">#</a>岗位状态管理与使用约束</h2><h3 id="状态字段语义"><a class="anchor" href="#状态字段语义">#</a>状态字段语义</h3><p><code>status</code> 字段在实体注释中表示“0 正常、1 停用”。列表查询支持按 <code>status</code> 精确过滤，因此前端可通过状态筛选启用或禁用的岗位。</p>
+<h3 id="启用与禁用岗位"><a class="anchor" href="#启用与禁用岗位">#</a>启用与禁用岗位</h3><p>当前 Controller 没有单独暴露“启用岗位”或“禁用岗位”的专用接口。启用/禁用岗位的实际方式是调用修改接口 <code>PUT /system/post</code>，将目标岗位的 <code>status</code> 改为“0”或“1”。</p>
+<p>示例操作思路：</p>
+<ul>
+<li>启用岗位：将岗位 <code>status</code> 设置为“0”，调用修改接口。</li>
+<li>禁用岗位：将岗位 <code>status</code> 设置为“1”，调用修改接口。</li>
+</ul>
+<p>注意：该状态只是岗位自身属性，不等同于用户登录态。用户是否可用还受用户表状态、账号锁定、角色与权限配置等因素影响。</p>
+<h3 id="删除约束"><a class="anchor" href="#删除约束">#</a>删除约束</h3><p><code>SysPostServiceImpl.deletePostByIds</code> 会遍历待删除岗位，调用 <code>countUserPostById</code> 统计每个岗位在 <code>sys_user_post</code> 中的引用数。如果某个岗位仍有用户占用，则抛出服务异常，提示该岗位名称已分配，不能删除。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;删除岗位&quot;]) --&gt; Loop[&quot;遍历 postIds&quot;]
+    Loop --&gt; Count[&quot;统计岗位被用户分配数量&quot;]
+    Count --&gt; Used{&quot;是否已有用户分配？&quot;}
+    Used --&gt;|是| Throw[&quot;抛出服务异常&lt;br/&gt;提示岗位已分配&quot;]
+    Used --&gt;|否| Next[&quot;继续下一个岗位&quot;]
+    Next --&gt; More{&quot;还有岗位？&quot;}
+    More --&gt;|是| Loop
+    More --&gt;|否| DoDelete[&quot;批量删除 sys_post&quot;]
+    DoDelete --&gt; End([&quot;返回删除结果&quot;])
+    Throw --&gt; End</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostServiceImpl.java:112-136</span></li>
+<li><span class="fileref">SysUserPostMapper.java:14-20</span></li>
+<li><span class="fileref">SysUserPostMapper.xml:12-17</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPost.java:35-45</span></li>
+<li><span class="fileref">SysPostMapper.xml:31-40</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:112-136</span></li>
+</ul>
+<h2 id="用户与岗位的多对多关系"><a class="anchor" href="#用户与岗位的多对多关系">#</a>用户与岗位的多对多关系</h2><p>用户与岗位是多对多关系：一个用户可以拥有多个岗位，一个岗位也可以分配给多个用户。数据层通过中间表 <code>sys_user_post</code> 维护该关系。</p>
+<h3 id="数据层结构"><a class="anchor" href="#数据层结构">#</a>数据层结构</h3><ul>
+<li><code>SysUserPost</code> 实体包含 <code>userId</code> 与 <code>postId</code>。</li>
+<li><code>SysUserPostMapper.xml</code> 提供按用户删除、按岗位统计、批量新增关联记录等操作。</li>
+<li><code>SysPostMapper.xml</code> 提供按用户 ID 查询岗位 ID 列表，以及按用户名查询岗位集合，用于展示用户所属岗位。</li>
+</ul>
+<h3 id="服务层维护方式"><a class="anchor" href="#服务层维护方式">#</a>服务层维护方式</h3><ul>
+<li>查询某用户已选岗位：<code>SysPostServiceImpl.selectPostListByUserId</code> 委托 <code>SysPostMapper.selectPostListByUserId</code>，最终通过 <code>sys_post</code> 与 <code>sys_user_post</code>、<code>sys_user</code> 三表关联得到岗位 ID 列表。</li>
+<li>删除岗位时：通过 <code>SysUserPostMapper.countUserPostById</code> 检查该岗位是否仍被用户引用。</li>
+<li>批量新增用户岗位：<code>SysUserPostMapper.batchUserPost</code> 可直接向 <code>sys_user_post</code> 插入多条用户-岗位关联。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant UserSvc as &quot;用户服务&quot;
+    participant PostSvc as &quot;岗位服务&quot;
+    participant PostMap as &quot;SysPostMapper&quot;
+    participant UserPostMap as &quot;SysUserPostMapper&quot;
+    participant DB as &quot;数据库&quot;
+
+    UserSvc-&gt;&gt;PostSvc: &quot;selectPostListByUserId(userId)&quot;
+    PostSvc-&gt;&gt;PostMap: &quot;selectPostListByUserId(userId)&quot;
+    PostMap-&gt;&gt;DB: &quot;关联查询 sys_post、sys_user_post、sys_user&quot;
+    DB--&gt;&gt;PostMap: &quot;岗位ID列表&quot;
+    PostMap--&gt;&gt;PostSvc: &quot;List&lt;Long&gt;&quot;
+    PostSvc--&gt;&gt;UserSvc: &quot;返回用户岗位ID列表&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostServiceImpl.java:55-63</span></li>
+<li><span class="fileref">SysPostMapper.xml:52-60</span></li>
+<li><span class="fileref">SysUserPostMapper.xml:1-34</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+<li><span class="fileref">SysUserPostMapper.java:1-44</span></li>
+<li><span class="fileref">SysUserPostMapper.xml:1-34</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:55-63</span></li>
+<li><span class="fileref">SysPostMapper.xml:52-60</span></li>
+</ul>
+<h2 id="RBAC-中的角色定位"><a class="anchor" href="#RBAC-中的角色定位">#</a>RBAC 中的角色定位</h2><p>在 RBAC（基于角色的访问控制）模型中：</p>
+<ul>
+<li><strong>用户</strong>是实际登录并执行操作的主体。</li>
+<li><strong>角色</strong>是权限集合的载体，决定用户能访问哪些菜单、按钮和数据范围。</li>
+<li><strong>岗位</strong>不是权限主体，而是对用户组织结构的描述。它常用于：<ul>
+<li>用户信息展示：在用户列表、用户详情中显示岗位名称。</li>
+<li>辅助筛选：按岗位筛选用户或岗位数据。</li>
+<li>组织架构表达：表示用户属于哪个岗位序列，便于报表、统计与管理。</li>
+</ul>
+</li>
+</ul>
+<p>因此，不应把“岗位拥有权限”理解为岗位可以直接控制菜单或按钮；真正控制权限的是角色与数据权限策略。岗位更多体现“这个人是什么岗位的人”，而不是“这个人能做什么”。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPost.java:14-124</span></li>
+<li><span class="fileref">SysPostMapper.xml:52-72</span></li>
+</ul>
+<h2 id="前端调用方式"><a class="anchor" href="#前端调用方式">#</a>前端调用方式</h2><p>前端 <code>post.js</code> 封装了以下方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>请求</th>
+<th>后端路径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>listPost(query)</code></td>
+<td>GET</td>
+<td><code>/system/post/list</code></td>
+<td>查询岗位列表</td>
+</tr>
+<tr>
+<td><code>getPost(postId)</code></td>
+<td>GET</td>
+<td><code>/system/post/{postId}</code></td>
+<td>查询岗位详情</td>
+</tr>
+<tr>
+<td><code>addPost(data)</code></td>
+<td>POST</td>
+<td><code>/system/post</code></td>
+<td>新增岗位</td>
+</tr>
+<tr>
+<td><code>updatePost(data)</code></td>
+<td>PUT</td>
+<td><code>/system/post</code></td>
+<td>修改岗位</td>
+</tr>
+<tr>
+<td><code>delPost(postId)</code></td>
+<td>DELETE</td>
+<td><code>/system/post/{postId}</code></td>
+<td>删除岗位</td>
+</tr>
+</tbody></table>
+<p>这些方法与 <code>SysPostController</code> 暴露的路径一一对应。前端调用时仍需保证用户具备对应权限点，例如新增岗位需要 <code>system:post:add</code>。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">post.js:1-44</span></li>
+<li><span class="fileref">SysPostController.java:27-130</span></li>
+</ul>
+<h2 id="唯一性与删除约束处理"><a class="anchor" href="#唯一性与删除约束处理">#</a>唯一性与删除约束处理</h2><h3 id="岗位名称唯一性"><a class="anchor" href="#岗位名称唯一性">#</a>岗位名称唯一性</h3><ul>
+<li>Controller 在新增和修改前调用 <code>checkPostNameUnique</code>。</li>
+<li>Service 实现中，若查询到的已有岗位 ID 与当前岗位 ID 不同，则认为名称重复。</li>
+<li>若重复，Controller 返回错误消息，提示岗位名称已存在。</li>
+</ul>
+<h3 id="岗位编码唯一性"><a class="anchor" href="#岗位编码唯一性">#</a>岗位编码唯一性</h3><ul>
+<li>校验逻辑与名称一致，但针对 <code>postCode</code>。</li>
+<li>若重复，Controller 返回错误消息，提示岗位编码已存在。</li>
+</ul>
+<h3 id="删除已分配岗位"><a class="anchor" href="#删除已分配岗位">#</a>删除已分配岗位</h3><ul>
+<li>删除前通过 <code>countUserPostById</code> 检查 <code>sys_user_post</code> 中是否存在该岗位记录。</li>
+<li>若存在，Service 抛出服务异常，消息中包含岗位名称，提示“已分配，不能删除”。</li>
+<li>常见处理方式：<ol>
+<li>先解除该岗位与用户的关联。<ul>
+<li>可使用 <code>SysUserPostMapper.deleteUserPost</code> 或 <code>deleteUserPostByUserId</code>。</li>
+<li>或使用用户服务的岗位分配逻辑，重新保存用户岗位列表。</li>
+</ul>
+</li>
+<li>再次执行删除岗位操作。</li>
+</ol>
+</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;提交新增或修改&quot;]) --&gt; Validate[&quot;JSR-303 校验&lt;br/&gt;非空、长度&quot;]
+    Validate --&gt; NameCheck[&quot;检查岗位名称唯一性&quot;]
+    NameCheck --&gt; NameOk{&quot;名称唯一？&quot;}
+    NameOk --&gt;|否| ErrName[&quot;返回名称已存在错误&quot;]
+    NameOk --&gt;|是| CodeCheck[&quot;检查岗位编码唯一性&quot;]
+    CodeCheck --&gt; CodeOk{&quot;编码唯一？&quot;}
+    CodeOk --&gt;|否| ErrCode[&quot;返回编码已存在错误&quot;]
+    CodeOk --&gt;|是| Persist[&quot;执行新增或修改&quot;]
+    Persist --&gt; Done([&quot;成功&quot;])
+    ErrName --&gt; Done
+    ErrCode --&gt; Done</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:73-110</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:65-110</span></li>
+<li><span class="fileref">SysPostMapper.xml:74-84</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:73-110</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:65-110</span></li>
+<li><span class="fileref">SysPostMapper.xml:74-84</span></li>
+</ul>
+<h2 id="常见问题与排错建议"><a class="anchor" href="#常见问题与排错建议">#</a>常见问题与排错建议</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>可能原因</th>
+<th>处理建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新增岗位提示岗位名称已存在</td>
+<td>同名岗位已存在</td>
+<td>更换岗位名称，或确认是否误用已有岗位</td>
+</tr>
+<tr>
+<td>新增岗位提示岗位编码已存在</td>
+<td>同编码岗位已存在</td>
+<td>更换岗位编码，确保编码规范且唯一</td>
+</tr>
+<tr>
+<td>删除岗位失败并提示岗位已分配</td>
+<td>该岗位仍被用户占用</td>
+<td>先移除用户与该岗位的关联，再删除岗位</td>
+</tr>
+<tr>
+<td>修改岗位未生效</td>
+<td>传入字段为空或被动态 SQL 忽略</td>
+<td>确认请求体包含 <code>postId</code>、<code>postCode</code>、<code>postName</code>、<code>postSort</code>、<code>status</code>、<code>remark</code> 等必要字段</td>
+</tr>
+<tr>
+<td>列表查询无结果</td>
+<td>查询条件过严或状态值不正确</td>
+<td>检查 <code>postCode</code>、<code>postName</code>、<code>status</code> 入参；确认状态值是否为“0”或“1”</td>
+</tr>
+<tr>
+<td>前端能调用但后端报权限不足</td>
+<td>当前用户缺少权限点</td>
+<td>为角色配置 <code>system:post:list</code>、<code>system:post:add</code>、<code>system:post:edit</code>、<code>system:post:remove</code> 等权限</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:27-130</span></li>
+<li><span class="fileref">SysPostServiceImpl.java:65-136</span></li>
+<li><span class="fileref">SysPostMapper.xml:27-122</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>岗位管理在本系统中提供了完整的岗位主数据维护能力：列表查询、详情查看、新增、修改、删除、导出与岗位选择框。其核心约束包括：</p>
+<ul>
+<li>岗位名称与岗位编码必须唯一。</li>
+<li>岗位状态用于表示正常或停用。</li>
+<li>已分配给用户使用的岗位不能直接删除。</li>
+<li>用户与岗位通过 <code>sys_user_post</code> 维护多对多关系。</li>
+<li>岗位在 RBAC 中是组织描述字段，不是权限主体。</li>
+</ul>
+<p>在实际使用中，建议优先维护规范的岗位编码与岗位名称，谨慎处理岗位启用/停用与删除操作；如需调整用户岗位，应先理解用户-岗位关联与角色-权限之间的区别，避免把“岗位变更”误当作“权限变更”。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">← 菜单管理</a>
+    <a class="next" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d2"><a href="#架构与数据流">架构与数据流</a></li><li class="d2"><a href="#实体模型与字段说明">实体模型与字段说明</a></li><li class="d2"><a href="#岗位增删改查能力">岗位增删改查能力</a></li><li class="d3"><a href="#列表查询">列表查询</a></li><li class="d3"><a href="#查看详情">查看详情</a></li><li class="d3"><a href="#新增岗位">新增岗位</a></li><li class="d3"><a href="#修改岗位">修改岗位</a></li><li class="d3"><a href="#删除岗位">删除岗位</a></li><li class="d3"><a href="#导出岗位">导出岗位</a></li><li class="d3"><a href="#岗位选择框">岗位选择框</a></li><li class="d2"><a href="#岗位状态管理与使用约束">岗位状态管理与使用约束</a></li><li class="d3"><a href="#状态字段语义">状态字段语义</a></li><li class="d3"><a href="#启用与禁用岗位">启用与禁用岗位</a></li><li class="d3"><a href="#删除约束">删除约束</a></li><li class="d2"><a href="#用户与岗位的多对多关系">用户与岗位的多对多关系</a></li><li class="d3"><a href="#数据层结构">数据层结构</a></li><li class="d3"><a href="#服务层维护方式">服务层维护方式</a></li><li class="d2"><a href="#RBAC-中的角色定位">RBAC 中的角色定位</a></li><li class="d2"><a href="#前端调用方式">前端调用方式</a></li><li class="d2"><a href="#唯一性与删除约束处理">唯一性与删除约束处理</a></li><li class="d3"><a href="#岗位名称唯一性">岗位名称唯一性</a></li><li class="d3"><a href="#岗位编码唯一性">岗位编码唯一性</a></li><li class="d3"><a href="#删除已分配岗位">删除已分配岗位</a></li><li class="d2"><a href="#常见问题与排错建议">常见问题与排错建议</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html";</script>
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

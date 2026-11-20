@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>系统监控 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec" open><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html" class="active">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">业务功能详解 / <b>系统监控</b></div><article><h1 id="系统监控"><a class="anchor" href="#系统监控">#</a>系统监控</h1><cite>
+**本文引用的文件 **
+- [SysOperLog.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/domain/SysOperLog.java)
+- [SysLogininfor.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/domain/SysLogininfor.java)
+- [LogAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/aspect/LogAspect.java)
+- [AsyncLogService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/service/AsyncLogService.java)
+- [RemoteLogService.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/RemoteLogService.java)
+- [SysRecordLogService.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/service/SysRecordLogService.java)
+- [TokenService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/service/TokenService.java)
+- [AuthLogic.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/auth/AuthLogic.java)
+- [CacheConstants.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/constant/CacheConstants.java)
+- [SysOperlogController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysOperlogController.java)
+- [SysLogininforController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysLogininforController.java)
+- [SysUserOnlineController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserOnlineController.java)
+- [SysOperLogMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysOperLogMapper.xml)
+- [SysLogininforMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysLogininforMapper.xml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构中的监控相关模块">项目结构中的监控相关模块</a></li>
+<li><a href="#数据模型">数据模型</a></li>
+<li><a href="#操作日志采集流程">操作日志采集流程</a></li>
+<li><a href="#登录日志采集流程">登录日志采集流程</a></li>
+<li><a href="#在线用户监控实现思路">在线用户监控实现思路</a></li>
+<li><a href="#使用指南查看与导出日志强制下线">使用指南：查看与导出日志、强制下线</a></li>
+<li><a href="#日志审计筛选条件与导出能力">日志审计筛选条件与导出能力</a></li>
+<li><a href="#性能与清理策略">性能与清理策略</a></li>
+<li><a href="#故障排查要点">故障排查要点</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本页面聚焦系统中的三类监控能力：</p>
+<ul>
+<li>操作日志：记录业务方法被调用时的请求方法、参数、响应结果、状态、错误信息和执行耗时。</li>
+<li>登录日志：记录用户登录、登出、注册等访问行为的状态、来源地址和描述信息。</li>
+<li>在线用户监控：基于 Redis 中保存的 Token 会话，列出当前在线用户并支持强制下线。</li>
+</ul>
+<p>该系统是开源 RuoYi-Cloud 的重命名二次开发，核心监控能力由公共日志切面、Feign 远程日志接口、系统模块控制器及 MyBatis Mapper 共同构成。前端入口由路由、视图和权限控制组合暴露；本文以后端实现为主，结合前端控制器路径说明操作步骤。</p>
+<h2 id="项目结构中的监控相关模块"><a class="anchor" href="#项目结构中的监控相关模块">#</a>项目结构中的监控相关模块</h2><p>从代码仓库看，监控功能主要分布在以下位置：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>职责</th>
+<th>关键路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公共注解与切面</td>
+<td>通过 AOP 捕获带日志注解的方法，提取请求、参数、响应、耗时</td>
+<td><code>zealux-ai-common-log</code> 中的 <code>LogAspect</code></td>
+</tr>
+<tr>
+<td>异步日志服务</td>
+<td>将操作日志异步写入远端系统服务</td>
+<td><code>AsyncLogService</code>、<code>RemoteLogService</code></td>
+</tr>
+<tr>
+<td>认证日志服务</td>
+<td>在认证阶段记录登录成功、失败、登出等信息</td>
+<td><code>SysRecordLogService</code></td>
+</tr>
+<tr>
+<td>令牌与会话</td>
+<td>将登录用户缓存到 Redis，提供刷新、删除、校验能力</td>
+<td><code>TokenService</code>、<code>AuthLogic</code></td>
+</tr>
+<tr>
+<td>系统监控控制器</td>
+<td>提供操作日志、登录日志、在线用户的查询、导出、清理、强退接口</td>
+<td><code>SysOperlogController</code>、<code>SysLogininforController</code>、<code>SysUserOnlineController</code></td>
+</tr>
+<tr>
+<td>数据持久层</td>
+<td>定义操作日志和登录日志的 SQL 映射</td>
+<td><code>SysOperLogMapper.xml</code>、<code>SysLogininforMapper.xml</code></td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Client[&quot;前端或调用方&quot;] --&gt; Gateway[&quot;网关&quot;]
+    Gateway --&gt; System[&quot;系统服务&quot;]
+    Auth[&quot;认证服务&quot;] --&gt; System
+    System --&gt; LogAspect[&quot;操作日志切面&quot;]
+    LogAspect --&gt; AsyncLog[&quot;异步日志服务&quot;]
+    AsyncLog --&gt; RemoteLog[&quot;远程日志 Feign 接口&quot;]
+    RemoteLog --&gt; System
+    System --&gt; MapperOp[&quot;操作日志 Mapper&quot;]
+    System --&gt; MapperLogin[&quot;登录日志 Mapper&quot;]
+    System --&gt; Redis[&quot;Redis 会话缓存&quot;]
+    OnlineCtrl[&quot;在线用户控制器&quot;] --&gt; Redis</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:53-180</span></li>
+<li><span class="fileref">AsyncLogService.java:18-28</span></li>
+<li><span class="fileref">RemoteLogService.java:24-40</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:1-86</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:1-54</span></li>
+<li><span class="fileref">SysUserOnlineController.java:33-82</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:1-250</span></li>
+<li><span class="fileref">AsyncLogService.java:1-29</span></li>
+<li><span class="fileref">RemoteLogService.java:1-41</span></li>
+<li><span class="fileref">SysOperlogController.java:1-78</span></li>
+<li><span class="fileref">SysLogininforController.java:1-92</span></li>
+<li><span class="fileref">SysUserOnlineController.java:1-83</span></li>
+</ul>
+<h2 id="数据模型"><a class="anchor" href="#数据模型">#</a>数据模型</h2><h3 id="操作日志-SysOperLog"><a class="anchor" href="#操作日志-SysOperLog">#</a>操作日志 SysOperLog</h3><p><code>SysOperLog</code> 表示一次可审计的业务操作，字段覆盖操作主键、模块标题、业务类型、请求方法、请求方式、操作类别、操作人员、部门名称、请求地址、操作地址、请求参数、返回结果、状态、错误消息、操作时间和消耗时间。其中：</p>
+<ul>
+<li><code>operId</code>：日志主键。</li>
+<li><code>title</code>：操作模块标题，通常来自注解中的 <code>title</code>。</li>
+<li><code>businessType</code>：业务类型，例如新增、修改、删除、导出、导入、强退、生成代码、清空数据等。</li>
+<li><code>method</code>：目标类与方法名，由切面拼接为 <code>类名.方法名()</code>。</li>
+<li><code>requestMethod</code>：HTTP 请求方法，如 GET、POST、PUT、DELETE。</li>
+<li><code>operatorType</code>：操作类别，区分后台用户和手机端用户。</li>
+<li><code>operName</code>、<code>deptName</code>：操作人员与部门名称。</li>
+<li><code>operUrl</code>：请求 URL，长度限制在 255。</li>
+<li><code>operIp</code>：客户端 IP。</li>
+<li><code>operParam</code>：请求参数，最大保留 2000 字符。</li>
+<li><code>jsonResult</code>：响应结果，最大保留 2000 字符。</li>
+<li><code>status</code>：0 正常，1 异常。</li>
+<li><code>errorMsg</code>：异常信息，最大保留 2000 字符。</li>
+<li><code>operTime</code>：操作时间。</li>
+<li><code>costTime</code>：执行耗时，单位毫秒。</li>
+</ul>
+<p>该实体同时标注了 Excel 导出字段，因此操作日志列表可直接用于导出。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperLog.java:1-200</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:1-86</span></li>
+</ul>
+<h3 id="登录日志-SysLogininfor"><a class="anchor" href="#登录日志-SysLogininfor">#</a>登录日志 SysLogininfor</h3><p><code>SysLogininfor</code> 表示一次系统访问记录，字段包括：</p>
+<ul>
+<li><code>infoId</code>：主键。</li>
+<li><code>userName</code>：用户账号。</li>
+<li><code>status</code>：字符串状态，0 成功，1 失败。</li>
+<li><code>ipaddr</code>：访问地址。</li>
+<li><code>msg</code>：描述信息。</li>
+<li><code>accessTime</code>：访问时间。</li>
+</ul>
+<p>登录日志不记录密码或敏感凭证，主要用于审计登录成功、失败、登出等行为。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininfor.java:1-102</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:1-54</span></li>
+</ul>
+<h2 id="操作日志采集流程"><a class="anchor" href="#操作日志采集流程">#</a>操作日志采集流程</h2><p>操作日志由 AOP 切面统一采集。当 Controller 方法上带有日志注解时，切面会在请求前后拦截，完成以下工作：</p>
+<ol>
+<li>请求前记录开始时间。</li>
+<li>解析客户端 IP、请求 URI、用户名。</li>
+<li>根据切点反射获取目标类和方法名。</li>
+<li>设置 HTTP 请求方法。</li>
+<li>读取注解中的标题、业务类型、操作类别。</li>
+<li>根据配置决定是否保存请求参数和响应结果。</li>
+<li>计算执行耗时。</li>
+<li>调用异步日志服务保存。</li>
+<li>异常时记录本地日志，避免切面自身异常影响业务。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant C as &quot;业务 Controller&quot;
+    participant A as &quot;操作日志切面&quot;
+    participant S as &quot;异步日志服务&quot;
+    participant F as &quot;远程日志接口&quot;
+    participant M as &quot;操作日志 Mapper&quot;
+
+    C-&gt;&gt;A: 进入带注解的方法
+    A-&gt;&gt;A: 记录开始时间
+    C--&gt;&gt;A: 方法返回或抛出异常
+    A-&gt;&gt;A: 收集 IP、URL、用户、方法、参数、响应、耗时
+    A-&gt;&gt;S: 保存操作日志
+    S-&gt;&gt;F: 调用系统服务保存日志
+    F-&gt;&gt;M: 插入 sys_oper_log</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:53-180</span></li>
+<li><span class="fileref">AsyncLogService.java:18-28</span></li>
+<li><span class="fileref">RemoteLogService.java:24-40</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:27-34</span></li>
+</ul>
+<h3 id="注解如何捕获请求方法、参数、响应和执行时长"><a class="anchor" href="#注解如何捕获请求方法、参数、响应和执行时长">#</a>注解如何捕获请求方法、参数、响应和执行时长</h3><ul>
+<li><strong>请求方法</strong>：切面从连接点签名中提取类名和方法名，拼接成 <code>类名.方法名()</code>，并从 HTTP 请求对象中读取请求方式。</li>
+<li><strong>请求参数</strong>：优先尝试从 Servlet 参数地图读取；如果是 PUT、POST、DELETE，且参数为空，则序列化方法参数数组。敏感字段如密码会被排除，文件大小上传对象也会被过滤。</li>
+<li><strong>响应结果</strong>：仅当注解允许保存响应且存在返回值时，将响应对象序列化为 JSON，并截断到 2000 字符。</li>
+<li><strong>执行时长</strong>：通过线程局部变量记录请求进入时间，返回后计算差值作为毫秒数。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;进入切面处理&quot;] --&gt; BuildLog[&quot;构建操作日志对象&quot;]
+    BuildLog --&gt; ReadRequest[&quot;读取 IP、URL、用户名&quot;]
+    ReadRequest --&gt; SetMethod[&quot;设置方法名与请求方式&quot;]
+    SetMethod --&gt; CheckParams{&quot;是否保存请求参数&quot;}
+    CheckParams --&gt;|是| SerializeParams[&quot;序列化参数并过滤敏感字段&quot;]
+    CheckParams --&gt;|否| SkipParams[&quot;跳过参数&quot;]
+    SerializeParams --&gt; CheckResponse{&quot;是否保存响应结果&quot;}
+    SkipParams --&gt; CheckResponse
+    CheckResponse --&gt;|是| SerializeResponse[&quot;序列化响应并截断&quot;]
+    CheckResponse --&gt;|否| SkipResponse[&quot;跳过响应&quot;]
+    SerializeResponse --&gt; CalcCost[&quot;计算执行耗时&quot;]
+    SkipResponse --&gt; CalcCost
+    CalcCost --&gt; SaveAsync[&quot;异步保存日志&quot;]
+    SaveAsync --&gt; End[&quot;结束&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:74-180</span></li>
+<li><span class="fileref">LogAspect.java:200-250</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:53-250</span></li>
+</ul>
+<h2 id="登录日志采集流程"><a class="anchor" href="#登录日志采集流程">#</a>登录日志采集流程</h2><p>登录日志不由通用操作日志切面负责，而是由认证相关的日志服务写入。<code>SysRecordLogService</code> 接收用户名、状态和消息，构造 <code>SysLogininfor</code>，并根据状态判断成功或失败，再通过 <code>RemoteLogService</code> 把登录日志写入系统服务。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Auth as &quot;认证逻辑&quot;
+    participant L as &quot;登录日志服务&quot;
+    participant F as &quot;远程日志接口&quot;
+    participant M as &quot;登录日志 Mapper&quot;
+
+    Auth-&gt;&gt;L: 记录登录信息
+    L-&gt;&gt;L: 构造登录日志并判断状态
+    L-&gt;&gt;F: 保存登录日志
+    F-&gt;&gt;M: 插入 sys_logininfor</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysRecordLogService.java:24-47</span></li>
+<li><span class="fileref">RemoteLogService.java:33-40</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:17-22</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysRecordLogService.java:1-48</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:1-54</span></li>
+</ul>
+<h2 id="在线用户监控实现思路"><a class="anchor" href="#在线用户监控实现思路">#</a>在线用户监控实现思路</h2><p>在线用户监控不是通过数据库表维护，而是直接扫描 Redis 中所有已存在的 Token 会话。</p>
+<p>关键点如下：</p>
+<ul>
+<li><strong>Token 前缀</strong>：<code>CacheConstants.LOGIN_TOKEN_KEY</code> 定义为 <code>login_tokens:</code>。</li>
+<li><strong>Key 结构</strong>：每个在线用户的 Redis Key 为 <code>login_tokens:</code> 加上 Token 值。</li>
+<li><strong>会话内容</strong>：Redis 中存储的是 <code>LoginUser</code>，包含用户标识、用户名、IP、登录时间、过期时间等信息。</li>
+<li><strong>过期机制</strong>：<code>TokenService.refreshToken</code> 将用户信息存入 Redis，默认有效期为 720 分钟，并在接近过期阈值时自动刷新。</li>
+<li><strong>强退机制</strong>：在线用户控制器根据 Token 删除对应 Redis Key，从而让该 Token 失效。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class CacheConstants {
+        +EXPIRATION
+        +REFRESH_TIME
+        +LOGIN_TOKEN_KEY
+        +PWD_ERR_CNT_KEY
+    }
+
+    class TokenService {
+        +createToken(loginUser)
+        +getLoginUser(token)
+        +refreshToken(loginUser)
+        +delLoginUser(token)
+        +verifyToken(loginUser)
+    }
+
+    class SysUserOnlineController {
+        +list(ipaddr, userName)
+        +forceLogout(tokenId)
+    }
+
+    CacheConstants &lt;.. TokenService : &quot;使用前缀常量&quot;
+    SysUserOnlineController --&gt; TokenService : &quot;依赖 Redis 会话&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">CacheConstants.java:10-59</span></li>
+<li><span class="fileref">TokenService.java:24-174</span></li>
+<li><span class="fileref">SysUserOnlineController.java:33-82</span></li>
+</ul>
+<h3 id="强制下线流程"><a class="anchor" href="#强制下线流程">#</a>强制下线流程</h3><p>强制下线控制器接收 tokenId，直接删除 Redis 中对应的 Token Key。由于后续请求需要读取该 Token 才能获取 <code>LoginUser</code>，删除后用户再次访问时会失去有效会话，从而实现强制下线。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Admin as &quot;管理员&quot;
+    participant Online as &quot;在线用户控制器&quot;
+    participant Redis as &quot;Redis&quot;
+
+    Admin-&gt;&gt;Online: 删除指定 tokenId
+    Online-&gt;&gt;Redis: 删除 login_tokens:tokenId
+    Redis--&gt;&gt;Online: 删除成功
+    Online--&gt;&gt;Admin: 返回成功</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserOnlineController.java:69-82</span></li>
+<li><span class="fileref">CacheConstants.java:33-33</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:24-174</span></li>
+<li><span class="fileref">SysUserOnlineController.java:1-83</span></li>
+<li><span class="fileref">CacheConstants.java:1-59</span></li>
+</ul>
+<h2 id="使用指南：查看与导出日志、强制下线"><a class="anchor" href="#使用指南：查看与导出日志、强制下线">#</a>使用指南：查看与导出日志、强制下线</h2><h3 id="查看操作日志"><a class="anchor" href="#查看操作日志">#</a>查看操作日志</h3><ol>
+<li>使用具备 <code>system:operlog:list</code> 权限的账号登录系统。</li>
+<li>进入操作日志页面，该页面调用 <code>/operlog/list</code>。</li>
+<li>在列表中可查看操作序号、模块、业务类型、请求方法、请求方式、操作类别、操作人员、部门、请求地址、操作地址、请求参数、返回参数、状态、错误消息、操作时间和消耗时间。</li>
+<li>可通过分页组件翻页查看历史日志。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperlogController.java:27-42</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:36-61</span></li>
+</ul>
+<h3 id="查看登录日志"><a class="anchor" href="#查看登录日志">#</a>查看登录日志</h3><ol>
+<li>使用具备 <code>system:logininfor:list</code> 权限的账号登录系统。</li>
+<li>进入登录日志页面，该页面调用 <code>/logininfor/list</code>。</li>
+<li>列表中可查看序号、用户账号、状态、地址、描述、访问时间。</li>
+<li>可结合页面前端提供的筛选条件进行查询。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininforController.java:33-48</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:24-43</span></li>
+</ul>
+<h3 id="导出操作日志"><a class="anchor" href="#导出操作日志">#</a>导出操作日志</h3><ol>
+<li>使用具备 <code>system:operlog:export</code> 权限的账号。</li>
+<li>在操作日志页面点击导出。</li>
+<li>后端调用 <code>selectOperLogList</code> 获取符合条件的列表，并使用 Excel 工具导出“操作日志”。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperlogController.java:44-53</span></li>
+<li><span class="fileref">SysOperLog.java:1-200</span></li>
+</ul>
+<h3 id="导出登录日志"><a class="anchor" href="#导出登录日志">#</a>导出登录日志</h3><ol>
+<li>使用具备 <code>system:logininfor:export</code> 权限的账号。</li>
+<li>在登录日志页面点击导出。</li>
+<li>后端调用 <code>selectLogininforList</code> 获取符合条件的列表，并导出“登录日志”。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininforController.java:50-60</span></li>
+</ul>
+<h3 id="强制下线用户"><a class="anchor" href="#强制下线用户">#</a>强制下线用户</h3><ol>
+<li>使用具备 <code>monitor:online:list</code> 和 <code>monitor:online:forceLogout</code> 权限的账号。</li>
+<li>进入在线用户页面，查看 Redis 中当前有效的 Token 会话。</li>
+<li>对需要下线的用户点击强退。</li>
+<li>后端删除 Redis 中对应的 <code>login_tokens:tokenId</code>。</li>
+<li>该 Token 失效后，用户再次请求将无法获取有效会话。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserOnlineController.java:33-82</span></li>
+<li><span class="fileref">CacheConstants.java:33-33</span></li>
+</ul>
+<h2 id="日志审计筛选条件与导出能力"><a class="anchor" href="#日志审计筛选条件与导出能力">#</a>日志审计筛选条件与导出能力</h2><h3 id="操作日志筛选条件"><a class="anchor" href="#操作日志筛选条件">#</a>操作日志筛选条件</h3><p>后端 <code>selectOperLogList</code> 支持以下条件：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>类型</th>
+<th>匹配方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作地址</td>
+<td>字符串</td>
+<td>模糊匹配</td>
+</tr>
+<tr>
+<td>模块标题</td>
+<td>字符串</td>
+<td>模糊匹配</td>
+</tr>
+<tr>
+<td>业务类型</td>
+<td>整数</td>
+<td>精确匹配，也支持多个业务类型的数组查询</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>整数</td>
+<td>精确匹配</td>
+</tr>
+<tr>
+<td>操作人员</td>
+<td>字符串</td>
+<td>模糊匹配</td>
+</tr>
+<tr>
+<td>开始时间</td>
+<td>时间字符串</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>结束时间</td>
+<td>时间字符串</td>
+<td>小于等于</td>
+</tr>
+</tbody></table>
+<p>SQL 最终按 <code>oper_id</code> 降序排列，最新日志排在前面。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperLogMapper.xml:36-61</span></li>
+</ul>
+<h3 id="登录日志筛选条件"><a class="anchor" href="#登录日志筛选条件">#</a>登录日志筛选条件</h3><p>后端 <code>selectLogininforList</code> 支持以下条件：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>类型</th>
+<th>匹配方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>访问地址</td>
+<td>字符串</td>
+<td>模糊匹配</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>字符串</td>
+<td>精确匹配</td>
+</tr>
+<tr>
+<td>用户账号</td>
+<td>字符串</td>
+<td>模糊匹配</td>
+</tr>
+<tr>
+<td>开始时间</td>
+<td>时间字符串</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>结束时间</td>
+<td>时间字符串</td>
+<td>小于等于</td>
+</tr>
+</tbody></table>
+<p>SQL 最终按 <code>info_id</code> 降序排列。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininforMapper.xml:24-43</span></li>
+</ul>
+<h3 id="导出能力"><a class="anchor" href="#导出能力">#</a>导出能力</h3><ul>
+<li>操作日志导出使用 <code>ExcelUtil</code>，导出类为 <code>SysOperLog</code>，导出的文件名提示为“操作日志”。</li>
+<li>登录日志导出使用 <code>ExcelUtil</code>，导出类为 <code>SysLogininfor</code>，导出的文件名提示为“登录日志”。</li>
+<li>两个导出接口都复用各自的列表查询逻辑，因此导出结果受前端传入的筛选条件影响。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperlogController.java:44-53</span></li>
+<li><span class="fileref">SysLogininforController.java:50-60</span></li>
+</ul>
+<h2 id="性能与清理策略"><a class="anchor" href="#性能与清理策略">#</a>性能与清理策略</h2><h3 id="异步写入降低同步阻塞"><a class="anchor" href="#异步写入降低同步阻塞">#</a>异步写入降低同步阻塞</h3><p>操作日志写入采用异步模式：</p>
+<ol>
+<li><code>LogAspect</code> 在方法返回后调用 <code>AsyncLogService.saveSysLog</code>。</li>
+<li><code>AsyncLogService</code> 使用 Spring 的 <code>@Async</code> 注解。</li>
+<li>实际保存通过 <code>RemoteLogService</code> 调用系统服务的 <code>/operlog</code> 接口。</li>
+<li>这样业务方法的响应时间不会被数据库插入完全阻塞。</li>
+</ol>
+<p>但需要注意：异步并不保证日志一定成功落库；如果系统服务不可用或数据库写入失败，日志可能丢失。生产环境应关注系统服务健康状态和日志写入错误。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:115-130</span></li>
+<li><span class="fileref">AsyncLogService.java:18-28</span></li>
+<li><span class="fileref">RemoteLogService.java:24-32</span></li>
+</ul>
+<h3 id="日志清理策略"><a class="anchor" href="#日志清理策略">#</a>日志清理策略</h3><p>当前实现提供了手动清理接口：</p>
+<ul>
+<li>操作日志清理：<code>/operlog/clean</code>，底层执行 <code>truncate table sys_oper_log</code>，会清空整张表。</li>
+<li>登录日志清理：<code>/logininfor/clean</code>，底层执行 <code>truncate table sys_logininfor</code>，会清空整张表。</li>
+<li>批量删除：分别支持按 ID 数组删除操作日志和登录日志。</li>
+</ul>
+<p>注意：现有实现没有定时清理任务，也没有按日期归档或滚动清理逻辑。若日志增长较快，建议在生产环境中引入定时任务，按时间段或大小分批清理，而不是频繁全表截断。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperlogController.java:60-77</span></li>
+<li><span class="fileref">SysLogininforController.java:62-88</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:63-86</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:45-54</span></li>
+</ul>
+<h3 id="在线用户扫描的性能注意事项"><a class="anchor" href="#在线用户扫描的性能注意事项">#</a>在线用户扫描的性能注意事项</h3><p>在线用户列表会扫描 Redis 中所有 <code>login_tokens:*</code> 的 Key，并对每个 Key 读取完整 <code>LoginUser</code> 对象。在高并发多 Token 场景下，这可能带来以下风险：</p>
+<ul>
+<li><code>keys</code> 命令在大键空间下可能阻塞 Redis。</li>
+<li>逐个读取大量用户对象会增加 Redis 网络与内存压力。</li>
+<li>前端分页在前端完成时，可能一次性拉取全部在线用户。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>控制在线用户页面的刷新频率。</li>
+<li>在前端增加必要的分页或虚拟滚动。</li>
+<li>对高频访问的在线用户查询增加本地缓存或限流。</li>
+<li>在 Redis 较大时评估改用有序集合或其他更友好的数据结构。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserOnlineController.java:33-67</span></li>
+</ul>
+<h2 id="故障排查要点"><a class="anchor" href="#故障排查要点">#</a>故障排查要点</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作日志未出现</td>
+<td>切面未生效、注解未添加、系统服务不可用、异步队列未消费</td>
+<td>检查方法是否带日志注解；确认系统服务正常运行；查看系统服务日志</td>
+</tr>
+<tr>
+<td>操作日志参数缺失</td>
+<td>请求参数为空且非 POST/PUT/DELETE，或参数被过滤</td>
+<td>检查请求方式和参数类型；确认是否传入了文件对象或复杂对象</td>
+</tr>
+<tr>
+<td>操作日志响应过长被截断</td>
+<td>响应结果超过 2000 字符</td>
+<td>这是实现中的固定截断策略，可在审计需求下调整日志保存策略</td>
+</tr>
+<tr>
+<td>登录日志未记录</td>
+<td>认证流程未调用登录日志服务</td>
+<td>检查认证流程是否调用了记录登录信息的逻辑</td>
+</tr>
+<tr>
+<td>在线用户列表为空</td>
+<td>Redis 中没有 <code>login_tokens:*</code> 或 Token 已过期</td>
+<td>检查 Redis 中是否存在对应 Key；确认 Token 有效期</td>
+</tr>
+<tr>
+<td>强制下线无效</td>
+<td>Token 已被删除、Redis 不同步或前端传参错误</td>
+<td>确认 Redis 中对应 Key 是否存在；核对 tokenId</td>
+</tr>
+<tr>
+<td>日志导出很慢</td>
+<td>筛选条件过宽导致查询数据量过大</td>
+<td>缩小时间范围、增加精确筛选条件，或分批次导出</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:74-180</span></li>
+<li><span class="fileref">SysOperLogMapper.xml:36-61</span></li>
+<li><span class="fileref">SysLogininforMapper.xml:24-43</span></li>
+<li><span class="fileref">SysUserOnlineController.java:33-82</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本系统的监控能力由三层组成：</p>
+<ul>
+<li>数据采集层：操作日志通过 AOP 切面采集，登录日志通过认证日志服务采集。</li>
+<li>数据通道层：操作日志通过异步 Feign 调用系统服务写入，登录日志同样通过远端日志接口写入。</li>
+<li>数据展示层：系统模块提供操作日志、登录日志和在线用户的前端可访问接口，配合前端菜单、路由和权限控制使用。</li>
+</ul>
+<p>对于审计场景，重点应放在：</p>
+<ul>
+<li>明确筛选维度：模块、业务类型、状态、人员、IP、时间范围。</li>
+<li>控制导出数据规模：避免无边界查询。</li>
+<li>合理清理日志：不要长期依赖全表截断，应引入分批清理或归档策略。</li>
+<li>谨慎管理在线用户：在高并发环境下注意 Redis 扫描和 Token 数量带来的性能压力。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">← 文件服务</a>
+    <a class="next" href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构中的监控相关模块">项目结构中的监控相关模块</a></li><li class="d2"><a href="#数据模型">数据模型</a></li><li class="d3"><a href="#操作日志-SysOperLog">操作日志 SysOperLog</a></li><li class="d3"><a href="#登录日志-SysLogininfor">登录日志 SysLogininfor</a></li><li class="d2"><a href="#操作日志采集流程">操作日志采集流程</a></li><li class="d3"><a href="#注解如何捕获请求方法、参数、响应和执行时长">注解如何捕获请求方法、参数、响应和执行时长</a></li><li class="d2"><a href="#登录日志采集流程">登录日志采集流程</a></li><li class="d2"><a href="#在线用户监控实现思路">在线用户监控实现思路</a></li><li class="d3"><a href="#强制下线流程">强制下线流程</a></li><li class="d2"><a href="#使用指南：查看与导出日志、强制下线">使用指南：查看与导出日志、强制下线</a></li><li class="d3"><a href="#查看操作日志">查看操作日志</a></li><li class="d3"><a href="#查看登录日志">查看登录日志</a></li><li class="d3"><a href="#导出操作日志">导出操作日志</a></li><li class="d3"><a href="#导出登录日志">导出登录日志</a></li><li class="d3"><a href="#强制下线用户">强制下线用户</a></li><li class="d2"><a href="#日志审计筛选条件与导出能力">日志审计筛选条件与导出能力</a></li><li class="d3"><a href="#操作日志筛选条件">操作日志筛选条件</a></li><li class="d3"><a href="#登录日志筛选条件">登录日志筛选条件</a></li><li class="d3"><a href="#导出能力">导出能力</a></li><li class="d2"><a href="#性能与清理策略">性能与清理策略</a></li><li class="d3"><a href="#异步写入降低同步阻塞">异步写入降低同步阻塞</a></li><li class="d3"><a href="#日志清理策略">日志清理策略</a></li><li class="d3"><a href="#在线用户扫描的性能注意事项">在线用户扫描的性能注意事项</a></li><li class="d2"><a href="#故障排查要点">故障排查要点</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>路由与动态权限控制 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec" open><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html" class="active">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">前端架构设计 / <b>路由与动态权限控制</b></div><article><h1 id="路由与动态权限控制"><a class="anchor" href="#路由与动态权限控制">#</a>路由与动态权限控制</h1><cite>
+**本文引用的文件**   
+- [zealux-ai-ui-master/src/router/index.js](file://zealux-ai-ui-master/src/router/index.js)
+- [zealux-ai-ui-master/src/permission.js](file://zealux-ai-ui-master/src/permission.js)
+- [zealux-ai-ui-master/src/store/modules/user.js](file://zealux-ai-ui-master/src/store/modules/user.js)
+- [zealux-ai-ui-master/src/store/modules/permission.js](file://zealux-ai-ui-master/src/store/modules/permission.js)
+- [zealux-ai-ui-master/src/api/login.js](file://zealux-ai-ui-master/src/api/login.js)
+- [zealux-ai-ui-master/src/api/menu.js](file://zealux-ai-ui-master/src/api/menu.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构与定位">项目结构与定位</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与缓存特性">性能与缓存特性</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#新增业务模块清单">新增业务模块清单</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本文聚焦前端 Vue Router 与动态权限体系，围绕以下源码文件展开：</p>
+<ul>
+<li>基础路由定义：<code>zealux-ai-ui-master/src/router/index.js</code></li>
+<li>全局导航守卫：<code>zealux-ai-ui-master/src/permission.js</code></li>
+<li>用户状态与认证：<code>zealux-ai-ui-master/src/store/modules/user.js</code></li>
+<li>动态路由生成：<code>zealux-ai-ui-master/src/store/modules/permission.js</code></li>
+<li>登录接口封装：<code>zealux-ai-ui-master/src/api/login.js</code></li>
+<li>菜单路由接口：<code>zealux-ai-ui-master/src/api/menu.js</code></li>
+</ul>
+<p>需要特别强调两点：</p>
+<ul>
+<li>本仓库中的前端代码属于 RuoYi-Cloud 的前端实现，当前工作区以 <code>zealux-ai-ui-master</code> 为唯一有效前端源码；<code>zealux-ai-master/zealux-ai-ui</code> 是重复拷贝，不应视为第二个前端模块。</li>
+<li>后端网关只暴露 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 等前缀路由，因此前端通过 <code>/auth/*</code>、<code>/system/*</code>、<code>/code</code> 访问的服务路径必须落在这些前缀下。</li>
+</ul>
+<h2 id="项目结构与定位"><a class="anchor" href="#项目结构与定位">#</a>项目结构与定位</h2><p>前端路由相关职责分布在四个位置：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>职责</th>
+<th>关键行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>router/index.js</code></td>
+<td>定义常量路由、动态路由模板、默认路由实例</td>
+<td>注册 Layout、登录页、重定向、404、首页、个人中心；导出 <code>constantRoutes</code> 与 <code>dynamicRoutes</code></td>
+</tr>
+<tr>
+<td><code>permission.js</code></td>
+<td>全局导航守卫</td>
+<td>校验 Token、白名单、拉取用户信息、生成并注入动态路由</td>
+</tr>
+<tr>
+<td><code>store/modules/user.js</code></td>
+<td>用户认证状态</td>
+<td>管理 Token、角色、权限标识、头像、用户名，并提供登录、获取信息、登出等 action</td>
+</tr>
+<tr>
+<td><code>store/modules/permission.js</code></td>
+<td>动态路由状态与转换逻辑</td>
+<td>将后端返回的扁平菜单转换为嵌套路由树，并维护侧边栏与顶部路由</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+  A[&quot;浏览器&quot;] --&gt; B[&quot;Vue Router&lt;br/&gt;router/index.js&quot;]
+  B --&gt; C[&quot;全局导航守卫&lt;br/&gt;permission.js&quot;]
+  C --&gt; D[&quot;用户状态模块&lt;br/&gt;store/modules/user.js&quot;]
+  C --&gt; E[&quot;动态路由模块&lt;br/&gt;store/modules/permission.js&quot;]
+  D --&gt; F[&quot;登录接口&lt;br/&gt;api/login.js&quot;]
+  E --&gt; G[&quot;菜单路由接口&lt;br/&gt;api/menu.js&quot;]
+  E --&gt; B</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:1-62</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><h3 id="基础路由（常量路由）"><a class="anchor" href="#基础路由（常量路由）">#</a>基础路由（常量路由）</h3><p><code>router/index.js</code> 导出的 <code>constantRoutes</code> 包含系统公共页面：</p>
+<ul>
+<li><code>/redirect</code>：内部重定向容器，使用 <code>Layout</code> 包裹。</li>
+<li><code>/login</code>：登录页。</li>
+<li><code>/register</code>：注册页。</li>
+<li><code>/404</code>、<code>/401</code>：未找到与无权限错误页。</li>
+<li>根路径：空 path，组件为 <code>Layout</code>，默认重定向到 <code>index</code>。</li>
+<li><code>Index</code>：首页，带固定标签页 <code>affix: true</code>。</li>
+<li><code>/user/profile</code>：个人中心，使用 <code>Layout</code> 容器。</li>
+</ul>
+<p>这些路由在应用启动时直接注册到 Vue Router 实例中，不依赖 Token。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+</ul>
+<h3 id="动态路由模板"><a class="anchor" href="#动态路由模板">#</a>动态路由模板</h3><p><code>router/index.js</code> 还导出 <code>dynamicRoutes</code>，用于按按钮级权限过滤后动态注入。当前模板包括：</p>
+<ul>
+<li>用户分配角色</li>
+<li>角色分配用户</li>
+<li>字典数据详情</li>
+<li>调度日志详情</li>
+<li>代码生成编辑页</li>
+</ul>
+<p>它们都带有 <code>permissions</code> 字段，由 <code>filterDynamicRoutes</code> 根据当前用户权限决定是否加入可访问路由。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:100-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:86-107</span></li>
+</ul>
+<h3 id="全局导航守卫"><a class="anchor" href="#全局导航守卫">#</a>全局导航守卫</h3><p><code>permission.js</code> 是应用入口之后最先执行的导航拦截器，负责：</p>
+<ol>
+<li>启动进度条。</li>
+<li>判断是否存在 Token。</li>
+<li>若已登录且目标是 <code>/login</code>，跳转到首页。</li>
+<li>若目标在白名单内，放行。</li>
+<li>若已登录但未加载用户信息与菜单，则调用 <code>GetInfo</code> 和 <code>GenerateRoutes</code>，然后 <code>next({ ...to, replace: true })</code> 重新进入目标路由。</li>
+<li>若未登录且不在白名单，跳转到 <code>/login?redirect=...</code>。</li>
+<li>每次导航完成后关闭进度条。</li>
+</ol>
+<p>白名单目前仅包含 <code>/login</code> 与 <code>/register</code>。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+</ul>
+<h3 id="用户状态模块"><a class="anchor" href="#用户状态模块">#</a>用户状态模块</h3><p><code>store/modules/user.js</code> 的 state 包含：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>token</code></td>
+<td>从本地存储读取并持久化的访问令牌</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>用户编号</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>用户名</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td>头像地址</td>
+</tr>
+<tr>
+<td><code>roles</code></td>
+<td>角色数组</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td>按钮级权限标识数组</td>
+</tr>
+</tbody></table>
+<p>主要 action：</p>
+<ul>
+<li><code>Login</code>：提交用户名、密码、验证码、验证码 UUID，成功后写入 Token 与过期时间。</li>
+<li><code>GetInfo</code>：拉取用户信息、角色与权限，缺少角色时回退为默认角色。</li>
+<li><code>RefreshToken</code>：刷新 Token 过期时间。</li>
+<li><code>LogOut</code>：调用后端退出接口，清空本地 Token、角色、权限。</li>
+<li><code>FedLogOut</code>：仅前端清理 Token，不调用后端。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:1-122</span></li>
+</ul>
+<h3 id="动态路由模块"><a class="anchor" href="#动态路由模块">#</a>动态路由模块</h3><p><code>store/modules/permission.js</code> 的 state 包含：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>routes</code></td>
+<td>常量路由与动态路由合并后的完整路由</td>
+</tr>
+<tr>
+<td><code>addRoutes</code></td>
+<td>后端返回并处理后的动态路由</td>
+</tr>
+<tr>
+<td><code>defaultRoutes</code></td>
+<td>常量路由与动态侧边栏路由合并结果</td>
+</tr>
+<tr>
+<td><code>topbarRouters</code></td>
+<td>顶部导航路由</td>
+</tr>
+<tr>
+<td><code>sidebarRouters</code></td>
+<td>侧边栏路由</td>
+</tr>
+</tbody></table>
+<p>核心 action <code>GenerateRoutes</code> 流程：</p>
+<ol>
+<li>调用 <code>getRouters()</code> 获取后端菜单。</li>
+<li>深拷贝两份菜单数据，分别用于侧边栏与完整路由树。</li>
+<li>使用 <code>filterAsyncRouter</code> 把字符串形式的 component 解析为实际组件。</li>
+<li>对动态路由模板执行 <code>filterDynamicRoutes</code>，按 <code>permissions</code> 或 <code>roles</code> 过滤。</li>
+<li>追加 404 兜底路由。</li>
+<li>通过 <code>router.addRoutes</code> 注入动态路由。</li>
+<li>更新 Vuex 中的各类路由状态，并返回可渲染的动态路由。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>下图展示一次完整登录与动态路由加载流程：</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant U as &quot;用户&quot;
+    participant V as &quot;Vue Router&quot;
+    participant P as &quot;全局导航守卫&lt;br/&gt;permission.js&quot;
+    participant S as &quot;用户状态模块&lt;br/&gt;store/modules/user.js&quot;
+    participant L as &quot;登录接口&lt;br/&gt;api/login.js&quot;
+    participant G as &quot;动态路由模块&lt;br/&gt;store/modules/permission.js&quot;
+    participant M as &quot;菜单接口&lt;br/&gt;api/menu.js&quot;
+    participant R as &quot;Vue Router 实例&quot;
+
+    U-&gt;&gt;V: &quot;访问任意页面&quot;
+    V-&gt;&gt;P: &quot;触发 beforeEach&quot;
+    alt &quot;未携带 Token&quot;
+        P-&gt;&gt;V: &quot;跳转 /login?redirect=原路径&quot;
+    else &quot;已携带 Token&quot;
+        P-&gt;&gt;S: &quot;dispatch GetInfo&quot;
+        S-&gt;&gt;M: &quot;GET /system/user/getInfo&quot;
+        M--&gt;&gt;S: &quot;返回用户、角色、权限&quot;
+        S--&gt;&gt;P: &quot;完成 GetInfo&quot;
+        P-&gt;&gt;G: &quot;dispatch GenerateRoutes&quot;
+        G-&gt;&gt;M: &quot;GET /system/menu/getRouters&quot;
+        M--&gt;&gt;G: &quot;返回扁平菜单&quot;
+        G-&gt;&gt;G: &quot;解析组件、过滤动态路由&quot;
+        G-&gt;&gt;R: &quot;addRoutes(动态路由)&quot;
+        G--&gt;&gt;P: &quot;返回 rewriteRoutes&quot;
+        P-&gt;&gt;V: &quot;next(替换方式进入目标路由)&quot;
+    end</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:34-96</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:36-69</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:3-62</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="认证链路：用户名密码-→-验证码-→-Token-→-用户信息-→-菜单-→-动态路由"><a class="anchor" href="#认证链路：用户名密码-→-验证码-→-Token-→-用户信息-→-菜单-→-动态路由">#</a>认证链路：用户名密码 → 验证码 → Token → 用户信息 → 菜单 → 动态路由</h3><ol>
+<li><strong>登录请求</strong><br><code>store/modules/user.js</code> 的 <code>Login</code> action 调用 <code>api/login.js</code> 的 <code>login</code>，向 <code>/auth/login</code> 发送 POST 请求，携带 username、password、code、uuid。成功后将 <code>access_token</code> 与 <code>expires_in</code> 写入本地存储与 Vuex。</li>
+<li><strong>首次访问受保护页面</strong><br><code>permission.js</code> 检测到已有 Token，但 <code>roles</code> 为空，说明尚未拉取用户信息。</li>
+<li><strong>拉取用户信息</strong><br>调用 <code>GetInfo</code>，请求 <code>/system/user/getInfo</code>，将角色、权限、头像、用户名写入 store。</li>
+<li><strong>拉取菜单</strong><br><code>GenerateRoutes</code> 调用 <code>/system/menu/getRouters</code>，拿到后端配置的菜单树。</li>
+<li><strong>转换菜单为路由</strong><br><code>filterAsyncRouter</code> 将字符串组件名映射为实际组件：<ul>
+<li><code>Layout</code> → 布局容器</li>
+<li><code>ParentView</code> → 父视图组件</li>
+<li><code>InnerLink</code> → 外链容器</li>
+<li>其他 → 懒加载对应 <code>@/views/xxx</code> 组件</li>
+</ul>
+</li>
+<li><strong>注入动态路由</strong><br>先过滤 <code>dynamicRoutes</code>，再追加 <code>*</code> 404 路由，最后调用 <code>router.addRoutes</code>。</li>
+<li><strong>进入目标页面</strong><br>导航守卫使用 <code>next({ ...to, replace: true })</code> 重新进入原始目标，此时动态路由已存在。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+  Start[&quot;开始&quot;] --&gt; HasToken{&quot;是否已有 Token？&quot;}
+  HasToken --&gt;|&quot;否&quot;| ToLogin[&quot;跳转 /login?redirect=原路径&quot;]
+  HasToken --&gt;|&quot;是&quot;| RolesEmpty{&quot;是否已加载 roles？&quot;}
+  RolesEmpty --&gt;|&quot;否&quot;| GetInfo[&quot;调用 GetInfo 获取用户信息&quot;]
+  GetInfo --&gt; GenRoutes[&quot;调用 GenerateRoutes 获取菜单&quot;]
+  GenRoutes --&gt; ParseMenu[&quot;解析组件并构建嵌套路由&quot;]
+  ParseMenu --&gt; FilterDynamic[&quot;过滤动态路由模板&quot;]
+  FilterDynamic --&gt; AddRoute[&quot;router.addRoutes 注入动态路由&quot;]
+  AddRoute --&gt; NextTarget[&quot;重新进入目标路由&quot;]
+  RolesEmpty --&gt;|&quot;是&quot;| Allow[&quot;直接放行&quot;]
+  ToLogin --&gt; End[&quot;结束&quot;]
+  NextTarget --&gt; End
+  Allow --&gt; End</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:14-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:34-96</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:36-107</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:1-62</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<h3 id="常量路由与动态路由的区别"><a class="anchor" href="#常量路由与动态路由的区别">#</a>常量路由与动态路由的区别</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>常量路由</th>
+<th>动态路由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>来源</td>
+<td>前端 <code>constantRoutes</code></td>
+<td>后端 <code>/system/menu/getRouters</code> 返回的菜单</td>
+</tr>
+<tr>
+<td>注册时机</td>
+<td>应用启动时立即注册</td>
+<td>登录后通过 <code>router.addRoutes</code> 注入</td>
+</tr>
+<tr>
+<td>可见性</td>
+<td>始终存在于路由表</td>
+<td>仅对当前用户可用</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>登录、注册、404、首页、个人中心</td>
+<td>业务菜单、功能页面、后台管理模块</td>
+</tr>
+<tr>
+<td>权限控制</td>
+<td>通常不需要或仅配合全局守卫</td>
+<td>结合按钮权限与菜单权限</td>
+</tr>
+<tr>
+<td>渲染范围</td>
+<td>全部用户</td>
+<td>按用户角色与权限过滤</td>
+</tr>
+</tbody></table>
+<p>注意：<code>dynamicRoutes</code> 不是后端菜单，而是前端已有的“按钮级”路由模板，用于在用户具备相应权限时动态挂载。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:36-107</span></li>
+</ul>
+<h3 id="外链与-iframe-路由处理"><a class="anchor" href="#外链与-iframe-路由处理">#</a>外链与 iframe 路由处理</h3><p>后端菜单中的 <code>component</code> 字段支持三种特殊值：</p>
+<ul>
+<li><code>Layout</code>：使用主布局容器渲染。</li>
+<li><code>ParentView</code>：作为父节点容器，常用于嵌套子菜单。</li>
+<li><code>InnerLink</code>：使用 <code>layout/components/InnerLink</code> 渲染外链或 iframe 类型页面。</li>
+</ul>
+<p>当菜单项使用这些组件名时，<code>filterAsyncRouter</code> 会将其映射到真实组件；普通组件名则通过 <code>loadView</code> 懒加载 <code>@/views/xxx</code>。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:44-85</span></li>
+</ul>
+<h3 id="keep-alive-缓存策略"><a class="anchor" href="#keep-alive-缓存策略">#</a>keep-alive 缓存策略</h3><p>路由元信息中的 <code>meta.noCache</code> 控制是否被 <code>&lt;keep-alive&gt;</code> 缓存：</p>
+<ul>
+<li>默认不缓存。</li>
+<li>设置为 <code>true</code> 时表示不缓存，适合频繁变化或含表单的状态页。</li>
+<li>首页通常设置 <code>affix: true</code>，表示固定在标签栏，但不直接决定 keep-alive 行为。</li>
+</ul>
+<p>该行为由上层缓存组件根据 <code>meta.noCache</code> 判断，而不是由 <code>permission.js</code> 直接实现。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:10-37</span></li>
+</ul>
+<h3 id="权限不足时的跳转行为"><a class="anchor" href="#权限不足时的跳转行为">#</a>权限不足时的跳转行为</h3><p>当前全局导航守卫的主要分支是“是否登录”和“是否已加载用户信息”，并没有直接根据按钮权限拒绝路由跳转。权限不足时的常见表现如下：</p>
+<ul>
+<li>如果目标路由根本不存在于常量路由或未生成的动态路由中，会命中 404。</li>
+<li>如果目标路由存在但没有按钮权限，按钮可通过指令隐藏，但路由本身仍可访问。</li>
+<li>如果后端菜单没有配置该页面，则不会生成动态路由，也无法通过正常菜单访问。</li>
+</ul>
+<p>因此，“权限不足”在前端表现为“看不到按钮”或“找不到页面”，而不是像传统 RBAC 那样直接跳转到统一 401 页面。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:14-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:86-107</span></li>
+</ul>
+<h3 id="登出流程"><a class="anchor" href="#登出流程">#</a>登出流程</h3><p><code>store/modules/user.js</code> 提供两种登出方式：</p>
+<ul>
+<li><code>LogOut</code>：调用 <code>/auth/logout</code>，成功后清空 token、roles、permissions，并移除本地 Token。</li>
+<li><code>FedLogOut</code>：仅前端清理，不调用后端。</li>
+</ul>
+<p>全局导航守卫在 <code>GetInfo</code> 失败时会调用 <code>LogOut</code>，随后跳转到首页。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:98-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:35-48</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">graph LR
+  R[&quot;router/index.js&quot;] --&gt; P[&quot;permission.js&quot;]
+  P --&gt; U[&quot;store/modules/user.js&quot;]
+  P --&gt; PM[&quot;store/modules/permission.js&quot;]
+  U --&gt; L[&quot;api/login.js&quot;]
+  PM --&gt; M[&quot;api/menu.js&quot;]
+  PM --&gt; R</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:1-62</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+</ul>
+<h2 id="性能与缓存特性"><a class="anchor" href="#性能与缓存特性">#</a>性能与缓存特性</h2><ul>
+<li><strong>路由懒加载</strong>：生产环境下 <code>loadView</code> 使用 <code>import()</code>，开发环境使用 <code>require()</code>，有利于减少首屏体积。</li>
+<li><strong>动态路由一次性注入</strong>：<code>GenerateRoutes</code> 在登录后调用一次 <code>router.addRoutes</code>，避免每次导航重复构建。</li>
+<li><strong>菜单深拷贝</strong>：对后端返回的菜单进行两次深拷贝，分别构造侧边栏路由与完整路由树，避免相互污染。</li>
+<li><strong>404 兜底路由</strong>：动态路由末尾追加 <code>path: &#39;*&#39;</code>，防止未知路由导致空白页。</li>
+<li><strong>滚动行为</strong>：Router 实例启用 <code>scrollBehavior: () =&gt; ({ y: 0 })</code>，切换路由时回到页面顶部。</li>
+<li><strong>防抖式 push/replace</strong>：对原型方法包装并捕获异常，减少连续点击报错的影响。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:44-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:154-183</span></li>
+</ul>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><h3 id="addRoute-失败或路由未生效"><a class="anchor" href="#addRoute-失败或路由未生效">#</a>addRoute 失败或路由未生效</h3><p>可能原因与检查步骤：</p>
+<ol>
+<li><strong>重复注入</strong><br>当前实现没有显式判断是否已注入过动态路由。应确认 <code>GenerateRoutes</code> 是否被多次调用，或在刷新后再次执行。</li>
+<li><strong>后端菜单为空</strong><br>检查 <code>/system/menu/getRouters</code> 是否返回菜单数组；若为空，<code>rewriteRoutes</code> 仍会追加 404，但不会产生业务路由。</li>
+<li><strong>组件路径不匹配</strong><br><code>filterAsyncRouter</code> 会把普通组件名解析为 <code>@/views/xxx</code>，请确认后端菜单的 <code>component</code> 值与前端 <code>views</code> 目录一致。</li>
+<li><strong>动态路由模板权限不足</strong><br><code>dynamicRoutes</code> 中的条目会被 <code>filterDynamicRoutes</code> 过滤，若用户没有对应 <code>permissions</code>，即使后端菜单存在，也不会注入这些前端模板路由。</li>
+<li><strong>404 兜底提前命中</strong><br>动态路由末尾会追加 <code>path: &#39;*&#39;</code>，需确认是否在调试时误把未知路由当作业务路由。</li>
+</ol>
+<p>建议排查顺序：</p>
+<ul>
+<li>打开浏览器开发者工具，观察 <code>beforeEach</code> 是否进入 <code>GenerateRoutes</code>。</li>
+<li>查看 <code>/system/menu/getRouters</code> 响应是否为数组。</li>
+<li>检查 <code>filterAsyncRouter</code> 是否能正确解析组件。</li>
+<li>检查 <code>dynamicRoutes</code> 中是否需要对应权限。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:36-107</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:27-48</span></li>
+</ul>
+<h3 id="路由重复"><a class="anchor" href="#路由重复">#</a>路由重复</h3><p>可能原因：</p>
+<ul>
+<li>多次调用 <code>router.addRoutes</code>。</li>
+<li>刷新页面后未清除状态，但守卫再次生成路由。</li>
+<li>同时存在后端菜单路由与同名静态路由。</li>
+</ul>
+<p>排查建议：</p>
+<ul>
+<li>在 <code>GenerateRoutes</code> 中增加“是否已注入”的判断。</li>
+<li>检查路由名称是否冲突，尤其是动态路由模板中的 name。</li>
+<li>确认后端菜单中是否出现与常量路由同名的 path。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:36-69</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-99</span></li>
+</ul>
+<h3 id="白名单误判导致无需登录即可访问"><a class="anchor" href="#白名单误判导致无需登录即可访问">#</a>白名单误判导致无需登录即可访问</h3><p>当前白名单只有 <code>/login</code> 与 <code>/register</code>。若某页面意外被放行，优先检查：</p>
+<ul>
+<li>是否被改成了白名单路径。</li>
+<li><code>isPathMatch</code> 的正则匹配是否符合预期。</li>
+<li>是否绕过 <code>permission.js</code> 直接通过编程式导航访问。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:1-24</span></li>
+</ul>
+<h3 id="登录后仍被跳转到登录页"><a class="anchor" href="#登录后仍被跳转到登录页">#</a>登录后仍被跳转到登录页</h3><p>可能原因：</p>
+<ul>
+<li>Token 未正确写入本地存储。</li>
+<li><code>GetInfo</code> 调用失败，触发 <code>LogOut</code>。</li>
+<li>后端 <code>/system/user/getInfo</code> 返回的角色为空，但后续逻辑仍能继续；真正问题可能在网关或鉴权层。</li>
+<li>浏览器本地存储被清理或跨域 Cookie/Storage 策略限制。</li>
+</ul>
+<p>排查建议：</p>
+<ul>
+<li>检查登录成功后本地是否保存了 Token。</li>
+<li>查看 <code>/system/user/getInfo</code> 返回结构是否包含 user、roles、permissions。</li>
+<li>检查网关是否允许 <code>/system/*</code> 请求到达 system 服务。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:14-63</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:34-96</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:3-62</span></li>
+</ul>
+<h3 id="菜单能显示但按钮无法操作"><a class="anchor" href="#菜单能显示但按钮无法操作">#</a>菜单能显示但按钮无法操作</h3><p>这说明菜单路由已生成，但按钮权限缺失：</p>
+<ul>
+<li>检查后端返回的 <code>permissions</code> 是否包含所需标识。</li>
+<li>检查前端按钮是否正确使用该权限标识。</li>
+<li>注意：当前全局导航守卫不会因缺少按钮权限而阻止路由跳转。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:34-96</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/permission.js:14-63</span></li>
+</ul>
+<h2 id="新增业务模块清单"><a class="anchor" href="#新增业务模块清单">#</a>新增业务模块清单</h2><p>新增一个可显示在侧边栏的业务模块时，通常需要修改以下位置：</p>
+<h3 id="1.-前端页面"><a class="anchor" href="#1.-前端页面">#</a>1. 前端页面</h3><ul>
+<li>在 <code>src/views</code> 下创建页面组件。</li>
+<li>若该页面需要外链或 iframe，确保后端菜单的 <code>component</code> 为 <code>InnerLink</code>，并在外层组件中正确处理 URL。</li>
+</ul>
+<h3 id="2.-后端菜单"><a class="anchor" href="#2.-后端菜单">#</a>2. 后端菜单</h3><ul>
+<li>在数据库或菜单配置中添加菜单项，包含：<ul>
+<li>菜单名称</li>
+<li>路由 path</li>
+<li>component 值</li>
+<li>parent_id 或层级关系</li>
+<li>permissions 按钮权限标识</li>
+<li>meta 标题、图标、activeMenu 等</li>
+</ul>
+</li>
+</ul>
+<h3 id="3.-权限标识"><a class="anchor" href="#3.-权限标识">#</a>3. 权限标识</h3><ul>
+<li>为按钮级操作定义权限标识，例如 <code>module:action:operate</code>。</li>
+<li>将该标识放入后端返回的用户权限数组中。</li>
+<li>在前端按钮或路由中使用相同标识。</li>
+</ul>
+<h3 id="4.-动态路由模板（可选）"><a class="anchor" href="#4.-动态路由模板（可选）">#</a>4. 动态路由模板（可选）</h3><p>如果需要前端模板级权限控制，可在 <code>router/index.js</code> 的 <code>dynamicRoutes</code> 中添加条目，并设置 <code>permissions</code>。</p>
+<h3 id="5.-store-字段"><a class="anchor" href="#5.-store-字段">#</a>5. store 字段</h3><ul>
+<li><code>store/modules/user.js</code>：Token、roles、permissions 应由登录与信息接口自动填充，一般无需新增字段。</li>
+<li><code>store/modules/permission.js</code>：routes、addRoutes、defaultRoutes、topbarRouters、sidebarRouters 由 <code>GenerateRoutes</code> 自动生成，通常也不需要手动维护。</li>
+</ul>
+<h3 id="6.-验证清单"><a class="anchor" href="#6.-验证清单">#</a>6. 验证清单</h3><table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>期望结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录成功后能否进入新页面</td>
+<td>能</td>
+</tr>
+<tr>
+<td>未登录时能否访问</td>
+<td>不能，应跳转到 <code>/login</code></td>
+</tr>
+<tr>
+<td>菜单是否出现在侧边栏</td>
+<td>能</td>
+</tr>
+<tr>
+<td>按钮是否按权限显示或隐藏</td>
+<td>能</td>
+</tr>
+<tr>
+<td>刷新后是否保留动态路由</td>
+<td>能，前提是 Token 仍存在且 <code>GenerateRoutes</code> 再次执行</td>
+</tr>
+<tr>
+<td>外链是否在新窗口或 iframe 中打开</td>
+<td>视 <code>InnerLink</code> 实现而定</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/router/index.js:1-183</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本前端权限模型的核心是“菜单驱动 + 按钮权限”：</p>
+<ul>
+<li>基础路由由 <code>router/index.js</code> 定义，覆盖登录、注册、重定向、404、首页与个人中心。</li>
+<li><code>permission.js</code> 承担全局鉴权，负责拦截未登录访问、白名单放行、拉取用户信息与菜单、注入动态路由。</li>
+<li><code>store/modules/user.js</code> 管理登录态、Token、角色与权限标识。</li>
+<li><code>store/modules/permission.js</code> 把后端扁平菜单转换为可嵌套的前端路由树，并维护侧边栏、顶部路由与完整路由。</li>
+<li>认证链路为：用户名密码与验证码 → <code>/auth/login</code> → Token → <code>/system/user/getInfo</code> → <code>/system/menu/getRouters</code> → 生成动态路由 → 渲染侧边栏与页面。</li>
+</ul>
+<p>需要注意，当前实现没有统一的“权限不足跳转 401”的全局逻辑；权限不足主要表现为按钮不可见或路由未生成。新增模块时应同步维护后端菜单、权限标识、前端页面与可选的动态路由模板，并通过浏览器开发者工具逐步验证 Token、用户信息、菜单与动态路由注入过程。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">← 公共组件库设计</a>
+    <a class="next" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构与定位">项目结构与定位</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d3"><a href="#基础路由（常量路由）">基础路由（常量路由）</a></li><li class="d3"><a href="#动态路由模板">动态路由模板</a></li><li class="d3"><a href="#全局导航守卫">全局导航守卫</a></li><li class="d3"><a href="#用户状态模块">用户状态模块</a></li><li class="d3"><a href="#动态路由模块">动态路由模块</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#认证链路：用户名密码-→-验证码-→-Token-→-用户信息-→-菜单-→-动态路由">认证链路：用户名密码 → 验证码 → Token → 用户信息 → 菜单 → 动态路由</a></li><li class="d3"><a href="#常量路由与动态路由的区别">常量路由与动态路由的区别</a></li><li class="d3"><a href="#外链与-iframe-路由处理">外链与 iframe 路由处理</a></li><li class="d3"><a href="#keep-alive-缓存策略">keep-alive 缓存策略</a></li><li class="d3"><a href="#权限不足时的跳转行为">权限不足时的跳转行为</a></li><li class="d3"><a href="#登出流程">登出流程</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与缓存特性">性能与缓存特性</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d3"><a href="#addRoute-失败或路由未生效">addRoute 失败或路由未生效</a></li><li class="d3"><a href="#路由重复">路由重复</a></li><li class="d3"><a href="#白名单误判导致无需登录即可访问">白名单误判导致无需登录即可访问</a></li><li class="d3"><a href="#登录后仍被跳转到登录页">登录后仍被跳转到登录页</a></li><li class="d3"><a href="#菜单能显示但按钮无法操作">菜单能显示但按钮无法操作</a></li><li class="d2"><a href="#新增业务模块清单">新增业务模块清单</a></li><li class="d3"><a href="#1.-前端页面">1. 前端页面</a></li><li class="d3"><a href="#2.-后端菜单">2. 后端菜单</a></li><li class="d3"><a href="#3.-权限标识">3. 权限标识</a></li><li class="d3"><a href="#4.-动态路由模板（可选）">4. 动态路由模板（可选）</a></li><li class="d3"><a href="#5.-store-字段">5. store 字段</a></li><li class="d3"><a href="#6.-验证清单">6. 验证清单</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

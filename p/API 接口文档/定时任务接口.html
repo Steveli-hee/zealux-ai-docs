@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>定时任务接口 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec" open><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html" class="active">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">API 接口文档 / <b>定时任务接口</b></div><article><h1 id="定时任务接口"><a class="anchor" href="#定时任务接口">#</a>定时任务接口</h1><cite>
+**本文引用的文件**   
+- [SysJobController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/controller/SysJobController.java)
+- [ISysJobService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/service/ISysJobService.java)
+- [SysJob.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/domain/SysJob.java)
+- [CronUtils.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/util/CronUtils.java)
+- [ScheduleUtils.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/util/ScheduleUtils.java)
+- [quartz.sql](file://_setup/sql/quartz.sql)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构与定位">项目结构与定位</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#核心数据模型-sysjob">核心数据模型 SysJob</a></li>
+<li><a href="#调度流程说明">调度流程说明</a></li>
+<li><a href="#网关与鉴权要求">网关与鉴权要求</a></li>
+<li><a href="#接口定义">接口定义</a></li>
+<li><a href="#添加一个简单定时任务的请求与响应示例">添加一个简单定时任务的请求与响应示例</a></li>
+<li><a href="#cron-表达式基本语法">Cron 表达式基本语法</a></li>
+<li><a href="#数据库依赖与-quartzsql-的定位">数据库依赖与 quartz.sql 的定位</a></li>
+<li><a href="#部署与环境注意事项">部署与环境注意事项</a></li>
+<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本文档聚焦 <code>zealux-ai-job</code> 模块中由 <code>SysJobController</code> 暴露的定时任务管理接口，覆盖任务列表、新增、修改、删除、暂停、恢复和立即执行。文档基于仓库中的控制器、服务接口、领域模型、调度工具类以及本地脚本进行分析，并明确 Quartz 相关表结构属于第三方初始化内容，不应被描述成本系统的业务表设计。</p>
+<h2 id="项目结构与定位"><a class="anchor" href="#项目结构与定位">#</a>项目结构与定位</h2><p>定时任务能力集中在后端模块 <code>zealux-ai-modules/zealux-ai-job</code>：</p>
+<ul>
+<li>控制器：<code>com.zealux.job.controller.SysJobController</code></li>
+<li>服务接口：<code>com.zealux.job.service.ISysJobService</code></li>
+<li>领域对象：<code>com.zealux.job.domain.SysJob</code></li>
+<li>调度工具：<code>com.zealux.job.util.ScheduleUtils</code>、<code>com.zealux.job.util.CronUtils</code></li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Client[&quot;客户端或前端&quot;] --&gt; Gateway[&quot;网关 /schedule/**&quot;]
+    Gateway --&gt; Controller[&quot;SysJobController&lt;br/&gt;/job/*&quot;]
+    Controller --&gt; Service[&quot;ISysJobService&quot;]
+    Service --&gt; ScheduleUtils[&quot;ScheduleUtils&lt;br/&gt;创建/管理 Quartz 任务&quot;]
+    ScheduleUtils --&gt; Scheduler[&quot;Quartz Scheduler&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:1-186</span></li>
+<li><span class="fileref">ISysJobService.java:1-102</span></li>
+<li><span class="fileref">ScheduleUtils.java:1-141</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:1-186</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p><code>SysJobController</code> 是 REST 控制器，对外暴露 <code>/job</code> 路径下的定时任务操作；它通过 <code>ISysJobService</code> 访问调度逻辑，再由 <code>ScheduleUtils</code> 把 <code>SysJob</code> 转换为 Quartz 的 <code>JobDetail</code> 和 <code>CronTrigger</code>，最终交给 Quartz Scheduler 执行。<code>CronUtils</code> 负责校验 Cron 表达式并计算下次执行时间。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SysJobController {
+        +list(sysJob)
+        +export(response, sysJob)
+        +getInfo(jobId)
+        +add(job)
+        +edit(job)
+        +changeStatus(job)
+        +run(job)
+        +remove(jobIds)
+    }
+
+    class ISysJobService {
+        +selectJobList(sysJob)
+        +selectJobById(jobId)
+        +pauseJob(job)
+        +resumeJob(job)
+        +deleteJob(job)
+        +deleteJobByIds(jobIds)
+        +changeStatus(job)
+        +run(job)
+        +insertJob(job)
+        +updateJob(job)
+        +checkCronExpressionIsValid(cronExpression)
+    }
+
+    class SysJob {
+        +jobId
+        +jobName
+        +jobGroup
+        +invokeTarget
+        +cronExpression
+        +misfirePolicy
+        +concurrent
+        +status
+        +nextValidTime()
+    }
+
+    class ScheduleUtils {
+        +createScheduleJob(scheduler, job)
+        +getTriggerKey(jobId, group)
+        +getJobKey(jobId, group)
+        +handleCronScheduleMisfirePolicy(job, builder)
+        +whiteList(invokeTarget)
+    }
+
+    class CronUtils {
+        +isValid(cronExpression)
+        +getNextExecution(cronExpression)
+    }
+
+    SysJobController --&gt; ISysJobService : &quot;调用&quot;
+    ISysJobService --&gt; SysJob : &quot;使用&quot;
+    ScheduleUtils --&gt; SysJob : &quot;读取配置&quot;
+    ScheduleUtils --&gt; CronUtils : &quot;校验与计算&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:1-186</span></li>
+<li><span class="fileref">ISysJobService.java:1-102</span></li>
+<li><span class="fileref">SysJob.java:1-171</span></li>
+<li><span class="fileref">ScheduleUtils.java:1-141</span></li>
+<li><span class="fileref">CronUtils.java:1-63</span></li>
+</ul>
+<h2 id="核心数据模型-SysJob"><a class="anchor" href="#核心数据模型-SysJob">#</a>核心数据模型 SysJob</h2><p><code>SysJob</code> 是定时任务的请求体与返回体共同使用的领域对象，字段包括：</p>
+<ul>
+<li><code>jobId</code>：任务编号</li>
+<li><code>jobName</code>：任务名称</li>
+<li><code>jobGroup</code>：任务组名</li>
+<li><code>invokeTarget</code>：调用目标字符串</li>
+<li><code>cronExpression</code>：Cron 执行表达式</li>
+<li><code>misfirePolicy</code>：错过触发策略</li>
+<li><code>concurrent</code>：是否允许并发执行</li>
+<li><code>status</code>：任务状态（正常或暂停）</li>
+<li><code>nextValidTime</code>：根据 Cron 表达式计算的下次有效执行时间</li>
+</ul>
+<p>新增与修改时，<code>jobName</code>、<code>invokeTarget</code>、<code>cronExpression</code> 带有非空约束，且长度分别受控制器和服务层校验限制。<code>misfirePolicy</code>、<code>concurrent</code>、<code>status</code> 在导出与展示时会进行数值到中文的转换。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJob.java:1-171</span></li>
+</ul>
+<h2 id="调度流程说明"><a class="anchor" href="#调度流程说明">#</a>调度流程说明</h2><p>当新增或修改定时任务时，调度器会按以下顺序工作：</p>
+<ol>
+<li>根据 <code>concurrent</code> 选择 Quartz 执行类。</li>
+<li>用 <code>jobId</code> 和 <code>jobGroup</code> 构建 <code>JobKey</code> 与 <code>TriggerKey</code>。</li>
+<li>使用 <code>cronExpression</code> 构建 <code>CronScheduleBuilder</code>。</li>
+<li>根据 <code>misfirePolicy</code> 设置错过触发策略。</li>
+<li>将 <code>SysJob</code> 放入 <code>JobDataMap</code>，供执行时使用。</li>
+<li>如果已有同名任务则先删除，避免重复注册。</li>
+<li>通过 <code>CronUtils.getNextExecution</code> 判断任务是否仍有未来执行时间。</li>
+<li>注册任务后，如状态为暂停，则调用 Quartz 暂停该任务。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;新增或修改任务&quot;] --&gt; BuildClass[&quot;根据并发配置选择 Quartz 执行类&quot;]
+    BuildClass --&gt; BuildKeys[&quot;构建 JobKey 与 TriggerKey&quot;]
+    BuildKeys --&gt; BuildCron[&quot;构建 CronScheduleBuilder&quot;]
+    BuildCron --&gt; Misfire[&quot;处理错过触发策略&quot;]
+    Misfire --&gt; PutProps[&quot;写入任务属性&quot;]
+    PutProps --&gt; Exists{&quot;已存在任务?&quot;}
+    Exists --&gt;|是| DeleteOld[&quot;删除旧任务&quot;]
+    Exists --&gt;|否| CheckNext[&quot;计算下次执行时间&quot;]
+    DeleteOld --&gt; CheckNext
+    CheckNext --&gt; HasFuture{&quot;仍有未来执行时间?&quot;}
+    HasFuture --&gt;|是| Schedule[&quot;注册任务&quot;]
+    HasFuture --&gt;|否| Skip[&quot;不注册&quot;]
+    Schedule --&gt; PauseCheck{&quot;状态是否为暂停?&quot;}
+    PauseCheck --&gt;|是| Pause[&quot;暂停任务&quot;]
+    PauseCheck --&gt;|否| End[&quot;完成&quot;]
+    Skip --&gt; End
+    Pause --&gt; End</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">ScheduleUtils.java:1-141</span></li>
+<li><span class="fileref">CronUtils.java:1-63</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">ScheduleUtils.java:1-141</span></li>
+<li><span class="fileref">CronUtils.java:1-63</span></li>
+</ul>
+<h2 id="网关与鉴权要求"><a class="anchor" href="#网关与鉴权要求">#</a>网关与鉴权要求</h2><ul>
+<li>网关路由包含 <code>/schedule/**</code>，因此外部请求应通过网关前缀调用。</li>
+<li>控制器内部映射路径为 <code>/job</code>，所以完整 URL 模式形如 <code>/schedule/job/...</code>。</li>
+<li>所有接口均使用 <code>@RequiresPermissions</code> 注解，必须携带具备相应权限的认证令牌。</li>
+<li>常见权限标识包括：<ul>
+<li><code>monitor:job:list</code>：查询任务列表</li>
+<li><code>monitor:job:export</code>：导出任务列表</li>
+<li><code>monitor:job:query</code>：查询单个任务</li>
+<li><code>monitor:job:add</code>：新增任务</li>
+<li><code>monitor:job:edit</code>：修改任务</li>
+<li><code>monitor:job:changeStatus</code>：修改状态、立即执行</li>
+<li><code>monitor:job:remove</code>：删除任务</li>
+</ul>
+</li>
+</ul>
+<p>请求需要带上有效的鉴权令牌；未认证或权限不足时，网关或安全组件会拒绝请求。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:26-186</span></li>
+</ul>
+<h2 id="接口定义"><a class="anchor" href="#接口定义">#</a>接口定义</h2><h3 id="查询任务列表"><a class="anchor" href="#查询任务列表">#</a>查询任务列表</h3><ul>
+<li><strong>HTTP 方法</strong>：GET</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/list</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:list</code></li>
+<li><strong>请求参数</strong>：以查询对象形式传递 <code>SysJob</code> 字段，例如任务名称、任务组、状态等用于过滤。</li>
+<li><strong>成功响应</strong>：分页结果对象，包含任务集合及分页信息。</li>
+<li><strong>失败响应</strong>：认证失败、权限不足或服务器错误。</li>
+<li><strong>状态码</strong>：通常为 200，但具体 HTTP 状态码由网关与安全框架决定。</li>
+</ul>
+<h3 id="导出任务列表"><a class="anchor" href="#导出任务列表">#</a>导出任务列表</h3><ul>
+<li><strong>HTTP 方法</strong>：POST</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/export</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:export</code></li>
+<li><strong>请求参数</strong>：查询条件同列表接口。</li>
+<li><strong>成功响应</strong>：Excel 二进制流下载。</li>
+<li><strong>失败响应</strong>：认证失败、权限不足或服务器错误。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<h3 id="获取任务详情"><a class="anchor" href="#获取任务详情">#</a>获取任务详情</h3><ul>
+<li><strong>HTTP 方法</strong>：GET</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/{jobId}</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:query</code></li>
+<li><strong>路径参数</strong>：<code>jobId</code>，类型为 Long。</li>
+<li><strong>成功响应</strong>：单个 <code>SysJob</code> 对象。</li>
+<li><strong>失败响应</strong>：任务不存在、认证失败、权限不足或服务器错误。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<h3 id="新增任务"><a class="anchor" href="#新增任务">#</a>新增任务</h3><ul>
+<li><strong>HTTP 方法</strong>：POST</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:add</code></li>
+<li><strong>请求体 schema</strong>：<code>SysJob</code> 对象。</li>
+<li><strong>必填字段</strong>：<code>jobName</code>、<code>invokeTarget</code>、<code>cronExpression</code>。</li>
+<li><strong>服务端校验</strong>：<ul>
+<li>Cron 表达式必须合法。</li>
+<li><code>invokeTarget</code> 不允许包含 RMI、LDAP/LDAPS、HTTP/HTTPS 等危险协议。</li>
+<li><code>invokeTarget</code> 不得命中内置错误字符串。</li>
+<li><code>invokeTarget</code> 必须通过白名单校验。</li>
+</ul>
+</li>
+<li><strong>成功响应</strong>：通用操作结果对象，表示新增成功。</li>
+<li><strong>失败响应</strong>：Cron 表达式非法、目标字符串违规、不在白名单内或服务端异常。</li>
+<li><strong>状态码</strong>：通常为 200，业务失败由响应体中的状态码表示。</li>
+</ul>
+<h3 id="修改任务"><a class="anchor" href="#修改任务">#</a>修改任务</h3><ul>
+<li><strong>HTTP 方法</strong>：PUT</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:edit</code></li>
+<li><strong>请求体 schema</strong>：<code>SysJob</code> 对象，通常包含 <code>jobId</code> 与待修改字段。</li>
+<li><strong>校验规则</strong>：与新增接口一致。</li>
+<li><strong>成功响应</strong>：通用操作结果对象。</li>
+<li><strong>失败响应</strong>：Cron 表达式非法、目标字符串违规、不在白名单内或服务端异常。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<h3 id="修改任务状态（暂停或恢复）"><a class="anchor" href="#修改任务状态（暂停或恢复）">#</a>修改任务状态（暂停或恢复）</h3><ul>
+<li><strong>HTTP 方法</strong>：PUT</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/changeStatus</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:changeStatus</code></li>
+<li><strong>请求体 schema</strong>：<code>SysJob</code> 对象，至少包含 <code>jobId</code> 和 <code>status</code>。</li>
+<li><strong>成功响应</strong>：通用操作结果对象。</li>
+<li><strong>失败响应</strong>：任务不存在、状态值无效或调度器异常。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<h3 id="立即执行一次"><a class="anchor" href="#立即执行一次">#</a>立即执行一次</h3><ul>
+<li><strong>HTTP 方法</strong>：PUT</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/run</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:changeStatus</code></li>
+<li><strong>请求体 schema</strong>：<code>SysJob</code> 对象，至少包含 <code>jobId</code>。</li>
+<li><strong>成功响应</strong>：执行成功时返回成功标记。</li>
+<li><strong>失败响应</strong>：任务不存在或已过期。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<h3 id="删除任务"><a class="anchor" href="#删除任务">#</a>删除任务</h3><ul>
+<li><strong>HTTP 方法</strong>：DELETE</li>
+<li><strong>URL 模式</strong>：<code>/schedule/job/{jobIds}</code></li>
+<li><strong>鉴权</strong>：<code>monitor:job:remove</code></li>
+<li><strong>路径参数</strong>：<code>jobIds</code>，类型为 Long 数组。</li>
+<li><strong>成功响应</strong>：通用操作结果对象。</li>
+<li><strong>失败响应</strong>：调度器异常或服务器错误。</li>
+<li><strong>状态码</strong>：通常为 200。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;客户端&quot;
+    participant Gateway as &quot;网关&quot;
+    participant Controller as &quot;SysJobController&quot;
+    participant Service as &quot;ISysJobService&quot;
+    participant Utils as &quot;ScheduleUtils&quot;
+    participant Quartz as &quot;Quartz Scheduler&quot;
+
+    Client-&gt;&gt;Gateway: &quot;POST /schedule/job&quot;
+    Gateway-&gt;&gt;Controller: &quot;转发 /job&quot;
+    Controller-&gt;&gt;Controller: &quot;校验权限与请求参数&quot;
+    Controller-&gt;&gt;Controller: &quot;校验 Cron 与 invokeTarget&quot;
+    Controller-&gt;&gt;Service: &quot;insertJob(job)&quot;
+    Service-&gt;&gt;Utils: &quot;创建调度任务&quot;
+    Utils-&gt;&gt;Quartz: &quot;注册 JobDetail 与 Trigger&quot;
+    Quartz--&gt;&gt;Utils: &quot;调度结果&quot;
+    Utils--&gt;&gt;Service: &quot;调度结果&quot;
+    Service--&gt;&gt;Controller: &quot;插入结果&quot;
+    Controller--&gt;&gt;Client: &quot;通用响应对象&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:73-113</span></li>
+<li><span class="fileref">ISysJobService.java:68-77</span></li>
+<li><span class="fileref">ScheduleUtils.java:33-96</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:26-186</span></li>
+<li><span class="fileref">ISysJobService.java:1-102</span></li>
+</ul>
+<h2 id="添加一个简单定时任务的请求与响应示例"><a class="anchor" href="#添加一个简单定时任务的请求与响应示例">#</a>添加一个简单定时任务的请求与响应示例</h2><p>以下为“新增定时任务”的请求与响应结构示意，不包含真实凭据或敏感值。</p>
+<ul>
+<li><strong>请求</strong><ul>
+<li>方法：<code>POST</code></li>
+<li>URL：<code>/schedule/job</code></li>
+<li>头部：需包含有效鉴权令牌，例如 <code>Authorization: Bearer &lt;令牌&gt;</code></li>
+<li>请求体：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;jobName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;示例定时任务&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;jobGroup&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DEFAULT&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;invokeTarget&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;com.example.task.SampleTask.execute&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;cronExpression&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0 0/5 * * * ?&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;misfirePolicy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;concurrent&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;remark&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;每五分钟执行一次的示例任务&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+</li>
+<li><strong>成功响应</strong><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+<li><strong>失败响应示例（Cron 表达式非法）</strong><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">500</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;新增任务&#x27;示例定时任务&#x27;失败，Cron表达式不正确&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+<li><strong>失败响应示例（目标字符串不在白名单）</strong><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">500</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;新增任务&#x27;示例定时任务&#x27;失败，目标字符串不在白名单内&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<p>注意：<code>invokeTarget</code> 应指向已注册到 Spring 容器中的 Bean 类型方法，并通过项目的任务白名单配置。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:73-113</span></li>
+<li><span class="fileref">ScheduleUtils.java:120-141</span></li>
+</ul>
+<h2 id="Cron-表达式基本语法"><a class="anchor" href="#Cron-表达式基本语法">#</a>Cron 表达式基本语法</h2><p><code>SysJob.cronExpression</code> 使用 Quartz 的 Cron 表达式。<code>CronUtils.isValid</code> 基于 Quartz 的 <code>CronExpression</code> 进行合法性校验。</p>
+<p>典型字段含义如下：</p>
+<ul>
+<li>秒：0–59</li>
+<li>分钟：0–59</li>
+<li>小时：0–23</li>
+<li>日：1–31</li>
+<li>月：1–12 或英文月份缩写</li>
+<li>周：1–7 或英文星期缩写</li>
+<li>特殊字符：<ul>
+<li><code>*</code>：任意值</li>
+<li><code>,</code>：枚举值</li>
+<li><code>-</code>：范围</li>
+<li><code>/</code>：步长</li>
+<li><code>?</code>：不指定值（常用于日或周）</li>
+<li><code>L</code>：月末或最后一天</li>
+<li><code>W</code>：工作日</li>
+<li><code>#</code>：第几个星期几</li>
+</ul>
+</li>
+</ul>
+<p>常用示例：</p>
+<ul>
+<li><code>0 0/5 * * * ?</code>：每 5 分钟执行一次</li>
+<li><code>0 0 12 * * ?</code>：每天中午 12 点执行</li>
+<li><code>0 30 10 1 * ?</code>：每月 1 日上午 10:30 执行</li>
+<li><code>0 0 0 * * MON-FRI</code>：每个工作日凌晨 0 点执行</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">CronUtils.java:1-63</span></li>
+<li><span class="fileref">SysJob.java:1-171</span></li>
+</ul>
+<h2 id="数据库依赖与-quartz.sql-的定位"><a class="anchor" href="#数据库依赖与-quartz.sql-的定位">#</a>数据库依赖与 quartz.sql 的定位</h2><p>本系统通过 Quartz 实现定时任务调度。Quartz 需要在数据库中维护调度元数据，包括任务详情、触发器、作业执行记录、锁信息等。</p>
+<p><code>_setup/sql/quartz.sql</code> 是一个第三方初始化脚本，用于在本机 MariaDB/MySQL 上建立 Quartz 所需的表，主要包括：</p>
+<ul>
+<li><code>QRTZ_JOB_DETAILS</code>：存储任务详细信息</li>
+<li><code>QRTZ_TRIGGERS</code>：存储触发器详细信息</li>
+<li><code>QRTZ_SIMPLE_TRIGGERS</code>：存储简单触发器</li>
+<li><code>QRTZ_CRON_TRIGGERS</code>：存储 Cron 触发器</li>
+<li><code>QRTZ_FIRED_TRIGGERS</code>：记录已触发的触发器</li>
+<li><code>QRTZ_PAUSED_TRIGGER_GRPS</code>：记录暂停的触发器分组</li>
+<li><code>QRTZ_SCHEDULER_STATE</code>：记录调度器状态</li>
+<li><code>QRTZ_LOCKS</code>：记录分布式锁</li>
+<li><code>QRTZ_BLOB_TRIGGERS</code>：存储 Blob 类型的触发器</li>
+<li><code>QRTZ_CALENDARS</code>：存储日历信息</li>
+</ul>
+<p>这些表是 Quartz 运行所需的基础设施表，不是本项目的业务表设计。业务任务数据通过 <code>sys_job</code> 等业务表维护，而 Quartz 表由 Quartz 自身读写。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">quartz.sql:1-80</span></li>
+</ul>
+<h2 id="部署与环境注意事项"><a class="anchor" href="#部署与环境注意事项">#</a>部署与环境注意事项</h2><ul>
+<li>本地开发环境依赖 <code>_setup/stack</code> 下的 JDK、Maven、MariaDB、Redis、Nacos 等工具链，但这些目录属于本地运行产物，不属于仓库源码。</li>
+<li>生产部署时应使用项目提供的配置文件与 Nacos 配置中心，而不是直接复制 <code>_setup/stack</code> 下的工具或临时数据。</li>
+<li>定时任务功能依赖 Quartz、数据库、Nacos 配置与网关路由；缺少任一依赖都可能导致任务无法注册或调度失败。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:1-186</span></li>
+</ul>
+<h2 id="故障排查"><a class="anchor" href="#故障排查">#</a>故障排查</h2><p>常见问题及排查方向：</p>
+<ol>
+<li><p><strong>Cron 表达式非法</strong></p>
+<ul>
+<li>现象：新增或修改时返回 Cron 表达式不正确。</li>
+<li>排查：检查 <code>cronExpression</code> 是否符合 Quartz 规范。</li>
+<li>依据：控制器在新增与修改时对 Cron 表达式调用合法性校验。</li>
+</ul>
+</li>
+<li><p><strong>目标字符串被拒绝</strong></p>
+<ul>
+<li>现象：返回目标字符串不允许 RMI、LDAP/LDAPS、HTTP/HTTPS 调用，或目标字符串存在违规。</li>
+<li>排查：检查 <code>invokeTarget</code> 是否包含禁止协议或命中错误字符串。</li>
+</ul>
+</li>
+<li><p><strong>目标字符串不在白名单</strong></p>
+<ul>
+<li>现象：新增或修改时提示目标字符串不在白名单内。</li>
+<li>排查：确认 <code>invokeTarget</code> 指向的 Bean 包名是否在任务白名单配置中。</li>
+</ul>
+</li>
+<li><p><strong>任务不存在或已过期</strong></p>
+<ul>
+<li>现象：立即执行接口返回任务不存在或已过期。</li>
+<li>排查：确认 <code>jobId</code> 是否存在，且 Cron 表达式仍具有未来执行时间。</li>
+</ul>
+</li>
+<li><p><strong>权限不足</strong></p>
+<ul>
+<li>现象：请求被网关或安全组件拒绝。</li>
+<li>排查：确认当前令牌具备对应权限标识，例如 <code>monitor:job:add</code>、<code>monitor:job:changeStatus</code> 等。</li>
+</ul>
+</li>
+<li><p><strong>Quartz 表缺失</strong></p>
+<ul>
+<li>现象：任务无法持久化或调度异常。</li>
+<li>排查：确认 Quartz 初始化脚本已在数据库执行，且连接配置正确。</li>
+</ul>
+</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:73-186</span></li>
+<li><span class="fileref">ScheduleUtils.java:120-141</span></li>
+<li><span class="fileref">CronUtils.java:1-63</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>SysJobController</code> 提供了完整的定时任务管理能力，包括查询、新增、修改、删除、暂停、恢复和立即执行。其核心职责是接收请求、鉴权、校验 Cron 与目标字符串，并委托 <code>ISysJobService</code> 与 <code>ScheduleUtils</code> 完成 Quartz 任务的创建与管理。使用时需要注意：</p>
+<ul>
+<li>所有接口均需通过 <code>/schedule/**</code> 网关访问。</li>
+<li>所有接口都需要对应权限。</li>
+<li><code>invokeTarget</code> 必须满足白名单和安全校验。</li>
+<li><code>cronExpression</code> 必须符合 Quartz 语法。</li>
+<li>Quartz 表由第三方脚本初始化，不应被视为业务表设计。</li>
+<li>生产部署应以项目配置与 Nacos 为准，而非本地 <code>_setup</code> 目录。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">← 代码生成接口</a>
+    <a class="next" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构与定位">项目结构与定位</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#核心数据模型-SysJob">核心数据模型 SysJob</a></li><li class="d2"><a href="#调度流程说明">调度流程说明</a></li><li class="d2"><a href="#网关与鉴权要求">网关与鉴权要求</a></li><li class="d2"><a href="#接口定义">接口定义</a></li><li class="d3"><a href="#查询任务列表">查询任务列表</a></li><li class="d3"><a href="#导出任务列表">导出任务列表</a></li><li class="d3"><a href="#获取任务详情">获取任务详情</a></li><li class="d3"><a href="#新增任务">新增任务</a></li><li class="d3"><a href="#修改任务">修改任务</a></li><li class="d3"><a href="#修改任务状态（暂停或恢复）">修改任务状态（暂停或恢复）</a></li><li class="d3"><a href="#立即执行一次">立即执行一次</a></li><li class="d3"><a href="#删除任务">删除任务</a></li><li class="d2"><a href="#添加一个简单定时任务的请求与响应示例">添加一个简单定时任务的请求与响应示例</a></li><li class="d2"><a href="#Cron-表达式基本语法">Cron 表达式基本语法</a></li><li class="d2"><a href="#数据库依赖与-quartz.sql-的定位">数据库依赖与 quartz.sql 的定位</a></li><li class="d2"><a href="#部署与环境注意事项">部署与环境注意事项</a></li><li class="d2"><a href="#故障排查">故障排查</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

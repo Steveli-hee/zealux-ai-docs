@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>字典参数与通知公告 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec" open><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html" class="active">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">业务功能详解 / <b>字典参数与通知公告</b></div><article><h1 id="字典参数与通知公告"><a class="anchor" href="#字典参数与通知公告">#</a>字典参数与通知公告</h1><cite>
+**本文引用的文件**   
+- [SysDictType.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/domain/SysDictType.java)
+- [SysDictData.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/domain/SysDictData.java)
+- [SysConfig.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysConfig.java)
+- [SysNotice.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysNotice.java)
+- [SysDictTypeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictTypeController.java)
+- [SysDictDataController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictDataController.java)
+- [SysConfigController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysConfigController.java)
+- [SysNoticeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysNoticeController.java)
+- [SysDictTypeServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysDictTypeServiceImpl.java)
+- [SysDictDataServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysDictDataServiceImpl.java)
+- [SysConfigServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysConfigServiceImpl.java)
+- [SysNoticeServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysNoticeServiceImpl.java)
+- [SysDictTypeMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysDictTypeMapper.xml)
+- [SysDictDataMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysDictDataMapper.xml)
+- [SysConfigMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysConfigMapper.xml)
+- [SysNoticeMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysNoticeMapper.xml)
+- [DictUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/utils/DictUtils.java)
+- [data.js](file://zealux-ai-ui-master/src/api/system/dict/data.js)
+- [index.js](file://zealux-ai-ui-master/src/components/DictData/index.js)
+- [notice.js](file://zealux-ai-ui-master/src/api/system/notice.js)
+- [index.vue](file://zealux-ai-ui-master/src/views/system/notice/index.vue)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构与职责边界">项目结构与职责边界</a></li>
+<li><a href="#核心数据模型">核心数据模型</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与缓存特性">性能与缓存特性</a></li>
+<li><a href="#管理员完整用例">管理员完整用例</a></li>
+<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本文件聚焦系统管理中的三类基础能力：字典、系统参数和通知公告。这些能力由后端 <code>zealux-ai-system</code> 服务提供，前端通过 <code>zealux-ai-ui-master</code> 的页面、接口封装与全局字典组件进行交互。需要特别说明的是：</p>
+<ul>
+<li>本项目是开源 RuoYi-Cloud 3.6.5 的重命名二次开发；根 pom 为 <code>zealux-ai-ai</code> / 版本 <code>3.6.5</code>，前端名称仍为 <code>ruoyi@3.6.5</code>，多个启动类仍保留 <code>RuoYi*Application</code> 风格命名。</li>
+<li>文档只描述仓库中已存在的代码实现，不虚构 CRM 或尚未落地的表结构。</li>
+<li>数据库层面，字典、参数、公告分别对应 <code>sys_dict_type</code>、<code>sys_dict_data</code>、<code>sys_config</code>、<code>sys_notice</code> 四个 MyBatis Mapper 映射实体；但本地库实际建表情况需以部署脚本为准，不能仅凭实体类推断已有表。</li>
+</ul>
+<h2 id="项目结构与职责边界"><a class="anchor" href="#项目结构与职责边界">#</a>项目结构与职责边界</h2><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>职责</th>
+<th>主要文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>领域模型</td>
+<td>定义字典类型、字典数据、系统参数、通知公告字段与校验规则</td>
+<td><span class="fileref">SysDictType.java</span>、<span class="fileref">SysDictData.java</span>、<span class="fileref">SysConfig.java</span>、<span class="fileref">SysNotice.java</span></td>
+</tr>
+<tr>
+<td>控制器层</td>
+<td>暴露 REST 接口，负责权限校验、日志记录、分页导出</td>
+<td><span class="fileref">SysDictTypeController.java</span>、<span class="fileref">SysDictDataController.java</span>、<span class="fileref">SysConfigController.java</span>、<span class="fileref">SysNoticeController.java</span></td>
+</tr>
+<tr>
+<td>服务实现</td>
+<td>执行业务逻辑、维护 Redis 缓存、调用 Mapper</td>
+<td><span class="fileref">SysDictTypeServiceImpl.java</span>、<span class="fileref">SysDictDataServiceImpl.java</span>、<span class="fileref">SysConfigServiceImpl.java</span>、<span class="fileref">SysNoticeServiceImpl.java</span></td>
+</tr>
+<tr>
+<td>持久层</td>
+<td>映射 SQL 与结果集</td>
+<td><span class="fileref">SysDictTypeMapper.xml</span>、<span class="fileref">SysDictDataMapper.xml</span>、<span class="fileref">SysConfigMapper.xml</span>、<span class="fileref">SysNoticeMapper.xml</span></td>
+</tr>
+<tr>
+<td>前端</td>
+<td>表单、表格、下拉框、公告编辑与展示</td>
+<td><span class="fileref">data.js</span>、<span class="fileref">index.js</span>、<span class="fileref">notice.js</span>、<span class="fileref">index.vue</span></td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    FE[&quot;前端界面&lt;br/&gt;字典管理、参数管理、通知公告&quot;] --&gt; API_Dict[&quot;字典接口&lt;br/&gt;/dict/type、/dict/data&quot;]
+    FE --&gt; API_Config[&quot;参数接口&lt;br/&gt;/config&quot;]
+    FE --&gt; API_Notice[&quot;公告接口&lt;br/&gt;/notice&quot;]
+    API_Dict --&gt; CDT[&quot;SysDictTypeController&quot;]
+    API_Dict --&gt; CDD[&quot;SysDictDataController&quot;]
+    API_Config --&gt; CC[&quot;SysConfigController&quot;]
+    API_Notice --&gt; CN[&quot;SysNoticeController&quot;]
+    CDT --&gt; SDT[&quot;SysDictTypeServiceImpl&quot;]
+    CDD --&gt; SDD[&quot;SysDictDataServiceImpl&quot;]
+    CC --&gt; SC[&quot;SysConfigServiceImpl&quot;]
+    CN --&gt; SN[&quot;SysNoticeServiceImpl&quot;]
+    SDT --&gt; MDT[&quot;SysDictTypeMapper.xml&quot;]
+    SDD --&gt; MDD[&quot;SysDictDataMapper.xml&quot;]
+    SC --&gt; MC[&quot;SysConfigMapper.xml&quot;]
+    SN --&gt; MN[&quot;SysNoticeMapper.xml&quot;]
+    SDT --&gt; DU[&quot;DictUtils&lt;br/&gt;Redis 字典缓存&quot;]
+    SC --&gt; RS[&quot;RedisService&lt;br/&gt;Redis 参数缓存&quot;]</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+<li><span class="fileref">DictUtils.java:1-75</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+</ul>
+<h2 id="核心数据模型"><a class="anchor" href="#核心数据模型">#</a>核心数据模型</h2><h3 id="字典分类-SysDictType"><a class="anchor" href="#字典分类-SysDictType">#</a>字典分类 SysDictType</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dictId</td>
+<td>字典主键</td>
+<td>数值型主键</td>
+</tr>
+<tr>
+<td>dictName</td>
+<td>字典名称</td>
+<td>必填，最长 100 字符</td>
+</tr>
+<tr>
+<td>dictType</td>
+<td>字典类型编码</td>
+<td>必填，最长 100 字符，必须以字母开头，只能包含小写字母、数字和下划线</td>
+</tr>
+<tr>
+<td>status</td>
+<td>状态</td>
+<td><code>0</code> 表示正常，<code>1</code> 表示停用</td>
+</tr>
+<tr>
+<td>BaseEntity 公共字段</td>
+<td>创建人、创建时间、更新人、更新时间、备注</td>
+<td>继承自基类</td>
+</tr>
+</tbody></table>
+<p>字典类型用于抽象“下拉选项的分类”，例如用户性别、公告类型等。其唯一性由 <code>dictType</code> 编码保证，而不是名称。</p>
+<h3 id="字典数据-SysDictData"><a class="anchor" href="#字典数据-SysDictData">#</a>字典数据 SysDictData</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dictCode</td>
+<td>字典数据主键</td>
+<td>数值型主键</td>
+</tr>
+<tr>
+<td>dictSort</td>
+<td>排序号</td>
+<td>升序排列时使用</td>
+</tr>
+<tr>
+<td>dictLabel</td>
+<td>显示标签</td>
+<td>必填，最长 100 字符</td>
+</tr>
+<tr>
+<td>dictValue</td>
+<td>存储键值</td>
+<td>必填，最长 100 字符</td>
+</tr>
+<tr>
+<td>dictType</td>
+<td>所属字典类型</td>
+<td>必填，最长 100 字符</td>
+</tr>
+<tr>
+<td>cssClass</td>
+<td>样式属性</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>listClass</td>
+<td>表格样式</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>isDefault</td>
+<td>是否默认</td>
+<td><code>Y</code> 表示是，<code>N</code> 表示否</td>
+</tr>
+<tr>
+<td>status</td>
+<td>状态</td>
+<td><code>0</code> 表示正常，<code>1</code> 表示停用</td>
+</tr>
+<tr>
+<td>BaseEntity 公共字段</td>
+<td>审计字段</td>
+<td>继承自基类</td>
+</tr>
+</tbody></table>
+<p>字典数据属于某个字典类型，<code>dictLabel</code> 面向用户展示，<code>dictValue</code> 作为业务值。查询时通常按 <code>dictType</code> 获取一组 <code>(label, value)</code> 列表。</p>
+<h3 id="系统参数-SysConfig"><a class="anchor" href="#系统参数-SysConfig">#</a>系统参数 SysConfig</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>configId</td>
+<td>参数主键</td>
+<td>数值型主键</td>
+</tr>
+<tr>
+<td>configName</td>
+<td>参数名称</td>
+<td>必填，最长 100 字符</td>
+</tr>
+<tr>
+<td>configKey</td>
+<td>参数键名</td>
+<td>必填，最长 100 字符，全局唯一</td>
+</tr>
+<tr>
+<td>configValue</td>
+<td>参数键值</td>
+<td>必填，最长 500 字符</td>
+</tr>
+<tr>
+<td>configType</td>
+<td>是否系统内置</td>
+<td><code>Y</code> 表示内置，<code>N</code> 表示非内置</td>
+</tr>
+<tr>
+<td>BaseEntity 公共字段</td>
+<td>审计字段</td>
+<td>继承自基类</td>
+</tr>
+</tbody></table>
+<p>系统参数以键值对形式持久化，常用于可配置的系统行为。<code>configKey</code> 是读取参数的稳定标识。</p>
+<h3 id="通知公告-SysNotice"><a class="anchor" href="#通知公告-SysNotice">#</a>通知公告 SysNotice</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>noticeId</td>
+<td>公告主键</td>
+<td>数值型主键</td>
+</tr>
+<tr>
+<td>noticeTitle</td>
+<td>公告标题</td>
+<td>必填，最长 50 字符，禁止脚本字符</td>
+</tr>
+<tr>
+<td>noticeType</td>
+<td>公告类型</td>
+<td>枚举字符串，如通知、公告</td>
+</tr>
+<tr>
+<td>noticeContent</td>
+<td>公告内容</td>
+<td>富文本内容</td>
+</tr>
+<tr>
+<td>status</td>
+<td>发布状态</td>
+<td><code>0</code> 表示正常，<code>1</code> 表示关闭</td>
+</tr>
+<tr>
+<td>BaseEntity 公共字段</td>
+<td>审计字段</td>
+<td>继承自基类</td>
+</tr>
+</tbody></table>
+<p>注意：当前实现没有独立的“已读”字段。<code>status</code> 控制公告是否可见或启用，而不是单用户的阅读状态。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SysDictType {
+        +Long dictId
+        +String dictName
+        +String dictType
+        +String status
+    }
+    class SysDictData {
+        +Long dictCode
+        +Long dictSort
+        +String dictLabel
+        +String dictValue
+        +String dictType
+        +String cssClass
+        +String listClass
+        +String isDefault
+        +String status
+    }
+    class SysConfig {
+        +Long configId
+        +String configName
+        +String configKey
+        +String configValue
+        +String configType
+    }
+    class SysNotice {
+        +Long noticeId
+        +String noticeTitle
+        +String noticeType
+        +String noticeContent
+        +String status
+    }
+    SysDictData --&gt; SysDictType : &quot;通过 dictType 关联&quot;</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictType.java:1-96</span></li>
+<li><span class="fileref">SysDictData.java:1-176</span></li>
+<li><span class="fileref">SysConfig.java:1-111</span></li>
+<li><span class="fileref">SysNotice.java:1-102</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictType.java:1-96</span></li>
+<li><span class="fileref">SysDictData.java:1-176</span></li>
+<li><span class="fileref">SysConfig.java:1-111</span></li>
+<li><span class="fileref">SysNotice.java:1-102</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>三个功能都遵循相同分层：前端调用 <code>/system/*</code> 下的 Controller，Controller 使用 Service 执行业务逻辑，Service 再调用 Mapper 读写数据库；字典和参数还涉及 Redis 缓存。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant UI as &quot;前端页面&quot;
+    participant API as &quot;系统接口&quot;
+    participant Ctrl as &quot;System Controller&quot;
+    participant Svc as &quot;Service 实现&quot;
+    participant Cache as &quot;Redis 缓存&quot;
+    participant DB as &quot;数据库&quot;
+
+    UI-&gt;&gt;API: &quot;请求字典/参数/公告接口&quot;
+    API-&gt;&gt;Ctrl: &quot;路由到具体 Controller&quot;
+    Ctrl-&gt;&gt;Svc: &quot;调用业务方法&quot;
+    alt &quot;读取缓存优先&quot;
+        Svc-&gt;&gt;Cache: &quot;查询缓存&quot;
+        Cache--&gt;&gt;Svc: &quot;返回缓存值&quot;
+    else &quot;缓存未命中或写入&quot;
+        Svc-&gt;&gt;DB: &quot;执行 SQL&quot;
+        DB--&gt;&gt;Svc: &quot;返回持久化数据&quot;
+        Svc-&gt;&gt;Cache: &quot;更新或写入缓存&quot;
+    end
+    Svc--&gt;&gt;Ctrl: &quot;返回结果&quot;
+    Ctrl--&gt;&gt;UI: &quot;统一响应对象&quot;</pre></div><p>该流程适用于：</p>
+<ul>
+<li>字典数据按类型读取并缓存。</li>
+<li>系统参数按 key 读取并缓存。</li>
+<li>新增、修改、删除后刷新对应缓存。</li>
+</ul>
+<p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+<li><span class="fileref">DictUtils.java:1-75</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="字典模块：分类与数据"><a class="anchor" href="#字典模块：分类与数据">#</a>字典模块：分类与数据</h3><h4 id="后端接口"><a class="anchor" href="#后端接口">#</a>后端接口</h4><table>
+<thead>
+<tr>
+<th>接口路径</th>
+<th>方法</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/dict/type/list</code></td>
+<td>GET</td>
+<td><code>system:dict:list</code></td>
+<td>分页查询字典类型</td>
+</tr>
+<tr>
+<td><code>/dict/type/export</code></td>
+<td>POST</td>
+<td><code>system:dict:export</code></td>
+<td>导出字典类型 Excel</td>
+</tr>
+<tr>
+<td><code>/dict/type/{dictId}</code></td>
+<td>GET</td>
+<td><code>system:dict:query</code></td>
+<td>查询单个字典类型</td>
+</tr>
+<tr>
+<td><code>/dict/type</code></td>
+<td>POST</td>
+<td><code>system:dict:add</code></td>
+<td>新增字典类型</td>
+</tr>
+<tr>
+<td><code>/dict/type</code></td>
+<td>PUT</td>
+<td><code>system:dict:edit</code></td>
+<td>修改字典类型</td>
+</tr>
+<tr>
+<td><code>/dict/type/{dictIds}</code></td>
+<td>DELETE</td>
+<td><code>system:dict:remove</code></td>
+<td>批量删除字典类型</td>
+</tr>
+<tr>
+<td><code>/dict/type/refreshCache</code></td>
+<td>DELETE</td>
+<td><code>system:dict:remove</code></td>
+<td>重置字典缓存</td>
+</tr>
+<tr>
+<td><code>/dict/type/optionselect</code></td>
+<td>GET</td>
+<td>无显式权限注解</td>
+<td>获取全部字典类型供选择</td>
+</tr>
+<tr>
+<td><code>/dict/data/list</code></td>
+<td>GET</td>
+<td><code>system:dict:list</code></td>
+<td>分页查询字典数据</td>
+</tr>
+<tr>
+<td><code>/dict/data/export</code></td>
+<td>POST</td>
+<td><code>system:dict:export</code></td>
+<td>导出字典数据 Excel</td>
+</tr>
+<tr>
+<td><code>/dict/data/{dictCode}</code></td>
+<td>GET</td>
+<td><code>system:dict:query</code></td>
+<td>查询单个字典数据</td>
+</tr>
+<tr>
+<td><code>/dict/data/type/{dictType}</code></td>
+<td>GET</td>
+<td>无显式权限注解</td>
+<td>按字典类型获取可用数据</td>
+</tr>
+<tr>
+<td><code>/dict/data</code></td>
+<td>POST</td>
+<td><code>system:dict:add</code></td>
+<td>新增字典数据</td>
+</tr>
+<tr>
+<td><code>/dict/data</code></td>
+<td>PUT</td>
+<td><code>system:dict:edit</code></td>
+<td>修改字典数据</td>
+</tr>
+<tr>
+<td><code>/dict/data/{dictCodes}</code></td>
+<td>DELETE</td>
+<td><code>system:dict:remove</code></td>
+<td>批量删除字典数据</td>
+</tr>
+</tbody></table>
+<h4 id="字典类型业务要点"><a class="anchor" href="#字典类型业务要点">#</a>字典类型业务要点</h4><ul>
+<li>新增和修改前会检查 <code>dictType</code> 是否唯一。</li>
+<li>删除前检查该类型是否仍有字典数据，若有则拒绝删除。</li>
+<li>修改 <code>dictType</code> 时，会同步更新该类型下所有字典数据的 <code>dictType</code>。</li>
+<li>项目启动时加载所有状态为正常的字典数据到 Redis。</li>
+<li>新增、修改、删除操作后会更新或删除对应字典类型的缓存。</li>
+</ul>
+<h4 id="字典数据业务要点"><a class="anchor" href="#字典数据业务要点">#</a>字典数据业务要点</h4><ul>
+<li>查询列表支持按 <code>dictType</code>、<code>dictLabel</code>、<code>status</code> 过滤。</li>
+<li>按类型查询接口只返回状态为正常的字典数据。</li>
+<li>新增、修改、删除后都会重新计算并覆盖该 <code>dictType</code> 的缓存。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;调用字典数据接口&quot;] --&gt; CheckCache[&quot;从 DictUtils 查 Redis 缓存&quot;]
+    CheckCache --&gt; Hit{&quot;命中缓存？&quot;}
+    Hit --&gt;|是| ReturnCache[&quot;返回缓存中的字典数据&quot;]
+    Hit --&gt;|否| QueryDB[&quot;按 dictType 查询 sys_dict_data&quot;]
+    QueryDB --&gt; HasData{&quot;有数据？&quot;}
+    HasData --&gt;|是| SetCache[&quot;写入 Redis 字典缓存&quot;]
+    SetCache --&gt; ReturnDB[&quot;返回数据库数据&quot;]
+    HasData --&gt;|否| ReturnEmpty[&quot;返回空结果&quot;]</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysDictDataServiceImpl.java:1-111</span></li>
+<li><span class="fileref">DictUtils.java:1-75</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysDictDataServiceImpl.java:1-111</span></li>
+<li><span class="fileref">SysDictTypeMapper.xml:1-105</span></li>
+<li><span class="fileref">SysDictDataMapper.xml:1-124</span></li>
+</ul>
+<h3 id="系统参数模块：持久化与缓存刷新"><a class="anchor" href="#系统参数模块：持久化与缓存刷新">#</a>系统参数模块：持久化与缓存刷新</h3><h4 id="后端接口-1"><a class="anchor" href="#后端接口-1">#</a>后端接口</h4><table>
+<thead>
+<tr>
+<th>接口路径</th>
+<th>方法</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/config/list</code></td>
+<td>GET</td>
+<td><code>system:config:list</code></td>
+<td>分页查询参数列表</td>
+</tr>
+<tr>
+<td><code>/config/export</code></td>
+<td>POST</td>
+<td><code>system:config:export</code></td>
+<td>导出参数 Excel</td>
+</tr>
+<tr>
+<td><code>/config/{configId}</code></td>
+<td>GET</td>
+<td>无显式权限注解</td>
+<td>按主键查询参数详情</td>
+</tr>
+<tr>
+<td><code>/config/configKey/{configKey}</code></td>
+<td>GET</td>
+<td>无显式权限注解</td>
+<td>按参数键名查询参数对象</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>POST</td>
+<td><code>system:config:add</code></td>
+<td>新增参数</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>PUT</td>
+<td><code>system:config:edit</code></td>
+<td>修改参数</td>
+</tr>
+<tr>
+<td><code>/config/{configIds}</code></td>
+<td>DELETE</td>
+<td><code>system:config:remove</code></td>
+<td>批量删除参数</td>
+</tr>
+<tr>
+<td><code>/config/refreshCache</code></td>
+<td>DELETE</td>
+<td><code>system:config:remove</code></td>
+<td>重置参数缓存</td>
+</tr>
+</tbody></table>
+<h4 id="关键行为"><a class="anchor" href="#关键行为">#</a>关键行为</h4><ul>
+<li>新增和修改前校验 <code>configKey</code> 唯一性。</li>
+<li>内置参数（<code>configType=Y</code>）不允许删除。</li>
+<li>根据 key 读取参数时，先查 Redis，未命中再查数据库，并将结果写回 Redis。</li>
+<li>新增参数后直接写入 Redis。</li>
+<li>修改参数时，如果 <code>configKey</code> 发生变化，会先删除旧 key 的缓存，再写入新 key 的缓存。</li>
+<li>批量删除时会逐个删除 Redis 缓存。</li>
+<li>项目启动时加载全部参数到 Redis。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;读取参数值&quot;] --&gt; ReadCache[&quot;RedisService.getCacheObject(configKey)&quot;]
+    ReadCache --&gt; CacheHit{&quot;缓存命中？&quot;}
+    CacheHit --&gt;|是| ReturnCache[&quot;返回缓存值&quot;]
+    CacheHit --&gt;|否| QueryDB[&quot;按 configKey 查 sys_config&quot;]
+    QueryDB --&gt; Found{&quot;找到参数？&quot;}
+    Found --&gt;|是| WriteCache[&quot;RedisService.setCacheObject(configKey, configValue)&quot;]
+    WriteCache --&gt; ReturnDB[&quot;返回数据库值&quot;]
+    Found --&gt;|否| ReturnNull[&quot;返回空字符串&quot;]</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysConfigMapper.xml:1-117</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysConfigMapper.xml:1-117</span></li>
+</ul>
+<h3 id="通知公告模块：内容与状态"><a class="anchor" href="#通知公告模块：内容与状态">#</a>通知公告模块：内容与状态</h3><h4 id="后端接口-2"><a class="anchor" href="#后端接口-2">#</a>后端接口</h4><table>
+<thead>
+<tr>
+<th>接口路径</th>
+<th>方法</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/notice/list</code></td>
+<td>GET</td>
+<td><code>system:notice:list</code></td>
+<td>分页查询公告列表</td>
+</tr>
+<tr>
+<td><code>/notice/{noticeId}</code></td>
+<td>GET</td>
+<td><code>system:notice:query</code></td>
+<td>查询单个公告</td>
+</tr>
+<tr>
+<td><code>/notice</code></td>
+<td>POST</td>
+<td><code>system:notice:add</code></td>
+<td>新增公告</td>
+</tr>
+<tr>
+<td><code>/notice</code></td>
+<td>PUT</td>
+<td><code>system:notice:edit</code></td>
+<td>修改公告</td>
+</tr>
+<tr>
+<td><code>/notice/{noticeIds}</code></td>
+<td>DELETE</td>
+<td><code>system:notice:remove</code></td>
+<td>批量删除公告</td>
+</tr>
+</tbody></table>
+<h4 id="关键行为-3"><a class="anchor" href="#关键行为-3">#</a>关键行为</h4><ul>
+<li>列表支持按标题、公告类型、创建人模糊查询。</li>
+<li>标题存在 XSS 校验注解。</li>
+<li>内容在 Mapper 中使用 <code>cast(notice_content as char)</code> 映射，避免大字段处理问题。</li>
+<li>当前没有“标记已读”接口；<code>status</code> 表示公告整体启用或关闭，不是用户级已读状态。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+<li><span class="fileref">SysNoticeServiceImpl.java:1-92</span></li>
+<li><span class="fileref">SysNoticeMapper.xml:1-89</span></li>
+</ul>
+<h3 id="前端字典下拉框使用方式"><a class="anchor" href="#前端字典下拉框使用方式">#</a>前端字典下拉框使用方式</h3><p>前端通过以下链路使用字典：</p>
+<ol>
+<li>页面声明需要使用的字典类型，例如 <code>sys_notice_type</code>、<code>sys_notice_status</code>。</li>
+<li>全局字典组件安装时注册字典元信息，指定 label 字段为 <code>dictLabel</code>，value 字段为 <code>dictValue</code>。</li>
+<li>渲染下拉框时，先检查 Vuex store 中是否已有该字典。</li>
+<li>若没有，则调用 <code>/system/dict/data/type/{dictType}</code> 获取后端数据。</li>
+<li>获取成功后将结果存入 store，再返回给组件。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Page as &quot;前端页面&quot;
+    participant DictComp as &quot;DictData 组件&quot;
+    participant Store as &quot;Vuex store&quot;
+    participant API as &quot;/system/dict/data/type/{dictType}&quot;
+    participant Backend as &quot;SysDictTypeServiceImpl&quot;
+
+    Page-&gt;&gt;DictComp: &quot;渲染下拉框&quot;
+    DictComp-&gt;&gt;Store: &quot;查询 dict[type]&quot;
+    alt &quot;store 中有缓存&quot;
+        Store--&gt;&gt;DictComp: &quot;返回本地字典数据&quot;
+    else &quot;store 中没有缓存&quot;
+        DictComp-&gt;&gt;API: &quot;getDicts(dictType)&quot;
+        API-&gt;&gt;Backend: &quot;selectDictDataByType&quot;
+        Backend--&gt;&gt;API: &quot;返回字典数据&quot;
+        API--&gt;&gt;DictComp: &quot;返回 data&quot;
+        DictComp-&gt;&gt;Store: &quot;setDict(type, data)&quot;
+    end
+    DictComp--&gt;&gt;Page: &quot;渲染 label/value 选项&quot;</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">index.js</span></li>
+<li><span class="fileref">data.js</span></li>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">index.js:1-49</span></li>
+<li><span class="fileref">data.js:1-52</span></li>
+</ul>
+<h3 id="前端通知公告展示"><a class="anchor" href="#前端通知公告展示">#</a>前端通知公告展示</h3><p>通知公告页面提供：</p>
+<ul>
+<li>按标题、操作人员、公告类型搜索。</li>
+<li>列表展示标题、类型、状态、创建人、创建时间。</li>
+<li>新增、修改、删除按钮受权限控制。</li>
+<li>公告类型和状态使用字典组件渲染。</li>
+<li>公告内容使用富文本编辑器输入。</li>
+</ul>
+<p>当前前端也没有“已读”字段展示或操作；公告的状态只是启用或关闭。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">notice.js:1-44</span></li>
+<li><span class="fileref">index.vue:1-200</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">graph LR
+    DictTypeController[&quot;SysDictTypeController&quot;] --&gt; DictTypeService[&quot;SysDictTypeServiceImpl&quot;]
+    DictDataController[&quot;SysDictDataController&quot;] --&gt; DictDataService[&quot;SysDictDataServiceImpl&quot;]
+    ConfigController[&quot;SysConfigController&quot;] --&gt; ConfigService[&quot;SysConfigServiceImpl&quot;]
+    NoticeController[&quot;SysNoticeController&quot;] --&gt; NoticeService[&quot;SysNoticeServiceImpl&quot;]
+
+    DictTypeService --&gt; DictTypeMapper[&quot;SysDictTypeMapper.xml&quot;]
+    DictTypeService --&gt; DictDataMapper[&quot;SysDictDataMapper.xml&quot;]
+    DictTypeService --&gt; DictUtils[&quot;DictUtils&quot;]
+
+    DictDataService --&gt; DictDataMapper
+
+    ConfigService --&gt; ConfigMapper[&quot;SysConfigMapper.xml&quot;]
+
+    NoticeService --&gt; NoticeMapper[&quot;SysNoticeMapper.xml&quot;]
+
+    DictUtils --&gt; Redis[&quot;Redis&quot;]
+    ConfigService --&gt; Redis</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysDictDataServiceImpl.java:1-111</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysNoticeServiceImpl.java:1-92</span></li>
+</ul>
+<h2 id="性能与缓存特性"><a class="anchor" href="#性能与缓存特性">#</a>性能与缓存特性</h2><h3 id="字典缓存"><a class="anchor" href="#字典缓存">#</a>字典缓存</h3><ul>
+<li>字典数据按 <code>dictType</code> 分组存入 Redis。</li>
+<li>服务启动时加载所有状态为正常的字典数据。</li>
+<li>新增、修改、删除字典数据后，会重新写入该类型缓存。</li>
+<li>删除字典类型时，会清空该类型缓存。</li>
+<li>字典缓存 key 由 <code>DictUtils</code> 基于常量前缀生成。</li>
+</ul>
+<h3 id="参数缓存"><a class="anchor" href="#参数缓存">#</a>参数缓存</h3><ul>
+<li>参数值按 <code>configKey</code> 存入 Redis。</li>
+<li>服务启动时加载全部参数。</li>
+<li>读取参数时采用“缓存优先、数据库兜底”策略。</li>
+<li>修改参数 key 时，会删除旧 key 缓存。</li>
+<li>新增、修改、删除参数后都会更新或删除对应 Redis 缓存。</li>
+</ul>
+<h3 id="注意事项"><a class="anchor" href="#注意事项">#</a>注意事项</h3><ul>
+<li>字典和参数都是进程内通过 Redis 共享的缓存；微服务多实例部署时，应确保共享同一个 Redis。</li>
+<li>如果 Redis 不可用，字典读取可能失败，参数读取可能降级到数据库。</li>
+<li>导出接口返回 Excel 流，不适合频繁大批量调用。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DictUtils.java:1-75</span></li>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysDictDataServiceImpl.java:1-111</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+</ul>
+<h2 id="管理员完整用例"><a class="anchor" href="#管理员完整用例">#</a>管理员完整用例</h2><h3 id="用例一：管理员维护字典分类与字典值"><a class="anchor" href="#用例一：管理员维护字典分类与字典值">#</a>用例一：管理员维护字典分类与字典值</h3><p><strong>目标</strong>：新增一个下拉选项分类，并为其添加若干选项。</p>
+<ol>
+<li>登录系统管理后台，进入“字典管理”。</li>
+<li>新增字典类型：<ul>
+<li>填写字典名称，例如“某业务状态”。</li>
+<li>填写字典类型编码，必须以小写字母开头，仅含小写字母、数字和下划线。</li>
+<li>设置状态为正常。</li>
+</ul>
+</li>
+<li>新增字典数据：<ul>
+<li>选择刚创建的字典类型。</li>
+<li>填写显示标签，例如“进行中”。</li>
+<li>填写字典键值，例如 <code>in_progress</code>。</li>
+<li>设置排序号和状态。</li>
+</ul>
+</li>
+<li>在前端使用该字典：<ul>
+<li>新建页面或表单字段引用该 <code>dictType</code>。</li>
+<li>前端会自动调用 <code>/system/dict/data/type/{dictType}</code> 获取选项。</li>
+</ul>
+</li>
+<li>如需立即生效：<ul>
+<li>后端新增/修改/删除字典数据后会自动刷新对应类型缓存。</li>
+<li>也可调用 <code>/dict/type/refreshCache</code> 重置字典缓存。</li>
+</ul>
+</li>
+</ol>
+<p><strong>风险点</strong></p>
+<ul>
+<li>字典类型编码一旦变更，会同步更新该类型下所有字典数据；变更前建议评估是否有外部系统引用该编码。</li>
+<li>删除字典类型前，必须确认该类型下没有字典数据。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysDictDataServiceImpl.java:1-111</span></li>
+<li><span class="fileref">index.js:1-49</span></li>
+</ul>
+<h3 id="用例二：管理员修改系统参数并刷新缓存"><a class="anchor" href="#用例二：管理员修改系统参数并刷新缓存">#</a>用例二：管理员修改系统参数并刷新缓存</h3><p><strong>目标</strong>：新增或修改一个系统参数，使其他模块可通过 <code>configKey</code> 读取新值。</p>
+<ol>
+<li>进入“参数管理”。</li>
+<li>新增参数：<ul>
+<li>填写参数名称，便于人工识别。</li>
+<li>填写参数键名，例如 <code>app.feature.xxx.enable</code>。</li>
+<li>填写参数键值，例如 <code>true</code>。</li>
+<li>若非系统内置，设置 <code>configType=N</code>。</li>
+</ul>
+</li>
+<li>修改参数：<ul>
+<li>可直接修改键名、键值、名称或备注。</li>
+<li>如果修改了键名，旧 key 的 Redis 缓存会被删除，新 key 写入新值。</li>
+</ul>
+</li>
+<li>刷新缓存：<ul>
+<li>修改完成后，后续读取会走 Redis。</li>
+<li>若需要强制重新加载，可调用 <code>/config/refreshCache</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>敏感参数是否需要脱敏读取？</strong></p>
+<ul>
+<li>当前 <code>SysConfigController</code> 没有针对敏感 key 的特殊脱敏逻辑。</li>
+<li><code>getConfigKey</code> 接口直接返回参数对象，其中包含 <code>configValue</code>。</li>
+<li>因此，如果参数值包含口令、token、密钥等敏感信息，不应直接暴露给普通前端角色。</li>
+<li>建议在业务层增加白名单或脱敏逻辑，例如：<ul>
+<li>对特定 <code>configKey</code> 返回掩码值。</li>
+<li>或者只提供布尔开关、URL 等安全字段，不暴露密钥原文。</li>
+<li>同时加强权限控制，只允许高权限角色访问敏感参数。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+</ul>
+<h3 id="用例三：管理员发布公告"><a class="anchor" href="#用例三：管理员发布公告">#</a>用例三：管理员发布公告</h3><p><strong>目标</strong>：创建一个公告，并控制其启用或关闭。</p>
+<ol>
+<li>进入“通知公告”。</li>
+<li>点击新增：<ul>
+<li>填写公告标题。</li>
+<li>选择公告类型，例如通知或公告。</li>
+<li>使用富文本编辑器填写公告内容。</li>
+<li>设置状态为正常或关闭。</li>
+</ul>
+</li>
+<li>保存后，前端列表可以按标题、类型、创建人筛选。</li>
+<li>如需隐藏某条公告，可将状态改为关闭。</li>
+<li>如需删除错误公告，可执行批量删除。</li>
+</ol>
+<p><strong>重要限制</strong></p>
+<ul>
+<li>当前没有“用户已读”状态。<code>status</code> 控制公告是否启用，而不是记录哪个用户已经阅读。</li>
+<li>如果需要用户级已读功能，需要新增独立字段和接口，并在前端区分“未读/已读”展示。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+<li><span class="fileref">SysNoticeServiceImpl.java:1-92</span></li>
+<li><span class="fileref">SysNoticeMapper.xml:1-89</span></li>
+<li><span class="fileref">index.vue:1-200</span></li>
+</ul>
+<h2 id="故障排查"><a class="anchor" href="#故障排查">#</a>故障排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前端下拉框为空</td>
+<td>字典类型不存在、字典数据被停用、Redis 缓存未加载</td>
+<td>检查 <code>/system/dict/data/type/{dictType}</code> 返回值；确认字典类型为正常状态；必要时调用刷新缓存接口</td>
+</tr>
+<tr>
+<td>修改字典类型后前端仍显示旧值</td>
+<td>缓存未刷新或前端未重新拉取</td>
+<td>调用 <code>/dict/type/refreshCache</code>，或重新加载相关页面</td>
+</tr>
+<tr>
+<td>修改参数 key 后旧接口失效</td>
+<td>旧 key 的 Redis 缓存已被删除</td>
+<td>确认业务模块是否使用新的 <code>configKey</code> 读取参数</td>
+</tr>
+<tr>
+<td>读取参数值为空</td>
+<td>Redis 无缓存且数据库无记录</td>
+<td>检查 <code>configKey</code> 是否存在；查看数据库 <code>sys_config</code></td>
+</tr>
+<tr>
+<td>删除字典类型报错</td>
+<td>该类型下仍存在字典数据</td>
+<td>先删除或迁移该类型下的字典数据</td>
+</tr>
+<tr>
+<td>删除内置参数报错</td>
+<td>内置参数不允许删除</td>
+<td>将 <code>configType</code> 改为非内置后再删除，或调整业务策略</td>
+</tr>
+<tr>
+<td>公告无法显示</td>
+<td>状态为关闭或标题/类型不匹配</td>
+<td>检查 <code>status</code>、<code>noticeType</code> 和标题匹配条件</td>
+</tr>
+<tr>
+<td>公告内容乱码或截断</td>
+<td>大字段映射或数据库字段类型问题</td>
+<td>检查 Mapper 中对 <code>notice_content</code> 的映射和数据库列类型</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-200</span></li>
+<li><span class="fileref">SysNoticeMapper.xml:1-89</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><ul>
+<li>字典模块提供“分类+数据”的双层结构，适合统一管理下拉选项，并通过 Redis 缓存提升查询性能。</li>
+<li>系统参数模块以键值对形式持久化，适合运行期可配置行为，并以 Redis 作为高频读取缓存。</li>
+<li>通知公告模块提供基础的增删改查和启用/关闭状态，但没有用户级已读机制。</li>
+<li>敏感参数在当前实现中不会自动脱敏，需要在权限和数据输出层额外设计。</li>
+<li>所有变更都应关注缓存一致性：字典和参数都有明确的缓存刷新逻辑，管理员可通过接口主动重置缓存。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">← 用户管理</a>
+    <a class="next" href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构与职责边界">项目结构与职责边界</a></li><li class="d2"><a href="#核心数据模型">核心数据模型</a></li><li class="d3"><a href="#字典分类-SysDictType">字典分类 SysDictType</a></li><li class="d3"><a href="#字典数据-SysDictData">字典数据 SysDictData</a></li><li class="d3"><a href="#系统参数-SysConfig">系统参数 SysConfig</a></li><li class="d3"><a href="#通知公告-SysNotice">通知公告 SysNotice</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#字典模块：分类与数据">字典模块：分类与数据</a></li><li class="d3"><a href="#系统参数模块：持久化与缓存刷新">系统参数模块：持久化与缓存刷新</a></li><li class="d3"><a href="#通知公告模块：内容与状态">通知公告模块：内容与状态</a></li><li class="d3"><a href="#前端字典下拉框使用方式">前端字典下拉框使用方式</a></li><li class="d3"><a href="#前端通知公告展示">前端通知公告展示</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与缓存特性">性能与缓存特性</a></li><li class="d3"><a href="#字典缓存">字典缓存</a></li><li class="d3"><a href="#参数缓存">参数缓存</a></li><li class="d3"><a href="#注意事项">注意事项</a></li><li class="d2"><a href="#管理员完整用例">管理员完整用例</a></li><li class="d3"><a href="#用例一：管理员维护字典分类与字典值">用例一：管理员维护字典分类与字典值</a></li><li class="d3"><a href="#用例二：管理员修改系统参数并刷新缓存">用例二：管理员修改系统参数并刷新缓存</a></li><li class="d3"><a href="#用例三：管理员发布公告">用例三：管理员发布公告</a></li><li class="d2"><a href="#故障排查">故障排查</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

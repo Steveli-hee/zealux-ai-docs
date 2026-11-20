@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>安全模块（security） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="stylesheet" href="../../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html" class="active">安全模块（security）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>安全模块（security）</b></div><article><h1 id="安全模块（security）"><a class="anchor" href="#安全模块（security）">#</a>安全模块（security）</h1><cite>
+**本文引用的文件**
+- [ApplicationConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/config/ApplicationConfig.java)
+- [WebMvcConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/config/WebMvcConfig.java)
+- [HeaderInterceptor.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/interceptor/HeaderInterceptor.java)
+- [PreAuthorizeAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/aspect/PreAuthorizeAspect.java)
+- [AuthLogic.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/auth/AuthLogic.java)
+- [AuthUtil.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/auth/AuthUtil.java)
+- [TokenService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/service/TokenService.java)
+- [SecurityUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/utils/SecurityUtils.java)
+- [GlobalExceptionHandler.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/handler/GlobalExceptionHandler.java)
+- [FeignRequestInterceptor.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/feign/FeignRequestInterceptor.java)
+- [InnerAuth.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/annotation/InnerAuth.java)
+- [AuthFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/AuthFilter.java)
+- [RuoYiAuthApplication.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/RuoYiAuthApplication.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#架构概览网关前置鉴权与业务服务二次校验">架构概览：网关前置鉴权与业务服务二次校验</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与扩展性">性能与扩展性</a></li>
+<li><a href="#在业务控制器中获取当前用户">在业务控制器中获取当前用户</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本页面聚焦于安全模块 <code>zealux-ai-common-security</code>，说明它在 RuoYi-Cloud 3.6.5 二次开发体系中的职责边界：它不直接实现登录接口，而是为各业务微服务提供令牌处理、请求头解析、权限注解校验、全局异常处理以及 Feign 内部调用透传能力。需要特别注意：该模块没有名为 <code>JwtAuthenticationTokenFilter</code> 的类；实际拦截逻辑由网关的 <code>AuthFilter</code> 和业务服务的 <code>HeaderInterceptor</code>、<code>PreAuthorizeAspect</code> 共同承担。同时，模块内不存在 Spring Security 自动装配意义上的 <code>SecurityAutoConfiguration</code>；其“安全自动配置”体现为 MVC 拦截器注册、AOP 注解切面、Feign 请求拦截器和全局异常处理器等组件装配。</p>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p><code>zealux-ai-common-security</code> 是公共库子模块，位于 <code>zealux-ai-master/zealux-ai-common/zealux-ai-common-security</code>。它不包含业务 Controller，也不包含数据库映射层，主要职责包括：</p>
+<ul>
+<li>令牌创建、刷新、过期检查与 Redis 缓存管理。</li>
+<li>从请求头提取用户信息并写入线程上下文。</li>
+<li>基于注解的角色、权限和登录校验。</li>
+<li>统一认证相关异常返回。</li>
+<li>Feign 调用时透传用户标识与 Token。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;公共安全库&quot;
+        A[&quot;TokenService&lt;br/&gt;令牌与Redis操作&quot;]
+        B[&quot;SecurityUtils&lt;br/&gt;工具方法&quot;]
+        C[&quot;HeaderInterceptor&lt;br/&gt;请求头到上下文&quot;]
+        D[&quot;PreAuthorizeAspect&lt;br/&gt;注解鉴权&quot;]
+        E[&quot;AuthLogic / AuthUtil&lt;br/&gt;鉴权逻辑封装&quot;]
+        F[&quot;GlobalExceptionHandler&lt;br/&gt;全局异常处理&quot;]
+        G[&quot;FeignRequestInterceptor&lt;br/&gt;内部调用透传&quot;]
+    end
+    A --&gt; B
+    C --&gt; B
+    C --&gt; E
+    D --&gt; E
+    E --&gt; A
+    F --&gt; E
+    G --&gt; B</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+<li><span class="fileref">HeaderInterceptor.java:1-54</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">ApplicationConfig.java:1-22</span></li>
+<li><span class="fileref">WebMvcConfig.java:1-33</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>类型</th>
+<th>主要职责</th>
+<th>关键行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TokenService</code></td>
+<td>Service</td>
+<td>创建令牌、刷新令牌、从 Redis 读取登录用户、删除会话</td>
+<td>使用 UUID 作为 Token，将 <code>LoginUser</code> 存入 Redis，支持接近过期阈值时自动刷新。</td>
+</tr>
+<tr>
+<td><code>SecurityUtils</code></td>
+<td>工具类</td>
+<td>从请求中提取 Token、去除前缀、判断管理员、密码加密比对</td>
+<td>统一 Token 前缀裁剪逻辑，委托 <code>SecurityContextHolder</code> 获取当前用户上下文。</td>
+</tr>
+<tr>
+<td><code>HeaderInterceptor</code></td>
+<td>MVC 拦截器</td>
+<td>把网关注入的请求头写进线程上下文，加载并刷新登录用户</td>
+<td>排除静态资源或 HandlerMethod 非方法请求；每次请求后清理上下文。</td>
+</tr>
+<tr>
+<td><code>PreAuthorizeAspect</code></td>
+<td>AOP 切面</td>
+<td>对 <code>@RequiresLogin</code>、<code>@RequiresRoles</code>、<code>@RequiresPermissions</code> 执行鉴权</td>
+<td>根据注解参数选择 AND/OR 逻辑进行角色或权限匹配。</td>
+</tr>
+<tr>
+<td><code>AuthLogic</code></td>
+<td>鉴权逻辑类</td>
+<td>登录校验、角色校验、权限校验、会话注销、过期验证</td>
+<td>持有 <code>TokenService</code> Bean，抛出未登录、无角色、无权限等异常。</td>
+</tr>
+<tr>
+<td><code>AuthUtil</code></td>
+<td>门面工具类</td>
+<td>暴露静态鉴权 API</td>
+<td>所有鉴权调用最终委派给 <code>AuthLogic</code>。</td>
+</tr>
+<tr>
+<td><code>GlobalExceptionHandler</code></td>
+<td>全局异常处理器</td>
+<td>统一返回权限不足、参数绑定失败、服务异常等结果</td>
+<td>将认证相关异常转为标准错误响应。</td>
+</tr>
+<tr>
+<td><code>FeignRequestInterceptor</code></td>
+<td>Feign 拦截器</td>
+<td>内部调用透传用户 ID、用户名、用户 Key、Authorization</td>
+<td>防止服务间调用丢失身份。</td>
+</tr>
+<tr>
+<td><code>WebMvcConfig</code></td>
+<td>MVC 配置</td>
+<td>注册 <code>HeaderInterceptor</code>，设置白名单路径和拦截顺序</td>
+<td>默认放行 <code>/login</code>、<code>/logout</code>、<code>/refresh</code>。</td>
+</tr>
+<tr>
+<td><code>ApplicationConfig</code></td>
+<td>应用配置</td>
+<td>配置 Jackson 时区</td>
+<td>属于安全模块中的基础环境配置。</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+<li><span class="fileref">HeaderInterceptor.java:1-54</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+<li><span class="fileref">WebMvcConfig.java:1-33</span></li>
+<li><span class="fileref">ApplicationConfig.java:1-22</span></li>
+</ul>
+<h2 id="架构概览：网关前置鉴权与业务服务二次校验"><a class="anchor" href="#架构概览：网关前置鉴权与业务服务二次校验">#</a>架构概览：网关前置鉴权与业务服务二次校验</h2><h3 id="双层安全模型"><a class="anchor" href="#双层安全模型">#</a>双层安全模型</h3><p>系统采用「网关前置鉴权 → 业务服务二次校验」的双层模型：</p>
+<ol>
+<li><strong>网关层</strong>：<code>AuthFilter</code> 是 Spring Cloud Gateway 的全局过滤器，负责从请求头取 Token、解析 JWT、校验 Redis 登录态，并把用户信息转发给下游服务。</li>
+<li><strong>业务服务层</strong>：<code>HeaderInterceptor</code> 把网关注入的用户头和完整 <code>LoginUser</code> 放入线程上下文；<code>PreAuthorizeAspect</code> 再根据注解做细粒度权限校验；<code>TokenService</code> 负责令牌生命周期与 Redis 会话。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;客户端&quot;
+    participant Gateway as &quot;网关AuthFilter&quot;
+    participant Service as &quot;业务服务&quot;
+    participant Interceptor as &quot;HeaderInterceptor&quot;
+    participant TokenSvc as &quot;TokenService&quot;
+    participant Logic as &quot;AuthLogic&quot;
+    participant Redis as &quot;Redis&quot;
+
+    Client-&gt;&gt;Gateway: &quot;携带Authorization请求&quot;
+    Gateway-&gt;&gt;Gateway: &quot;匹配白名单并提取Token&quot;
+    Gateway-&gt;&gt;Gateway: &quot;解析JWT并检查Claims&quot;
+    Gateway-&gt;&gt;Redis: &quot;查询登录会话是否有效&quot;
+    Redis--&gt;&gt;Gateway: &quot;存在则继续，否则拒绝&quot;
+    Gateway-&gt;&gt;Service: &quot;转发请求并注入用户头&quot;
+    Service-&gt;&gt;Interceptor: &quot;MVC拦截器preHandle&quot;
+    Interceptor-&gt;&gt;Service: &quot;写入UserId/Username/UserKey&quot;
+    Interceptor-&gt;&gt;TokenSvc: &quot;按Token加载LoginUser&quot;
+    TokenSvc-&gt;&gt;Redis: &quot;读取并可能刷新过期时间&quot;
+    Redis--&gt;&gt;TokenSvc: &quot;返回LoginUser&quot;
+    Interceptor-&gt;&gt;Service: &quot;保存LoginUser到上下文&quot;
+    Service-&gt;&gt;Logic: &quot;注解鉴权检查&quot;
+    Logic--&gt;&gt;Service: &quot;通过或抛出权限异常&quot;
+    Service--&gt;&gt;Client: &quot;业务响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">HeaderInterceptor.java:1-54</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+</ul>
+<h3 id="关于-JwtAuthenticationTokenFilter-的澄清"><a class="anchor" href="#关于-JwtAuthenticationTokenFilter-的澄清">#</a>关于 JwtAuthenticationTokenFilter 的澄清</h3><p>仓库中没有 <code>JwtAuthenticationTokenFilter</code>。若读者在其他文档中看到该名称，应理解为概念描述：真正的 JWT 解析发生在网关 <code>AuthFilter</code>，而业务服务侧的安全入口是 <code>HeaderInterceptor</code> 与 <code>PreAuthorizeAspect</code>。</p>
+<h3 id="关于-SecurityAutoConfiguration-的澄清"><a class="anchor" href="#关于-SecurityAutoConfiguration-的澄清">#</a>关于 SecurityAutoConfiguration 的澄清</h3><p>安全模块也没有名为 <code>SecurityAutoConfiguration</code> 的配置类。它的“自动配置”体现在：</p>
+<ul>
+<li><code>WebMvcConfig</code> 注册 <code>HeaderInterceptor</code>。</li>
+<li><code>PreAuthorizeAspect</code> 被声明为组件并定义切点。</li>
+<li><code>GlobalExceptionHandler</code> 作为 <code>@RestControllerAdvice</code> 生效。</li>
+<li><code>FeignRequestInterceptor</code> 作为 Feign 拦截器生效。</li>
+<li><code>TokenService</code>、<code>AuthLogic</code>、<code>AuthUtil</code>、<code>SecurityUtils</code> 等作为普通组件或工具类可用。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">WebMvcConfig.java:1-33</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="网关鉴权过滤器-AuthFilter"><a class="anchor" href="#网关鉴权过滤器-AuthFilter">#</a>网关鉴权过滤器 AuthFilter</h3><p><code>AuthFilter</code> 实现 <code>GlobalFilter</code> 和 <code>Ordered</code>，优先级为 <code>-200</code>，在请求进入业务服务前完成鉴权。</p>
+<h4 id="拦截流程"><a class="anchor" href="#拦截流程">#</a>拦截流程</h4><ol>
+<li>取出请求路径，若匹配忽略白名单，则直接放行。</li>
+<li>从 <code>Authorization</code> 请求头取 Token。</li>
+<li>如果前端设置了 Token 前缀，则去掉前缀。</li>
+<li>使用 <code>JwtUtils.parseToken</code> 解析 JWT；解析失败返回未授权。</li>
+<li>从 Claims 中取 <code>userkey</code>，并在 Redis 中检查对应登录键是否存在。</li>
+<li>如果 Redis 中不存在登录状态，返回“登录状态已过期”。</li>
+<li>从 Claims 取 <code>userid</code> 和 <code>username</code>，为空则返回“令牌验证失败”。</li>
+<li>向下游请求添加 <code>user_key</code>、<code>userId</code>、<code>userName</code> 等头，并清除内部来源标记。</li>
+<li>调用 <code>chain.filter</code> 继续转发。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;请求进入网关&quot;]) --&gt; CheckWhite[&quot;匹配忽略白名单&quot;]
+    CheckWhite --&gt;|命中| Pass[&quot;直接放行&quot;]
+    CheckWhite --&gt;|未命中| GetToken[&quot;从Authorization头取Token&quot;]
+    GetToken --&gt; HasToken{&quot;Token是否为空&quot;}
+    HasToken --&gt;|是| RejectEmpty[&quot;返回令牌不能为空&quot;]
+    HasToken --&gt;|否| Parse[&quot;解析JWT&quot;]
+    Parse --&gt; ValidClaims{&quot;Claims是否有效&quot;}
+    ValidClaims --&gt;|否| RejectExpired[&quot;返回令牌已过期或验证不正确&quot;]
+    ValidClaims --&gt; CheckRedis[&quot;检查Redis登录态&quot;]
+    CheckRedis --&gt; LoginExists{&quot;Redis中存在登录状态&quot;}
+    LoginExists --&gt;|否| RejectSession[&quot;返回登录状态已过期&quot;]
+    LoginExists --&gt; ExtractUser[&quot;提取UserId和UserName&quot;]
+    ExtractUser --&gt; UserValid{&quot;ID和用户名是否有效&quot;}
+    UserValid --&gt;|否| RejectClaim[&quot;返回令牌验证失败&quot;]
+    UserValid --&gt; InjectHeaders[&quot;注入用户信息头&quot;]
+    InjectHeaders --&gt; Forward[&quot;转发到业务服务&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:23-135</span></li>
+</ul>
+<h4 id="异常场景处理"><a class="anchor" href="#异常场景处理">#</a>异常场景处理</h4><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>表现</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缺少 Authorization</td>
+<td>返回未授权，提示“令牌不能为空”</td>
+<td>前端未发送认证头。</td>
+</tr>
+<tr>
+<td>JWT 解析失败</td>
+<td>返回未授权，提示“令牌已过期或验证不正确”</td>
+<td>Token 被篡改、签名不一致或算法不匹配。</td>
+</tr>
+<tr>
+<td>Redis 无登录态</td>
+<td>返回未授权，提示“登录状态已过期”</td>
+<td>会话已过期或被主动登出。</td>
+</tr>
+<tr>
+<td>Claims 缺少用户信息</td>
+<td>返回未授权，提示“令牌验证失败”</td>
+<td>Token 中未写入 userId 或 userName。</td>
+</tr>
+</tbody></table>
+<h4 id="白名单机制"><a class="anchor" href="#白名单机制">#</a>白名单机制</h4><p>白名单来自 <code>IgnoreWhiteProperties</code>，由 Nacos 配置注入。当前仓库只确认网关配置了若干路由前缀，但具体白名单列表属于运行时配置，不应把某个固定 URL 列表写成已实现的表结构或硬编码规则。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h3 id="业务服务拦截器-HeaderInterceptor"><a class="anchor" href="#业务服务拦截器-HeaderInterceptor">#</a>业务服务拦截器 HeaderInterceptor</h3><p><code>HeaderInterceptor</code> 是 <code>AsyncHandlerInterceptor</code>，在业务服务收到网关转发后的请求时执行。</p>
+<h4 id="主要行为"><a class="anchor" href="#主要行为">#</a>主要行为</h4><ul>
+<li>仅对 <code>HandlerMethod</code> 处理器执行用户信息填充。</li>
+<li>从请求头读取 <code>userId</code>、<code>userName</code>、<code>userKey</code>，写入 <code>SecurityContextHolder</code>。</li>
+<li>如果有 Token，则通过 <code>AuthUtil.getLoginUser(token)</code> 加载 <code>LoginUser</code>。</li>
+<li>如果加载成功，调用 <code>verifyLoginUserExpire</code> 检查是否需要刷新 Redis 中的会话。</li>
+<li>将 <code>LoginUser</code> 保存到 <code>SecurityConstants.LOGIN_USER</code> 对应的上下文中。</li>
+<li>在 <code>afterCompletion</code> 中清理上下文，避免线程复用污染。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Enter([&quot;业务服务请求进入&quot;]) --&gt; IsHandler{&quot;处理器是HandlerMethod吗&quot;}
+    IsHandler --&gt;|否| Continue[&quot;直接继续&quot;]
+    IsHandler --&gt;|是| ReadHeaders[&quot;读取UserId/Username/UserKey&quot;]
+    ReadHeaders --&gt; SetContext[&quot;写入SecurityContextHolder&quot;]
+    SetContext --&gt; HasToken{&quot;是否有Token&quot;}
+    HasToken --&gt;|否| Continue
+    HasToken --&gt;|是| LoadUser[&quot;TokenService加载LoginUser&quot;]
+    LoadUser --&gt; Loaded{&quot;是否加载成功&quot;}
+    Loaded --&gt;|否| Continue
+    Loaded --&gt; RefreshCheck[&quot;检查并可能刷新Redis过期时间&quot;]
+    RefreshCheck --&gt; SaveUser[&quot;保存LoginUser到上下文&quot;]
+    SaveUser --&gt; Continue</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">HeaderInterceptor.java:19-54</span></li>
+<li><span class="fileref">TokenService.java:123-174</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">HeaderInterceptor.java:1-54</span></li>
+</ul>
+<h3 id="令牌服务-TokenService"><a class="anchor" href="#令牌服务-TokenService">#</a>令牌服务 TokenService</h3><p><code>TokenService</code> 是令牌生命周期的核心。</p>
+<h4 id="关键方法"><a class="anchor" href="#关键方法">#</a>关键方法</h4><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>输入</th>
+<th>输出/副作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>createToken(LoginUser)</code></td>
+<td>登录用户对象</td>
+<td><code>Map&lt;String, Object&gt;</code></td>
+<td>生成 UUID Token，写入 Redis，构造 JWT Claims，返回 access_token 与 expires_in。</td>
+</tr>
+<tr>
+<td><code>getLoginUser()</code></td>
+<td>无</td>
+<td><code>LoginUser</code></td>
+<td>从当前请求取 Token 并加载用户。</td>
+</tr>
+<tr>
+<td><code>getLoginUser(HttpServletRequest)</code></td>
+<td>Servlet 请求</td>
+<td><code>LoginUser</code></td>
+<td>通过 <code>SecurityUtils.getToken</code> 取 Token。</td>
+</tr>
+<tr>
+<td><code>getLoginUser(String)</code></td>
+<td>Token 字符串</td>
+<td><code>LoginUser</code></td>
+<td>从 Redis 读取登录用户，捕获异常并记录日志。</td>
+</tr>
+<tr>
+<td><code>setLoginUser(LoginUser)</code></td>
+<td>登录用户</td>
+<td>无</td>
+<td>更新登录时间与过期时间。</td>
+</tr>
+<tr>
+<td><code>delLoginUser(String)</code></td>
+<td>Token</td>
+<td>无</td>
+<td>删除 Redis 中的会话。</td>
+</tr>
+<tr>
+<td><code>verifyToken(LoginUser)</code></td>
+<td>登录用户</td>
+<td>无</td>
+<td>剩余有效期小于阈值时刷新。</td>
+</tr>
+<tr>
+<td><code>refreshToken(LoginUser)</code></td>
+<td>登录用户</td>
+<td>无</td>
+<td>计算新过期时间并覆盖 Redis 缓存。</td>
+</tr>
+</tbody></table>
+<h4 id="过期与刷新策略"><a class="anchor" href="#过期与刷新策略">#</a>过期与刷新策略</h4><ul>
+<li>令牌过期时间来自 <code>CacheConstants.EXPIRATION</code>。</li>
+<li>刷新阈值为 <code>CacheConstants.REFRESH_TIME * MINUTE</code>。</li>
+<li>当剩余时间小于阈值时，<code>verifyToken</code> 会重新刷新 Redis 中的 <code>LoginUser</code>。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;访问受保护接口&quot;]) --&gt; LoadUser[&quot;TokenService.getLoginUser&quot;]
+    LoadUser --&gt; RedisRead[&quot;Redis读取LoginUser&quot;]
+    RedisRead --&gt; Found{&quot;找到用户&quot;}
+    Found --&gt;|否| ReturnNull[&quot;返回null&quot;]
+    Found --&gt;|是| CheckExpire[&quot;check expire time&quot;]
+    CheckExpire --&gt; NearExpire{&quot;剩余时间小于阈值&quot;}
+    NearExpire --&gt;|是| Refresh[&quot;刷新Redis过期时间&quot;]
+    NearExpire --&gt;|否| ReturnUser[&quot;返回LoginUser&quot;]
+    Refresh --&gt; ReturnUser</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:35-174</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+</ul>
+<h3 id="权限校验链路：AuthUtil、AuthLogic-与-PreAuthorizeAspect"><a class="anchor" href="#权限校验链路：AuthUtil、AuthLogic-与-PreAuthorizeAspect">#</a>权限校验链路：AuthUtil、AuthLogic 与 PreAuthorizeAspect</h3><p><code>AuthUtil</code> 是对外静态门面，<code>AuthLogic</code> 承载鉴权逻辑，<code>PreAuthorizeAspect</code> 负责在注解出现时触发校验。</p>
+<h4 id="类关系"><a class="anchor" href="#类关系">#</a>类关系</h4><div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class AuthUtil {
+        +logout()
+        +logoutByToken(token)
+        +checkLogin()
+        +getLoginUser(token)
+        +verifyLoginUserExpire(loginUser)
+        +hasRole(role)
+        +checkRole(role)
+        +checkRole(requiresRoles)
+        +checkRoleAnd(roles)
+        +checkRoleOr(roles)
+        +hasPermi(permission)
+        +checkPermi(permission)
+        +checkPermi(requiresPermissions)
+        +checkPermiAnd(permissions)
+        +checkPermiOr(permissions)
+    }
+
+    class AuthLogic {
+        -tokenService : TokenService
+        +logout()
+        +logoutByToken(token)
+        +checkLogin()
+        +getLoginUser()
+        +getLoginUser(token)
+        +verifyLoginUserExpire(loginUser)
+        +hasRole(role)
+        +checkRole(role)
+        +checkRole(requiresRoles)
+        +checkRoleAnd(roles)
+        +checkRoleOr(roles)
+        +checkByAnnotation(at)
+        +getRoleList()
+        +getPermiList()
+        +hasPermi(authorities, permission)
+    }
+
+    class PreAuthorizeAspect {
+        +around(joinPoint)
+        +checkMethodAnnotation(method)
+    }
+
+    class TokenService {
+        +createToken(user)
+        +getLoginUser(token)
+        +refreshToken(user)
+        +verifyToken(user)
+    }
+
+    AuthUtil --&gt; AuthLogic : &quot;委托&quot;
+    PreAuthorizeAspect --&gt; AuthUtil : &quot;调用&quot;
+    AuthLogic --&gt; TokenService : &quot;获取Bean并使用&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+</ul>
+<h4 id="注解校验过程"><a class="anchor" href="#注解校验过程">#</a>注解校验过程</h4><ol>
+<li>方法被 <code>@RequiresLogin</code>、<code>@RequiresRoles</code> 或 <code>@RequiresPermissions</code> 标注。</li>
+<li><code>PreAuthorizeAspect.around</code> 拦截该方法。</li>
+<li>解析方法签名，调用 <code>checkMethodAnnotation</code>。</li>
+<li>若存在 <code>@RequiresLogin</code>，调用 <code>AuthUtil.checkLogin()</code>。</li>
+<li>若存在 <code>@RequiresRoles</code>，调用 <code>AuthUtil.checkRole(...)</code>。</li>
+<li>若存在 <code>@RequiresPermissions</code>，调用 <code>AuthUtil.checkPermi(...)</code>。</li>
+<li><code>AuthLogic</code> 从当前上下文读取 <code>LoginUser</code> 的角色和权限集合，执行匹配。</li>
+<li>匹配失败时抛出 <code>NotRoleException</code> 或 <code>NotPermissionException</code>。</li>
+<li><code>GlobalExceptionHandler</code> 将这些异常转换为 403 错误响应。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+</ul>
+<h3 id="安全配置：WebMvcConfig-与-ApplicationConfig"><a class="anchor" href="#安全配置：WebMvcConfig-与-ApplicationConfig">#</a>安全配置：WebMvcConfig 与 ApplicationConfig</h3><p><code>WebMvcConfig</code> 注册 <code>HeaderInterceptor</code>，拦截所有路径，但排除 <code>/login</code>、<code>/logout</code>、<code>/refresh</code>，并设置拦截器顺序为 <code>-10</code>。<code>ApplicationConfig</code> 仅提供 Jackson 时区自定义 Bean，不属于安全策略配置，但属于该模块提供的通用配置。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    AppStart[&quot;应用启动&quot;] --&gt; RegisterInterceptor[&quot;WebMvcConfig注册HeaderInterceptor&quot;]
+    RegisterInterceptor --&gt; ExcludeUrls[&quot;排除/login /logout /refresh&quot;]
+    ExcludeUrls --&gt; ApplyOrder[&quot;设置拦截器顺序-10&quot;]
+    ApplyOrder --&gt; Ready[&quot;业务请求进入拦截链&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">WebMvcConfig.java:14-33</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">WebMvcConfig.java:1-33</span></li>
+<li><span class="fileref">ApplicationConfig.java:1-22</span></li>
+</ul>
+<h3 id="内部服务调用：Feign-与-InnerAuth"><a class="anchor" href="#内部服务调用：Feign-与-InnerAuth">#</a>内部服务调用：Feign 与 InnerAuth</h3><p><code>FeignRequestInterceptor</code> 从当前线程的 <code>HttpServletRequest</code> 中读取安全头，并将 <code>userId</code>、<code>userKey</code>、<code>userName</code>、<code>Authorization</code> 转发到下游 Feign 调用。它还追加 <code>X-Forwarded-For</code> 用于传递客户端 IP。</p>
+<p><code>InnerAuth</code> 是一个方法级注解，表示内部认证，并允许指定是否校验用户信息。它本身只是元数据，配合其他内部鉴权逻辑使用。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    Caller[&quot;上游服务&quot;] --&gt; FeignIntc[&quot;FeignRequestInterceptor&quot;]
+    FeignIntc --&gt; Downstream[&quot;下游业务服务&quot;]
+    Downstream --&gt; HeaderIntc[&quot;HeaderInterceptor&quot;]
+    HeaderIntc --&gt; Context[&quot;SecurityContextHolder&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+<li><span class="fileref">HeaderInterceptor.java:19-54</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+<li><span class="fileref">InnerAuth.java:1-19</span></li>
+</ul>
+<h3 id="全局异常处理"><a class="anchor" href="#全局异常处理">#</a>全局异常处理</h3><p><code>GlobalExceptionHandler</code> 统一处理以下与安全相关的异常：</p>
+<ul>
+<li><code>NotPermissionException</code>：返回 403，提示“没有访问权限，请联系管理员授权”。</li>
+<li><code>NotRoleException</code>：返回 403，提示“没有访问权限，请联系管理员授权”。</li>
+<li><code>InnerAuthException</code>：返回内部认证错误。</li>
+<li>其他业务异常、参数绑定异常、运行时异常也统一包装为 <code>AjaxResult</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Gateway[&quot;网关AuthFilter&quot;] --&gt; CoreJwt[&quot;JwtUtils&lt;br/&gt;common-core&quot;]
+    Gateway --&gt; Redis[&quot;RedisService&lt;br/&gt;common-redis&quot;]
+    Service[&quot;业务服务&quot;] --&gt; WebMvc[&quot;WebMvcConfig&quot;]
+    WebMvc --&gt; HeaderIntc[&quot;HeaderInterceptor&quot;]
+    HeaderIntc --&gt; SecUtils[&quot;SecurityUtils&quot;]
+    HeaderIntc --&gt; AuthUtil[&quot;AuthUtil&quot;]
+    AuthUtil --&gt; AuthLogic[&quot;AuthLogic&quot;]
+    AuthLogic --&gt; TokenSvc[&quot;TokenService&quot;]
+    TokenSvc --&gt; Redis
+    HeaderIntc --&gt; SecCtx[&quot;SecurityContextHolder&quot;]
+    PreAsp[&quot;PreAuthorizeAspect&quot;] --&gt; AuthUtil
+    GlobalEx[&quot;GlobalExceptionHandler&quot;] --&gt; AuthLogic
+    FeignIntc[&quot;FeignRequestInterceptor&quot;] --&gt; SecUtils</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">WebMvcConfig.java:1-33</span></li>
+<li><span class="fileref">HeaderInterceptor.java:1-54</span></li>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">AuthLogic.java:1-373</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+<li><span class="fileref">GlobalExceptionHandler.java:1-166</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+</ul>
+<h2 id="性能与扩展性"><a class="anchor" href="#性能与扩展性">#</a>性能与扩展性</h2><h3 id="性能特征"><a class="anchor" href="#性能特征">#</a>性能特征</h3><ul>
+<li>每次业务请求都会经过 <code>HeaderInterceptor</code>，并从 Redis 读取一次 <code>LoginUser</code>。</li>
+<li><code>TokenService.verifyToken</code> 在接近过期阈值时刷新 Redis，避免频繁失效。</li>
+<li>网关层先做一次 Redis 登录态检查，减少无效请求进入业务服务。</li>
+<li>权限注解校验仅在方法被标注时执行，未标注的方法不会触发角色或权限匹配。</li>
+</ul>
+<h3 id="扩展点"><a class="anchor" href="#扩展点">#</a>扩展点</h3><table>
+<thead>
+<tr>
+<th>扩展方向</th>
+<th>现有支撑</th>
+<th>建议方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Token 刷新</td>
+<td><code>TokenService.refreshToken</code>、<code>verifyToken</code></td>
+<td>可调整刷新阈值、延长或缩短过期时间，或在登录成功后返回 refresh_token。</td>
+</tr>
+<tr>
+<td>多端登录</td>
+<td>Redis 以 Token 为 key 存储 <code>LoginUser</code></td>
+<td>可在 key 中加入设备标识，或使用用户维度会话管理实现踢人下线。</td>
+</tr>
+<tr>
+<td>权限上下文注入</td>
+<td><code>SecurityContextHolder</code>、<code>SecurityUtils.getLoginUser()</code></td>
+<td>可直接在业务代码中读取，无需额外注入。</td>
+</tr>
+<tr>
+<td>新增白名单</td>
+<td><code>WebMvcConfig.excludeUrls</code>、网关 <code>IgnoreWhiteProperties</code></td>
+<td>修改 MVC 白名单或网关忽略配置。</td>
+</tr>
+<tr>
+<td>内部服务鉴权</td>
+<td><code>InnerAuth</code>、<code>FeignRequestInterceptor</code></td>
+<td>在服务端增加内部签名校验或白名单服务调用策略。</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:35-174</span></li>
+<li><span class="fileref">HeaderInterceptor.java:19-54</span></li>
+<li><span class="fileref">WebMvcConfig.java:14-33</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:1-54</span></li>
+</ul>
+<h2 id="在业务控制器中获取当前用户"><a class="anchor" href="#在业务控制器中获取当前用户">#</a>在业务控制器中获取当前用户</h2><h3 id="推荐方式一：通过工具类"><a class="anchor" href="#推荐方式一：通过工具类">#</a>推荐方式一：通过工具类</h3><p>业务代码可以直接调用：</p>
+<ul>
+<li><code>SecurityUtils.getUserId()</code>：获取当前用户 ID。</li>
+<li><code>SecurityUtils.getUsername()</code>：获取当前用户名。</li>
+<li><code>SecurityUtils.getUserKey()</code>：获取当前 Token 对应的 userKey。</li>
+<li><code>SecurityUtils.getLoginUser()</code>：获取完整的 <code>LoginUser</code>。</li>
+</ul>
+<p>这些方法依赖 <code>HeaderInterceptor</code> 已经写入 <code>SecurityContextHolder</code>。</p>
+<h3 id="推荐方式二：通过-AuthUtil"><a class="anchor" href="#推荐方式二：通过-AuthUtil">#</a>推荐方式二：通过 AuthUtil</h3><ul>
+<li><code>AuthUtil.checkLogin()</code>：强制校验当前请求是否已登录。</li>
+<li><code>AuthUtil.getLoginUser(token)</code>：按 Token 获取登录用户。</li>
+<li><code>AuthUtil.hasRole(role)</code> / <code>AuthUtil.hasPermi(permission)</code>：判断角色或权限。</li>
+<li><code>AuthUtil.checkRole(...)</code> / <code>AuthUtil.checkPermi(...)</code>：校验失败抛出权限异常。</li>
+</ul>
+<h3 id="推荐方式三：通过注解"><a class="anchor" href="#推荐方式三：通过注解">#</a>推荐方式三：通过注解</h3><p>在 Controller 方法上添加：</p>
+<ul>
+<li><code>@RequiresLogin</code>：要求已登录。</li>
+<li><code>@RequiresRoles(&quot;role&quot;)</code>：要求具备指定角色。</li>
+<li><code>@RequiresPermissions(&quot;system:user:list&quot;)</code>：要求具备指定权限。</li>
+<li>多个值时可结合 <code>logical = Logical.AND</code> 或 <code>Logical.OR</code>。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Method[&quot;Controller方法&quot;] --&gt; Annotated{&quot;是否标注鉴权注解&quot;}
+    Annotated --&gt;|是| AspectCheck[&quot;PreAuthorizeAspect执行校验&quot;]
+    Annotated --&gt;|否| DirectAccess[&quot;直接调用SecurityUtils或AuthUtil&quot;]
+    AspectCheck --&gt; Proceed[&quot;执行业务逻辑&quot;]
+    DirectAccess --&gt; Proceed</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">PreAuthorizeAspect.java:38-89</span></li>
+<li><span class="fileref">SecurityUtils.java:18-70</span></li>
+<li><span class="fileref">AuthUtil.java:12-167</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+<li><span class="fileref">AuthUtil.java:1-167</span></li>
+<li><span class="fileref">PreAuthorizeAspect.java:1-89</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><h3 id="Redis-不可用"><a class="anchor" href="#Redis-不可用">#</a>Redis 不可用</h3><p><strong>现象</strong></p>
+<ul>
+<li>网关返回“登录状态已过期”。</li>
+<li>业务服务无法获取 <code>LoginUser</code>。</li>
+<li>登录接口返回 Token，但后续接口报未登录。</li>
+</ul>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>检查 Redis 是否启动并可连接。</li>
+<li>检查业务服务和网关是否配置相同的 Redis 地址。</li>
+<li>查看 <code>TokenService</code> 读取 Redis 时的异常日志。</li>
+<li>确认 Redis 中是否存在以 <code>LOGIN_TOKEN_KEY</code> 加 Token 为前缀的键。</li>
+<li>如果 Redis 临时不可用，应考虑降级策略，例如返回明确的“系统繁忙”或“认证服务异常”，而不是让所有请求误判为过期。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:61-115</span></li>
+<li><span class="fileref">HeaderInterceptor.java:33-54</span></li>
+</ul>
+<h3 id="Token-前缀不一致"><a class="anchor" href="#Token-前缀不一致">#</a>Token 前缀不一致</h3><p><strong>现象</strong></p>
+<ul>
+<li>前端发送带前缀的 Token，后端无法正确解析。</li>
+<li>网关或业务服务提示令牌无效。</li>
+</ul>
+<p><strong>原因</strong></p>
+<ul>
+<li>前端使用的 Token 前缀与服务端 <code>TokenConstants.PREFIX</code> 不一致。</li>
+<li>网关 <code>AuthFilter</code> 和 <code>SecurityUtils</code> 都依赖相同的前缀常量进行裁剪。</li>
+</ul>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>确认前端发送的 Authorization 值格式。</li>
+<li>检查服务端 <code>TokenConstants.PREFIX</code> 配置。</li>
+<li>比较网关 <code>AuthFilter.getToken</code> 与 <code>SecurityUtils.replaceTokenPrefix</code> 的行为。</li>
+<li>确保前后端部署版本一致，避免旧版前端对接新版后端。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:101-116</span></li>
+<li><span class="fileref">SecurityUtils.java:49-70</span></li>
+</ul>
+<h3 id="过滤器顺序错误"><a class="anchor" href="#过滤器顺序错误">#</a>过滤器顺序错误</h3><p><strong>现象</strong></p>
+<ul>
+<li>某些接口无法读取当前用户。</li>
+<li>静态资源或特殊处理器未走用户上下文。</li>
+<li>注解鉴权未生效。</li>
+</ul>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>检查是否自定义了新的拦截器且顺序早于 <code>HeaderInterceptor</code>。</li>
+<li><code>WebMvcConfig</code> 中 <code>HeaderInterceptor</code> 的顺序为 <code>-10</code>。</li>
+<li>确认 <code>excludeUrls</code> 是否意外放行了需要鉴权的接口。</li>
+<li>对于非 <code>HandlerMethod</code> 的请求，<code>HeaderInterceptor</code> 不会填充上下文，这是设计行为。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">WebMvcConfig.java:14-33</span></li>
+<li><span class="fileref">HeaderInterceptor.java:25-33</span></li>
+</ul>
+<h3 id="注解鉴权不生效"><a class="anchor" href="#注解鉴权不生效">#</a>注解鉴权不生效</h3><p><strong>现象</strong></p>
+<ul>
+<li>加了 <code>@RequiresRoles</code> 或 <code>@RequiresPermissions</code> 后仍可通过。</li>
+<li>或者没加注解也被拒绝。</li>
+</ul>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>确认目标方法确实被 <code>PreAuthorizeAspect</code> 的切点命中。</li>
+<li>检查注解值是否正确，例如权限码是否与用户权限集合匹配。</li>
+<li>检查 <code>LoginUser</code> 是否已成功加载到上下文。</li>
+<li>如果是服务间调用，确认 Feign 透传了必要的安全头。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">PreAuthorizeAspect.java:28-89</span></li>
+<li><span class="fileref">AuthLogic.java:110-373</span></li>
+<li><span class="fileref">FeignRequestInterceptor.java:19-54</span></li>
+</ul>
+<h3 id="网关鉴权正常但业务服务报未登录"><a class="anchor" href="#网关鉴权正常但业务服务报未登录">#</a>网关鉴权正常但业务服务报未登录</h3><p><strong>现象</strong></p>
+<ul>
+<li>网关通过，但业务服务 <code>AuthUtil.checkLogin()</code> 抛未登录。</li>
+</ul>
+<p><strong>原因</strong></p>
+<ul>
+<li>业务服务未正确加载 <code>LoginUser</code>。</li>
+<li><code>HeaderInterceptor</code> 没有执行。</li>
+<li>业务服务与网关使用的 Redis 不一致。</li>
+<li>下游服务未继承安全模块或未被正确扫描。</li>
+</ul>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>确认业务服务依赖 <code>zealux-ai-common-security</code>。</li>
+<li>确认业务服务能加载 <code>WebMvcConfig</code> 和 <code>HeaderInterceptor</code>。</li>
+<li>对比网关与业务服务 Redis 配置。</li>
+<li>检查业务服务日志中是否有 Redis 读取异常。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">HeaderInterceptor.java:19-54</span></li>
+<li><span class="fileref">TokenService.java:61-115</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>zealux-ai-common-security</code> 不是独立框架，而是 RuoYi-Cloud 3.6.5 二次开发体系中的安全公共库。它没有 <code>JwtAuthenticationTokenFilter</code>，也没有名为 <code>SecurityAutoConfiguration</code> 的类；它的安全能力由网关 <code>AuthFilter</code> 与业务服务中的 <code>HeaderInterceptor</code>、<code>PreAuthorizeAspect</code>、<code>TokenService</code>、<code>AuthLogic</code>、<code>SecurityUtils</code>、<code>GlobalExceptionHandler</code>、<code>FeignRequestInterceptor</code> 共同组成。</p>
+<p>在实际使用中：</p>
+<ul>
+<li>网关负责第一道防线：Token 存在性、JWT 合法性、Redis 登录态。</li>
+<li>业务服务负责第二道防线：线程上下文注入、会话刷新、注解级权限控制。</li>
+<li>开发者通过 <code>SecurityUtils</code>、<code>AuthUtil</code> 和鉴权注解获取当前用户并限制访问。</li>
+<li>扩展时应优先调整 <code>TokenService</code> 的过期策略、<code>WebMvcConfig</code> 的白名单、<code>PreAuthorizeAspect</code> 的注解策略，而不是绕过既有链路。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">← 认证中心（Auth）</a>
+    <a class="next" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core） →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d2"><a href="#架构概览：网关前置鉴权与业务服务二次校验">架构概览：网关前置鉴权与业务服务二次校验</a></li><li class="d3"><a href="#双层安全模型">双层安全模型</a></li><li class="d3"><a href="#关于-JwtAuthenticationTokenFilter-的澄清">关于 JwtAuthenticationTokenFilter 的澄清</a></li><li class="d3"><a href="#关于-SecurityAutoConfiguration-的澄清">关于 SecurityAutoConfiguration 的澄清</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#网关鉴权过滤器-AuthFilter">网关鉴权过滤器 AuthFilter</a></li><li class="d3"><a href="#业务服务拦截器-HeaderInterceptor">业务服务拦截器 HeaderInterceptor</a></li><li class="d3"><a href="#令牌服务-TokenService">令牌服务 TokenService</a></li><li class="d3"><a href="#权限校验链路：AuthUtil、AuthLogic-与-PreAuthorizeAspect">权限校验链路：AuthUtil、AuthLogic 与 PreAuthorizeAspect</a></li><li class="d3"><a href="#安全配置：WebMvcConfig-与-ApplicationConfig">安全配置：WebMvcConfig 与 ApplicationConfig</a></li><li class="d3"><a href="#内部服务调用：Feign-与-InnerAuth">内部服务调用：Feign 与 InnerAuth</a></li><li class="d3"><a href="#全局异常处理">全局异常处理</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与扩展性">性能与扩展性</a></li><li class="d3"><a href="#性能特征">性能特征</a></li><li class="d3"><a href="#扩展点">扩展点</a></li><li class="d2"><a href="#在业务控制器中获取当前用户">在业务控制器中获取当前用户</a></li><li class="d3"><a href="#推荐方式一：通过工具类">推荐方式一：通过工具类</a></li><li class="d3"><a href="#推荐方式二：通过-AuthUtil">推荐方式二：通过 AuthUtil</a></li><li class="d3"><a href="#推荐方式三：通过注解">推荐方式三：通过注解</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d3"><a href="#Redis-不可用">Redis 不可用</a></li><li class="d3"><a href="#Token-前缀不一致">Token 前缀不一致</a></li><li class="d3"><a href="#过滤器顺序错误">过滤器顺序错误</a></li><li class="d3"><a href="#注解鉴权不生效">注解鉴权不生效</a></li><li class="d3"><a href="#网关鉴权正常但业务服务报未登录">网关鉴权正常但业务服务报未登录</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html";</script>
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

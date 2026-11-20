@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Redis 模块（redis） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="stylesheet" href="../../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html" class="active">Redis 模块（redis）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>Redis 模块（redis）</b></div><article><h1 id="Redis-模块（redis）"><a class="anchor" href="#Redis-模块（redis）">#</a>Redis 模块（redis）</h1><cite>
+**本文引用的文件**   
+- [RedisConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/java/com/zealux/common/redis/configure/RedisConfig.java)
+- [FastJson2JsonRedisSerializer.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/java/com/zealux/common/redis/configure/FastJson2JsonRedisSerializer.java)
+- [RedisService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/java/com/zealux/common/redis/service/RedisService.java)
+- [SysConfigServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysConfigServiceImpl.java)
+- [SysLogininforController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysLogininforController.java)
+- [bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/bootstrap.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与序列化影响">性能与序列化影响</a></li>
+<li><a href="#nacos-配置与动态刷新集成">Nacos 配置与动态刷新集成</a></li>
+<li><a href="#缓存键命名规范">缓存键命名规范</a></li>
+<li><a href="#典型使用示例">典型使用示例</a></li>
+<li><a href="#高并发场景优化策略">高并发场景优化策略</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本模块是 RuoYi-Cloud 3.6.5 的二次开发版本中的 Redis 通用能力封装，位于 <code>zealux-ai-common-redis</code>。它基于 Spring Boot 的 <code>RedisAutoConfiguration</code> 扩展了 Redis 初始化行为：自定义 <code>RedisTemplate</code>、JSON 序列化器、Key/Hash Key 序列化策略，并开启 Spring Cache 注解支持。同时提供 <code>RedisService</code> 工具类，封装常用字符串、列表、集合、哈希等 Redis 操作，供系统模块直接使用。</p>
+<p>需要特别说明的是：</p>
+<ul>
+<li>该模块没有名为 <code>RedisAutoConfiguration</code> 的自定义类；其关键配置类为 <code>RedisConfig</code>，并通过 <code>@AutoConfigureBefore(RedisAutoConfiguration.class)</code> 在 Spring Boot 默认 Redis 自动装配之前完成自定义配置。</li>
+<li>当前仓库中未发现 <code>RedisCache</code> 类；实际对外暴露的工具类是 <code>RedisService</code>。</li>
+<li>模块未实现分布式锁；如需分布式锁，应基于 Redis 命令或第三方库自行扩展。</li>
+<li>模块未定义全局 <code>keyGenerator</code>，因此 Spring Cache 注解使用的 key 由 Spring 默认生成规则决定，并非本模块统一约定。</li>
+</ul>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p><code>zealux-ai-common-redis</code> 源码仅包含三个 Java 文件，职责清晰：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>configure/RedisConfig.java</code></td>
+<td>启用缓存、注册 <code>RedisTemplate</code>、设置序列化器</td>
+</tr>
+<tr>
+<td><code>configure/FastJson2JsonRedisSerializer.java</code></td>
+<td>Fastjson2 JSON 序列化器，用于 value 与 hashValue</td>
+</tr>
+<tr>
+<td><code>service/RedisService.java</code></td>
+<td>面向业务层的 Redis 操作封装</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;zealux-ai-common-redis&quot;
+        RC[&quot;RedisConfig.java&quot;]
+        FJS[&quot;FastJson2JsonRedisSerializer.java&quot;]
+        RS[&quot;RedisService.java&quot;]
+    end
+    RC --&gt; FJS
+    RS --&gt; RC</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><h3 id="RedisConfig：连接池、序列化与缓存开关"><a class="anchor" href="#RedisConfig：连接池、序列化与缓存开关">#</a>RedisConfig：连接池、序列化与缓存开关</h3><p><code>RedisConfig</code> 是 Redis 模块的核心配置类：</p>
+<ul>
+<li>使用 <code>@EnableCaching</code> 开启 Spring Cache 注解。</li>
+<li>通过 <code>@AutoConfigureBefore(RedisAutoConfiguration.class)</code> 优先于 Spring Boot 默认 Redis 自动装配生效。</li>
+<li>从 Spring 容器注入 <code>RedisConnectionFactory</code>，由 Spring Boot 根据 <code>spring.redis.*</code> 属性创建连接池。</li>
+<li>构造 <code>RedisTemplate&lt;Object, Object&gt;</code>，并设置：<ul>
+<li>Key 与 Hash Key 使用 <code>StringRedisSerializer</code>。</li>
+<li>Value 与 Hash Value 使用自定义 <code>FastJson2JsonRedisSerializer</code>。</li>
+</ul>
+</li>
+<li>调用 <code>afterPropertiesSet()</code> 完成 Bean 初始化。</li>
+</ul>
+<p>需要注意：</p>
+<ul>
+<li>该配置类没有显式创建连接工厂、Redis 客户端或连接池参数；连接池行为完全由 Spring Boot 的 <code>RedisAutoConfiguration</code> 和外部 <code>application*.yml</code> / Nacos 配置驱动。</li>
+<li>该配置类没有定义全局 <code>keyGenerator</code>，因此 Spring Cache 注解的 key 由 Spring 默认策略决定。</li>
+<li>该配置类没有配置过期时间、数据库索引、集群、哨兵或序列化失败时的降级策略。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+</ul>
+<h3 id="FastJson2JsonRedisSerializer：JSON-序列化器"><a class="anchor" href="#FastJson2JsonRedisSerializer：JSON-序列化器">#</a>FastJson2JsonRedisSerializer：JSON 序列化器</h3><p>该序列化器使用 Fastjson2 将对象序列化为 UTF-8 字节数组，并在反序列化时传入白名单过滤器：</p>
+<ul>
+<li><code>serialize</code> 使用 <code>JSON.toJSONString(t, JSONWriter.Feature.WriteClassName)</code>，会把类型信息写入 JSON。</li>
+<li><code>deserialize</code> 使用 <code>JSON.parseObject(str, clazz, AUTO_TYPE_FILTER)</code>，按目标类型反序列化。</li>
+<li>空值返回空字节数组；空字节数组反序列化为 <code>null</code>。</li>
+<li>白名单来源于 <code>Constants.JSON_WHITELIST_STR</code>，属于 <code>zealux-ai-common-core</code> 提供的常量。</li>
+</ul>
+<p>该设计对复杂对象友好，但有两个重要影响：</p>
+<ol>
+<li>因为写入了类名，不同版本的类包名变化可能导致反序列化失败。</li>
+<li>反序列化必须知道目标泛型类型；直接通过 <code>RedisTemplate.opsForValue().get(key)</code> 拿到的结果通常需要调用方强转或使用 <code>RedisService</code> 的泛型方法。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+</ul>
+<h3 id="RedisService：常用-Redis-操作封装"><a class="anchor" href="#RedisService：常用-Redis-操作封装">#</a>RedisService：常用 Redis 操作封装</h3><p><code>RedisService</code> 是一个 Spring 组件，内部持有 <code>RedisTemplate</code>，并提供以下能力：</p>
+<ul>
+<li>基本对象：<code>setCacheObject</code>、<code>getCacheObject</code>、<code>deleteObject</code>。</li>
+<li>过期控制：<code>expire</code>、<code>getExpire</code>、<code>hasKey</code>。</li>
+<li>集合：<code>setCacheList</code>、<code>getCacheList</code>、<code>setCacheSet</code>、<code>getCacheSet</code>。</li>
+<li>哈希：<code>setCacheMap</code>、<code>getCacheMap</code>、<code>setCacheMapValue</code>、<code>getCacheMapValue</code>、<code>getMultiCacheMapValue</code>、<code>deleteCacheMapValue</code>。</li>
+<li>扫描：<code>keys(pattern)</code>。</li>
+</ul>
+<p>它没有实现 <code>clear</code> 全量清理，也没有 <code>getAndSet</code> 原子更新接口。若业务需要，可在该服务中新增对应方法。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>下图展示本模块在 Spring 容器中的角色：Spring Boot 先加载 Redis 自动装配，而 <code>RedisConfig</code> 在其之前注册自定义 <code>RedisTemplate</code>；业务模块通过注入 <code>RedisService</code> 访问 Redis。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    SpringBoot[&quot;Spring Boot 启动&quot;]
+    AutoCfg[&quot;RedisAutoConfiguration&lt;br/&gt;创建连接工厂与连接池&quot;]
+    RedisConfig[&quot;RedisConfig&lt;br/&gt;自定义 RedisTemplate&quot;]
+    Serializer[&quot;FastJson2JsonRedisSerializer&lt;br/&gt;JSON 序列化器&quot;]
+    RedisService[&quot;RedisService&lt;br/&gt;业务封装&quot;]
+    Business[&quot;业务模块&lt;br/&gt;如 zealux-ai-system&quot;]
+    Redis[&quot;Redis 服务器&quot;]
+
+    SpringBoot --&gt; AutoCfg
+    AutoCfg --&gt; RedisConfig
+    RedisConfig --&gt; Serializer
+    RedisConfig --&gt; RedisService
+    Business --&gt; RedisService
+    RedisService --&gt; Redis</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="RedisConfig-初始化流程"><a class="anchor" href="#RedisConfig-初始化流程">#</a>RedisConfig 初始化流程</h3><p><code>RedisConfig</code> 的 <code>redisTemplate</code> Bean 初始化流程如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Cfg as &quot;RedisConfig&quot;
+    participant Factory as &quot;RedisConnectionFactory&quot;
+    participant Template as &quot;RedisTemplate&quot;
+    participant Ser as &quot;FastJson2JsonRedisSerializer&quot;
+
+    Cfg-&gt;&gt;Factory: &quot;注入连接工厂&quot;
+    Cfg-&gt;&gt;Template: &quot;new RedisTemplate()&quot;
+    Cfg-&gt;&gt;Template: &quot;setConnectionFactory(Factory)&quot;
+    Cfg-&gt;&gt;Ser: &quot;new FastJson2JsonRedisSerializer(Object.class)&quot;
+    Cfg-&gt;&gt;Template: &quot;setKeySerializer(StringRedisSerializer)&quot;
+    Cfg-&gt;&gt;Template: &quot;setValueSerializer(Serializer)&quot;
+    Cfg-&gt;&gt;Template: &quot;setHashKeySerializer(StringRedisSerializer)&quot;
+    Cfg-&gt;&gt;Template: &quot;setHashValueSerializer(Serializer)&quot;
+    Cfg-&gt;&gt;Template: &quot;afterPropertiesSet()&quot;
+    Cfg--&gt;&gt;Template: &quot;返回模板实例&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:18-43</span></li>
+</ul>
+<p>关键点：</p>
+<ul>
+<li>连接池不是由本模块创建，而是由 Spring Boot 根据 Redis 连接工厂创建。</li>
+<li>Key 始终是字符串，便于人类可读与运维排查。</li>
+<li>Value 是 JSON 字符串，带有类名信息，有利于复杂对象缓存。</li>
+<li>没有配置 <code>hashKeySerializer</code> 之外的其他序列化器，因此所有非 String 值都会走 Fastjson2。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:18-43</span></li>
+</ul>
+<h3 id="RedisService-方法分类"><a class="anchor" href="#RedisService-方法分类">#</a>RedisService 方法分类</h3><p><code>RedisService</code> 的方法可按数据类型划分：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>主要方法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符串</td>
+<td><code>setCacheObject</code>、<code>getCacheObject</code>、<code>deleteObject</code></td>
+<td>缓存简单对象、实体、配置值</td>
+</tr>
+<tr>
+<td>过期控制</td>
+<td><code>expire</code>、<code>getExpire</code>、<code>hasKey</code></td>
+<td>设置 TTL、查询剩余时间、判断存在性</td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>setCacheList</code>、<code>getCacheList</code></td>
+<td>队列、日志、分页追加</td>
+</tr>
+<tr>
+<td>集合</td>
+<td><code>setCacheSet</code>、<code>getCacheSet</code></td>
+<td>去重集合、标签集合</td>
+</tr>
+<tr>
+<td>哈希</td>
+<td><code>setCacheMap</code>、<code>getCacheMap</code>、<code>setCacheMapValue</code>、<code>getCacheMapValue</code>、<code>getMultiCacheMapValue</code>、<code>deleteCacheMapValue</code></td>
+<td>字典、用户会话字段、局部更新</td>
+</tr>
+<tr>
+<td>扫描</td>
+<td><code>keys</code></td>
+<td>按前缀批量查询或删除</td>
+</tr>
+</tbody></table>
+<p>注意：</p>
+<ul>
+<li><code>setCacheList</code> 使用 <code>rightPushAll</code>，即把集合尾部依次压入，不会覆盖已有元素。</li>
+<li><code>setCacheSet</code> 逐个添加，不保证一次性原子写入。</li>
+<li><code>keys</code> 会阻塞 Redis，生产环境慎用。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+</ul>
+<h3 id="序列化器对比"><a class="anchor" href="#序列化器对比">#</a>序列化器对比</h3><table>
+<thead>
+<tr>
+<th>序列化器</th>
+<th align="right">Key</th>
+<th align="right">Value</th>
+<th align="right">Hash Key</th>
+<th align="right">Hash Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>StringRedisSerializer</code></td>
+<td align="right">✅</td>
+<td align="right">❌</td>
+<td align="right">✅</td>
+<td align="right">❌</td>
+</tr>
+<tr>
+<td><code>FastJson2JsonRedisSerializer</code></td>
+<td align="right">❌</td>
+<td align="right">✅</td>
+<td align="right">❌</td>
+<td align="right">✅</td>
+</tr>
+</tbody></table>
+<p>这意味着：</p>
+<ul>
+<li>所有 Redis key 都是普通字符串，适合用冒号分隔层级，例如 <code>sys:config:xxx</code>。</li>
+<li>所有非 String 的 value 和 hash value 都会被 Fastjson2 序列化。</li>
+<li>如果业务希望某些字段保持原始字节或特定格式，应在业务层提前转换，因为模板默认不区分字段级序列化策略。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:26-41</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p><code>RedisConfig</code> 依赖 Spring Data Redis 与 Fastjson2；<code>RedisService</code> 依赖 <code>RedisTemplate</code>；业务模块依赖 <code>RedisService</code>。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class RedisConfig {
+        +redisTemplate(connectionFactory)
+    }
+    class FastJson2JsonRedisSerializer {
+        +serialize(t)
+        +deserialize(bytes)
+    }
+    class RedisService {
+        +redisTemplate
+        +setCacheObject()
+        +getCacheObject()
+        +expire()
+        +keys()
+    }
+    class SysConfigServiceImpl {
+        +selectConfigByKey()
+        +loadingConfigCache()
+    }
+    class SysLogininforController {
+        +unlock()
+    }
+
+    RedisConfig --&gt; FastJson2JsonRedisSerializer : &quot;使用&quot;
+    RedisService --&gt; RedisConfig : &quot;注入 RedisTemplate&quot;
+    SysConfigServiceImpl --&gt; RedisService : &quot;依赖&quot;
+    SysLogininforController --&gt; RedisService : &quot;依赖&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:1-52</span></li>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-213</span></li>
+<li><span class="fileref">SysLogininforController.java:1-92</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:1-44</span></li>
+<li><span class="fileref">RedisService.java:1-268</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-213</span></li>
+<li><span class="fileref">SysLogininforController.java:1-92</span></li>
+</ul>
+<h2 id="性能与序列化影响"><a class="anchor" href="#性能与序列化影响">#</a>性能与序列化影响</h2><h3 id="连接池"><a class="anchor" href="#连接池">#</a>连接池</h3><ul>
+<li>连接池由 Spring Boot 的 Redis 自动装配负责，而不是本模块显式创建。</li>
+<li>具体参数通常来自 <code>spring.redis.*</code>，包括主机、端口、密码、数据库编号、超时、连接池大小等。</li>
+<li>当前 <code>RedisConfig</code> 没有覆盖这些参数，因此修改连接池行为需要在应用配置或 Nacos 配置中调整。</li>
+</ul>
+<h3 id="JSON-序列化开销"><a class="anchor" href="#JSON-序列化开销">#</a>JSON 序列化开销</h3><ul>
+<li>Fastjson2 比 JDK 原生序列化更快，但仍比纯字符串序列化更慢。</li>
+<li>因为启用了 <code>WriteClassName</code>，序列化后体积略大，且依赖类名一致性。</li>
+<li>对于高频小对象，建议：<ul>
+<li>尽量使用简单字符串或紧凑 JSON。</li>
+<li>避免频繁序列化大对象。</li>
+<li>将热点数据拆分为多个小 key，减少单次序列化成本。</li>
+</ul>
+</li>
+</ul>
+<h3 id="keys-扫描"><a class="anchor" href="#keys-扫描">#</a>keys 扫描</h3><ul>
+<li><code>RedisService.keys(pattern)</code> 底层调用 Redis <code>KEYS</code>，复杂度接近 O(N)，在高并发或大数据量下可能阻塞 Redis。</li>
+<li>生产环境建议使用 <code>SCAN</code> 替代，或在后台任务中低频率执行。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:18-43</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:18-52</span></li>
+<li><span class="fileref">RedisService.java:256-268</span></li>
+</ul>
+<h2 id="Nacos-配置与动态刷新集成"><a class="anchor" href="#Nacos-配置与动态刷新集成">#</a>Nacos 配置与动态刷新集成</h2><h3 id="模块自身是否监听-Redis-配置"><a class="anchor" href="#模块自身是否监听-Redis-配置">#</a>模块自身是否监听 Redis 配置</h3><ul>
+<li><code>RedisConfig</code> 中没有 <code>@RefreshScope</code>、<code>@ConfigurationProperties</code> 或任何 Nacos 监听逻辑。</li>
+<li><code>RedisService</code> 也没有读取动态配置。</li>
+<li>因此，Redis 的连接信息、序列化方式、Bean 生命周期等不会因为 Nacos 动态推送而重建。</li>
+</ul>
+<h3 id="业务如何结合-Nacos-动态刷新"><a class="anchor" href="#业务如何结合-Nacos-动态刷新">#</a>业务如何结合 Nacos 动态刷新</h3><p>当前仓库中已观察到的模式是：</p>
+<ul>
+<li>各模块的 <code>bootstrap.yml</code> 通过 Spring Cloud Nacos Config 拉取共享配置。</li>
+<li><code>zealux-ai-system</code> 的 <code>SysConfigServiceImpl</code> 把系统参数从数据库加载到 Redis，并提供 <code>clearConfigCache</code> 和 <code>resetConfigCache</code> 方法。</li>
+<li>这类“配置变更 → 清空 Redis 缓存 → 下次读取重新加载”的模式，可以作为 Nacos 动态刷新业务参数的参考实践。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Nacos[&quot;Nacos 配置中心&quot;]
+    Bootstrap[&quot;bootstrap.yml&lt;br/&gt;Nacos 配置地址&quot;]
+    Service[&quot;SysConfigServiceImpl&quot;]
+    DB[&quot;数据库 sys_config&quot;]
+    Redis[&quot;Redis 参数缓存&quot;]
+
+    Nacos --&gt; Bootstrap
+    Bootstrap --&gt; Service
+    Service --&gt; DB
+    Service --&gt; Redis</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-25</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-213</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-25</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:1-213</span></li>
+</ul>
+<h2 id="缓存键命名规范"><a class="anchor" href="#缓存键命名规范">#</a>缓存键命名规范</h2><h3 id="现有约定"><a class="anchor" href="#现有约定">#</a>现有约定</h3><p>当前代码中并未在 Redis 模块内定义统一的 key 前缀生成器。实际使用中可观察到：</p>
+<ul>
+<li>登录错误计数 key 使用 <code>CacheConstants.PWD_ERR_CNT_KEY + userName</code>。</li>
+<li>系统参数缓存使用 <code>CacheConstants.SYS_CONFIG_KEY + configKey</code>。</li>
+<li>参数缓存清理使用 <code>SYS_CONFIG_KEY*</code> 作为 pattern。</li>
+</ul>
+<p>因此，推荐遵循以下命名原则：</p>
+<ul>
+<li>使用短横线或冒号分层，例如 <code>module:business:key:id</code>。</li>
+<li>以模块前缀开头，例如 <code>system:</code>、<code>auth:</code>、<code>leads:</code>。</li>
+<li>对字典、验证码、会话等使用独立前缀，避免跨业务冲突。</li>
+<li>对临时缓存明确带上时间或版本号后缀，便于定位过期问题。</li>
+</ul>
+<p>由于 <code>RedisConfig</code> 没有全局 <code>keyGenerator</code>，如果将来使用 <code>@Cacheable</code>，请显式指定 key 表达式，不要依赖 Spring 默认生成的复杂 key。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininforController.java:70-80</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:158-186</span></li>
+<li><span class="fileref">RedisConfig.java:18-43</span></li>
+</ul>
+<h2 id="典型使用示例"><a class="anchor" href="#典型使用示例">#</a>典型使用示例</h2><p>以下示例描述如何在 Service 或 Controller 层使用 <code>RedisService</code>，但不粘贴具体代码内容，只给出调用路径说明。</p>
+<h3 id="缓存字典"><a class="anchor" href="#缓存字典">#</a>缓存字典</h3><p>推荐做法：</p>
+<ul>
+<li>字典数据放在 <code>RedisService.setCacheMap</code> 或 <code>setCacheObject</code> 中。</li>
+<li>字典 key 形如 <code>dict:{type}</code>。</li>
+<li>字典更新后删除对应 key，或调用 <code>clearConfigCache</code> 类似的全量刷新逻辑。</li>
+<li>读取时先查 Redis，再回源数据库，最后写回 Redis。</li>
+</ul>
+<p>参考路径：</p>
+<ul>
+<li><span class="fileref">SysConfigServiceImpl.selectConfigByKey</span></li>
+<li><span class="fileref">SysConfigServiceImpl.loadingConfigCache</span></li>
+<li><span class="fileref">SysConfigServiceImpl.clearConfigCache</span></li>
+</ul>
+<h3 id="缓存验证码"><a class="anchor" href="#缓存验证码">#</a>缓存验证码</h3><p>推荐做法：</p>
+<ul>
+<li>key 形如 <code>captcha:{uuid}</code>。</li>
+<li>使用 <code>setCacheObject(key, value, timeout, unit)</code> 设置过期时间。</li>
+<li>校验成功后立即删除 key。</li>
+<li>验证码重试次数可与登录错误计数共用同一套 key 风格。</li>
+</ul>
+<p>参考路径：</p>
+<ul>
+<li><span class="fileref">RedisService.setCacheObject</span></li>
+<li><span class="fileref">SysLogininforController.unlock</span></li>
+</ul>
+<h3 id="分布式锁"><a class="anchor" href="#分布式锁">#</a>分布式锁</h3><p>当前 <code>RedisService</code> 没有提供分布式锁方法。若需要，建议在模块中新增基于 Redisson 或 Lua 脚本的实现，并确保：</p>
+<ul>
+<li>key 加唯一业务标识，例如 <code>lock:{biz}:{id}</code>。</li>
+<li>设置合理过期时间，防止死锁。</li>
+<li>加锁失败快速返回，而不是长时间重试。</li>
+<li>解锁需校验锁归属，避免误删他人锁。</li>
+</ul>
+<p>当前仓库中不存在该实现，因此不要把“分布式锁”写成已具备功能。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisService.java:26-43</span></li>
+<li><span class="fileref">SysConfigServiceImpl.java:40-75</span></li>
+<li><span class="fileref">SysLogininforController.java:70-80</span></li>
+</ul>
+<h2 id="高并发场景优化策略"><a class="anchor" href="#高并发场景优化策略">#</a>高并发场景优化策略</h2><h3 id="缓存穿透"><a class="anchor" href="#缓存穿透">#</a>缓存穿透</h3><p>现象：大量请求查询不存在的数据，直接打到数据库。
+建议：</p>
+<ul>
+<li>对空结果也缓存一个短 TTL 的标记值。</li>
+<li>在 key 层做输入校验，过滤非法 id。</li>
+<li>使用 Bloom Filter 或布隆过滤器拦截明显不存在的 key。</li>
+<li>对热点读接口增加本地缓存作为第一层防护。</li>
+</ul>
+<h3 id="缓存雪崩"><a class="anchor" href="#缓存雪崩">#</a>缓存雪崩</h3><p>现象：大量 key 同时过期，导致数据库瞬间压力激增。
+建议：</p>
+<ul>
+<li>给 TTL 加上随机抖动，避免集中过期。</li>
+<li>对热点数据设置更长有效期。</li>
+<li>对关键接口做限流与降级。</li>
+<li>使用多级缓存，例如本地缓存 + Redis。</li>
+</ul>
+<h3 id="热点-key"><a class="anchor" href="#热点-key">#</a>热点 key</h3><p>现象：某个 key 被大量线程同时访问，造成 Redis 单 key 热点。
+建议：</p>
+<ul>
+<li>对超大对象进行分片，拆成多个小 key。</li>
+<li>使用本地缓存降低 Redis 访问频率。</li>
+<li>对写热点 key 使用异步更新或延迟双删。</li>
+<li>监控 Redis 热点 key，必要时拆分到不同逻辑库。</li>
+</ul>
+<h3 id="getAndSet-缺失处理"><a class="anchor" href="#getAndSet-缺失处理">#</a>getAndSet 缺失处理</h3><p>当前 <code>RedisService</code> 没有 <code>getAndSet</code>。若业务需要原子更新：</p>
+<ul>
+<li>在 <code>RedisService</code> 中新增基于 Lua 的原子方法。</li>
+<li>或使用 Redisson 的 <code>RAtomicLong</code>、<code>RReadWriteLock</code> 等高级 API。</li>
+<li>避免在业务层先 get 再 set，否则高并发下会出现竞态条件。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;请求进入&quot;]
+    CheckLocal[&quot;检查本地缓存&quot;]
+    HitLocal{&quot;命中？&quot;}
+    LocalHit[&quot;返回本地缓存&quot;]
+    CheckRedis[&quot;检查 Redis&quot;]
+    HitRedis{&quot;命中？&quot;}
+    RedisHit[&quot;反序列化并返回&quot;]
+    LoadDB[&quot;查询数据库&quot;]
+    SetRedis[&quot;写入 Redis 并设置 TTL&quot;]
+    Return[&quot;返回结果&quot;]
+
+    Start --&gt; CheckLocal
+    CheckLocal --&gt; HitLocal
+    HitLocal --&gt;|是| LocalHit --&gt; Return
+    HitLocal --&gt;|否| CheckRedis
+    CheckRedis --&gt; HitRedis
+    HitRedis --&gt;|是| RedisHit --&gt; Return
+    HitRedis --&gt;|否| LoadDB
+    LoadDB --&gt; SetRedis
+    SetRedis --&gt; Return</pre></div><p>[此图为概念流程图，不映射具体源码，故无图表来源]</p>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><h3 id="本地-Redis-不可用"><a class="anchor" href="#本地-Redis-不可用">#</a>本地 Redis 不可用</h3><p>症状：</p>
+<ul>
+<li>应用启动时报连接异常。</li>
+<li>运行时出现连接超时或无法获取连接。</li>
+</ul>
+<p>排查步骤：</p>
+<ol>
+<li>确认 Redis 服务已启动，端口可达。</li>
+<li>检查 <code>spring.redis.host</code>、<code>spring.redis.port</code>、<code>spring.redis.password</code>、<code>spring.redis.database</code>。</li>
+<li>检查 Nacos 中是否推送了错误的 Redis 配置。</li>
+<li>检查防火墙、安全组、Docker 网络映射。</li>
+<li>查看应用日志中的连接异常堆栈。</li>
+</ol>
+<p>注意：本模块不会在 <code>RedisConfig</code> 中捕获连接异常并降级，因此 Redis 不可用通常会表现为上层调用抛出异常。</p>
+<h3 id="连接超时"><a class="anchor" href="#连接超时">#</a>连接超时</h3><p>症状：</p>
+<ul>
+<li><code>RedisConnectionException</code>、<code>TimeoutException</code> 或连接池耗尽。</li>
+</ul>
+<p>排查步骤：</p>
+<ol>
+<li>检查连接池最大连接数是否过小。</li>
+<li>检查是否有长事务或长耗时 Redis 操作。</li>
+<li>检查是否使用了 <code>keys</code> 扫描导致阻塞。</li>
+<li>检查 Redis 服务端是否内存不足、CPU 打满。</li>
+<li>检查网络延迟与跨机房调用。</li>
+</ol>
+<h3 id="key-过期策略不生效"><a class="anchor" href="#key-过期策略不生效">#</a>key 过期策略不生效</h3><p>症状：</p>
+<ul>
+<li>key 未按预期过期。</li>
+<li>过期后立即失效，或长期不过期。</li>
+</ul>
+<p>排查步骤：</p>
+<ol>
+<li>确认是否调用了带超时的 <code>setCacheObject(key, value, timeout, unit)</code>。</li>
+<li>确认后续是否再次调用 <code>expire</code> 覆盖了原过期时间。</li>
+<li>确认 Redis 是否开启了持久化，且重启后是否保留过期语义。</li>
+<li>确认 key 没有被业务逻辑重复写入。</li>
+<li>使用 Redis CLI 或客户端工具查看 TTL。</li>
+</ol>
+<h3 id="反序列化失败"><a class="anchor" href="#反序列化失败">#</a>反序列化失败</h3><p>症状：</p>
+<ul>
+<li>读取 Redis 值时报类型转换错误或 JSON 解析异常。</li>
+</ul>
+<p>排查步骤：</p>
+<ol>
+<li>检查 Fastjson2 反序列化白名单是否包含目标类。</li>
+<li>检查类包名是否发生变化。</li>
+<li>检查是否混用了不同版本的序列化器。</li>
+<li>检查 Redis 中该 key 的值是否为预期的 JSON 格式。</li>
+<li>如果是历史数据，考虑迁移或兼容旧格式。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RedisConfig.java:18-43</span></li>
+<li><span class="fileref">FastJson2JsonRedisSerializer.java:18-52</span></li>
+<li><span class="fileref">RedisService.java:26-43</span></li>
+<li><span class="fileref">RedisService.java:256-268</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>zealux-ai-common-redis</code> 模块提供了简洁实用的 Redis 通用能力：</p>
+<ul>
+<li>通过 <code>RedisConfig</code> 在 Spring Boot Redis 自动装配之前注册自定义 <code>RedisTemplate</code>。</li>
+<li>使用 <code>StringRedisSerializer</code> 管理 key 与 hashKey，使用 <code>FastJson2JsonRedisSerializer</code> 管理 value 与 hashValue。</li>
+<li>通过 <code>RedisService</code> 向业务模块暴露常用 Redis 操作。</li>
+<li>当前模块没有实现分布式锁、全局 key 生成器、全量 clear 或 <code>getAndSet</code>。</li>
+<li>Redis 连接池与连接参数由 Spring Boot 和外部配置决定，模块本身不直接管理连接池。</li>
+<li>业务模块可通过 Nacos 配置中心管理配置，并结合 Redis 缓存实现参数热更新。</li>
+</ul>
+<p>在实际使用中，建议：</p>
+<ul>
+<li>统一 key 前缀与命名规范。</li>
+<li>对热点数据做本地缓存与 TTL 抖动。</li>
+<li>谨慎使用 <code>keys</code>，生产环境改用 <code>SCAN</code>。</li>
+<li>对敏感业务补充分布式锁、幂等与降级方案。</li>
+<li>对序列化兼容性做好版本管理与灰度策略。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">← AI 通用模块（ai）</a>
+    <a class="next" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger） →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d3"><a href="#RedisConfig：连接池、序列化与缓存开关">RedisConfig：连接池、序列化与缓存开关</a></li><li class="d3"><a href="#FastJson2JsonRedisSerializer：JSON-序列化器">FastJson2JsonRedisSerializer：JSON 序列化器</a></li><li class="d3"><a href="#RedisService：常用-Redis-操作封装">RedisService：常用 Redis 操作封装</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#RedisConfig-初始化流程">RedisConfig 初始化流程</a></li><li class="d3"><a href="#RedisService-方法分类">RedisService 方法分类</a></li><li class="d3"><a href="#序列化器对比">序列化器对比</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与序列化影响">性能与序列化影响</a></li><li class="d3"><a href="#连接池">连接池</a></li><li class="d3"><a href="#JSON-序列化开销">JSON 序列化开销</a></li><li class="d3"><a href="#keys-扫描">keys 扫描</a></li><li class="d2"><a href="#Nacos-配置与动态刷新集成">Nacos 配置与动态刷新集成</a></li><li class="d3"><a href="#模块自身是否监听-Redis-配置">模块自身是否监听 Redis 配置</a></li><li class="d3"><a href="#业务如何结合-Nacos-动态刷新">业务如何结合 Nacos 动态刷新</a></li><li class="d2"><a href="#缓存键命名规范">缓存键命名规范</a></li><li class="d3"><a href="#现有约定">现有约定</a></li><li class="d2"><a href="#典型使用示例">典型使用示例</a></li><li class="d3"><a href="#缓存字典">缓存字典</a></li><li class="d3"><a href="#缓存验证码">缓存验证码</a></li><li class="d3"><a href="#分布式锁">分布式锁</a></li><li class="d2"><a href="#高并发场景优化策略">高并发场景优化策略</a></li><li class="d3"><a href="#缓存穿透">缓存穿透</a></li><li class="d3"><a href="#缓存雪崩">缓存雪崩</a></li><li class="d3"><a href="#热点-key">热点 key</a></li><li class="d3"><a href="#getAndSet-缺失处理">getAndSet 缺失处理</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d3"><a href="#本地-Redis-不可用">本地 Redis 不可用</a></li><li class="d3"><a href="#连接超时">连接超时</a></li><li class="d3"><a href="#key-过期策略不生效">key 过期策略不生效</a></li><li class="d3"><a href="#反序列化失败">反序列化失败</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html";</script>
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>前端架构设计 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec" open><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html" class="active">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">前端架构设计 / <b>前端架构设计</b></div><article><h1 id="前端架构设计"><a class="anchor" href="#前端架构设计">#</a>前端架构设计</h1><cite>
+**本文引用的文件**   
+- [package.json](file://zealux-ai-ui-master/package.json)
+- [vue.config.js](file://zealux-ai-ui-master/vue.config.js)
+- [src/main.js](file://zealux-ai-ui-master/src/main.js)
+- [src/App.vue](file://zealux-ai-ui-master/src/App.vue)
+- [src/permission.js](file://zealux-ai-ui-master/src/permission.js)
+- [src/settings.js](file://zealux-ai-ui-master/src/settings.js)
+- [src/router/index.js](file://zealux-ai-ui-master/src/router/index.js)
+- [src/store/index.js](file://zealux-ai-ui-master/src/store/index.js)
+- [src/store/modules/permission.js](file://zealux-ai-ui-master/src/store/modules/permission.js)
+- [src/store/modules/user.js](file://zealux-ai-ui-master/src/store/modules/user.js)
+- [src/store/modules/settings.js](file://zealux-ai-ui-master/src/store/modules/settings.js)
+- [src/store/modules/tagsView.js](file://zealux-ai-ui-master/src/store/modules/tagsView.js)
+- [src/utils/auth.js](file://zealux-ai-ui-master/src/utils/auth.js)
+- [src/utils/request.js](file://zealux-ai-ui-master/src/utils/request.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与构建特性">性能与构建特性</a></li>
+<li><a href="#前后端交互协议">前后端交互协议</a></li>
+<li><a href="#安全与可访问性">安全与可访问性</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本前端工程是 RuoYi-Cloud 的 Vue 2 管理后台实现，技术栈为 Vue 2.6.12、Element UI 2.15.14、Vuex 3.6.0 与 Vue Router 3.4.9。其独立源码仓库位于 <code>zealux-ai-ui-master</code>；后端仓库中的 <code>zealux-ai-master/zealux-ai-ui</code> 是逐字节重复拷贝，不参与根项目的模块构建，因此本文只以独立仓库为准进行描述。</p>
+<p>该前端负责登录认证、动态权限路由、侧边栏菜单渲染、标签页缓存、字典与配置加载、文件下载、主题切换等通用管理能力，并与后端网关暴露的前缀路由 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 进行交互。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>独立前端仓库的顶层结构如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+  Root[&quot;zealux-ai-ui-master&quot;] --&gt; Package[&quot;package.json&lt;br/&gt;依赖与脚本&quot;]
+  Root --&gt; VueConfig[&quot;vue.config.js&lt;br/&gt;构建与代理配置&quot;]
+  Root --&gt; Public[&quot;public/&lt;br/&gt;静态资源入口&quot;]
+  Root --&gt; Src[&quot;src/&lt;br/&gt;应用源码&quot;]
+
+  Src --&gt; MainJS[&quot;main.js&lt;br/&gt;应用入口&quot;]
+  Src --&gt; AppVue[&quot;App.vue&lt;br/&gt;根组件&quot;]
+  Src --&gt; PermissionJS[&quot;permission.js&lt;br/&gt;全局路由守卫&quot;]
+  Src --&gt; SettingsJS[&quot;settings.js&lt;br/&gt;站点默认配置&quot;]
+  Src --&gt; Router[&quot;router/&lt;br/&gt;路由定义&quot;]
+  Src --&gt; Store[&quot;store/&lt;br/&gt;状态管理&quot;]
+  Src --&gt; Api[&quot;api/&lt;br/&gt;接口封装&quot;]
+  Src --&gt; Components[&quot;components/&lt;br/&gt;通用组件&quot;]
+  Src --&gt; Layout[&quot;layout/&lt;br/&gt;布局容器&quot;]
+  Src --&gt; Utils[&quot;utils/&lt;br/&gt;工具方法&quot;]
+  Src --&gt; Views[&quot;views/&lt;br/&gt;业务页面&quot;]</pre></div><h3 id="关键职责划分"><a class="anchor" href="#关键职责划分">#</a>关键职责划分</h3><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>主要职责</th>
+<th>典型文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/api</code></td>
+<td>按业务域组织后端接口调用，包含登录、菜单、系统用户/角色/字典/配置、监控任务等</td>
+<td><code>login.js</code>、<code>menu.js</code>、<code>system/*.js</code>、<code>monitor/*.js</code></td>
+</tr>
+<tr>
+<td><code>src/components</code></td>
+<td>无业务倾向的通用 UI 能力，如分页、富文本、上传、图标选择、主题选择器、面包屑、全屏、尺寸选择等</td>
+<td><code>Pagination/index.vue</code>、<code>Editor/index.vue</code>、<code>ThemePicker/index.vue</code>、<code>Breadcrumb/index.vue</code></td>
+</tr>
+<tr>
+<td><code>src/layout</code></td>
+<td>整体后台布局，包含侧边栏、顶部导航、主内容区、设置面板、标签页、内联 iframe 等</td>
+<td><code>index.vue</code>、<code>components/Sidebar/index.vue</code>、<code>components/TagsView/index.vue</code>、<code>components/AppMain.vue</code></td>
+</tr>
+<tr>
+<td><code>src/router</code></td>
+<td>定义常量公共路由与动态路由表，并提供懒加载视图工厂</td>
+<td><code>index.js</code></td>
+</tr>
+<tr>
+<td><code>src/store</code></td>
+<td>Vuex 状态树，包含用户信息、权限路由、站点设置、标签页、字典等模块</td>
+<td><code>modules/user.js</code>、<code>modules/permission.js</code>、<code>modules/settings.js</code>、<code>modules/tagsView.js</code></td>
+</tr>
+<tr>
+<td><code>src/utils</code></td>
+<td>跨模块工具：Token 持久化、Axios 拦截器、错误码、表单校验、字典运行时、加密、滚动辅助等</td>
+<td><code>auth.js</code>、<code>request.js</code>、<code>validate.js</code>、<code>errorCode.js</code></td>
+</tr>
+<tr>
+<td><code>src/views</code></td>
+<td>具体业务页面，按 dashboard、system、monitor、tool、error 等分组</td>
+<td><code>views/system/user/index.vue</code>、<code>views/login.vue</code>、<code>views/error/404.vue</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">package.json:1-90</span></li>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+<li><span class="fileref">src/main.js:1-86</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><h3 id="应用入口-main.js"><a class="anchor" href="#应用入口-main.js">#</a>应用入口 <code>main.js</code></h3><p><code>main.js</code> 完成以下初始化工作：</p>
+<ul>
+<li>引入 Element UI，并读取 Cookie 中保存的界面尺寸作为默认大小。</li>
+<li>引入全局样式、图标、指令、插件、路由、Store 和权限控制。</li>
+<li>将字典查询、配置获取、时间解析、表单重置、树形处理、文件下载等方法挂载到 <code>Vue.prototype</code>，使任意组件可直接通过 <code>this.getDicts()</code>、<code>this.download()</code> 等方式调用。</li>
+<li>全局注册常用组件：字典标签、分页、右侧工具栏、富文本编辑器、文件上传、图片上传、图片预览。</li>
+<li>启用自定义指令、业务插件、<code>vue-meta</code>，并安装字典数据组件。</li>
+<li>使用 Element UI 后创建 Vue 实例，挂载到 <code>#app</code>，注入 router 与 store。</li>
+</ul>
+<h3 id="根组件-App.vue"><a class="anchor" href="#根组件-App.vue">#</a>根组件 <code>App.vue</code></h3><p>根组件仅渲染 <code>&lt;router-view /&gt;</code> 和主题选择器，并通过 <code>metaInfo</code> 动态设置浏览器标题。标题由 Vuex 中的 <code>settings.title</code> 与构建期环境变量 <code>VUE_APP_TITLE</code> 组合而成。</p>
+<h3 id="全局路由守卫-permission.js"><a class="anchor" href="#全局路由守卫-permission.js">#</a>全局路由守卫 <code>permission.js</code></h3><p>路由守卫承担鉴权与动态权限路由生成职责：</p>
+<ul>
+<li>启动进度条。</li>
+<li>白名单路径 <code>/login</code>、<code>/register</code> 允许直接访问。</li>
+<li>已持有 Token 时：<ul>
+<li>若目标为 <code>/login</code>，重定向到首页。</li>
+<li>若尚未拉取用户信息（roles 为空），先调用 <code>GetInfo</code>，再触发 <code>GenerateRoutes</code>，使用 <code>router.addRoutes</code> 注入动态路由，然后重新进入原路由。</li>
+<li>否则直接放行。</li>
+</ul>
+</li>
+<li>未持有 Token 时：非白名单路径全部重定向到 <code>/login?redirect=...</code>。</li>
+<li>每次路由切换完成后关闭进度条。</li>
+</ul>
+<h3 id="站点配置-settings.js"><a class="anchor" href="#站点配置-settings.js">#</a>站点配置 <code>settings.js</code></h3><p>提供侧边栏主题、顶部导航、标签页、固定头部、Logo、动态标题、错误日志环境等默认值。这些值被 <code>src/store/modules/settings.js</code> 读取，并可持久化到 <code>localStorage</code> 的 <code>layout-setting</code> 中。</p>
+<h3 id="构建配置-vue.config.js"><a class="anchor" href="#构建配置-vue.config.js">#</a>构建配置 <code>vue.config.js</code></h3><ul>
+<li>开发服务器监听 <code>0.0.0.0</code>，端口优先取自 <code>process.env.port</code>，其次 <code>npm_config_port</code>，最后回退到 <code>80</code>。</li>
+<li>通过 <code>devServer.proxy</code> 把环境变量 <code>VUE_APP_BASE_API</code> 对应的请求前缀转发到 <code>http://127.0.0.1:8080</code>，开启 <code>changeOrigin</code> 并移除前缀。</li>
+<li>生产环境关闭 source map，输出目录为 <code>dist</code>，静态资源放在 <code>static</code>。</li>
+<li>使用 <code>compression-webpack-plugin</code> 生成 <code>.gz</code> 压缩资源。</li>
+<li>配置 <code>@</code> 别名指向 <code>src</code>。</li>
+<li>对 SVG 图标目录使用 <code>svg-sprite-loader</code>。</li>
+<li>在非开发环境下删除 <code>preload</code>、<code>prefetch</code>，拆分 Element UI 与公共组件 chunk，并将 runtime 单独抽取。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/main.js:1-86</span></li>
+<li><span class="fileref">src/App.vue:1-28</span></li>
+<li><span class="fileref">src/permission.js:1-63</span></li>
+<li><span class="fileref">src/settings.js:1-44</span></li>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Browser as &quot;浏览器&quot;
+    participant Router as &quot;Vue Router&quot;
+    participant Guard as &quot;permission.js 守卫&quot;
+    participant UserStore as &quot;user.js&quot;
+    participant MenuApi as &quot;api/menu.js&quot;
+    participant PermStore as &quot;permission.js Store&quot;
+    participant RouterInstance as &quot;Router 实例&quot;
+    participant Layout as &quot;layout/index.vue&quot;
+    participant Sidebar as &quot;Sidebar 组件&quot;
+    participant TagsView as &quot;TagsView 组件&quot;
+
+    Browser-&gt;&gt;Router: 访问某路由
+    Router-&gt;&gt;Guard: beforeEach(to, from, next)
+    alt 已登录且已拉取用户信息
+        Guard--&gt;&gt;Router: next()
+    else 已登录但未拉取用户信息
+        Guard-&gt;&gt;UserStore: dispatch(&quot;GetInfo&quot;)
+        UserStore--&gt;&gt;Guard: 用户信息、角色、权限
+        Guard-&gt;&gt;PermStore: dispatch(&quot;GenerateRoutes&quot;)
+        PermStore-&gt;&gt;MenuApi: getRouters()
+        MenuApi--&gt;&gt;PermStore: 后端返回菜单路由树
+        PermStore-&gt;&gt;RouterInstance: addRoutes(动态路由)
+        PermStore--&gt;&gt;Guard: 返回重写后的路由表
+        Guard-&gt;&gt;Router: next({ ...to, replace: true })
+    else 未登录且不在白名单
+        Guard--&gt;&gt;Browser: 重定向到 /login?redirect=...
+    end
+    Router--&gt;&gt;Layout: 匹配路由并渲染
+    Layout-&gt;&gt;Sidebar: 根据 sidebarRouters 渲染侧边栏
+    Layout-&gt;&gt;TagsView: 根据 visitedViews 渲染标签页</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">src/permission.js:1-63</span></li>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">src/router/index.js:1-183</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="路由系统"><a class="anchor" href="#路由系统">#</a>路由系统</h3><p><code>src/router/index.js</code> 定义两类路由：</p>
+<ul>
+<li><code>constantRoutes</code>：公共路由，包括 <code>/redirect</code>、<code>/login</code>、<code>/register</code>、<code>/404</code>、<code>/401</code>、首页以及用户个人中心。</li>
+<li><code>dynamicRoutes</code>：基于权限标记的隐藏路由，例如用户分配角色、角色分配用户、字典数据编辑、调度日志、代码生成编辑等。这些路由带有 <code>permissions</code> 或 <code>roles</code> 字段，由权限模块过滤后决定是否加入最终路由表。</li>
+</ul>
+<p>路由实例采用 history 模式，滚动行为始终回到顶部，并对 <code>push</code> 与 <code>replace</code> 做了异常捕获包装。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/router/index.js:1-183</span></li>
+</ul>
+<h3 id="权限路由与菜单生成"><a class="anchor" href="#权限路由与菜单生成">#</a>权限路由与菜单生成</h3><p>权限模块 <code>src/store/modules/permission.js</code> 维护以下状态：</p>
+<ul>
+<li><code>routes</code>：常量路由与动态路由合并后的完整路由表。</li>
+<li><code>addRoutes</code>：当前会话新增的动态路由。</li>
+<li><code>defaultRoutes</code>：默认可渲染路由。</li>
+<li><code>topbarRouters</code>：顶部导航路由。</li>
+<li><code>sidebarRouters</code>：侧边栏路由。</li>
+</ul>
+<p>核心流程：</p>
+<ol>
+<li><code>GenerateRoutes</code> 调用 <code>getRouters()</code> 获取后端菜单路由树。</li>
+<li>深拷贝两份菜单数据，一份用于侧边栏渲染，另一份用于最终路由表。</li>
+<li>遍历后端路由，把字符串形式的 <code>component</code> 转换为实际组件引用；<code>Layout</code>、<code>ParentView</code>、<code>InnerLink</code> 使用对应占位组件。</li>
+<li>递归处理子路由，去除空 children 与 redirect。</li>
+<li>将动态隐藏路由经 <code>filterDynamicRoutes</code> 过滤后 <code>router.addRoutes</code>。</li>
+<li>提交 <code>SET_ROUTES</code>、<code>SET_SIDEBAR_ROUTERS</code>、<code>SET_DEFAULT_ROUTES</code>、<code>SET_TOPBAR_ROUTES</code>。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+  Start([&quot;开始 GenerateRoutes&quot;]) --&gt; Fetch[&quot;调用 getRouters() 获取后端菜单&quot;]
+  Fetch --&gt; Clone[&quot;深拷贝菜单数据为侧边栏与完整路由两份&quot;]
+  Clone --&gt; FilterComponent[&quot;转换 component 字符串为组件引用&quot;]
+  FilterComponent --&gt; RecurseChildren[&quot;递归处理 children&quot;]
+  RecurseChildren --&gt; AddDynamic[&quot;过滤 dynamicRoutes 并 addRoutes&quot;]
+  AddDynamic --&gt; Commit[&quot;提交路由、侧边栏、顶部导航、默认路由状态&quot;]
+  Commit --&gt; End([&quot;结束&quot;])</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">src/store/modules/permission.js:1-122</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/store/modules/permission.js:1-122</span></li>
+</ul>
+<h3 id="用户状态与登录流程"><a class="anchor" href="#用户状态与登录流程">#</a>用户状态与登录流程</h3><p><code>src/store/modules/user.js</code> 管理 token、用户标识、用户名、头像、角色与权限。关键动作：</p>
+<ul>
+<li><code>Login</code>：调用后端登录接口，保存 <code>access_token</code> 与过期时间，并更新本地状态。</li>
+<li><code>GetInfo</code>：获取用户信息、角色和权限；若后端未返回 roles，则填充默认角色。</li>
+<li><code>RefreshToken</code>：刷新 token 过期时间。</li>
+<li><code>LogOut</code>：调用后端登出接口，清空本地状态并移除 Token。</li>
+<li><code>FedLogOut</code>：纯前端登出。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+</ul>
+<h3 id="标签页与缓存"><a class="anchor" href="#标签页与缓存">#</a>标签页与缓存</h3><p><code>src/store/modules/tagsView.js</code> 维护三类标签：</p>
+<ul>
+<li><code>visitedViews</code>：已访问页面。</li>
+<li><code>cachedViews</code>：需要 keep-alive 缓存的页面名称。</li>
+<li><code>iframeViews</code>：外链 iframe 页面。</li>
+</ul>
+<p>支持添加、删除单个标签、删除其他标签、删除左侧/右侧标签、清空所有标签等操作，并根据 <code>meta.affix</code> 保留固定标签。标签变化会联动 keep-alive 缓存列表，避免重复缓存或泄漏。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/store/modules/tagsView.js:1-200</span></li>
+</ul>
+<h3 id="站点设置状态"><a class="anchor" href="#站点设置状态">#</a>站点设置状态</h3><p><code>src/store/modules/settings.js</code> 从 <code>settings.js</code> 读取默认值，并从 <code>localStorage</code> 的 <code>layout-setting</code> 恢复用户上次设置的 theme、sideTheme、topNav、tagsView、fixedHeader、sidebarLogo、dynamicTitle。它提供修改设置和设置页面标题的能力。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/settings.js:1-44</span></li>
+<li><span class="fileref">src/store/modules/settings.js:1-42</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">graph LR
+  Main[&quot;main.js&quot;] --&gt; RouterIndex[&quot;router/index.js&quot;]
+  Main --&gt; StoreIndex[&quot;store/index.js&quot;]
+  Main --&gt; PermissionJS[&quot;permission.js&quot;]
+  Main --&gt; AppVue[&quot;App.vue&quot;]
+  PermissionJS --&gt; UserStore[&quot;store/modules/user.js&quot;]
+  PermissionJS --&gt; PermStore[&quot;store/modules/permission.js&quot;]
+  PermStore --&gt; MenuApi[&quot;api/menu.js&quot;]
+  UserStore --&gt; Request[&quot;utils/request.js&quot;]
+  Request --&gt; Auth[&quot;utils/auth.js&quot;]
+  AppVue --&gt; ThemePicker[&quot;components/ThemePicker&quot;]
+  RouterIndex --&gt; Layout[&quot;layout/index.vue&quot;]</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">src/main.js:1-86</span></li>
+<li><span class="fileref">src/permission.js:1-63</span></li>
+<li><span class="fileref">src/router/index.js:1-183</span></li>
+<li><span class="fileref">src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">src/utils/request.js:1-152</span></li>
+<li><span class="fileref">src/utils/auth.js:1-29</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/main.js:1-86</span></li>
+<li><span class="fileref">src/permission.js:1-63</span></li>
+</ul>
+<h2 id="性能与构建特性"><a class="anchor" href="#性能与构建特性">#</a>性能与构建特性</h2><ul>
+<li>开发服务器通过 <code>devServer.open = true</code> 自动打开浏览器，监听地址为 <code>0.0.0.0</code>。</li>
+<li>生产环境关闭 source map，减少打包体积。</li>
+<li>使用 gzip 压缩 JS、CSS、HTML、图片和 SVG。</li>
+<li>Element UI 被拆分为独立 chunk，公共组件在满足最小复用次数时形成 <code>chunk-commons</code>。</li>
+<li>非开发环境禁用 <code>preload</code>、<code>prefetch</code>，并使用 <code>runtimeChunk(&#39;single&#39;)</code> 抽取运行时。</li>
+<li>SVG 图标目录走 <code>svg-sprite-loader</code>，便于集中管理和按需渲染。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+</ul>
+<h2 id="前后端交互协议"><a class="anchor" href="#前后端交互协议">#</a>前后端交互协议</h2><h3 id="基础-URL-与代理"><a class="anchor" href="#基础-URL-与代理">#</a>基础 URL 与代理</h3><ul>
+<li>Axios 实例的 <code>baseURL</code> 来自环境变量 <code>VUE_APP_BASE_API</code>。</li>
+<li>开发模式下，<code>vue.config.js</code> 将 <code>VUE_APP_BASE_API</code> 前缀的请求代理到 <code>http://127.0.0.1:8080</code>，并开启 <code>changeOrigin</code>、重写路径前缀。</li>
+<li>部署时通常由反向代理或网关统一处理域名与路径，前端不再关心真实后端地址。</li>
+</ul>
+<h3 id="认证头与-Token-持久化"><a class="anchor" href="#认证头与-Token-持久化">#</a>认证头与 Token 持久化</h3><ul>
+<li><code>utils/auth.js</code> 使用 <code>js-cookie</code> 读写名为 <code>Admin-Token</code> 的 Token，以及 <code>Admin-Expires-In</code> 的过期时间。</li>
+<li><code>utils/request.js</code> 在请求拦截器中检查是否携带 Token，并在非 <code>isToken === false</code> 的请求上自动附加 <code>Authorization: Bearer &lt;token&gt;</code>。</li>
+<li>登录成功后，<code>user.js</code> 调用 <code>setToken</code> 与 <code>setExpiresIn</code> 持久化认证信息。</li>
+</ul>
+<h3 id="响应体结构与错误处理"><a class="anchor" href="#响应体结构与错误处理">#</a>响应体结构与错误处理</h3><ul>
+<li>响应拦截器读取 <code>res.data.code</code>，默认成功码为 200。</li>
+<li>二进制下载请求直接返回原始数据。</li>
+<li>401：弹出确认框提示会话过期，确认后调用 <code>LogOut</code> 并重定向到首页。</li>
+<li>500：显示错误消息并拒绝 Promise。</li>
+<li>601：显示警告消息。</li>
+<li>其他非 200：使用 Notification 展示错误。</li>
+<li>网络错误、超时、HTTP 状态码异常均会被翻译成中文提示。</li>
+</ul>
+<h3 id="防重复提交"><a class="anchor" href="#防重复提交">#</a>防重复提交</h3><ul>
+<li>对 post 与 put 请求，记录最近一次请求的 URL、序列化数据和时间戳。</li>
+<li>相同请求在 1 秒内重复提交时，拒绝请求并输出警告。</li>
+<li>超过限制大小的请求跳过防重复逻辑。</li>
+</ul>
+<h3 id="文件下载"><a class="anchor" href="#文件下载">#</a>文件下载</h3><ul>
+<li>提供 <code>download(url, params, filename, config)</code> 函数，使用 form-urlencoded 发送请求，接收 blob 后用 <code>file-saver</code> 保存文件。</li>
+<li>若后端返回的不是 blob，会尝试解析 JSON 错误信息并提示。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Component as &quot;业务组件&quot;
+    participant Axios as &quot;axios 实例&quot;
+    participant Interceptor as &quot;请求/响应拦截器&quot;
+    participant Backend as &quot;后端服务&quot;
+
+    Component-&gt;&gt;Axios: 发起 API 请求
+    Axios-&gt;&gt;Interceptor: 请求拦截
+    Interceptor-&gt;&gt;Interceptor: 注入 Authorization 头
+    Interceptor-&gt;&gt;Interceptor: 防重复提交检查
+    Interceptor-&gt;&gt;Backend: 发送 HTTP 请求
+    Backend--&gt;&gt;Interceptor: 返回响应
+    Interceptor-&gt;&gt;Interceptor: 解析 code 与 msg
+    alt 401
+        Interceptor--&gt;&gt;Component: 弹出重新登录对话框
+    else 500/601/其他错误
+        Interceptor--&gt;&gt;Component: 显示错误消息
+    else 成功
+        Interceptor--&gt;&gt;Component: 返回 res.data
+    end</pre></div><p><strong>图示来源</strong></p>
+<ul>
+<li><span class="fileref">src/utils/request.js:1-152</span></li>
+<li><span class="fileref">src/utils/auth.js:1-29</span></li>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+<li><span class="fileref">src/utils/request.js:1-152</span></li>
+<li><span class="fileref">src/utils/auth.js:1-29</span></li>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+</ul>
+<h2 id="安全与可访问性"><a class="anchor" href="#安全与可访问性">#</a>安全与可访问性</h2><h3 id="Token-安全建议"><a class="anchor" href="#Token-安全建议">#</a>Token 安全建议</h3><ul>
+<li>当前 Token 存储在 Cookie 中，适合配合服务端 SameSite、HttpOnly、Secure 策略使用。</li>
+<li>不应在前端日志、埋点或网络调试面板中打印完整 Token。</li>
+<li>应结合后端网关的 <code>/auth/**</code> 接口验证签名、有效期与权限范围。</li>
+</ul>
+<h3 id="跨域"><a class="anchor" href="#跨域">#</a>跨域</h3><ul>
+<li>开发环境通过 <code>devServer.proxy</code> 解决跨域，生产环境应由 Nginx、网关或 CDN 统一转发。</li>
+<li>不应在生产环境依赖前端代理配置绕过后端安全策略。</li>
+</ul>
+<h3 id="环境变量"><a class="anchor" href="#环境变量">#</a>环境变量</h3><ul>
+<li><code>VUE_APP_TITLE</code>：网页默认标题。</li>
+<li><code>VUE_APP_BASE_API</code>：后端 API 基础路径。</li>
+<li><code>NODE_ENV</code>：区分开发与生产环境。</li>
+<li><code>port</code>、<code>npm_config_port</code>：开发服务器端口。</li>
+</ul>
+<h3 id="主题定制"><a class="anchor" href="#主题定制">#</a>主题定制</h3><ul>
+<li>Element UI 主题变量通过 <code>assets/styles/element-variables.scss</code> 覆盖。</li>
+<li><code>settings.js</code> 控制侧边栏深色/浅色主题。</li>
+<li><code>ThemePicker</code> 组件通过 Vuex settings 修改主题色，并写入 <code>localStorage.layout-setting</code>。</li>
+</ul>
+<h3 id="响应式布局"><a class="anchor" href="#响应式布局">#</a>响应式布局</h3><ul>
+<li>布局组件通过 <code>layout/mixin/ResizeHandler.js</code> 监听窗口尺寸变化，适配移动端折叠侧边栏、顶部导航与标签页。</li>
+<li>建议使用语义化 HTML、ARIA 属性、键盘导航和足够的颜色对比度提升可访问性。</li>
+</ul>
+<h3 id="可访问性注意事项"><a class="anchor" href="#可访问性注意事项">#</a>可访问性注意事项</h3><ul>
+<li>按钮、输入框、链接应有可读文本或 <code>aria-label</code>。</li>
+<li>图标按钮需补充语义说明。</li>
+<li>表单错误提示应关联输入控件。</li>
+<li>动态生成的菜单应保持正确的 tab 顺序。</li>
+<li>屏幕阅读器应能识别当前标签页与面包屑位置。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/settings.js:1-44</span></li>
+<li><span class="fileref">src/store/modules/settings.js:1-42</span></li>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+</ul>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录后无法进入业务页面</td>
+<td>未正确拉取用户信息或动态路由未注入</td>
+<td>检查 <code>GetInfo</code> 与 <code>GenerateRoutes</code> 是否成功执行</td>
+</tr>
+<tr>
+<td>动态路由不生效</td>
+<td>后端返回的菜单路由缺少组件映射或权限不足</td>
+<td>检查 <code>api/menu.js</code> 返回值与 <code>permission.js</code> 的组件转换逻辑</td>
+</tr>
+<tr>
+<td>401 反复弹窗</td>
+<td>Token 过期或未携带 Authorization 头</td>
+<td>检查 <code>utils/auth.js</code> 与 <code>utils/request.js</code> 的拦截器</td>
+</tr>
+<tr>
+<td>开发环境跨域失败</td>
+<td><code>VUE_APP_BASE_API</code> 未配置或代理未生效</td>
+<td>检查 <code>vue.config.js</code> 的 devServer.proxy</td>
+</tr>
+<tr>
+<td>构建包过大</td>
+<td>未启用分包或 Source Map</td>
+<td>检查 <code>vue.config.js</code> 的 chunk 拆分与 <code>productionSourceMap</code></td>
+</tr>
+<tr>
+<td>标签页缓存异常</td>
+<td>keep-alive 名称不一致或 <code>noCache</code> 配置错误</td>
+<td>检查路由 name 与 tagsView 状态</td>
+</tr>
+<tr>
+<td>文件下载失败</td>
+<td>后端返回 JSON 而非 blob</td>
+<td>检查 <code>download</code> 函数中的 blob 判断与错误提示</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">src/permission.js:1-63</span></li>
+<li><span class="fileref">src/store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">src/store/modules/user.js:1-122</span></li>
+<li><span class="fileref">src/utils/request.js:1-152</span></li>
+<li><span class="fileref">vue.config.js:1-131</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>该前端以 Vue 2.6.12 + Element UI 为核心，围绕 <code>main.js</code> 入口、<code>App.vue</code> 根组件、<code>permission.js</code> 全局路由守卫、Vuex 状态树与 Vue Router 构建出完整的后台管理框架。其优势在于：</p>
+<ul>
+<li>通过后端菜单驱动动态权限路由，避免前端硬编码菜单。</li>
+<li>使用 Vuex 管理用户、权限、标签页和站点设置，职责清晰。</li>
+<li>借助 Axios 拦截器统一处理 Token、重复提交、错误提示与文件下载。</li>
+<li>通过 <code>vue.config.js</code> 提供开发代理、gzip 压缩、SVG Sprite 与 chunk 拆分。</li>
+</ul>
+<p>在后续演进中，建议明确前端与后端网关的路由契约，完善 Token 刷新策略，增强可访问性与国际化能力，并确保所有动态路由均由后端菜单与权限共同决定。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">← AI Leads 模块（Zealux-AI-Leads）</a>
+    <a class="next" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d3"><a href="#关键职责划分">关键职责划分</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d3"><a href="#应用入口-`main.js`">应用入口 `main.js`</a></li><li class="d3"><a href="#根组件-`App.vue`">根组件 `App.vue`</a></li><li class="d3"><a href="#全局路由守卫-`permission.js`">全局路由守卫 `permission.js`</a></li><li class="d3"><a href="#站点配置-`settings.js`">站点配置 `settings.js`</a></li><li class="d3"><a href="#构建配置-`vue.config.js`">构建配置 `vue.config.js`</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#路由系统">路由系统</a></li><li class="d3"><a href="#权限路由与菜单生成">权限路由与菜单生成</a></li><li class="d3"><a href="#用户状态与登录流程">用户状态与登录流程</a></li><li class="d3"><a href="#标签页与缓存">标签页与缓存</a></li><li class="d3"><a href="#站点设置状态">站点设置状态</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与构建特性">性能与构建特性</a></li><li class="d2"><a href="#前后端交互协议">前后端交互协议</a></li><li class="d3"><a href="#基础-URL-与代理">基础 URL 与代理</a></li><li class="d3"><a href="#认证头与-Token-持久化">认证头与 Token 持久化</a></li><li class="d3"><a href="#响应体结构与错误处理">响应体结构与错误处理</a></li><li class="d3"><a href="#防重复提交">防重复提交</a></li><li class="d3"><a href="#文件下载">文件下载</a></li><li class="d2"><a href="#安全与可访问性">安全与可访问性</a></li><li class="d3"><a href="#Token-安全建议">Token 安全建议</a></li><li class="d3"><a href="#跨域">跨域</a></li><li class="d3"><a href="#环境变量">环境变量</a></li><li class="d3"><a href="#主题定制">主题定制</a></li><li class="d3"><a href="#响应式布局">响应式布局</a></li><li class="d3"><a href="#可访问性注意事项">可访问性注意事项</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

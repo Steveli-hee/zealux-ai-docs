@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>系统管理接口 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec" open><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html" class="active">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">API 接口文档 / <b>系统管理接口</b></div><article><h1 id="系统管理接口"><a class="anchor" href="#系统管理接口">#</a>系统管理接口</h1><cite>
+**本文引用的文件**   
+- [SysUserController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserController.java)
+- [SysRoleController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysRoleController.java)
+- [SysDeptController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDeptController.java)
+- [SysPostController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysPostController.java)
+- [SysMenuController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysMenuController.java)
+- [SysDictTypeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictTypeController.java)
+- [SysDictDataController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictDataController.java)
+- [SysConfigController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysConfigController.java)
+- [SysNoticeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysNoticeController.java)
+- [SysOperlogController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysOperlogController.java)
+- [SysLogininforController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysLogininforController.java)
+- [SysUserOnlineController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserOnlineController.java)
+- [SysUserServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysUserServiceImpl.java)
+- [SysRoleServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysRoleServiceImpl.java)
+- [SysMenuServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysMenuServiceImpl.java)
+- [DataScope.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/annotation/DataScope.java)
+- [TableDataInfo.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/web/page/TableDataInfo.java)
+- [AjaxResult.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/web/domain/AjaxResult.java)
+- [BaseController.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/web/controller/BaseController.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#通用约定">通用约定</a></li>
+<li><a href="#架构与路由总览">架构与路由总览</a></li>
+<li><a href="#用户接口">用户接口</a></li>
+<li><a href="#角色接口">角色接口</a></li>
+<li><a href="#部门接口">部门接口</a></li>
+<li><a href="#岗位接口">岗位接口</a></li>
+<li><a href="#菜单接口">菜单接口</a></li>
+<li><a href="#字典接口">字典接口</a></li>
+<li><a href="#参数配置接口">参数配置接口</a></li>
+<li><a href="#通知公告接口">通知公告接口</a></li>
+<li><a href="#在线用户接口">在线用户接口</a></li>
+<li><a href="#操作日志接口">操作日志接口</a></li>
+<li><a href="#登录日志接口">登录日志接口</a></li>
+<li><a href="#数据权限-datascope-说明">数据权限 DataScope 说明</a></li>
+<li><a href="#典型请求与响应示例">典型请求与响应示例</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本文面向系统管理模块 <code>/system/**</code> 下已暴露的后端控制器，整理用户、角色、部门、岗位、菜单、字典、参数、通知公告、在线用户、操作日志、登录日志等接口的 HTTP 契约。该模块属于 RuoYi-Cloud 3.6.5 的二次开发产物，服务名为 <code>zealux-ai-system</code>，启动类仍沿用原框架命名；本文只描述仓库中实际存在的控制器行为，不虚构尚未实现的接口。</p>
+<h2 id="通用约定"><a class="anchor" href="#通用约定">#</a>通用约定</h2><ul>
+<li>所有路径均位于网关已配置的 <code>/system/**</code> 前缀下。</li>
+<li>分页查询统一通过 <code>startPage()</code> 启用 PageHelper：<ul>
+<li>常用分页参数：<code>pageNum</code>（页码）、<code>pageSize</code>（每页条数）。</li>
+<li>返回体为 <code>TableDataInfo</code>，包含 <code>total</code>、<code>rows</code>、<code>code</code>、<code>msg</code>。</li>
+</ul>
+</li>
+<li>非列表接口通常返回 <code>AjaxResult</code>，包含 <code>code</code>、<code>msg</code>、可选 <code>data</code>。</li>
+<li>鉴权方式：<ul>
+<li>普通接口需要登录态，并由 <code>@RequiresPermissions(&quot;system:*&quot;)</code> 或 <code>monitor:*</code> 控制。</li>
+<li>标注 <code>@InnerAuth</code> 的接口仅允许内部服务调用，不应被外部客户端直接访问。</li>
+</ul>
+</li>
+<li>成功状态码以 <code>HttpStatus.SUCCESS</code> 表示，失败使用 <code>error</code>，业务警告使用 <code>warn</code>。</li>
+<li>写操作通常记录操作日志注解 <code>@Log(title, businessType)</code>，并自动填充创建人/更新人。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Client[&quot;前端或其他调用方&quot;] --&gt; Gateway[&quot;网关 /system/**&quot;]
+    Gateway --&gt; SysCtrl[&quot;系统模块控制器&quot;]
+    SysCtrl --&gt; Service[&quot;业务实现类&quot;]
+    Service --&gt; Mapper[&quot;数据访问层&quot;]
+    Service --&gt; Redis[&quot;Redis 缓存&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:1-60</span></li>
+<li><span class="fileref">BaseController.java:60-142</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">BaseController.java:60-142</span></li>
+<li><span class="fileref">TableDataInfo.java:1-85</span></li>
+<li><span class="fileref">AjaxResult.java:1-200</span></li>
+</ul>
+<h2 id="架构与路由总览"><a class="anchor" href="#架构与路由总览">#</a>架构与路由总览</h2><p>系统管理模块由多个控制器组成，每个控制器对应一类资源：</p>
+<table>
+<thead>
+<tr>
+<th>控制器</th>
+<th>基础路径</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SysUserController</code></td>
+<td><code>/user</code></td>
+<td>用户信息、当前用户、注册、导入导出</td>
+</tr>
+<tr>
+<td><code>SysRoleController</code></td>
+<td><code>/role</code></td>
+<td>角色增删改查、数据权限、用户授权</td>
+</tr>
+<tr>
+<td><code>SysDeptController</code></td>
+<td><code>/dept</code></td>
+<td>部门树、新增/修改/删除、排除子节点</td>
+</tr>
+<tr>
+<td><code>SysPostController</code></td>
+<td><code>/post</code></td>
+<td>岗位增删改查、选择框</td>
+</tr>
+<tr>
+<td><code>SysMenuController</code></td>
+<td><code>/menu</code></td>
+<td>菜单树、路由构建、角色菜单选择</td>
+</tr>
+<tr>
+<td><code>SysDictTypeController</code></td>
+<td><code>/dict/type</code></td>
+<td>字典类型增删改查、刷新缓存</td>
+</tr>
+<tr>
+<td><code>SysDictDataController</code></td>
+<td><code>/dict/data</code></td>
+<td>字典数据增删改查、按类型查询</td>
+</tr>
+<tr>
+<td><code>SysConfigController</code></td>
+<td><code>/config</code></td>
+<td>系统参数键值对增删改查、刷新缓存</td>
+</tr>
+<tr>
+<td><code>SysNoticeController</code></td>
+<td><code>/notice</code></td>
+<td>通知公告增删改查</td>
+</tr>
+<tr>
+<td><code>SysOperlogController</code></td>
+<td><code>/operlog</code></td>
+<td>操作日志查询、清理、内部写入</td>
+</tr>
+<tr>
+<td><code>SysLogininforController</code></td>
+<td><code>/logininfor</code></td>
+<td>登录日志查询、清理、解锁、内部写入</td>
+</tr>
+<tr>
+<td><code>SysUserOnlineController</code></td>
+<td><code>/online</code></td>
+<td>在线用户查询、强退</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:33-60</span></li>
+<li><span class="fileref">SysRoleController.java:30-50</span></li>
+<li><span class="fileref">SysDeptController.java:26-40</span></li>
+<li><span class="fileref">SysPostController.java:26-40</span></li>
+<li><span class="fileref">SysMenuController.java:26-40</span></li>
+<li><span class="fileref">SysDictTypeController.java:28-42</span></li>
+<li><span class="fileref">SysDictDataController.java:30-44</span></li>
+<li><span class="fileref">SysConfigController.java:28-42</span></li>
+<li><span class="fileref">SysNoticeController.java:28-42</span></li>
+<li><span class="fileref">SysOperlogController.java:28-42</span></li>
+<li><span class="fileref">SysLogininforController.java:28-42</span></li>
+<li><span class="fileref">SysUserOnlineController.java:30-44</span></li>
+</ul>
+<h2 id="用户接口"><a class="anchor" href="#用户接口">#</a>用户接口</h2><p><code>SysUserController</code> 的基础路径是 <code>/user</code>。</p>
+<h3 id="获取用户列表"><a class="anchor" href="#获取用户列表">#</a>获取用户列表</h3><ul>
+<li>方法：<code>GET /system/user/list</code></li>
+<li>鉴权：<code>system:user:list</code></li>
+<li>查询参数：<code>SysUser</code> 中的可过滤字段，例如用户名、手机号、状态、部门编号等；分页参数 <code>pageNum</code>、<code>pageSize</code>。</li>
+<li>返回：<code>TableDataInfo</code>，<code>rows</code> 为用户列表。</li>
+<li>业务规则：<ul>
+<li>调用 <code>ISysUserService.selectUserList(user)</code>。</li>
+<li>该方法标注 <code>@DataScope(deptAlias = &quot;d&quot;, userAlias = &quot;u&quot;)</code>，查询范围受当前角色数据权限影响。</li>
+</ul>
+</li>
+</ul>
+<h3 id="导出用户"><a class="anchor" href="#导出用户">#</a>导出用户</h3><ul>
+<li>方法：<code>POST /system/user/export</code></li>
+<li>鉴权：<code>system:user:export</code></li>
+<li>请求体：无；筛选条件在查询参数中传入。</li>
+<li>返回：Excel 流，HTTP 状态码通常为 <code>200</code>。</li>
+</ul>
+<h3 id="导入用户"><a class="anchor" href="#导入用户">#</a>导入用户</h3><ul>
+<li>方法：<code>POST /system/user/importData</code></li>
+<li>鉴权：<code>system:user:import</code></li>
+<li>请求体：<code>multipart/form-data</code>，包含 Excel 文件；布尔参数 <code>updateSupport</code>。</li>
+<li>返回：<code>AjaxResult.data</code> 为导入结果消息。</li>
+</ul>
+<h3 id="下载导入模板"><a class="anchor" href="#下载导入模板">#</a>下载导入模板</h3><ul>
+<li>方法：<code>POST /system/user/importTemplate</code></li>
+<li>鉴权：无显式 <code>@RequiresPermissions</code>。</li>
+<li>返回：Excel 模板流。</li>
+</ul>
+<h3 id="内部接口：根据用户名获取用户信息"><a class="anchor" href="#内部接口：根据用户名获取用户信息">#</a>内部接口：根据用户名获取用户信息</h3><ul>
+<li>方法：<code>GET /system/user/info/{username}</code></li>
+<li>鉴权：<code>@InnerAuth</code>，仅内部服务可用。</li>
+<li>路径参数：<code>username</code>。</li>
+<li>返回：<code>R&lt;LoginUser&gt;</code>，包含用户、角色集合、权限集合。</li>
+</ul>
+<h3 id="内部接口：注册用户"><a class="anchor" href="#内部接口：注册用户">#</a>内部接口：注册用户</h3><ul>
+<li>方法：<code>POST /system/user/register</code></li>
+<li>鉴权：<code>@InnerAuth</code>。</li>
+<li>请求体：<code>SysUser</code>。</li>
+<li>业务规则：<ul>
+<li>若系统未开启注册功能，返回失败。</li>
+<li>用户名重复时返回失败。</li>
+<li>最终调用 <code>registerUser</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="内部接口：记录登录信息"><a class="anchor" href="#内部接口：记录登录信息">#</a>内部接口：记录登录信息</h3><ul>
+<li>方法：<code>PUT /system/user/recordlogin</code></li>
+<li>鉴权：<code>@InnerAuth</code>。</li>
+<li>请求体：<code>SysUser</code>。</li>
+<li>返回：<code>R&lt;Boolean&gt;</code>。</li>
+</ul>
+<h3 id="获取当前用户信息"><a class="anchor" href="#获取当前用户信息">#</a>获取当前用户信息</h3><ul>
+<li>方法：<code>GET /system/user/getInfo</code></li>
+<li>鉴权：需登录；代码未加 <code>@RequiresPermissions</code>，但依赖 <code>SecurityUtils.getLoginUser()</code>。</li>
+<li>返回：<code>AjaxResult</code>，包含 <code>user</code>、<code>roles</code>、<code>permissions</code>。</li>
+</ul>
+<h3 id="根据用户编号获取详细信息"><a class="anchor" href="#根据用户编号获取详细信息">#</a>根据用户编号获取详细信息</h3><ul>
+<li>方法：<code>GET /system/user/</code> 或 <code>GET /system/user/{userId}</code></li>
+<li>鉴权：<code>system:user:query</code></li>
+<li>路径参数：<code>userId</code>（可为空，用于区分两种 URL 模式）。</li>
+<li>返回：<code>AjaxResult.data</code> 为用户详情。</li>
+</ul>
+<h3 id="其他常见用户操作"><a class="anchor" href="#其他常见用户操作">#</a>其他常见用户操作</h3><p>仓库中用户控制器还声明了新增、修改、删除、重置密码、分配角色等入口，但本次分析只覆盖上述已读取到的完整片段；其余接口应以控制器源码为准。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:33-200</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-120</span></li>
+</ul>
+<h2 id="角色接口"><a class="anchor" href="#角色接口">#</a>角色接口</h2><p><code>SysRoleController</code> 的基础路径是 <code>/role</code>。</p>
+<h3 id="获取角色列表"><a class="anchor" href="#获取角色列表">#</a>获取角色列表</h3><ul>
+<li>方法：<code>GET /system/role/list</code></li>
+<li>鉴权：<code>system:role:list</code></li>
+<li>查询参数：<code>SysRole</code> 过滤字段；分页参数 <code>pageNum</code>、<code>pageSize</code>。</li>
+<li>返回：<code>TableDataInfo</code>。</li>
+</ul>
+<h3 id="导出角色"><a class="anchor" href="#导出角色">#</a>导出角色</h3><ul>
+<li>方法：<code>POST /system/role/export</code></li>
+<li>鉴权：<code>system:role:export</code></li>
+<li>返回：Excel 流。</li>
+</ul>
+<h3 id="根据角色编号获取详细信息"><a class="anchor" href="#根据角色编号获取详细信息">#</a>根据角色编号获取详细信息</h3><ul>
+<li>方法：<code>GET /system/role/{roleId}</code></li>
+<li>鉴权：<code>system:role:query</code></li>
+<li>路径参数：<code>roleId</code>。</li>
+<li>业务规则：先执行 <code>checkRoleDataScope(roleId)</code>，再返回角色详情。</li>
+</ul>
+<h3 id="新增角色"><a class="anchor" href="#新增角色">#</a>新增角色</h3><ul>
+<li>方法：<code>POST /system/role</code></li>
+<li>鉴权：<code>system:role:add</code></li>
+<li>请求体：<code>SysRole</code>。</li>
+<li>校验：<ul>
+<li>角色名称唯一性。</li>
+<li>权限标识唯一性。</li>
+</ul>
+</li>
+<li>返回：<code>toAjax(insertRole(role))</code>。</li>
+</ul>
+<h3 id="修改角色"><a class="anchor" href="#修改角色">#</a>修改角色</h3><ul>
+<li>方法：<code>PUT /system/role</code></li>
+<li>鉴权：<code>system:role:edit</code></li>
+<li>请求体：<code>SysRole</code>。</li>
+<li>校验：<ul>
+<li>不允许操作超级管理员角色。</li>
+<li>检查数据权限。</li>
+<li>角色名称与权限标识唯一性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="修改数据权限"><a class="anchor" href="#修改数据权限">#</a>修改数据权限</h3><ul>
+<li>方法：<code>PUT /system/role/dataScope</code></li>
+<li>鉴权：<code>system:role:edit</code></li>
+<li>请求体：<code>SysRole</code>，包含角色编号与数据权限配置。</li>
+<li>返回：<code>toAjax(authDataScope(role))</code>。</li>
+</ul>
+<h3 id="修改状态"><a class="anchor" href="#修改状态">#</a>修改状态</h3><ul>
+<li>方法：<code>PUT /system/role/changeStatus</code></li>
+<li>鉴权：<code>system:role:edit</code></li>
+<li>请求体：<code>SysRole</code>。</li>
+</ul>
+<h3 id="删除角色"><a class="anchor" href="#删除角色">#</a>删除角色</h3><ul>
+<li>方法：<code>DELETE /system/role/{roleIds}</code></li>
+<li>鉴权：<code>system:role:remove</code></li>
+<li>路径参数：<code>roleIds</code>，数组形式。</li>
+</ul>
+<h3 id="角色选择框"><a class="anchor" href="#角色选择框">#</a>角色选择框</h3><ul>
+<li>方法：<code>GET /system/role/optionselect</code></li>
+<li>鉴权：<code>system:role:query</code></li>
+<li>返回：全部角色列表。</li>
+</ul>
+<h3 id="已分配用户列表"><a class="anchor" href="#已分配用户列表">#</a>已分配用户列表</h3><ul>
+<li>方法：<code>GET /system/role/authUser/allocatedList</code></li>
+<li>鉴权：<code>system:role:list</code></li>
+<li>查询参数：<code>SysUser</code>。</li>
+<li>返回：<code>TableDataInfo</code>。</li>
+</ul>
+<h3 id="未分配用户列表"><a class="anchor" href="#未分配用户列表">#</a>未分配用户列表</h3><ul>
+<li>方法：<code>GET /system/role/authUser/unallocatedList</code></li>
+<li>鉴权：<code>system:role:list</code></li>
+<li>查询参数：<code>SysUser</code>。</li>
+<li>返回：<code>TableDataInfo</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysRoleController.java:30-239</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:40-120</span></li>
+</ul>
+<h2 id="部门接口"><a class="anchor" href="#部门接口">#</a>部门接口</h2><p><code>SysDeptController</code> 的基础路径是 <code>/dept</code>。</p>
+<h3 id="获取部门列表"><a class="anchor" href="#获取部门列表">#</a>获取部门列表</h3><ul>
+<li>方法：<code>GET /system/dept/list</code></li>
+<li>鉴权：<code>system:dept:list</code></li>
+<li>查询参数：<code>SysDept</code>。</li>
+<li>返回：<code>AjaxResult.data</code> 为部门列表，通常为树形结构。</li>
+</ul>
+<h3 id="排除指定节点的部门列表"><a class="anchor" href="#排除指定节点的部门列表">#</a>排除指定节点的部门列表</h3><ul>
+<li>方法：<code>GET /system/dept/list/exclude/{deptId}</code></li>
+<li>鉴权：<code>system:dept:list</code></li>
+<li>路径参数：<code>deptId</code>（可选）。</li>
+<li>业务规则：移除自身及其子孙节点。</li>
+</ul>
+<h3 id="根据部门编号获取详细信息"><a class="anchor" href="#根据部门编号获取详细信息">#</a>根据部门编号获取详细信息</h3><ul>
+<li>方法：<code>GET /system/dept/{deptId}</code></li>
+<li>鉴权：<code>system:dept:query</code></li>
+<li>路径参数：<code>deptId</code>。</li>
+<li>业务规则：先执行 <code>checkDeptDataScope(deptId)</code>。</li>
+</ul>
+<h3 id="新增部门"><a class="anchor" href="#新增部门">#</a>新增部门</h3><ul>
+<li>方法：<code>POST /system/dept</code></li>
+<li>鉴权：<code>system:dept:add</code></li>
+<li>请求体：<code>SysDept</code>。</li>
+<li>校验：部门名称唯一。</li>
+</ul>
+<h3 id="修改部门"><a class="anchor" href="#修改部门">#</a>修改部门</h3><ul>
+<li>方法：<code>PUT /system/dept</code></li>
+<li>鉴权：<code>system:dept:edit</code></li>
+<li>请求体：<code>SysDept</code>。</li>
+<li>校验：<ul>
+<li>检查数据权限。</li>
+<li>部门名称唯一。</li>
+<li>上级部门不能是自己。</li>
+<li>停用部门时不能有正常状态的子部门。</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除部门"><a class="anchor" href="#删除部门">#</a>删除部门</h3><ul>
+<li>方法：<code>DELETE /system/dept/{deptId}</code></li>
+<li>鉴权：<code>system:dept:remove</code></li>
+<li>路径参数：<code>deptId</code>。</li>
+<li>校验：<ul>
+<li>存在下级部门则拒绝。</li>
+<li>部门存在用户则拒绝。</li>
+<li>检查数据权限。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDeptController.java:26-133</span></li>
+</ul>
+<h2 id="岗位接口"><a class="anchor" href="#岗位接口">#</a>岗位接口</h2><p><code>SysPostController</code> 的基础路径是 <code>/post</code>。</p>
+<h3 id="获取岗位列表"><a class="anchor" href="#获取岗位列表">#</a>获取岗位列表</h3><ul>
+<li>方法：<code>GET /system/post/list</code></li>
+<li>鉴权：<code>system:post:list</code></li>
+<li>查询参数：<code>SysPost</code>；分页参数 <code>pageNum</code>、<code>pageSize</code>。</li>
+<li>返回：<code>TableDataInfo</code>。</li>
+</ul>
+<h3 id="导出岗位"><a class="anchor" href="#导出岗位">#</a>导出岗位</h3><ul>
+<li>方法：<code>POST /system/post/export</code></li>
+<li>鉴权：<code>system:post:export</code></li>
+<li>返回：Excel 流。</li>
+</ul>
+<h3 id="根据岗位编号获取详细信息"><a class="anchor" href="#根据岗位编号获取详细信息">#</a>根据岗位编号获取详细信息</h3><ul>
+<li>方法：<code>GET /system/post/{postId}</code></li>
+<li>鉴权：<code>system:post:query</code></li>
+<li>路径参数：<code>postId</code>。</li>
+</ul>
+<h3 id="新增岗位"><a class="anchor" href="#新增岗位">#</a>新增岗位</h3><ul>
+<li>方法：<code>POST /system/post</code></li>
+<li>鉴权：<code>system:post:add</code></li>
+<li>请求体：<code>SysPost</code>。</li>
+<li>校验：岗位名称与岗位编码唯一。</li>
+</ul>
+<h3 id="修改岗位"><a class="anchor" href="#修改岗位">#</a>修改岗位</h3><ul>
+<li>方法：<code>PUT /system/post</code></li>
+<li>鉴权：<code>system:post:edit</code></li>
+<li>请求体：<code>SysPost</code>。</li>
+<li>校验：岗位名称与岗位编码唯一。</li>
+</ul>
+<h3 id="删除岗位"><a class="anchor" href="#删除岗位">#</a>删除岗位</h3><ul>
+<li>方法：<code>DELETE /system/post/{postIds}</code></li>
+<li>鉴权：<code>system:post:remove</code></li>
+<li>路径参数：<code>postIds</code>。</li>
+</ul>
+<h3 id="岗位选择框"><a class="anchor" href="#岗位选择框">#</a>岗位选择框</h3><ul>
+<li>方法：<code>GET /system/post/optionselect</code></li>
+<li>鉴权：无显式 <code>@RequiresPermissions</code>。</li>
+<li>返回：全部岗位列表。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:26-130</span></li>
+</ul>
+<h2 id="菜单接口"><a class="anchor" href="#菜单接口">#</a>菜单接口</h2><p><code>SysMenuController</code> 的基础路径是 <code>/menu</code>。</p>
+<h3 id="获取菜单列表"><a class="anchor" href="#获取菜单列表">#</a>获取菜单列表</h3><ul>
+<li>方法：<code>GET /system/menu/list</code></li>
+<li>鉴权：<code>system:menu:list</code></li>
+<li>查询参数：<code>SysMenu</code>。</li>
+<li>业务规则：<ul>
+<li>取当前用户 ID。</li>
+<li>调用 <code>selectMenuList(menu, userId)</code>。</li>
+<li>管理员显示所有菜单，否则按用户权限查询。</li>
+</ul>
+</li>
+<li>返回：<code>AjaxResult.data</code> 为菜单列表。</li>
+</ul>
+<h3 id="根据菜单编号获取详细信息"><a class="anchor" href="#根据菜单编号获取详细信息">#</a>根据菜单编号获取详细信息</h3><ul>
+<li>方法：<code>GET /system/menu/{menuId}</code></li>
+<li>鉴权：<code>system:menu:query</code></li>
+<li>路径参数：<code>menuId</code>。</li>
+</ul>
+<h3 id="获取菜单下拉树"><a class="anchor" href="#获取菜单下拉树">#</a>获取菜单下拉树</h3><ul>
+<li>方法：<code>GET /system/menu/treeselect</code></li>
+<li>鉴权：无显式 <code>@RequiresPermissions</code>。</li>
+<li>查询参数：<code>SysMenu</code>。</li>
+<li>返回：<code>AjaxResult.data</code> 为树形选择结构。</li>
+</ul>
+<h3 id="加载角色菜单树"><a class="anchor" href="#加载角色菜单树">#</a>加载角色菜单树</h3><ul>
+<li>方法：<code>GET /system/menu/roleMenuTreeselect/{roleId}</code></li>
+<li>鉴权：无显式 <code>@RequiresPermissions</code>。</li>
+<li>路径参数：<code>roleId</code>。</li>
+<li>返回：<code>checkedKeys</code> 与 <code>menus</code>。</li>
+</ul>
+<h3 id="新增菜单"><a class="anchor" href="#新增菜单">#</a>新增菜单</h3><ul>
+<li>方法：<code>POST /system/menu</code></li>
+<li>鉴权：<code>system:menu:add</code></li>
+<li>请求体：<code>SysMenu</code>。</li>
+<li>校验：<ul>
+<li>菜单名称唯一。</li>
+<li>外链地址必须以 <code>http(s)://</code> 开头。</li>
+<li>自设置创建人。</li>
+</ul>
+</li>
+</ul>
+<h3 id="修改菜单"><a class="anchor" href="#修改菜单">#</a>修改菜单</h3><ul>
+<li>方法：<code>PUT /system/menu</code></li>
+<li>鉴权：<code>system:menu:edit</code></li>
+<li>请求体：<code>SysMenu</code>。</li>
+<li>校验：<ul>
+<li>菜单名称唯一。</li>
+<li>外链地址格式。</li>
+<li>上级菜单不能是自己。</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除菜单"><a class="anchor" href="#删除菜单">#</a>删除菜单</h3><ul>
+<li>方法：<code>DELETE /system/menu/{menuId}</code></li>
+<li>鉴权：<code>system:menu:remove</code></li>
+<li>路径参数：<code>menuId</code>。</li>
+<li>校验：<ul>
+<li>存在子菜单则拒绝。</li>
+<li>菜单已分配给角色则拒绝。</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取路由信息"><a class="anchor" href="#获取路由信息">#</a>获取路由信息</h3><ul>
+<li>方法：<code>GET /system/menu/getRouters</code></li>
+<li>鉴权：无显式 <code>@RequiresPermissions</code>。</li>
+<li>返回：前端路由树，由 <code>buildMenus</code> 构建。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;进入 getRouters&quot;] --&gt; GetUserId[&quot;获取当前用户ID&quot;]
+    GetUserId --&gt; QueryTree[&quot;查询菜单树&quot;]
+    QueryTree --&gt; Build[&quot;构建前端路由&quot;]
+    Build --&gt; Return[&quot;返回 RouterVo 列表&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuController.java:120-159</span></li>
+<li><span class="fileref">SysMenuServiceImpl.java:120-200</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuController.java:26-159</span></li>
+<li><span class="fileref">SysMenuServiceImpl.java:40-200</span></li>
+</ul>
+<h2 id="字典接口"><a class="anchor" href="#字典接口">#</a>字典接口</h2><p>字典分为“字典类型”和“字典数据”。</p>
+<h3 id="字典类型"><a class="anchor" href="#字典类型">#</a>字典类型</h3><p><code>SysDictTypeController</code> 的基础路径是 <code>/dict/type</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/dict/type/list</code></td>
+<td><code>system:dict:list</code></td>
+<td>分页查询字典类型</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST</code></td>
+<td><code>/dict/type/export</code></td>
+<td><code>system:dict:export</code></td>
+<td>导出 Excel</td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET</code></td>
+<td><code>/dict/type/{dictId}</code></td>
+<td><code>system:dict:query</code></td>
+<td>按编号查询</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/dict/type</code></td>
+<td><code>system:dict:add</code></td>
+<td>校验字典名称唯一</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT</code></td>
+<td><code>/dict/type</code></td>
+<td><code>system:dict:edit</code></td>
+<td>校验字典名称唯一</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/dict/type/{dictIds}</code></td>
+<td><code>system:dict:remove</code></td>
+<td>批量删除</td>
+</tr>
+<tr>
+<td>刷新缓存</td>
+<td><code>DELETE</code></td>
+<td><code>/dict/type/refreshCache</code></td>
+<td><code>system:dict:remove</code></td>
+<td>重置字典缓存</td>
+</tr>
+<tr>
+<td>选择框</td>
+<td><code>GET</code></td>
+<td><code>/dict/type/optionselect</code></td>
+<td>无显式鉴权</td>
+<td>返回全部字典类型</td>
+</tr>
+</tbody></table>
+<h3 id="字典数据"><a class="anchor" href="#字典数据">#</a>字典数据</h3><p><code>SysDictDataController</code> 的基础路径是 <code>/dict/data</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/dict/data/list</code></td>
+<td><code>system:dict:list</code></td>
+<td>分页查询字典数据</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST</code></td>
+<td><code>/dict/data/export</code></td>
+<td><code>system:dict:export</code></td>
+<td>导出 Excel</td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET</code></td>
+<td><code>/dict/data/{dictCode}</code></td>
+<td><code>system:dict:query</code></td>
+<td>按编号查询</td>
+</tr>
+<tr>
+<td>按类型查询</td>
+<td><code>GET</code></td>
+<td><code>/dict/data/type/{dictType}</code></td>
+<td>无显式鉴权</td>
+<td>返回该类型下的字典数据列表</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/dict/data</code></td>
+<td><code>system:dict:add</code></td>
+<td>设置创建人</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT</code></td>
+<td><code>/dict/data</code></td>
+<td><code>system:dict:edit</code></td>
+<td>设置更新人</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/dict/data/{dictCodes}</code></td>
+<td><code>system:dict:remove</code></td>
+<td>批量删除</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:28-132</span></li>
+<li><span class="fileref">SysDictDataController.java:30-122</span></li>
+</ul>
+<h2 id="参数配置接口"><a class="anchor" href="#参数配置接口">#</a>参数配置接口</h2><p><code>SysConfigController</code> 的基础路径是 <code>/config</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/config/list</code></td>
+<td><code>system:config:list</code></td>
+<td>分页查询参数</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST</code></td>
+<td><code>/config/export</code></td>
+<td><code>system:config:export</code></td>
+<td>导出 Excel</td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET</code></td>
+<td><code>/config/{configId}</code></td>
+<td>无显式鉴权</td>
+<td>按编号查询</td>
+</tr>
+<tr>
+<td>按键查询</td>
+<td><code>GET</code></td>
+<td><code>/config/configKey/{configKey}</code></td>
+<td>无显式鉴权</td>
+<td>返回参数值</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/config</code></td>
+<td><code>system:config:add</code></td>
+<td>校验参数键唯一</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT</code></td>
+<td><code>/config</code></td>
+<td><code>system:config:edit</code></td>
+<td>校验参数键唯一</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/config/{configIds}</code></td>
+<td><code>system:config:remove</code></td>
+<td>批量删除</td>
+</tr>
+<tr>
+<td>刷新缓存</td>
+<td><code>DELETE</code></td>
+<td><code>/config/refreshCache</code></td>
+<td><code>system:config:remove</code></td>
+<td>重置参数缓存</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysConfigController.java:28-133</span></li>
+</ul>
+<h2 id="通知公告接口"><a class="anchor" href="#通知公告接口">#</a>通知公告接口</h2><p><code>SysNoticeController</code> 的基础路径是 <code>/notice</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/notice/list</code></td>
+<td><code>system:notice:list</code></td>
+<td>分页查询</td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET</code></td>
+<td><code>/notice/{noticeId}</code></td>
+<td><code>system:notice:query</code></td>
+<td>按编号查询</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/notice</code></td>
+<td><code>system:notice:add</code></td>
+<td>设置创建人</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT</code></td>
+<td><code>/notice</code></td>
+<td><code>system:notice:edit</code></td>
+<td>设置更新人</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/notice/{noticeIds}</code></td>
+<td><code>system:notice:remove</code></td>
+<td>批量删除</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysNoticeController.java:28-92</span></li>
+</ul>
+<h2 id="在线用户接口"><a class="anchor" href="#在线用户接口">#</a>在线用户接口</h2><p><code>SysUserOnlineController</code> 的基础路径是 <code>/online</code>。</p>
+<h3 id="获取在线用户列表"><a class="anchor" href="#获取在线用户列表">#</a>获取在线用户列表</h3><ul>
+<li>方法：<code>GET /system/online/list</code></li>
+<li>鉴权：<code>monitor:online:list</code></li>
+<li>查询参数：<ul>
+<li><code>ipaddr</code>：按 IP 过滤。</li>
+<li><code>userName</code>：按用户名过滤。</li>
+</ul>
+</li>
+<li>处理逻辑：<ul>
+<li>从 Redis 扫描登录 Token 键。</li>
+<li>根据条件过滤或转换为在线用户对象。</li>
+<li>反转顺序后返回分页数据。</li>
+</ul>
+</li>
+<li>返回：<code>TableDataInfo</code>。</li>
+</ul>
+<h3 id="强退用户"><a class="anchor" href="#强退用户">#</a>强退用户</h3><ul>
+<li>方法：<code>DELETE /system/online/{tokenId}</code></li>
+<li>鉴权：<code>monitor:online:forceLogout</code></li>
+<li>路径参数：<code>tokenId</code>。</li>
+<li>行为：删除 Redis 中对应 Token。</li>
+<li>返回：<code>AjaxResult.success()</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserOnlineController.java:30-83</span></li>
+</ul>
+<h2 id="操作日志接口"><a class="anchor" href="#操作日志接口">#</a>操作日志接口</h2><p><code>SysOperlogController</code> 的基础路径是 <code>/operlog</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/operlog/list</code></td>
+<td><code>system:operlog:list</code></td>
+<td>分页查询</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST</code></td>
+<td><code>/operlog/export</code></td>
+<td><code>system:operlog:export</code></td>
+<td>导出 Excel</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/operlog/{operIds}</code></td>
+<td><code>system:operlog:remove</code></td>
+<td>批量删除</td>
+</tr>
+<tr>
+<td>清理</td>
+<td><code>DELETE</code></td>
+<td><code>/operlog/clean</code></td>
+<td><code>system:operlog:remove</code></td>
+<td>清空日志</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/operlog</code></td>
+<td><code>@InnerAuth</code></td>
+<td>内部服务写入</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysOperlogController.java:28-78</span></li>
+</ul>
+<h2 id="登录日志接口"><a class="anchor" href="#登录日志接口">#</a>登录日志接口</h2><p><code>SysLogininforController</code> 的基础路径是 <code>/logininfor</code>。</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>鉴权</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>GET</code></td>
+<td><code>/logininfor/list</code></td>
+<td><code>system:logininfor:list</code></td>
+<td>分页查询</td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST</code></td>
+<td><code>/logininfor/export</code></td>
+<td><code>system:logininfor:export</code></td>
+<td>导出 Excel</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE</code></td>
+<td><code>/logininfor/{infoIds}</code></td>
+<td><code>system:logininfor:remove</code></td>
+<td>批量删除</td>
+</tr>
+<tr>
+<td>清理</td>
+<td><code>DELETE</code></td>
+<td><code>/logininfor/clean</code></td>
+<td><code>system:logininfor:remove</code></td>
+<td>清空日志</td>
+</tr>
+<tr>
+<td>账户解锁</td>
+<td><code>GET</code></td>
+<td><code>/logininfor/unlock/{userName}</code></td>
+<td><code>system:logininfor:unlock</code></td>
+<td>删除重试次数缓存</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST</code></td>
+<td><code>/logininfor</code></td>
+<td><code>@InnerAuth</code></td>
+<td>内部服务写入</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLogininforController.java:28-92</span></li>
+</ul>
+<h2 id="数据权限-DataScope-说明"><a class="anchor" href="#数据权限-DataScope-说明">#</a>数据权限 DataScope 说明</h2><p><code>DataScope</code> 是数据权限过滤注解，作用在服务方法上，让 SQL 查询自动附加部门或用户维度限制。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>deptAlias</code></td>
+<td>部门表别名</td>
+</tr>
+<tr>
+<td><code>userAlias</code></td>
+<td>用户表别名</td>
+</tr>
+<tr>
+<td><code>permission</code></td>
+<td>权限字符，默认从 <code>@RequiresPermissions</code> 推导</td>
+</tr>
+</tbody></table>
+<p>关键实现位置：</p>
+<ul>
+<li><code>SysUserServiceImpl.selectUserList</code> 标注 <code>@DataScope(deptAlias = &quot;d&quot;, userAlias = &quot;u&quot;)</code>。</li>
+<li><code>SysRoleServiceImpl.selectRoleList</code> 标注 <code>@DataScope(deptAlias = &quot;d&quot;)</code>。</li>
+<li>其他类似方法也通过该注解限制查询范围。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Method[&quot;带 @DataScope 的服务方法&quot;] --&gt; Aspect[&quot;数据权限切面&quot;]
+    Aspect --&gt; Permission[&quot;解析当前用户角色与权限&quot;]
+    Permission --&gt; Filter[&quot;拼接部门或用户过滤条件&quot;]
+    Filter --&gt; Sql[&quot;生成最终 SQL&quot;]
+    Sql --&gt; Result[&quot;返回受限数据&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:17-33</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:80-120</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:40-80</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:17-33</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:80-120</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:40-80</span></li>
+</ul>
+<h2 id="典型请求与响应示例"><a class="anchor" href="#典型请求与响应示例">#</a>典型请求与响应示例</h2><h3 id="分页查询用户"><a class="anchor" href="#分页查询用户">#</a>分页查询用户</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>GET</code></li>
+<li>URL：<code>/system/user/list?pageNum=1&amp;pageSize=10</code></li>
+<li>鉴权：<code>system:user:list</code></li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;查询成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">100</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+<li>失败响应：<ul>
+<li>未登录：由安全框架返回未认证错误。</li>
+<li>无权限：由 <code>@RequiresPermissions</code> 拦截。</li>
+</ul>
+</li>
+</ul>
+<h3 id="新增用户"><a class="anchor" href="#新增用户">#</a>新增用户</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>POST</code></li>
+<li>URL：<code>/system/user</code></li>
+<li>鉴权：<code>system:user:add</code></li>
+<li>请求体：<code>SysUser</code> JSON。</li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+<li>失败响应：<ul>
+<li>用户名重复：返回业务错误消息。</li>
+<li>其他校验失败：返回 <code>code</code> 为错误状态。</li>
+</ul>
+</li>
+</ul>
+<h3 id="分页查询角色"><a class="anchor" href="#分页查询角色">#</a>分页查询角色</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>GET</code></li>
+<li>URL：<code>/system/role/list?pageNum=1&amp;pageSize=10</code></li>
+<li>鉴权：<code>system:role:list</code></li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;查询成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">50</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<h3 id="修改角色数据权限"><a class="anchor" href="#修改角色数据权限">#</a>修改角色数据权限</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>PUT</code></li>
+<li>URL：<code>/system/role/dataScope</code></li>
+<li>鉴权：<code>system:role:edit</code></li>
+<li>请求体：<code>SysRole</code>，包含角色编号和数据权限配置。</li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<h3 id="获取菜单树"><a class="anchor" href="#获取菜单树">#</a>获取菜单树</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>GET</code></li>
+<li>URL：<code>/system/menu/treeselect</code></li>
+<li>鉴权：无显式权限注解。</li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<h3 id="按字典类型查询数据"><a class="anchor" href="#按字典类型查询数据">#</a>按字典类型查询数据</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>GET</code></li>
+<li>URL：<code>/system/dict/data/type/{dictType}</code></li>
+<li>鉴权：无显式权限注解。</li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<h3 id="获取在线用户"><a class="anchor" href="#获取在线用户">#</a>获取在线用户</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>GET</code></li>
+<li>URL：<code>/system/online/list?ipaddr=&amp;userName=</code></li>
+<li>鉴权：<code>monitor:online:list</code></li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;查询成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;rows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<h3 id="强退在线用户"><a class="anchor" href="#强退在线用户">#</a>强退在线用户</h3><ul>
+<li>请求：<ul>
+<li>方法：<code>DELETE</code></li>
+<li>URL：<code>/system/online/{tokenId}</code></li>
+<li>鉴权：<code>monitor:online:forceLogout</code></li>
+</ul>
+</li>
+<li>成功响应：<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:60-120</span></li>
+<li><span class="fileref">SysRoleController.java:50-120</span></li>
+<li><span class="fileref">SysMenuController.java:40-120</span></li>
+<li><span class="fileref">SysDictDataController.java:44-90</span></li>
+<li><span class="fileref">SysUserOnlineController.java:44-83</span></li>
+<li><span class="fileref">BaseController.java:80-142</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>401 未登录</td>
+<td>请求缺少有效 Token</td>
+<td>先调用登录流程获取 Token，再由网关转发</td>
+</tr>
+<tr>
+<td>403 无权限</td>
+<td>缺少 <code>@RequiresPermissions</code> 对应的权限字符</td>
+<td>检查角色是否拥有对应权限，如 <code>system:user:list</code></td>
+</tr>
+<tr>
+<td>列表为空</td>
+<td>数据权限限制</td>
+<td>检查当前角色是否被 <code>DataScope</code> 限制了部门或用户范围</td>
+</tr>
+<tr>
+<td>菜单为空</td>
+<td>当前用户没有菜单权限</td>
+<td>确认用户已分配菜单及权限，并调用 <code>/menu/getRouters</code></td>
+</tr>
+<tr>
+<td>删除部门失败</td>
+<td>存在子部门或部门下有用户</td>
+<td>先删除子部门或移出用户后再删除</td>
+</tr>
+<tr>
+<td>删除菜单失败</td>
+<td>存在子菜单或菜单已分配给角色</td>
+<td>先解绑或删除子菜单</td>
+</tr>
+<tr>
+<td>内部接口不可用</td>
+<td>使用了 <code>@InnerAuth</code></td>
+<td>仅允许系统内部服务调用，不应由外部客户端直连</td>
+</tr>
+<tr>
+<td>字典类型数据为空</td>
+<td>未配置对应 <code>dictType</code></td>
+<td>先创建字典类型，再添加字典数据</td>
+</tr>
+<tr>
+<td>在线用户查询为空</td>
+<td>Redis 中没有 Token 或未正确缓存</td>
+<td>检查登录流程是否正确将 Token 写入 Redis</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDeptController.java:80-133</span></li>
+<li><span class="fileref">SysMenuController.java:80-159</span></li>
+<li><span class="fileref">SysUserOnlineController.java:44-83</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本系统管理模块基于 RuoYi-Cloud 3.6.5 的系统管理子系统，提供了用户、角色、部门、岗位、菜单、字典、参数、通知公告、在线用户、操作日志、登录日志等核心管理能力。接口契约以控制器注解为准：分页接口返回 <code>TableDataInfo</code>，普通写接口返回 <code>AjaxResult</code>，内部接口使用 <code>@InnerAuth</code>，业务权限使用 <code>@RequiresPermissions</code>。数据权限方面，<code>SysUserServiceImpl</code> 与 <code>SysRoleServiceImpl</code> 等方法通过 <code>@DataScope</code> 对查询范围进行部门或用户维度限制。文档中未出现 CRM 相关控制器或 <code>/leads/**</code> 路由，也不应把尚未落地的设想当作已实现能力。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">← 文件服务接口</a>
+    <a class="next" href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#通用约定">通用约定</a></li><li class="d2"><a href="#架构与路由总览">架构与路由总览</a></li><li class="d2"><a href="#用户接口">用户接口</a></li><li class="d3"><a href="#获取用户列表">获取用户列表</a></li><li class="d3"><a href="#导出用户">导出用户</a></li><li class="d3"><a href="#导入用户">导入用户</a></li><li class="d3"><a href="#下载导入模板">下载导入模板</a></li><li class="d3"><a href="#内部接口：根据用户名获取用户信息">内部接口：根据用户名获取用户信息</a></li><li class="d3"><a href="#内部接口：注册用户">内部接口：注册用户</a></li><li class="d3"><a href="#内部接口：记录登录信息">内部接口：记录登录信息</a></li><li class="d3"><a href="#获取当前用户信息">获取当前用户信息</a></li><li class="d3"><a href="#根据用户编号获取详细信息">根据用户编号获取详细信息</a></li><li class="d3"><a href="#其他常见用户操作">其他常见用户操作</a></li><li class="d2"><a href="#角色接口">角色接口</a></li><li class="d3"><a href="#获取角色列表">获取角色列表</a></li><li class="d3"><a href="#导出角色">导出角色</a></li><li class="d3"><a href="#根据角色编号获取详细信息">根据角色编号获取详细信息</a></li><li class="d3"><a href="#新增角色">新增角色</a></li><li class="d3"><a href="#修改角色">修改角色</a></li><li class="d3"><a href="#修改数据权限">修改数据权限</a></li><li class="d3"><a href="#修改状态">修改状态</a></li><li class="d3"><a href="#删除角色">删除角色</a></li><li class="d3"><a href="#角色选择框">角色选择框</a></li><li class="d3"><a href="#已分配用户列表">已分配用户列表</a></li><li class="d3"><a href="#未分配用户列表">未分配用户列表</a></li><li class="d2"><a href="#部门接口">部门接口</a></li><li class="d3"><a href="#获取部门列表">获取部门列表</a></li><li class="d3"><a href="#排除指定节点的部门列表">排除指定节点的部门列表</a></li><li class="d3"><a href="#根据部门编号获取详细信息">根据部门编号获取详细信息</a></li><li class="d3"><a href="#新增部门">新增部门</a></li><li class="d3"><a href="#修改部门">修改部门</a></li><li class="d3"><a href="#删除部门">删除部门</a></li><li class="d2"><a href="#岗位接口">岗位接口</a></li><li class="d3"><a href="#获取岗位列表">获取岗位列表</a></li><li class="d3"><a href="#导出岗位">导出岗位</a></li><li class="d3"><a href="#根据岗位编号获取详细信息">根据岗位编号获取详细信息</a></li><li class="d3"><a href="#新增岗位">新增岗位</a></li><li class="d3"><a href="#修改岗位">修改岗位</a></li><li class="d3"><a href="#删除岗位">删除岗位</a></li><li class="d3"><a href="#岗位选择框">岗位选择框</a></li><li class="d2"><a href="#菜单接口">菜单接口</a></li><li class="d3"><a href="#获取菜单列表">获取菜单列表</a></li><li class="d3"><a href="#根据菜单编号获取详细信息">根据菜单编号获取详细信息</a></li><li class="d3"><a href="#获取菜单下拉树">获取菜单下拉树</a></li><li class="d3"><a href="#加载角色菜单树">加载角色菜单树</a></li><li class="d3"><a href="#新增菜单">新增菜单</a></li><li class="d3"><a href="#修改菜单">修改菜单</a></li><li class="d3"><a href="#删除菜单">删除菜单</a></li><li class="d3"><a href="#获取路由信息">获取路由信息</a></li><li class="d2"><a href="#字典接口">字典接口</a></li><li class="d3"><a href="#字典类型">字典类型</a></li><li class="d3"><a href="#字典数据">字典数据</a></li><li class="d2"><a href="#参数配置接口">参数配置接口</a></li><li class="d2"><a href="#通知公告接口">通知公告接口</a></li><li class="d2"><a href="#在线用户接口">在线用户接口</a></li><li class="d3"><a href="#获取在线用户列表">获取在线用户列表</a></li><li class="d3"><a href="#强退用户">强退用户</a></li><li class="d2"><a href="#操作日志接口">操作日志接口</a></li><li class="d2"><a href="#登录日志接口">登录日志接口</a></li><li class="d2"><a href="#数据权限-DataScope-说明">数据权限 DataScope 说明</a></li><li class="d2"><a href="#典型请求与响应示例">典型请求与响应示例</a></li><li class="d3"><a href="#分页查询用户">分页查询用户</a></li><li class="d3"><a href="#新增用户">新增用户</a></li><li class="d3"><a href="#分页查询角色">分页查询角色</a></li><li class="d3"><a href="#修改角色数据权限">修改角色数据权限</a></li><li class="d3"><a href="#获取菜单树">获取菜单树</a></li><li class="d3"><a href="#按字典类型查询数据">按字典类型查询数据</a></li><li class="d3"><a href="#获取在线用户">获取在线用户</a></li><li class="d3"><a href="#强退在线用户">强退在线用户</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

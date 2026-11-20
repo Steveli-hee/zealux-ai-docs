@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>网关模块（Gateway） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html" class="active">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>网关模块（Gateway）</b></div><article><h1 id="网关模块（Gateway）"><a class="anchor" href="#网关模块（Gateway）">#</a>网关模块（Gateway）</h1><cite>
+**本文引用的文件**
+- [RuoYiGatewayApplication.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/RuoYiGatewayApplication.java)
+- [pom.xml](file://zealux-ai-master/zealux-ai-gateway/pom.xml)
+- [bootstrap.yml](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/bootstrap.yml)
+- [AuthFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/AuthFilter.java)
+- [IgnoreWhiteProperties.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/properties/IgnoreWhiteProperties.java)
+- [BlackListUrlFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/BlackListUrlFilter.java)
+- [ValidateCodeFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/ValidateCodeFilter.java)
+- [GatewayConfig.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/GatewayConfig.java)
+- [SentinelFallbackHandler.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/handler/SentinelFallbackHandler.java)
+- [SpringDocConfig.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/SpringDocConfig.java)
+- [RouterFunctionConfiguration.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/RouterFunctionConfiguration.java)
+- [GatewayExceptionHandler.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/handler/GatewayExceptionHandler.java)
+- [SecurityConstants.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/constant/SecurityConstants.java)
+- [JwtUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/utils/JwtUtils.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与可靠性">性能与可靠性</a></li>
+<li><a href="#部署与最佳实践">部署与最佳实践</a></li>
+<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本模块是 RuoYi-Cloud 3.6.5 的 Spring Cloud Gateway 网关实现，服务名为 <code>zealux-ai-gateway</code>。它承担统一入口、路由转发、全局鉴权、验证码校验、限流熔断、文档聚合等横切职责；业务逻辑由 auth、system、gen、job、file 等下游服务处理。</p>
+<p>需要特别说明：当前仓库中并未包含以 Nacos 动态配置形式声明的五条前缀路由 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code>。这些路由通常由 Nacos 中的 <code>application-dev.yml</code> 或对应 dataId 提供，不在本工作区源码内。本文对“五条前缀路由放行或拦截”的描述基于请求路径模式匹配的实现方式，而非断言源码中存在硬编码路由表。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>网关模块位于 <code>zealux-ai-master/zealux-ai-gateway</code>，采用 Spring WebFlux 响应式架构，主要分层如下：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>目录</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动层</td>
+<td><code>com.zealux.gateway.RuoYiGatewayApplication</code></td>
+<td>排除数据源自动装配，启动 Spring Cloud Gateway</td>
+</tr>
+<tr>
+<td>过滤器层</td>
+<td><code>filter/*</code></td>
+<td>全局鉴权、黑名单、验证码、XSS、请求缓存等</td>
+</tr>
+<tr>
+<td>配置层</td>
+<td><code>config/*</code></td>
+<td>网关 Bean、白名单、验证码、Swagger、路由函数</td>
+</tr>
+<tr>
+<td>处理器层</td>
+<td><code>handler/*</code></td>
+<td>Sentinel 回调、全局异常、验证码 Handler</td>
+</tr>
+<tr>
+<td>服务层</td>
+<td><code>service/*</code></td>
+<td>验证码校验接口及实现</td>
+</tr>
+<tr>
+<td>资源层</td>
+<td><code>resources/*</code></td>
+<td>bootstrap 配置、日志配置</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    App[&quot;RuoYiGatewayApplication&lt;br/&gt;网关启动类&quot;] --&gt; Filter[&quot;GlobalFilter&lt;br/&gt;AuthFilter / ValidateCodeFilter / BlackListUrlFilter&quot;]
+    Filter --&gt; Router[&quot;路由转发&lt;br/&gt;Nacos 动态路由&quot;]
+    Filter --&gt; Sentinel[&quot;Sentinel 限流熔断&quot;]
+    Filter --&gt; Exception[&quot;GatewayExceptionHandler&lt;br/&gt;统一异常处理&quot;]
+    Config[&quot;GatewayConfig&lt;br/&gt;Sentinel 回调 Bean&quot;] --&gt; Sentinel
+    Doc[&quot;SpringDocConfig&lt;br/&gt;Swagger 文档聚合&quot;] --&gt; Router</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java:1-29</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">GatewayConfig.java:1-23</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java:1-29</span></li>
+<li><span class="fileref">pom.xml:1-105</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><ul>
+<li><strong>网关启动类</strong>：<code>RuoYiGatewayApplication</code> 使用 <code>@SpringBootApplication</code>，并排除 <code>DataSourceAutoConfiguration</code>，表明网关不直接连接业务数据库。</li>
+<li><strong>全局鉴权过滤器</strong>：<code>AuthFilter</code> 从请求头解析 JWT，校验签名与有效期，并在 Redis 中验证登录态，最后将用户标识注入下游请求头。</li>
+<li><strong>白名单机制</strong>：<code>IgnoreWhiteProperties</code> 通过 <code>security.ignore.whites</code> 暴露可跳过的 URL 模式列表，支持 Nacos 热更新。</li>
+<li><strong>黑名单过滤器</strong>：<code>BlackListUrlFilter</code> 是基于正则表达式匹配的网关过滤器工厂，用于按 URL 规则拒绝访问。</li>
+<li><strong>验证码过滤器</strong>：<code>ValidateCodeFilter</code> 针对 <code>/auth/login</code> 与 <code>/auth/register</code> 校验图形验证码。</li>
+<li><strong>限流熔断</strong>：通过 Sentinel 依赖与 <code>GatewayConfig</code> 注册的 <code>SentinelFallbackHandler</code> 提供统一限流降级响应。</li>
+<li><strong>文档聚合</strong>：<code>SpringDocConfig</code> 订阅 Nacos 实例变更事件，自动把各服务的 OpenAPI 地址注册到 Swagger UI。</li>
+<li><strong>全局异常</strong>：<code>GatewayExceptionHandler</code> 将 404、状态码异常和未知异常转换为统一响应体。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java:1-29</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">IgnoreWhiteProperties.java:1-33</span></li>
+<li><span class="fileref">BlackListUrlFilter.java:1-65</span></li>
+<li><span class="fileref">ValidateCodeFilter.java:1-80</span></li>
+<li><span class="fileref">GatewayConfig.java:1-23</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+<li><span class="fileref">GatewayExceptionHandler.java:1-56</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>网关作为 Spring Cloud Gateway 应用，对外暴露 HTTP 入口，内部由多个 GlobalFilter 与 GatewayFilter 组成横切链路，再转发到 Nacos 注册的后端服务。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;客户端&quot;
+    participant GW as &quot;网关&quot;
+    participant AuthF as &quot;AuthFilter&quot;
+    participant Redis as &quot;Redis&quot;
+    participant Route as &quot;Nacos 动态路由&quot;
+    participant Service as &quot;后端服务&quot;
+
+    Client-&gt;&gt;GW: &quot;HTTP 请求&quot;
+    GW-&gt;&gt;AuthF: &quot;进入全局鉴权过滤器&quot;
+    AuthF-&gt;&gt;AuthF: &quot;解析 Authorization 头&quot;
+    AuthF-&gt;&gt;AuthF: &quot;调用 JwtUtils.parseToken&quot;
+    AuthF-&gt;&gt;Redis: &quot;检查登录态是否过期&quot;
+    Redis--&gt;&gt;AuthF: &quot;存在或不存在&quot;
+    AuthF-&gt;&gt;GW: &quot;注入 user_key / user_id / username 请求头&quot;
+    GW-&gt;&gt;Route: &quot;匹配 /auth/** 等前缀路由&quot;
+    Route-&gt;&gt;Service: &quot;转发到目标服务&quot;
+    Service--&gt;&gt;GW: &quot;业务响应&quot;
+    GW--&gt;&gt;Client: &quot;返回响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:24-135</span></li>
+<li><span class="fileref">JwtUtils.java:1-123</span></li>
+<li><span class="fileref">SecurityConstants.java:1-49</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="网关启动类与运行边界"><a class="anchor" href="#网关启动类与运行边界">#</a>网关启动类与运行边界</h3><p><code>RuoYiGatewayApplication</code> 是网关唯一入口，排除了数据源自动装配，说明网关不负责业务数据持久化，也不应在此编写业务逻辑。它只负责：</p>
+<ul>
+<li>加载 Spring Cloud Gateway 与 Nacos 相关依赖；</li>
+<li>注册全局过滤器、异常处理器、文档聚合等横切能力；</li>
+<li>转发请求到已注册的后端服务。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java:1-29</span></li>
+<li><span class="fileref">pom.xml:1-105</span></li>
+</ul>
+<h3 id="全局鉴权过滤器-AuthFilter"><a class="anchor" href="#全局鉴权过滤器-AuthFilter">#</a>全局鉴权过滤器 AuthFilter</h3><p><code>AuthFilter</code> 实现了 <code>GlobalFilter</code> 与 <code>Ordered</code>，优先级为 <code>-200</code>，属于较早执行的横切过滤器。其核心流程如下：</p>
+<ol>
+<li><strong>跳过白名单</strong>：使用 <code>IgnoreWhiteProperties.getWhites()</code> 中的 URL 模式匹配，若命中则直接放行。</li>
+<li><strong>解析 Token</strong>：从 <code>Authorization</code> 请求头取值，并根据 <code>TokenConstants.PREFIX</code> 去除可能的前缀。</li>
+<li><strong>解析 JWT</strong>：调用 <code>JwtUtils.parseToken</code>，使用 HS512 算法与共享密钥解析 Claims。</li>
+<li><strong>校验登录态</strong>：取出 <code>user_key</code>，拼接 Redis Key，判断该 token 是否仍存在于 Redis。</li>
+<li><strong>提取用户信息</strong>：从 Claims 中取 <code>user_id</code>、<code>username</code>，缺失则拒绝。</li>
+<li><strong>注入下游请求头</strong>：写入 <code>user_key</code>、<code>user_id</code>、<code>username</code>，并移除内部来源标记 <code>from-source</code>。</li>
+<li><strong>未授权响应</strong>：令牌为空、签名无效、过期、Redis 无记录或用户信息缺失时，返回 401。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;进入 AuthFilter&quot;]) --&gt; ReadURL[&quot;读取请求路径&quot;]
+    ReadURL --&gt; CheckWhite{&quot;是否匹配白名单?&quot;}
+    CheckWhite --&gt;|是| Pass[&quot;直接放行&quot;]
+    CheckWhite --&gt;|否| ReadToken[&quot;从 Authorization 头读取 Token&quot;]
+    ReadToken --&gt; TokenEmpty{&quot;Token 是否为空?&quot;}
+    TokenEmpty --&gt;|是| Unauthorized[&quot;返回 401：令牌不能为空&quot;]
+    TokenEmpty --&gt;|否| ParseJWT[&quot;调用 JwtUtils.parseToken&quot;]
+    ParseJWT --&gt; ClaimsValid{&quot;Claims 是否有效?&quot;}
+    ClaimsValid --&gt;|否| UnauthorizedExpired[&quot;返回 401：令牌已过期或验证不正确&quot;]
+    ClaimsValid --&gt;|是| GetUserKey[&quot;获取 user_key&quot;]
+    GetUserKey --&gt; CheckRedis[&quot;Redis 中是否存在登录态&quot;]
+    CheckRedis --&gt;|否| UnauthorizedSession[&quot;返回 401：登录状态已过期&quot;]
+    CheckRedis --&gt;|是| ExtractInfo[&quot;提取 user_id 与 username&quot;]
+    ExtractInfo --&gt; InfoValid{&quot;用户信息是否完整?&quot;}
+    InfoValid --&gt;|否| UnauthorizedInfo[&quot;返回 401：令牌验证失败&quot;]
+    InfoValid --&gt;|是| InjectHeaders[&quot;写入 user_key / user_id / username 请求头&quot;]
+    InjectHeaders --&gt; CleanInternal[&quot;清除 from-source 内部来源头&quot;]
+    CleanInternal --&gt; Next[&quot;继续后续过滤器或路由转发&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:24-135</span></li>
+<li><span class="fileref">JwtUtils.java:1-123</span></li>
+<li><span class="fileref">SecurityConstants.java:1-49</span></li>
+</ul>
+<h4 id="关键行为说明"><a class="anchor" href="#关键行为说明">#</a>关键行为说明</h4><ul>
+<li><strong>Token 来源</strong>：从 <code>Authorization</code> 请求头解析，不是 Cookie 或其他位置。</li>
+<li><strong>签名与有效期</strong>：由 <code>JwtUtils.parseToken</code> 完成；如果签名错误或已过期，会抛出异常并被转换为 401。</li>
+<li><strong>登录态续期</strong>：仅凭 JWT 不够，还要求 Redis 中存在对应登录键，防止服务端主动踢出或登出后仍可访问。</li>
+<li><strong>上下文传递</strong>：网关不会把用户对象放入线程局部变量，而是通过安全常量定义的请求头传递给下游服务。</li>
+<li><strong>白名单扩展</strong>：通过 <code>security.ignore.whites</code> 配置，支持正则模式匹配，适合公开接口、健康检查、静态资源等。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:24-135</span></li>
+<li><span class="fileref">IgnoreWhiteProperties.java:12-33</span></li>
+<li><span class="fileref">SecurityConstants.java:12-49</span></li>
+<li><span class="fileref">JwtUtils.java:16-123</span></li>
+</ul>
+<h3 id="白名单与黑名单机制"><a class="anchor" href="#白名单与黑名单机制">#</a>白名单与黑名单机制</h3><ul>
+<li><strong>白名单</strong>：<code>IgnoreWhiteProperties</code> 绑定 <code>security.ignore.whites</code>，<code>AuthFilter</code> 使用 <code>StringUtils.matches</code> 进行模式匹配。</li>
+<li><strong>黑名单</strong>：<code>BlackListUrlFilter</code> 是 <code>AbstractGatewayFilterFactory</code>，支持传入正则列表，将 <code>**</code> 替换为 <code>(.*?)</code> 后编译为 Pattern 进行匹配。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class IgnoreWhiteProperties {
+        +List~String~ whites
+        +getWhites() List~String~
+        +setWhites(List~String~) void
+    }
+
+    class BlackListUrlFilter {
+        +apply(config) GatewayFilter
+        +Config blacklistUrl
+        +Config.matchBlacklist(url) boolean
+    }
+
+    class AuthFilter {
+        +filter(exchange, chain) Mono~Void~
+        -getToken(request) String
+        -unauthorizedResponse(exchange, msg) Mono~Void~
+    }
+
+    AuthFilter --&gt; IgnoreWhiteProperties : &quot;读取白名单&quot;
+    BlackListUrlFilter --&gt; BlackListUrlFilter.Config : &quot;使用正则黑名单&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">IgnoreWhiteProperties.java:12-33</span></li>
+<li><span class="fileref">BlackListUrlFilter.java:12-65</span></li>
+<li><span class="fileref">AuthFilter.java:24-135</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">IgnoreWhiteProperties.java:12-33</span></li>
+<li><span class="fileref">BlackListUrlFilter.java:12-65</span></li>
+</ul>
+<h3 id="验证码校验"><a class="anchor" href="#验证码校验">#</a>验证码校验</h3><p><code>ValidateCodeFilter</code> 只对 <code>/auth/login</code> 与 <code>/auth/register</code> 生效，且受 <code>captcha.enabled</code> 控制。它会读取请求体，解析 JSON，并调用 <code>ValidateCodeService.checkCaptcha</code> 校验验证码。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;客户端&quot;
+    participant Filter as &quot;ValidateCodeFilter&quot;
+    participant Service as &quot;ValidateCodeService&quot;
+
+    Client-&gt;&gt;Filter: &quot;POST /auth/login 或 /auth/register&quot;
+    Filter-&gt;&gt;Filter: &quot;判断路径与验证码开关&quot;
+    Filter-&gt;&gt;Filter: &quot;读取并解析请求体&quot;
+    Filter-&gt;&gt;Service: &quot;checkCaptcha(code, uuid)&quot;
+    Service--&gt;&gt;Filter: &quot;校验成功或抛出异常&quot;
+    Filter--&gt;&gt;Client: &quot;继续转发或返回错误&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">ValidateCodeFilter.java:12-80</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">ValidateCodeFilter.java:12-80</span></li>
+</ul>
+<h3 id="限流与熔断"><a class="anchor" href="#限流与熔断">#</a>限流与熔断</h3><p>网关引入 Sentinel 与 Sentinel Gateway 依赖，并通过 <code>GatewayConfig</code> 注册最高优先级的 <code>SentinelFallbackHandler</code>。当触发限流或熔断时，默认返回固定提示。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Request[&quot;进入网关请求&quot;] --&gt; SentinelCheck[&quot;Sentinel 规则检查&quot;]
+    SentinelCheck --&gt; Allowed{&quot;是否允许?&quot;}
+    Allowed --&gt;|是| Forward[&quot;继续转发到下游服务&quot;]
+    Allowed --&gt;|否| Fallback[&quot;SentinelFallbackHandler 处理&quot;]
+    Fallback --&gt; Response[&quot;返回限流提示信息&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">GatewayConfig.java:12-23</span></li>
+<li><span class="fileref">SentinelFallbackHandler.java:12-41</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GatewayConfig.java:12-23</span></li>
+<li><span class="fileref">SentinelFallbackHandler.java:12-41</span></li>
+<li><span class="fileref">pom.xml:14-59</span></li>
+</ul>
+<h3 id="文档聚合与-Swagger"><a class="anchor" href="#文档聚合与-Swagger">#</a>文档聚合与 Swagger</h3><p><code>SpringDocConfig</code> 在启用 springdoc 时注册 Nacos 实例变更监听器，根据发现的服务实例动态生成 Swagger 文档地址集合，并排除网关自身、认证服务、文件服务与监控服务。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SpringDocConfig {
+        +afterPropertiesSet() void
+    }
+    class SwaggerDocRegister {
+        +onEvent(event) void
+        +subscribeType() Class
+        -EXCLUDE_ROUTES String[]
+    }
+    SpringDocConfig --&gt; SwaggerDocRegister : &quot;注册订阅者&quot;
+    SwaggerDocRegister --&gt; DiscoveryClient : &quot;获取服务实例&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:12-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:12-93</span></li>
+</ul>
+<h3 id="路由与五条前缀的关系"><a class="anchor" href="#路由与五条前缀的关系">#</a>路由与五条前缀的关系</h3><p>代码中存在以下路由相关实现：</p>
+<ul>
+<li><code>RouterFunctionConfiguration</code> 显式注册了 GET <code>/code</code> 文本接口。</li>
+<li><code>ValidateCodeFilter</code> 明确限定 <code>/auth/login</code> 与 <code>/auth/register</code>。</li>
+<li><code>AuthFilter</code> 对所有非白名单路径执行鉴权。</li>
+<li>其余 <code>/system/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 以及 <code>/auth/**</code> 下的其他路径，应由 Nacos 动态路由配置提供。</li>
+</ul>
+<p>因此，更准确的说法是：<strong>网关具备对五条前缀路由进行放行或拦截的能力，但具体哪些路径在白名单、哪些路由指向哪个服务，应查看 Nacos 中的 <code>application-dev.yml</code> 或对应 dataId。</strong></p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RouterFunctionConfiguration.java:12-31</span></li>
+<li><span class="fileref">ValidateCodeFilter.java:24-30</span></li>
+<li><span class="fileref">AuthFilter.java:40-52</span></li>
+</ul>
+<h3 id="Nacos-配置中心与-bootstrap.yml"><a class="anchor" href="#Nacos-配置中心与-bootstrap.yml">#</a>Nacos 配置中心与 bootstrap.yml</h3><p><code>bootstrap.yml</code> 是网关启动阶段的关键配置，声明以下内容：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>值或含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>server.port</code></td>
+<td><code>8080</code></td>
+</tr>
+<tr>
+<td><code>spring.application.name</code></td>
+<td><code>zealux-ai-gateway</code></td>
+</tr>
+<tr>
+<td><code>spring.profiles.active</code></td>
+<td><code>dev</code></td>
+</tr>
+<tr>
+<td><code>spring.cloud.nacos.discovery.server-addr</code></td>
+<td><code>127.0.0.1:8848</code></td>
+</tr>
+<tr>
+<td><code>spring.cloud.nacos.config.server-addr</code></td>
+<td><code>127.0.0.1:8848</code></td>
+</tr>
+<tr>
+<td><code>spring.cloud.nacos.config.file-extension</code></td>
+<td><code>yml</code></td>
+</tr>
+<tr>
+<td><code>spring.cloud.nacos.config.shared-configs</code></td>
+<td>引入 <code>application-${profile}.yml</code></td>
+</tr>
+<tr>
+<td><code>spring.sentinel.eager</code></td>
+<td><code>true</code>，禁用控制台懒加载</td>
+</tr>
+<tr>
+<td><code>spring.sentinel.transport.dashboard</code></td>
+<td><code>127.0.0.1:8718</code></td>
+</tr>
+<tr>
+<td><code>spring.sentinel.datasource.ds1.nacos.dataId</code></td>
+<td><code>sentinel-zealux-ai-gateway</code></td>
+</tr>
+<tr>
+<td><code>spring.sentinel.datasource.ds1.nacos.groupId</code></td>
+<td><code>DEFAULT_GROUP</code></td>
+</tr>
+<tr>
+<td><code>spring.sentinel.datasource.ds1.nacos.rule-type</code></td>
+<td><code>gw-flow</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-44</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p>网关模块依赖 Spring Cloud Gateway、Nacos 注册与配置、Sentinel、Loadbalancer、Actuator、Kaptcha、Redis 公共库与 SpringDoc。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    Gateway[&quot;zealux-ai-gateway&quot;] --&gt; SCG[&quot;Spring Cloud Gateway&quot;]
+    Gateway --&gt; NacosDiscovery[&quot;Nacos 注册中心&quot;]
+    Gateway --&gt; NacosConfig[&quot;Nacos 配置中心&quot;]
+    Gateway --&gt; SentinelCore[&quot;Sentinel 核心&quot;]
+    Gateway --&gt; SentinelGW[&quot;Sentinel Gateway&quot;]
+    Gateway --&gt; LoadBalancer[&quot;Loadbalancer&quot;]
+    Gateway --&gt; Actuator[&quot;Actuator&quot;]
+    Gateway --&gt; Kaptcha[&quot;Kaptcha&quot;]
+    Gateway --&gt; CommonRedis[&quot;zealux-ai-common-redis&quot;]
+    Gateway --&gt; SpringDoc[&quot;springdoc-openapi-webflux-ui&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml:14-95</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml:1-105</span></li>
+</ul>
+<h2 id="性能与可靠性"><a class="anchor" href="#性能与可靠性">#</a>性能与可靠性</h2><ul>
+<li><strong>响应式模型</strong>：网关基于 WebFlux，过滤器链是异步非阻塞的，适合高并发网关场景。</li>
+<li><strong>鉴权开销</strong>：每个请求都会解析 JWT 并访问 Redis，建议 Redis 使用本地或就近集群以降低延迟。</li>
+<li><strong>请求体读取</strong>：验证码过滤器会读取请求体，需要注意重复消费问题；生产环境应确保下游不再重复解析同一请求体。</li>
+<li><strong>限流粒度</strong>：Sentinel 规则通过 <code>gw-flow</code> 类型接入，可按 API、IP、参数维度限流，避免把热点接口打满下游。</li>
+<li><strong>异常收敛</strong>：<code>GatewayExceptionHandler</code> 将未找到服务、状态码异常与未知异常统一输出，便于前端与监控处理。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GatewayExceptionHandler.java:12-56</span></li>
+<li><span class="fileref">ValidateCodeFilter.java:44-79</span></li>
+<li><span class="fileref">SentinelFallbackHandler.java:12-41</span></li>
+</ul>
+<h2 id="部署与最佳实践"><a class="anchor" href="#部署与最佳实践">#</a>部署与最佳实践</h2><h3 id="反向代理与-HTTPS-终止"><a class="anchor" href="#反向代理与-HTTPS-终止">#</a>反向代理与 HTTPS 终止</h3><ul>
+<li>推荐由 Nginx、Apache、云负载均衡或 API 网关在外部终止 HTTPS，并将明文 HTTP 转发给网关的 <code>8080</code> 端口。</li>
+<li>若上游代理设置了 <code>X-Forwarded-Proto</code>、<code>X-Real-IP</code>、<code>X-Forwarded-For</code>，应在反向代理层正确传递，以便网关和下游服务识别真实协议与来源 IP。</li>
+<li>不要在网关层自行实现证书管理；证书由边缘反向代理或云平台统一管理更安全。</li>
+</ul>
+<h3 id="CORS-策略"><a class="anchor" href="#CORS-策略">#</a>CORS 策略</h3><ul>
+<li>当前源码未发现独立的 CORS 全局配置 Bean。若前端跨域访问，应在 Nacos 的动态路由或反向代理层配置允许的 Origin、Method、Header。</li>
+<li>生产环境应限制允许的域名白名单，避免使用通配符 <code>*</code>。</li>
+</ul>
+<h3 id="黑白名单扩展点"><a class="anchor" href="#黑白名单扩展点">#</a>黑白名单扩展点</h3><ul>
+<li>白名单：通过 <code>security.ignore.whites</code> 添加不需要鉴权的 URL 模式，例如登录、注册、健康检查、监控、静态资源。</li>
+<li>黑名单：通过 <code>BlackListUrlFilter</code> 配置正则黑名单，防御敏感路径、调试接口或已知攻击路径。</li>
+<li>注意：白名单只跳过 <code>AuthFilter</code> 的鉴权，不等于绕过所有过滤器；如需完全绕过，需调整过滤器顺序或使用独立路由。</li>
+</ul>
+<h3 id="限流熔断策略"><a class="anchor" href="#限流熔断策略">#</a>限流熔断策略</h3><ul>
+<li>在 Nacos 的 <code>sentinel-zealux-ai-gateway</code> 中维护 <code>gw-flow</code> 规则，对高频接口设置 QPS 阈值。</li>
+<li>结合 Sentinel Dashboard 观察实时流量与熔断状态。</li>
+<li>对下游不稳定服务开启熔断，避免雪崩。</li>
+<li>限流失败响应可通过自定义 <code>BlockRequestHandler</code> 扩展，当前实现返回固定中文提示。</li>
+</ul>
+<h3 id="鉴权上下文传递"><a class="anchor" href="#鉴权上下文传递">#</a>鉴权上下文传递</h3><ul>
+<li>网关将 <code>user_key</code>、<code>user_id</code>、<code>username</code> 作为请求头传给下游服务。</li>
+<li>下游服务应从请求头读取这些信息，而不是信任任意来源。</li>
+<li>不建议在网关中把用户对象放入线程局部变量，因为 WebFlux 没有传统 ThreadLocal 语义；应继续使用请求头或响应式上下文。</li>
+</ul>
+<h3 id="文档与开发体验"><a class="anchor" href="#文档与开发体验">#</a>文档与开发体验</h3><ul>
+<li>启用 springdoc 后，网关会聚合已注册服务的 OpenAPI 文档。</li>
+<li>生产环境建议关闭文档入口，或通过鉴权与白名单限制访问。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">IgnoreWhiteProperties.java:12-33</span></li>
+<li><span class="fileref">BlackListUrlFilter.java:12-65</span></li>
+<li><span class="fileref">SpringDocConfig.java:12-93</span></li>
+<li><span class="fileref">bootstrap.yml:1-44</span></li>
+</ul>
+<h2 id="故障排查"><a class="anchor" href="#故障排查">#</a>故障排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>所有请求返回 401</td>
+<td>Token 缺失、签名错误、过期，或 Redis 中无登录态</td>
+<td>检查请求头、JWT 密钥、Redis 登录键</td>
+</tr>
+<tr>
+<td>登录接口仍需 Token</td>
+<td>白名单未包含登录路径</td>
+<td>检查 <code>security.ignore.whites</code></td>
+</tr>
+<tr>
+<td>验证码校验失败</td>
+<td>验证码失效、UUID 不匹配或验证码功能未启用</td>
+<td>检查验证码服务与 <code>captcha.enabled</code></td>
+</tr>
+<tr>
+<td>触发限流提示</td>
+<td>Sentinel 规则阈值过低或突发流量</td>
+<td>查看 Sentinel Dashboard 与 <code>sentinel-zealux-ai-gateway</code></td>
+</tr>
+<tr>
+<td>路由找不到</td>
+<td>Nacos 中未配置对应路由或服务未注册</td>
+<td>检查 Nacos 服务列表与路由 dataId</td>
+</tr>
+<tr>
+<td>文档页面空白</td>
+<td>服务未注册或 springdoc 被禁用</td>
+<td>检查 <code>springdoc.api-docs.enabled</code> 与服务发现</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:56-135</span></li>
+<li><span class="fileref">GatewayExceptionHandler.java:12-56</span></li>
+<li><span class="fileref">SentinelFallbackHandler.java:12-41</span></li>
+<li><span class="fileref">SpringDocConfig.java:12-93</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本网关模块是一个典型的 Spring Cloud Gateway 横切层：它不负责业务逻辑，只做统一入口、鉴权、验证码校验、限流熔断、文档聚合与异常收敛。<code>RuoYiGatewayApplication</code> 启动网关，<code>AuthFilter</code> 是核心鉴权过滤器，<code>IgnoreWhiteProperties</code> 与 <code>BlackListUrlFilter</code> 提供灵活的路径访问控制，<code>GatewayConfig</code> 与 <code>SentinelFallbackHandler</code> 对接 Sentinel，<code>SpringDocConfig</code> 聚合 OpenAPI 文档。</p>
+<p>对于五条前缀路由 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code>，源码提供了鉴权、验证码与文档等横切能力，但具体路由表应放在 Nacos 配置中心。生产部署时，应将 HTTPS 终止放在反向代理层，通过 Nacos 管理动态路由，使用 Sentinel 保护网关与下游服务，并使用 Redis 承载会话与限流状态。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">← Swagger 模块（swagger）</a>
+    <a class="next" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File） →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#网关启动类与运行边界">网关启动类与运行边界</a></li><li class="d3"><a href="#全局鉴权过滤器-AuthFilter">全局鉴权过滤器 AuthFilter</a></li><li class="d3"><a href="#白名单与黑名单机制">白名单与黑名单机制</a></li><li class="d3"><a href="#验证码校验">验证码校验</a></li><li class="d3"><a href="#限流与熔断">限流与熔断</a></li><li class="d3"><a href="#文档聚合与-Swagger">文档聚合与 Swagger</a></li><li class="d3"><a href="#路由与五条前缀的关系">路由与五条前缀的关系</a></li><li class="d3"><a href="#Nacos-配置中心与-bootstrap.yml">Nacos 配置中心与 bootstrap.yml</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与可靠性">性能与可靠性</a></li><li class="d2"><a href="#部署与最佳实践">部署与最佳实践</a></li><li class="d3"><a href="#反向代理与-HTTPS-终止">反向代理与 HTTPS 终止</a></li><li class="d3"><a href="#CORS-策略">CORS 策略</a></li><li class="d3"><a href="#黑白名单扩展点">黑白名单扩展点</a></li><li class="d3"><a href="#限流熔断策略">限流熔断策略</a></li><li class="d3"><a href="#鉴权上下文传递">鉴权上下文传递</a></li><li class="d3"><a href="#文档与开发体验">文档与开发体验</a></li><li class="d2"><a href="#故障排查">故障排查</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

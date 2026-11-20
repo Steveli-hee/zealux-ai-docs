@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>通用模块(common)设计 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec" open><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html" class="active">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">通用模块(common)设计 / <b>通用模块(common)设计</b></div><article><h1 id="通用模块common设计"><a class="anchor" href="#通用模块common设计">#</a>通用模块(common)设计</h1><cite>
+**本文引用的文件**   
+- [zealux-ai-common/pom.xml](file://zealux-ai-master/zealux-ai-common/pom.xml)
+- [core/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [core/SpringUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/utils/SpringUtils.java)
+- [security/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [log/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [log/LogAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/aspect/LogAspect.java)
+- [log/AsyncLogService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/service/AsyncLogService.java)
+- [log/Log.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/annotation/Log.java)
+- [redis/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [redis/RedisConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/java/com/zealux/common/redis/configure/RedisConfig.java)
+- [redis/RedisService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/src/main/java/com/zealux/common/redis/service/RedisService.java)
+- [swagger/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-swagger/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [swagger/SpringDocAutoConfiguration.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-swagger/src/main/java/com/zealux/common/swagger/config/SpringDocAutoConfiguration.java)
+- [datasource/Master.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/src/main/java/com/zealux/common/datasource/annotation/Master.java)
+- [datasource/Slave.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/src/main/java/com/zealux/common/datasource/annotation/Slave.java)
+- [datascope/DataScope.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/annotation/DataScope.java)
+- [datascope/DataScopeAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/aspect/DataScopeAspect.java)
+- [ruoyi-common-sensitive/Sensitive.java](file://zealux-ai-master/zealux-ai-common/ruoyi-common-sensitive/src/main/java/com/ruoyi/common/sensitive/annotation/Sensitive.java)
+- [ruoyi-common-sensitive/SensitiveJsonSerializer.java](file://zealux-ai-master/zealux-ai-common/ruoyi-common-sensitive/src/main/java/com/ruoyi/common/sensitive/config/SensitiveJsonSerializer.java)
+- [ruoyi-common-sensitive/DesensitizedType.java](file://zealux-ai-master/zealux-ai-common/ruoyi-common-sensitive/src/main/java/com/ruoyi/common/sensitive/enums/DesensitizedType.java)
+- [ai/AutoConfiguration.imports](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-ai/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports)
+- [ai/ChatClientConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-ai/src/main/java/com/zealux/common/ai/config/ChatClientConfig.java)
+- [ai/RedisVectorConfig.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-ai/src/main/java/com/zealux/common/ai/config/RedisVectorConfig.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#自动装配机制与-starter-使用方式">自动装配机制与 Starter 使用方式</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#典型用法示例">典型用法示例</a></li>
+<li><a href="#性能与可维护性考虑">性能与可维护性考虑</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>zealux-ai-common 是 zealux-ai 多模块工程中的公共能力层。它不直接暴露业务接口，而是通过 Spring Boot 的自动装配机制，把常量、工具类、安全过滤、操作日志、Redis 封装、API 文档、数据权限、读写数据源注解和数据脱敏等横切能力注入到业务模块中。</p>
+<p>需要特别强调：本仓库中该父模块只声明了 9 个 Maven 子模块，但其中 <code>zealux-ai-common-seata</code> 没有 Java 源码；另外，敏感信息处理模块虽然存在于代码库中，却未被父 pom 列入构建列表。因此，“9 个非空子模块”应理解为：<strong>父 pom 中显式声明的 9 个模块</strong>（core、security、log、redis、swagger、datasource、datascope、seata、ai），再加上 <strong>未参与构建但未删除的 ruoyi-common-sensitive</strong>。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Common[&quot;zealux-ai-common 父模块&quot;]
+    Core[&quot;core&lt;br/&gt;常量、BaseEntity、工具类、SpringUtils&quot;]
+    Security[&quot;security&lt;br/&gt;JWT、WebMvc、全局异常&quot;]
+    Log[&quot;log&lt;br/&gt;@Log 注解、异步日志、AOP&quot;]
+    Redis[&quot;redis&lt;br/&gt;RedisTemplate 封装&quot;]
+    Swagger[&quot;swagger&lt;br/&gt;springdoc-openapi 集成&quot;]
+    Datasource[&quot;datasource&lt;br/&gt;Master/Slave 注解&quot;]
+    Datascope[&quot;datascope&lt;br/&gt;@DataScope 数据权限&quot;]
+    Sensitive[&quot;ruoyi-common-sensitive&lt;br/&gt;@Sensitive 脱敏（未构建）&quot;]
+    AI[&quot;ai&lt;br/&gt;ChatClientConfig、RedisVectorConfig&quot;]
+    Seata[&quot;seata&lt;br/&gt;无 Java 源码&quot;]
+
+    Common --&gt; Core
+    Common --&gt; Security
+    Common --&gt; Log
+    Common --&gt; Redis
+    Common --&gt; Swagger
+    Common --&gt; Datasource
+    Common --&gt; Datascope
+    Common --&gt; Sensitive
+    Common --&gt; AI
+    Common --&gt; Seata</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">zealux-ai-common/pom.xml:12-23</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">zealux-ai-common/pom.xml:1-31</span></li>
+</ul>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>zealux-ai-common 采用“按横切能力拆分”的结构，每个子模块只承担单一职责，并通过 Spring Boot 3 推荐的 <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code> 文件注册自动配置类。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>主要职责</th>
+<th align="right">是否由父 pom 构建</th>
+<th align="right">是否启用自动装配</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>core</td>
+<td>常量、上下文、异常、工具类、SpringUtils</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>security</td>
+<td>WebMvc、TokenService、权限 AOP、全局异常</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>log</td>
+<td>@Log 注解、操作日志 AOP、异步日志服务</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>RedisTemplate 配置与 RedisService 封装</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>swagger</td>
+<td>springdoc-openapi 自动配置</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>datasource</td>
+<td>Master、Slave 数据源标注注解</td>
+<td align="right">否</td>
+<td align="right">否（仅定义注解）</td>
+</tr>
+<tr>
+<td>datascope</td>
+<td>@DataScope 注解与数据权限 AOP</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>ruoyi-common-sensitive</td>
+<td>@Sensitive、脱敏类型、JSON 序列化器</td>
+<td align="right">否</td>
+<td align="right">否（未列在父 pom modules）</td>
+</tr>
+<tr>
+<td>ai</td>
+<td>ChatClientConfig、RedisVectorConfig 等 AI 通用配置</td>
+<td align="right">是</td>
+<td align="right">是</td>
+</tr>
+<tr>
+<td>seata</td>
+<td>分布式事务依赖占位</td>
+<td align="right">是</td>
+<td align="right">否（无 Java 文件）</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Build[&quot;Maven 构建 zealaux-ai-common&quot;]
+    ParentPom[&quot;父 pom.xml&lt;br/&gt;modules 列表&quot;]
+    Built[&quot;实际构建的子模块&quot;]
+    NotBuilt[&quot;未构建或无源码模块&quot;]
+
+    Build --&gt; ParentPom
+    ParentPom --&gt; Built
+    ParentPom --&gt; NotBuilt
+    Built --&gt; Core[&quot;core&quot;]
+    Built --&gt; Security[&quot;security&quot;]
+    Built --&gt; Log[&quot;log&quot;]
+    Built --&gt; Redis[&quot;redis&quot;]
+    Built --&gt; Swagger[&quot;swagger&quot;]
+    Built --&gt; Datascope[&quot;datascope&quot;]
+    Built --&gt; Datasource[&quot;datasource&quot;]
+    Built --&gt; AI[&quot;ai&quot;]
+    Built --&gt; Seata[&quot;seata&quot;]
+    NotBuilt --&gt; Sensitive[&quot;ruoyi-common-sensitive&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">zealux-ai-common/pom.xml:12-23</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">zealux-ai-common/pom.xml:1-31</span></li>
+</ul>
+<h2 id="自动装配机制与-Starter-使用方式"><a class="anchor" href="#自动装配机制与-Starter-使用方式">#</a>自动装配机制与 Starter 使用方式</h2><p>这些模块不是传统意义上的独立 Starter，而是基于 Spring Boot 3 的自动装配机制：每个模块在 <code>src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code> 中列出要注册的类名。当业务模块引入对应依赖后，Spring Boot 启动时会加载这些类并注册为 Bean。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>AutoConfiguration.imports 内容</th>
+<th>装配行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>core</td>
+<td><code>SpringUtils</code></td>
+<td>将 SpringUtils 作为组件加入容器</td>
+</tr>
+<tr>
+<td>security</td>
+<td>WebMvcConfig、TokenService、PreAuthorizeAspect、InnerAuthAspect、GlobalExceptionHandler</td>
+<td>装配 Web MVC 配置、令牌服务、权限切面与全局异常处理器</td>
+</tr>
+<tr>
+<td>log</td>
+<td>AsyncLogService、LogAspect</td>
+<td>装配异步日志服务和操作日志切面</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>RedisConfig、RedisService</td>
+<td>装配 RedisTemplate 配置与 RedisService</td>
+</tr>
+<tr>
+<td>swagger</td>
+<td>SpringDocAutoConfiguration</td>
+<td>条件装配 springdoc-openapi</td>
+</tr>
+<tr>
+<td>datascope</td>
+<td>DataScopeAspect</td>
+<td>装配数据权限切面</td>
+</tr>
+<tr>
+<td>ai</td>
+<td>ChatClientConfig</td>
+<td>装配 ChatClientConfig；RedisVectorConfig 存在但不在 imports 中</td>
+</tr>
+<tr>
+<td>datasource</td>
+<td>无</td>
+<td>仅提供注解，不提供自动装配类</td>
+</tr>
+<tr>
+<td>ruoyi-common-sensitive</td>
+<td>无</td>
+<td>仅提供注解和序列化器，不参与自动装配</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant App as &quot;业务应用&quot;
+    participant Boot as &quot;Spring Boot&quot;
+    participant Imports as &quot;AutoConfiguration.imports&quot;
+    participant Config as &quot;自动配置类&quot;
+
+    App-&gt;&gt;Boot: 启动并引入 common 依赖
+    Boot-&gt;&gt;Imports: 扫描 META-INF/spring/*.imports
+    Imports--&gt;&gt;Boot: 返回要注册的类名列表
+    Boot-&gt;&gt;Config: 实例化并注册 Bean
+    Config--&gt;&gt;App: 提供 Redis、日志、安全、Swagger 等能力</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">core/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">security/AutoConfiguration.imports:1-5</span></li>
+<li><span class="fileref">log/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">redis/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">swagger/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">datascope/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">ai/AutoConfiguration.imports:1</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">core/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">security/AutoConfiguration.imports:1-5</span></li>
+<li><span class="fileref">log/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">redis/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">swagger/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">datascope/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">ai/AutoConfiguration.imports:1</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><h3 id="core-模块"><a class="anchor" href="#core-模块">#</a>core 模块</h3><p>core 是最底层的通用模块，提供常量、上下文、异常体系、文本处理、工具类和 SpringUtils。它通过 AutoConfiguration.imports 注册 <code>SpringUtils</code>，让业务模块可以获取 Spring 容器中的 Bean。</p>
+<ul>
+<li><code>SpringUtils</code> 是一个 <code>@Component</code>，用于在静态上下文中访问 Spring Bean。</li>
+<li>其他子包如 constant、context、exception、text、utils、web、xss、domain、enums、annotation 共同构成基础能力。</li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">core/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">core/SpringUtils.java:1,15</span></li>
+</ul>
+<h3 id="security-模块"><a class="anchor" href="#security-模块">#</a>security 模块</h3><p>security 模块负责系统级安全能力，包括 Web MVC 配置、令牌服务、前置权限校验切面、内部调用认证切面和全局异常处理。</p>
+<ul>
+<li>自动装配类包含 <code>WebMvcConfig</code>、<code>TokenService</code>、<code>PreAuthorizeAspect</code>、<code>InnerAuthAspect</code>、<code>GlobalExceptionHandler</code>。</li>
+<li>它通常被 auth、system 等业务模块间接依赖，而不是所有业务模块都必须直接使用。</li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">security/AutoConfiguration.imports:1-5</span></li>
+</ul>
+<h3 id="log-模块"><a class="anchor" href="#log-模块">#</a>log 模块</h3><p>log 模块通过注解+AOP+异步服务的方式记录用户操作日志。</p>
+<ul>
+<li>注解：<code>@Log</code>，作用域为参数和方法。</li>
+<li>切面：<code>LogAspect</code>，拦截带 <code>@Log</code> 的方法。</li>
+<li>异步服务：<code>AsyncLogService</code>，将日志写入任务队列或异步处理。</li>
+<li>枚举：<code>BusinessType</code>、<code>OperatorType</code>、<code>BusinessStatus</code> 描述日志分类和操作状态。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;Controller 方法执行&quot;] --&gt; Intercept[&quot;LogAspect 拦截&quot;]
+    Intercept --&gt; Extract[&quot;提取操作人、模块、类型、参数&quot;]
+    Extract --&gt; Async[&quot;提交至 AsyncLogService&quot;]
+    Async --&gt; Queue[&quot;异步线程池或消息队列&quot;]
+    Queue --&gt; Persist[&quot;持久化操作日志&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">log/Log.java:17-20</span></li>
+<li><span class="fileref">log/LogAspect.java:39-41</span></li>
+<li><span class="fileref">log/AsyncLogService.java:15-16</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">log/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">log/Log.java:17-20</span></li>
+<li><span class="fileref">log/LogAspect.java:39-41</span></li>
+<li><span class="fileref">log/AsyncLogService.java:15-16</span></li>
+</ul>
+<h3 id="redis-模块"><a class="anchor" href="#redis-模块">#</a>redis 模块</h3><p>redis 模块封装了 Spring Data Redis 的使用方式，避免业务代码直接操作 RedisTemplate。</p>
+<ul>
+<li><code>RedisConfig</code> 继承 <code>CachingConfigurerSupport</code>，自定义 <code>RedisTemplate</code> 序列化器。</li>
+<li><code>RedisService</code> 封装常用键值、集合、哈希、过期等操作。</li>
+<li>还包含 <code>FastJson2JsonRedisSerializer</code>，用于 JSON 序列化。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class RedisConfig {
+        +redisTemplate()
+    }
+    class RedisService {
+        +redisTemplate
+        +get(key)
+        +set(key, value)
+        +expire(key, seconds)
+    }
+    class FastJson2JsonRedisSerializer {
+        +serialize(value)
+        +deserialize(bytes)
+    }
+    RedisConfig --&gt; FastJson2JsonRedisSerializer : &quot;创建模板时设置&quot;
+    RedisService --&gt; RedisConfig : &quot;注入 RedisTemplate&quot;</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">redis/RedisConfig.java:18-28</span></li>
+<li><span class="fileref">redis/RedisService.java:23-26</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">redis/AutoConfiguration.imports:1-2</span></li>
+<li><span class="fileref">redis/RedisConfig.java:18-28</span></li>
+<li><span class="fileref">redis/RedisService.java:23-26</span></li>
+</ul>
+<h3 id="swagger-模块"><a class="anchor" href="#swagger-模块">#</a>swagger 模块</h3><p>swagger 模块对 springdoc-openapi 进行自动配置，默认通过 <code>springdoc.api-docs.enabled=true</code> 控制是否启用。</p>
+<ul>
+<li><code>SpringDocAutoConfiguration</code> 使用 <code>@ConditionalOnProperty</code> 控制装配。</li>
+<li><code>SpringDocProperties</code> 提供以 <code>springdoc</code> 为前缀的配置属性。</li>
+<li>自动装配入口是 <code>SpringDocAutoConfiguration</code>。</li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">swagger/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">swagger/SpringDocAutoConfiguration.java:26-27</span></li>
+</ul>
+<h3 id="datasource-模块"><a class="anchor" href="#datasource-模块">#</a>datasource 模块</h3><p>datasource 模块目前只定义了两个注解：<code>Master</code> 和 <code>Slave</code>。它本身没有自动装配类，也没有实现读写分离逻辑。这意味着该模块在当前仓库中更像是一个“契约定义”，真正的数据源路由实现应位于其他模块或外部项目中。</p>
+<ul>
+<li><code>Master</code> 标注主库。</li>
+<li><code>Slave</code> 标注从库。</li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">datasource/Master.java:19</span></li>
+<li><span class="fileref">datasource/Slave.java:19</span></li>
+</ul>
+<h3 id="datascope-模块"><a class="anchor" href="#datascope-模块">#</a>datascope 模块</h3><p>datascope 模块实现基于角色和用户的数据权限控制。</p>
+<ul>
+<li><code>@DataScope</code> 是 Controller 层注解，用于指定数据权限范围。</li>
+<li><code>DataScopeAspect</code> 是 AOP 切面，在方法执行前解析当前用户、角色和权限，并将数据范围注入上下文。</li>
+<li>它读取当前用户的角色权限，支持自定义权限字符串匹配。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Ctrl as &quot;Controller&quot;
+    participant Aspect as &quot;DataScopeAspect&quot;
+    participant User as &quot;当前用户&quot;
+    participant DB as &quot;后续查询&quot;
+
+    Ctrl-&gt;&gt;Aspect: 进入被 @DataScope 标注的方法
+    Aspect-&gt;&gt;User: 获取当前用户与角色
+    User--&gt;&gt;Aspect: 返回权限信息
+    Aspect-&gt;&gt;Aspect: 解析 permission、deptAlias、userAlias
+    Aspect--&gt;&gt;DB: 向查询上下文注入数据范围
+    DB--&gt;&gt;Ctrl: 返回受限结果集</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">datascope/DataScope.java:17</span></li>
+<li><span class="fileref">datascope/DataScopeAspect.java:59-77</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">datascope/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">datascope/DataScope.java:17</span></li>
+<li><span class="fileref">datascope/DataScopeAspect.java:59-77</span></li>
+</ul>
+<h3 id="ruoyi-common-sensitive-模块"><a class="anchor" href="#ruoyi-common-sensitive-模块">#</a>ruoyi-common-sensitive 模块</h3><p>该模块提供字段级敏感信息脱敏能力，但没有被父 pom 的 modules 列表包含，因此不会随 zealux-ai-common 一起构建。</p>
+<ul>
+<li><code>@Sensitive</code>：标注实体字段，指定脱敏类型。</li>
+<li><code>DesensitizedType</code>：定义手机号、邮箱、身份证、银行卡等脱敏策略。</li>
+<li><code>SensitiveJsonSerializer</code>：通过 Jackson 的 <code>ContextualSerializer</code> 在 JSON 序列化时执行脱敏。</li>
+</ul>
+<p>注意：该类引用的是 <code>com.zealux.common.sensitive.*</code> 包路径，而实际源码位于 <code>com.ruoyi.common.sensitive.*</code>，这是一个包名不一致的问题。若直接编译，可能产生包导入错误。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class Sensitive {
+        +desensitizedType
+    }
+    class DesensitizedType {
+        +手机号
+        +邮箱
+        +身份证
+        +银行卡
+    }
+    class SensitiveJsonSerializer {
+        +serialize(value, context)
+        +createContextual(context)
+    }
+    Sensitive --&gt; DesensitizedType : &quot;指定脱敏类型&quot;
+    SensitiveJsonSerializer --&gt; Sensitive : &quot;读取字段注解&quot;
+    SensitiveJsonSerializer --&gt; DesensitizedType : &quot;选择脱敏函数&quot;</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">ruoyi-common-sensitive/Sensitive.java:18-23</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/SensitiveJsonSerializer.java:21-42</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/DesensitizedType.java:11,50</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">ruoyi-common-sensitive/Sensitive.java:18-23</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/SensitiveJsonSerializer.java:21-42</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/DesensitizedType.java:11,50</span></li>
+</ul>
+<h3 id="ai-模块"><a class="anchor" href="#ai-模块">#</a>ai 模块</h3><p>ai 模块提供 AI 相关通用配置，重点包括聊天客户端配置和 Redis 向量存储配置。</p>
+<ul>
+<li><code>ChatClientConfig</code>：装配聊天客户端相关 Bean。</li>
+<li><code>RedisVectorConfig</code>：装配 Redis 向量能力相关 Bean。</li>
+<li>AutoConfiguration.imports 只注册了 <code>ChatClientConfig</code>；<code>RedisVectorConfig</code> 虽存在且为 <code>@Configuration</code>，但未被自动装配入口列出。</li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">ai/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">ai/ChatClientConfig.java:7-8</span></li>
+<li><span class="fileref">ai/RedisVectorConfig.java:17,23</span></li>
+</ul>
+<h3 id="seata-目录"><a class="anchor" href="#seata-目录">#</a>seata 目录</h3><p>zealux-ai-common-seata 目录下没有 Java 源码，只有 target 产物和 pom.xml。它属于分布式事务能力的占位模块，当前不包含任何可执行的 Java 实现，因此不应为其单独生成页面。</p>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">zealux-ai-common/pom.xml:12-23</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p>common 各模块之间存在明确的依赖方向：越靠近 core 的模块越基础，越靠近业务侧的模块越容易组合使用。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    Core[&quot;core&quot;] --&gt; Security[&quot;security&quot;]
+    Core --&gt; Log[&quot;log&quot;]
+    Core --&gt; Redis[&quot;redis&quot;]
+    Core --&gt; Datascope[&quot;datascope&quot;]
+    Core --&gt; Swagger[&quot;swagger&quot;]
+    Core --&gt; Datasource[&quot;datasource&quot;]
+    Core --&gt; Sensitive[&quot;ruoyi-common-sensitive&quot;]
+    Core --&gt; AI[&quot;ai&quot;]
+    Security --&gt; Datascope
+    Redis --&gt; AI
+    Log --&gt; Business[&quot;业务模块&quot;]
+    Security --&gt; Business
+    Redis --&gt; Business
+    Swagger --&gt; Business
+    Datascope --&gt; Business
+    Datasource --&gt; Business
+    Sensitive --&gt; Business
+    AI --&gt; Business</pre></div><ul>
+<li>core 是所有模块的基础。</li>
+<li>security、log、redis、swagger、datascope、datasource、sensitive、ai 都依赖 core。</li>
+<li>datascope 在运行时依赖 security 提供的当前用户和权限上下文。</li>
+<li>ai 依赖 redis 提供的向量存储能力。</li>
+<li>datasource 只提供注解，不反向依赖其他 common 模块。</li>
+</ul>
+<p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">core/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">security/AutoConfiguration.imports:1-5</span></li>
+<li><span class="fileref">datascope/DataScopeAspect.java:76-77</span></li>
+<li><span class="fileref">ai/RedisVectorConfig.java:17,23</span></li>
+</ul>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">core/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">security/AutoConfiguration.imports:1-5</span></li>
+<li><span class="fileref">datascope/DataScopeAspect.java:76-77</span></li>
+<li><span class="fileref">ai/RedisVectorConfig.java:17,23</span></li>
+</ul>
+<h2 id="典型用法示例"><a class="anchor" href="#典型用法示例">#</a>典型用法示例</h2><p>以下示例说明业务模块如何依赖和使用这些通用模块。为避免泄露真实凭据，所有账号、口令、token、API Key 均用占位形式表示。</p>
+<h3 id="启用-Redis-缓存"><a class="anchor" href="#启用-Redis-缓存">#</a>启用 Redis 缓存</h3><ol>
+<li>在业务模块 pom 中引入 <code>zealux-ai-common-redis</code>。</li>
+<li>配置 Redis 连接信息（例如 host、port、password）。</li>
+<li>在业务 Service 中注入 <code>RedisService</code> 或直接注入 <code>RedisTemplate</code>。</li>
+<li>调用 <code>RedisService</code> 的 get/set/expire 等方法操作缓存。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Biz[&quot;业务 Service&quot;] --&gt; Inject[&quot;注入 RedisService&quot;]
+    Inject --&gt; Use[&quot;调用 get/set/expire&quot;]
+    Use --&gt; RedisConfig[&quot;RedisConfig 提供 RedisTemplate&quot;]
+    RedisConfig --&gt; RedisServer[&quot;Redis 服务器&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">redis/RedisService.java:23-26</span></li>
+<li><span class="fileref">redis/RedisConfig.java:22-28</span></li>
+</ul>
+<h3 id="添加-@Operlog-类型的操作日志"><a class="anchor" href="#添加-@Operlog-类型的操作日志">#</a>添加 @Operlog 类型的操作日志</h3><p>注意：代码中实际注解名为 <code>@Log</code>，而非 <code>@Operlog</code>。业务模块应使用 <code>@Log</code> 标记需要记录的操作方法。</p>
+<ol>
+<li>在 Controller 或 Service 方法上添加 <code>@Log</code>。</li>
+<li>填写模块名称、业务类型、操作类型等属性。</li>
+<li>Spring Boot 启动后，<code>LogAspect</code> 会自动拦截该方法。</li>
+<li><code>AsyncLogService</code> 异步处理日志写入。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;前端&quot;
+    participant Controller as &quot;Controller&quot;
+    participant Aspect as &quot;LogAspect&quot;
+    participant Service as &quot;AsyncLogService&quot;
+
+    Client-&gt;&gt;Controller: 发起请求
+    Controller-&gt;&gt;Aspect: 被 @Log 拦截
+    Aspect-&gt;&gt;Service: 提交异步日志任务
+    Service--&gt;&gt;Client: 正常返回响应</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">log/Log.java:17-20</span></li>
+<li><span class="fileref">log/LogAspect.java:39-41</span></li>
+<li><span class="fileref">log/AsyncLogService.java:15-16</span></li>
+</ul>
+<h3 id="声明读写数据源"><a class="anchor" href="#声明读写数据源">#</a>声明读写数据源</h3><p>datasource 模块只提供 <code>@Master</code> 和 <code>@Slave</code> 注解，不实现路由逻辑。典型用法是：</p>
+<ol>
+<li>在 Mapper 或 Service 方法上使用 <code>@Master</code> 标注写操作。</li>
+<li>在查询方法上使用 <code>@Slave</code> 标注读操作。</li>
+<li>由业务模块或外部框架根据这两个注解动态切换数据源。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Method[&quot;业务方法&quot;] --&gt; Annotate[&quot;使用 @Master 或 @Slave&quot;]
+    Annotate --&gt; Router[&quot;数据源路由实现&quot;]
+    Router --&gt; Master[&quot;主库&quot;]
+    Router --&gt; Slave[&quot;从库&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">datasource/Master.java:19</span></li>
+<li><span class="fileref">datasource/Slave.java:19</span></li>
+</ul>
+<h3 id="对敏感字段脱敏"><a class="anchor" href="#对敏感字段脱敏">#</a>对敏感字段脱敏</h3><ol>
+<li>在实体类字段上加 <code>@Sensitive(desensitizedType = 某枚举)</code>。</li>
+<li>确保 Jackson 能够序列化该实体。</li>
+<li>返回给前端时，敏感字段会按 <code>DesensitizedType</code> 的规则脱敏。</li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li>该模块未被父 pom 构建。</li>
+<li>注解和序列化器引用的是 <code>com.zealux.common.sensitive</code>，但源码包路径是 <code>com.ruoyi.common.sensitive</code>，需要修正包路径后再使用。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Entity[&quot;实体对象&quot;] --&gt; Serialize[&quot;Jackson 序列化&quot;]
+    Serialize --&gt; Detect[&quot;@Sensitive 字段&quot;]
+    Detect --&gt; Strategy[&quot;DesensitizedType 脱敏策略&quot;]
+    Strategy --&gt; Output[&quot;脱敏后的 JSON&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">ruoyi-common-sensitive/Sensitive.java:18-23</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/SensitiveJsonSerializer.java:21-42</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/DesensitizedType.java:11,50</span></li>
+</ul>
+<h3 id="在-Controller-上开启-Swagger-分组"><a class="anchor" href="#在-Controller-上开启-Swagger-分组">#</a>在 Controller 上开启 Swagger 分组</h3><ol>
+<li>引入 <code>zealux-ai-common-swagger</code>。</li>
+<li>确保配置项 <code>springdoc.api-docs.enabled=true</code>。</li>
+<li>在 Controller 或 API 类上使用 springdoc 的标准注解（如 <code>@Tag</code>、<code>@Operation</code>）标注接口。</li>
+<li>启动后可访问 springdoc 生成的文档页面。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Config[&quot;springdoc.api-docs.enabled=true&quot;] --&gt; AutoConf[&quot;SpringDocAutoConfiguration&quot;]
+    AutoConf --&gt; Docs[&quot;springdoc 文档接口&quot;]
+    Docs --&gt; UI[&quot;API 文档页面&quot;]</pre></div><p><strong>图示来源</strong>   </p>
+<ul>
+<li><span class="fileref">swagger/SpringDocAutoConfiguration.java:26-27</span></li>
+<li><span class="fileref">swagger/AutoConfiguration.imports:1</span></li>
+</ul>
+<h2 id="性能与可维护性考虑"><a class="anchor" href="#性能与可维护性考虑">#</a>性能与可维护性考虑</h2><h3 id="异步日志降低主流程延迟"><a class="anchor" href="#异步日志降低主流程延迟">#</a>异步日志降低主流程延迟</h3><p>log 模块将日志写入交给 <code>AsyncLogService</code>，避免同步 I/O 阻塞 Controller 响应。对于高并发场景，应关注异步线程池大小、队列容量和日志落盘失败的重试策略。</p>
+<h3 id="Redis-序列化一致性"><a class="anchor" href="#Redis-序列化一致性">#</a>Redis 序列化一致性</h3><p>redis 模块通过 <code>RedisConfig</code> 自定义 <code>RedisTemplate</code> 的序列化器。业务模块应保证序列化的对象与序列化器兼容，否则可能出现反序列化失败。</p>
+<h3 id="数据权限切面增加方法调用链"><a class="anchor" href="#数据权限切面增加方法调用链">#</a>数据权限切面增加方法调用链</h3><p>datascope 模块在每个带 <code>@DataScope</code> 的方法前增加一次权限解析。如果权限数据来自远程服务或复杂数据库查询，应避免在高频接口上滥用该注解。</p>
+<h3 id="自动装配过多可能影响启动速度"><a class="anchor" href="#自动装配过多可能影响启动速度">#</a>自动装配过多可能影响启动速度</h3><p>security、log、redis、swagger、datascope、ai 等模块都会注册多个 Bean。若业务模块不需要全部能力，应考虑按需引入依赖，而不是把所有 common 模块都打入最终 jar。</p>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查步骤</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>引入 redis 模块后 RedisTemplate 无法注入</td>
+<td>Redis 配置缺失或连接失败</td>
+<td>检查 Redis host、port、密码；确认 RedisConfig 已装配</td>
+</tr>
+<tr>
+<td>加了 @Log 但没记录日志</td>
+<td>LogAspect 未生效或异步队列堆积</td>
+<td>确认 log 模块依赖已引入；查看异步日志服务是否正常消费</td>
+</tr>
+<tr>
+<td>@Sensitive 字段没有脱敏</td>
+<td>模块未构建或 Jackson 序列化未触发</td>
+<td>检查父 pom 是否包含该模块；确认字段确实被 JSON 序列化；核对包路径</td>
+</tr>
+<tr>
+<td>@DataScope 不生效</td>
+<td>当前用户或权限上下文为空</td>
+<td>确认 security 模块已装配；检查登录流程和 TokenService</td>
+</tr>
+<tr>
+<td>Swagger 文档不可用</td>
+<td>springdoc 被禁用</td>
+<td>检查 <code>springdoc.api-docs.enabled</code> 配置</td>
+</tr>
+<tr>
+<td>ChatClientConfig 生效但 RedisVectorConfig 不生效</td>
+<td>RedisVectorConfig 未在 AutoConfiguration.imports 中注册</td>
+<td>检查 ai 模块的 imports 文件</td>
+</tr>
+<tr>
+<td>启动时报包导入错误</td>
+<td>sensitive 模块包路径不一致</td>
+<td>将 <code>com.zealux.common.sensitive</code> 改为 <code>com.ruoyi.common.sensitive</code> 或统一包名</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong>   </p>
+<ul>
+<li><span class="fileref">redis/RedisConfig.java:22-28</span></li>
+<li><span class="fileref">log/LogAspect.java:39-41</span></li>
+<li><span class="fileref">datascope/DataScopeAspect.java:59-77</span></li>
+<li><span class="fileref">swagger/SpringDocAutoConfiguration.java:26-27</span></li>
+<li><span class="fileref">ai/AutoConfiguration.imports:1</span></li>
+<li><span class="fileref">ruoyi-common-sensitive/SensitiveJsonSerializer.java:13-14</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>zealux-ai-common 的本质是一个以 Spring Boot 自动装配为核心的公共能力聚合层。它的价值不在于提供一个完整业务系统，而在于把跨模块复用的横切能力拆成可独立引入的 Maven 子模块。</p>
+<p>在实际使用中，应重点关注以下边界：</p>
+<ol>
+<li>core 是所有模块的基础，适合引入几乎所有后端服务。</li>
+<li>security、log、redis、swagger、datascope、ai 通过 AutoConfiguration.imports 自动装配。</li>
+<li>datasource 只提供注解，不提供路由实现。</li>
+<li>ruoyi-common-sensitive 有源码但未参与构建，且包路径存在不一致问题。</li>
+<li>seata 目录没有 Java 实现，不应视为已实现的分布式事务功能。</li>
+<li>业务模块应按需引入依赖，避免把所有 common 模块都打包进最终产物。</li>
+</ol>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">← API 调用封装与请求层</a>
+    <a class="next" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#自动装配机制与-Starter-使用方式">自动装配机制与 Starter 使用方式</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d3"><a href="#core-模块">core 模块</a></li><li class="d3"><a href="#security-模块">security 模块</a></li><li class="d3"><a href="#log-模块">log 模块</a></li><li class="d3"><a href="#redis-模块">redis 模块</a></li><li class="d3"><a href="#swagger-模块">swagger 模块</a></li><li class="d3"><a href="#datasource-模块">datasource 模块</a></li><li class="d3"><a href="#datascope-模块">datascope 模块</a></li><li class="d3"><a href="#ruoyi-common-sensitive-模块">ruoyi-common-sensitive 模块</a></li><li class="d3"><a href="#ai-模块">ai 模块</a></li><li class="d3"><a href="#seata-目录">seata 目录</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#典型用法示例">典型用法示例</a></li><li class="d3"><a href="#启用-Redis-缓存">启用 Redis 缓存</a></li><li class="d3"><a href="#添加-@Operlog-类型的操作日志">添加 @Operlog 类型的操作日志</a></li><li class="d3"><a href="#声明读写数据源">声明读写数据源</a></li><li class="d3"><a href="#对敏感字段脱敏">对敏感字段脱敏</a></li><li class="d3"><a href="#在-Controller-上开启-Swagger-分组">在 Controller 上开启 Swagger 分组</a></li><li class="d2"><a href="#性能与可维护性考虑">性能与可维护性考虑</a></li><li class="d3"><a href="#异步日志降低主流程延迟">异步日志降低主流程延迟</a></li><li class="d3"><a href="#Redis-序列化一致性">Redis 序列化一致性</a></li><li class="d3"><a href="#数据权限切面增加方法调用链">数据权限切面增加方法调用链</a></li><li class="d3"><a href="#自动装配过多可能影响启动速度">自动装配过多可能影响启动速度</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

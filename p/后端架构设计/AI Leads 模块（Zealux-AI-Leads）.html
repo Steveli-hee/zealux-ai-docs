@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Leads 模块（Zealux-AI-Leads） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html" class="active">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>AI Leads 模块（Zealux-AI-Leads）</b></div><article><h1 id="AI-Leads-模块（Zealux-AI-Leads）"><a class="anchor" href="#AI-Leads-模块（Zealux-AI-Leads）">#</a>AI Leads 模块（Zealux-AI-Leads）</h1><cite>
+**本文引用的文件**   
+- [pom.xml](file://zealux-ai-master/pom.xml)
+- [README.md](file://zealux-ai-master/README.md)
+- [bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/resources/bootstrap.yml)
+- [AiMessageController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/controller/AiMessageController.java)
+- [ETLController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/controller/ETLController.java)
+- [LeadsETLController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/controller/LeadsETLController.java)
+- [AiSession.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/domain/AiSession.java)
+- [AiMessage.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/domain/AiMessage.java)
+- [AiMessageDTO.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/domain/dto/AiMessageDTO.java)
+- [AiMessageInputDTO.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/domain/dto/AiMessageInputDTO.java)
+- [AiMessageMapper.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/mapper/AiMessageMapper.java)
+- [IAiMessageService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/service/IAiMessageService.java)
+- [AiMessageService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/service/impl/AiMessageService.java)
+- [DocumentService.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/service/DocumentService.java)
+- [AiMessageChatMemory.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/memory/AiMessageChatMemory.java)
+- [gateway.yml](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/gateway.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#当前能力总览与缺失项">当前能力总览与缺失项</a></li>
+<li><a href="#架构概览">架构概览</a></li>
+<li><a href="#已实现骨架分析">已实现骨架分析</a></li>
+<li><a href="#数据模型与持久化现状">数据模型与持久化现状</a></li>
+<li><a href="#网关配置与服务注册现状">网关、配置与服务注册现状</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#运行限制与排障建议">运行限制与排障建议</a></li>
+<li><a href="#后续落地方案">后续落地方案</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本模块文档聚焦于 <code>zealux-ai-leads</code>。该模块是开源 RuoYi-Cloud 3.6.5 的二次开发产物，根工程 artifactId 为 <code>zealux-ai</code>、版本为 <code>3.6.5</code>；前端 <code>package.json</code> 名称仍为 <code>ruoyi@3.6.5</code>，多数后端启动类仍沿用 <code>RuoYi*Application</code> 命名风格，公共库子目录甚至保留 <code>ruoyi-common-sensitive</code>。因此，在描述架构时必须承认它继承自 RuoYi-Cloud，不应将其包装成完全自研框架。</p>
+<p>从代码现状看，<code>zealux-ai-leads</code> 目前仅包含约 13 个 Java 文件，提供了 AI 对话、文档 ETL 与向量检索的设计骨架，但尚未形成完整可用的产品能力。尤其缺少前端页面、菜单入口、Nacos 配置文件与网关路由，同时本地 Redis 未启用 RediSearch 模块，导致向量检索相关能力无法真正运行。</p>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p><code>zealux-ai-leads</code> 位于后端聚合工程的 <code>zealux-ai-modules</code> 下，服务端口为 <code>9301</code>，应用名为 <code>zealux-ai-leads</code>。其源码组织采用典型的 Spring Boot + MyBatis-Plus + Spring AI 分层：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>主要职责</th>
+<th>对应路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制器层</td>
+<td>暴露 REST 接口，处理消息保存、SSE 流式对话、文档读取与向量查询</td>
+<td><code>controller/</code></td>
+</tr>
+<tr>
+<td>领域模型层</td>
+<td>定义会话、消息、请求与响应 DTO</td>
+<td><code>domain/</code>、<code>domain/dto/</code></td>
+</tr>
+<tr>
+<td>数据访问层</td>
+<td>基于 MyBatis-Plus 提供消息表操作</td>
+<td><code>mapper/</code></td>
+</tr>
+<tr>
+<td>服务层</td>
+<td>封装聊天记忆、消息持久化、文档解析等逻辑</td>
+<td><code>service/</code>、<code>service/impl/</code></td>
+</tr>
+<tr>
+<td>内存适配层</td>
+<td>将数据库中的消息适配为 Spring AI 聊天历史</td>
+<td><code>memory/</code></td>
+</tr>
+<tr>
+<td>启动资源</td>
+<td>声明服务端口、Nacos 发现与共享配置</td>
+<td><code>resources/bootstrap.yml</code></td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;zealux-ai-leads&quot;
+        C1[&quot;控制器层&lt;br/&gt;AiMessageController / ETLController / LeadsETLController&quot;]
+        S1[&quot;服务层&lt;br/&gt;IAiMessageService / AiMessageService / DocumentService&quot;]
+        M1[&quot;记忆适配层&lt;br/&gt;AiMessageChatMemory&quot;]
+        D1[&quot;领域模型&lt;br/&gt;AiSession / AiMessage / DTO&quot;]
+        MP1[&quot;数据访问层&lt;br/&gt;AiMessageMapper&quot;]
+        R1[&quot;启动配置&lt;br/&gt;bootstrap.yml&quot;]
+    end
+
+    C1 --&gt; S1
+    C1 --&gt; M1
+    S1 --&gt; MP1
+    S1 --&gt; M1
+    M1 --&gt; MP1
+    C1 --&gt; D1
+    S1 --&gt; D1
+    R1 --&gt; C1</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageController.java:1-54</span></li>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">LeadsETLController.java:1-58</span></li>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">AiMessageChatMemory.java:1-103</span></li>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+</ul>
+<h2 id="当前能力总览与缺失项"><a class="anchor" href="#当前能力总览与缺失项">#</a>当前能力总览与缺失项</h2><h3 id="已具备的设计骨架"><a class="anchor" href="#已具备的设计骨架">#</a>已具备的设计骨架</h3><ol>
+<li><p><strong>AI 对话骨架</strong></p>
+<ul>
+<li><code>AiMessageController</code> 暴露 <code>/message</code> 与 <code>/message/chat</code> 两个接口，支持普通消息保存和 SSE 流式多模态对话。</li>
+<li><code>AiMessageService</code> 使用 Spring AI 的 <code>ChatClient</code>、<code>ChatModel</code> 与 <code>MessageChatMemoryAdvisor</code> 构建带上下文的对话流程。</li>
+<li><code>AiMessageChatMemory</code> 实现 <code>ChatMemory</code>，把数据库中消息转换为 Spring AI 的消息类型。</li>
+</ul>
+</li>
+<li><p><strong>文档 ETL 骨架</strong></p>
+<ul>
+<li><code>ETLController</code> 提供分片读取、网络文档读取、嵌入存储、相似度查询以及基于向量上下文流式回答的接口。</li>
+<li><code>DocumentService</code> 通过 Tika 解析本地文件，作为函数型组件供外部编排调用。</li>
+<li><code>LeadsETLController</code> 提供轻量测试接口，直接调用 <code>ChatClient</code> 与 <code>EmbeddingModel</code>。</li>
+</ul>
+</li>
+<li><p><strong>会话与消息骨架</strong></p>
+<ul>
+<li><code>AiSession</code> 表示会话，<code>AiMessage</code> 表示单条消息。</li>
+<li><code>AiMessageDTO</code> 支持用户/助手/系统三类消息及媒体字段。</li>
+<li><code>AiMessageMapper</code> 基于 MyBatis-Plus 提供基础 CRUD。</li>
+</ul>
+</li>
+</ol>
+<h3 id="必须明确的四项缺失"><a class="anchor" href="#必须明确的四项缺失">#</a>必须明确的四项缺失</h3><ol>
+<li><p><strong>没有对应的前端页面</strong></p>
+<ul>
+<li>工作区中唯一应作为前端源码依据的是独立仓库 <code>zealux-ai-ui-master</code>。</li>
+<li>其中不存在专门针对 leads 或 AI 对话的页面、视图、API 调用或路由。</li>
+<li>嵌入在后端工程内的 <code>zealux-ai-master/zealux-ai-ui</code> 是重复拷贝，不参与根 POM 构建，不应视为第二个前端模块。</li>
+</ul>
+</li>
+<li><p><strong>没有菜单入口</strong></p>
+<ul>
+<li>前端权限与菜单通常由前端路由与后端菜单配置共同决定；当前未见任何 leads 相关菜单或路由条目。</li>
+<li>后端也未见独立的 leads 菜单数据初始化脚本或接口。</li>
+</ul>
+</li>
+<li><p><strong>Nacos 中没有 <code>zealux-ai-leads-dev.yml</code> 配置</strong></p>
+<ul>
+<li><code>bootstrap.yml</code> 声明 Nacos 地址为 <code>127.0.0.1:8848</code>，并加载 <code>application-${spring.profiles.active}.yml</code>。</li>
+<li>但仓库内未发现 <code>zealux-ai-leads-dev.yml</code>，也没有其他以 <code>zealux-ai-leads</code> 为 dataId 的配置。</li>
+<li>因此不能声称“已有 Nacos 配置”，只能说明服务期望从 Nacos 拉取 dev 环境配置。</li>
+</ul>
+</li>
+<li><p><strong>网关没有 <code>/leads/**</code> 路由</strong></p>
+<ul>
+<li>经检查网关资源配置，未发现任何以 <code>/leads</code> 开头的前缀路由。</li>
+<li>当前可确认存在的路由前缀包括 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code>。</li>
+<li>因此 <code>/message/**</code>、<code>/etl/**</code>、<code>/ai/**</code> 等 leads 接口在当前网关下无法被统一网关转发。</li>
+</ul>
+</li>
+</ol>
+<h3 id="其他重要限制"><a class="anchor" href="#其他重要限制">#</a>其他重要限制</h3><ul>
+<li><strong>本地 Redis 缺少 RediSearch 模块</strong>：向量检索依赖 Redis 的向量能力，若未安装 RediSearch，则向量索引、相似度搜索等能力不可运行。</li>
+<li><strong>AiSession 只有实体类</strong>：没有对应的数据库表、Mapper 或 Service 接口；<code>AiSession.messages</code> 只是对象关系设计示意，不是已落地的关联查询。</li>
+<li><strong><code>ai_message</code> 表是本地手工创建</strong>：仓库中找不到其建表语句，文档不得把它描述为仓库提供的标准表结构。</li>
+<li><strong>未找到 <code>ChatController</code>、<code>ChatClientConfig</code>、<code>RedisVectorConfig</code></strong>：当前源码中实际存在的是 <code>AiMessageController</code>、<code>ETLController</code>、<code>LeadsETLController</code> 等；若需求文档提及上述名称，应以仓库实际文件为准。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageController.java:1-54</span></li>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">LeadsETLController.java:1-58</span></li>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+<li><span class="fileref">gateway.yml</span></li>
+</ul>
+<h2 id="架构概览"><a class="anchor" href="#架构概览">#</a>架构概览</h2><p>下图展示一个已经存在的请求链路：前端或调用方通过 <code>/message/chat</code> 发起 SSE 流式对话，服务侧读取历史消息、拼接 Spring AI 提示词并返回流式内容。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;调用方&quot;
+    participant Controller as &quot;AiMessageController&quot;
+    participant Service as &quot;AiMessageService&quot;
+    participant Memory as &quot;AiMessageChatMemory&quot;
+    participant Mapper as &quot;AiMessageMapper&quot;
+    participant Chat as &quot;Spring AI ChatClient/ChatModel&quot;
+
+    Client-&gt;&gt;Controller: POST /message/chat
+    Controller-&gt;&gt;Service: chatStreamWithHistory(input)
+    Service-&gt;&gt;Mapper: 按 ai_session_id 查询最近消息
+    Mapper--&gt;&gt;Service: AiMessage 列表
+    Service-&gt;&gt;Memory: MessageChatMemoryAdvisor 获取历史
+    Memory-&gt;&gt;Mapper: get(conversationId, lastN)
+    Mapper--&gt;&gt;Memory: 历史消息
+    Service-&gt;&gt;Chat: 构建提示词并流式调用大模型
+    Chat--&gt;&gt;Service: 流式内容
+    Service--&gt;&gt;Controller: ServerSentEvent 流
+    Controller--&gt;&gt;Client: SSE 文本事件</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageController.java:1-54</span></li>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">AiMessageChatMemory.java:1-103</span></li>
+<li><span class="fileref">AiMessageMapper.java:1-10</span></li>
+</ul>
+<h2 id="已实现骨架分析"><a class="anchor" href="#已实现骨架分析">#</a>已实现骨架分析</h2><h3 id="控制器层"><a class="anchor" href="#控制器层">#</a>控制器层</h3><table>
+<thead>
+<tr>
+<th>控制器</th>
+<th>主要接口</th>
+<th>行为说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>AiMessageController</code></td>
+<td><code>POST /message</code></td>
+<td>保存用户或 AI 回复消息</td>
+</tr>
+<tr>
+<td><code>AiMessageController</code></td>
+<td><code>POST /message/chat</code></td>
+<td>基于会话 ID 流式对话，支持多媒体</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>POST /etl/read/multipart-file</code></td>
+<td>使用 Tika 读取上传文件并按 token 分片</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>POST /etl/read/url</code></td>
+<td>读取固定 URL 文档并加入向量库</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>POST /etl/embedding</code></td>
+<td>将文件内容嵌入并写入向量存储</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>GET /etl/query</code></td>
+<td>根据查询文本做向量相似度搜索</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>GET /etl/chat/stream/database</code></td>
+<td>用向量上下文流式回答</td>
+</tr>
+<tr>
+<td><code>ETLController</code></td>
+<td><code>GET /etl/chat/stream/network</code></td>
+<td>结合网络文档上下文流式回答</td>
+</tr>
+<tr>
+<td><code>LeadsETLController</code></td>
+<td><code>GET /ai</code></td>
+<td>简单对话测试</td>
+</tr>
+<tr>
+<td><code>LeadsETLController</code></td>
+<td><code>GET /embedding</code></td>
+<td>计算文本向量测试</td>
+</tr>
+</tbody></table>
+<p>这些接口构成 AI Leads 的对外 API 骨架，但它们当前只能通过直连服务端口 <code>9301</code> 访问；由于网关没有 <code>/leads/**</code> 路由，也不能假设它们已通过统一网关暴露。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageController.java:1-54</span></li>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">LeadsETLController.java:1-58</span></li>
+</ul>
+<h3 id="服务层与记忆适配层"><a class="anchor" href="#服务层与记忆适配层">#</a>服务层与记忆适配层</h3><p><code>AiMessageService</code> 承担两条主线：</p>
+<ol>
+<li>保存消息：将 DTO 中的媒体信息转为 JSON 字符串后插入数据库。</li>
+<li>流式对话：根据会话 ID 查询历史消息，构造 Spring AI 的用户消息与多媒体，再通过 <code>MessageChatMemoryAdvisor</code> 注入历史上下文。</li>
+</ol>
+<p><code>AiMessageChatMemory</code> 把数据库中的 <code>AiMessage</code> 转换为 Spring AI 的 <code>UserMessage</code>、<code>AssistantMessage</code>、<code>SystemMessage</code>，并支持按会话清理历史。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class AiMessageService {
+        +saveMessage(aiMessageDTO) void
+        +chatStreamWithHistory(input) Flux
+    }
+
+    class IAiMessageService {
+        +saveMessage(aiMessageDto) void
+        +chatStreamWithHistory(input) Flux
+    }
+
+    class AiMessageChatMemory {
+        +add(conversationId, messages) void
+        +get(conversationId, lastN) List
+        +clear(conversationId) void
+        +toSpringAiMessage(aiMessage) Message
+        +toSpringAiMedia(media) Media
+    }
+
+    class AiMessageMapper {
+        +insert(entity) int
+        +selectOne(wrapper) AiMessage
+        +selectList(wrapper) List
+        +delete(wrapper) int
+    }
+
+    AiMessageService ..|&gt; IAiMessageService
+    AiMessageService --&gt; AiMessageChatMemory : &quot;依赖&quot;
+    AiMessageService --&gt; AiMessageMapper : &quot;持久化&quot;
+    AiMessageChatMemory --&gt; AiMessageMapper : &quot;读取历史&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">IAiMessageService.java:1-22</span></li>
+<li><span class="fileref">AiMessageChatMemory.java:1-103</span></li>
+<li><span class="fileref">AiMessageMapper.java:1-10</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">AiMessageChatMemory.java:1-103</span></li>
+</ul>
+<h3 id="文档-ETL-与向量检索骨架"><a class="anchor" href="#文档-ETL-与向量检索骨架">#</a>文档 ETL 与向量检索骨架</h3><p><code>ETLController</code> 是当前模块中最接近完整 RAG（检索增强生成）流程的部分：</p>
+<ul>
+<li>文档读取：支持上传文件和固定 URL 文档。</li>
+<li>文档分片：使用 <code>TokenTextSplitter</code> 对 Tika 解析出的文档进行切分。</li>
+<li>向量嵌入：调用 <code>VectorStore.add</code> 完成嵌入与入库。</li>
+<li>向量检索：<code>similaritySearch</code> 返回相似文档。</li>
+<li>流式问答：通过 <code>QuestionAnswerAdvisor</code> 将向量结果注入提示词模板，再由 <code>ChatClient</code> 流式输出。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;开始&quot;]) --&gt; Upload[&quot;接收文件或 URL&quot;]
+    Upload --&gt; Parse[&quot;Tika 解析文档&quot;]
+    Parse --&gt; Split[&quot;TokenTextSplitter 分片&quot;]
+    Split --&gt; Embed[&quot;VectorStore 嵌入并存储&quot;]
+    Embed --&gt; Query[&quot;相似度检索&quot;]
+    Query --&gt; Prompt[&quot;拼装上下文提示词&quot;]
+    Prompt --&gt; Stream[&quot;ChatClient 流式回答&quot;]
+    Stream --&gt; End([&quot;结束&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+</ul>
+<p>需要特别标注：<strong>向量检索是否可用取决于运行时 VectorStore 与底层存储（例如 Redis RediSearch）是否正确配置</strong>。仓库中只看到控制器和服务代码，没有看到 <code>ChatClientConfig</code>、<code>RedisVectorConfig</code> 或其他向量存储 Bean 的定义文件。因此，“系统提供向量检索”只能理解为“模块中存在向量检索相关的控制器逻辑”，不能写成“向量检索能力已上线”。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">DocumentService.java:1-39</span></li>
+</ul>
+<h2 id="数据模型与持久化现状"><a class="anchor" href="#数据模型与持久化现状">#</a>数据模型与持久化现状</h2><h3 id="领域模型"><a class="anchor" href="#领域模型">#</a>领域模型</h3><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>作用</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>AiSession</code></td>
+<td>会话实体，含名称与一对多消息关系</td>
+<td>只有实体类，无表、无 Mapper、无 Service</td>
+</tr>
+<tr>
+<td><code>AiMessage</code></td>
+<td>消息实体，含类型、文本、媒体、会话 ID</td>
+<td>有 Mapper，但依赖手工创建的 <code>ai_message</code> 表</td>
+</tr>
+<tr>
+<td><code>AiMessageDTO</code></td>
+<td>消息传输对象，支持媒体数组</td>
+<td>用于保存与对话输入</td>
+</tr>
+<tr>
+<td><code>AiMessageInputDTO</code></td>
+<td>对话输入对象，含提示词与会话 ID</td>
+<td>用于 <code>/message/chat</code></td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">erDiagram
+  AI_SESSION {
+    string name PK
+  }
+
+  AI_MESSAGE {
+    bigint id PK
+    string type
+    text text_content
+    string medias
+    string ai_session_id
+    timestamp create_time
+  }
+
+  AI_SESSION ||--o{ AI_MESSAGE : &quot;概念关联&quot;</pre></div><p>注意：上图中 <code>AI_SESSION</code> 与 <code>AI_MESSAGE</code> 的关系仅为代码层面的设计意图。实际仓库中：</p>
+<ul>
+<li><code>AiSession</code> 没有对应表与 Mapper。</li>
+<li><code>AiMessage</code> 通过 <code>AiMessageMapper</code> 操作数据库，但仓库没有建表语句。</li>
+<li><code>ai_message</code> 表是本地手工创建，不能作为仓库级数据库设计引用。</li>
+</ul>
+<p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AiSession.java:1-22</span></li>
+<li><span class="fileref">AiMessage.java:1-23</span></li>
+<li><span class="fileref">AiMessageDTO.java:1-58</span></li>
+<li><span class="fileref">AiMessageInputDTO.java:1-28</span></li>
+<li><span class="fileref">AiMessageMapper.java:1-10</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AiSession.java:1-22</span></li>
+<li><span class="fileref">AiMessage.java:1-23</span></li>
+<li><span class="fileref">AiMessageDTO.java:1-58</span></li>
+<li><span class="fileref">AiMessageInputDTO.java:1-28</span></li>
+<li><span class="fileref">AiMessageMapper.java:1-10</span></li>
+</ul>
+<h2 id="网关、配置与服务注册现状"><a class="anchor" href="#网关、配置与服务注册现状">#</a>网关、配置与服务注册现状</h2><h3 id="服务启动配置"><a class="anchor" href="#服务启动配置">#</a>服务启动配置</h3><p><code>bootstrap.yml</code> 定义了：</p>
+<ul>
+<li>服务端口：<code>9301</code></li>
+<li>应用名：<code>zealux-ai-leads</code></li>
+<li>Nacos 注册地址：<code>127.0.0.1:8848</code></li>
+<li>激活 profile：<code>dev</code></li>
+<li>共享配置：<code>application-${spring.profiles.active}.yml</code></li>
+</ul>
+<p>这意味着服务启动时会尝试连接本地 Nacos，并加载 dev 环境的共享配置。但仓库中不存在 <code>zealux-ai-leads-dev.yml</code>，所以不能断言配置已就绪。</p>
+<h3 id="网关路由"><a class="anchor" href="#网关路由">#</a>网关路由</h3><p>经检查网关资源配置，未发现 <code>/leads/**</code> 路由。现有前缀路由包括：</p>
+<ul>
+<li><code>/auth/**</code></li>
+<li><code>/system/**</code></li>
+<li><code>/code/**</code></li>
+<li><code>/schedule/**</code></li>
+<li><code>/file/**</code></li>
+</ul>
+<p>因此，即使 <code>zealux-ai-leads</code> 能启动并注册到 Nacos，调用方也不能默认通过统一网关访问其 <code>/message/**</code>、<code>/etl/**</code>、<code>/ai/**</code> 接口。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+<li><span class="fileref">gateway.yml</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p><code>zealux-ai-leads</code> 的核心依赖可以归纳为以下四类：</p>
+<table>
+<thead>
+<tr>
+<th>依赖类别</th>
+<th>具体依赖</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring AI</td>
+<td><code>ChatClient</code>、<code>ChatModel</code>、<code>MessageChatMemoryAdvisor</code>、<code>QuestionAnswerAdvisor</code>、<code>VectorStore</code>、<code>EmbeddingModel</code></td>
+<td>对话、记忆、向量检索、流式响应</td>
+</tr>
+<tr>
+<td>文档处理</td>
+<td><code>TikaDocumentReader</code>、<code>TokenTextSplitter</code></td>
+<td>文档读取与分片</td>
+</tr>
+<tr>
+<td>持久化</td>
+<td>MyBatis-Plus、<code>BaseMapper&lt;AiMessage&gt;</code></td>
+<td>消息表 CRUD</td>
+</tr>
+<tr>
+<td>微服务基础设施</td>
+<td>Spring Cloud、Nacos 配置与发现</td>
+<td>服务注册与配置拉取</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Leads[&quot;zealux-ai-leads&quot;]
+    SpringAI[&quot;Spring AI&lt;br/&gt;ChatClient / ChatModel / VectorStore&quot;]
+    Tika[&quot;Apache Tika&lt;br/&gt;文档解析&quot;]
+    MP[&quot;MyBatis-Plus&lt;br/&gt;AiMessageMapper&quot;]
+    Nacos[&quot;Nacos&lt;br/&gt;注册与配置&quot;]
+    DB[&quot;数据库&lt;br/&gt;ai_message（本地手工创建）&quot;]
+    Redis[&quot;Redis&lt;br/&gt;RediSearch（本地缺失）&quot;]
+
+    Leads --&gt; SpringAI
+    Leads --&gt; Tika
+    Leads --&gt; MP
+    Leads --&gt; Nacos
+    MP --&gt; DB
+    SpringAI --&gt; Redis</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageController.java:1-54</span></li>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">AiMessageMapper.java:1-10</span></li>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AiMessageService.java:1-89</span></li>
+<li><span class="fileref">ETLController.java:1-166</span></li>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+</ul>
+<h2 id="运行限制与排障建议"><a class="anchor" href="#运行限制与排障建议">#</a>运行限制与排障建议</h2><h3 id="当前不可运行的原因"><a class="anchor" href="#当前不可运行的原因">#</a>当前不可运行的原因</h3><ol>
+<li><p><strong>网关路由缺失</strong></p>
+<ul>
+<li>未配置 <code>/leads/**</code> 路由时，调用方无法通过统一网关访问 leads 接口。</li>
+<li>排查时应先确认网关是否新增路由，再验证 Nacos 中服务是否注册成功。</li>
+</ul>
+</li>
+<li><p><strong>Nacos 配置缺失</strong></p>
+<ul>
+<li>服务期望加载 <code>application-dev.yml</code>，但仓库中未发现 <code>zealux-ai-leads-dev.yml</code>。</li>
+<li>排查时应检查 Nacos 控制台是否存在对应 dataId，而不是假定配置已存在。</li>
+</ul>
+</li>
+<li><p><strong>Redis 缺少 RediSearch 模块</strong></p>
+<ul>
+<li>向量检索依赖 Redis 的向量能力。若 Redis 未启用 RediSearch，则 <code>VectorStore</code> 相关操作会失败。</li>
+<li>这是本地运行环境限制，不能因为控制器存在就认为向量检索可用。</li>
+</ul>
+</li>
+<li><p><strong>数据库表依赖手工创建</strong></p>
+<ul>
+<li><code>ai_message</code> 表不在仓库建表脚本中，而是本地手工创建。</li>
+<li>迁移或部署时不能只复制 Java 代码，必须同步提供稳定的建表 SQL 与字段约定。</li>
+</ul>
+</li>
+<li><p><strong>AiSession 未落地</strong></p>
+<ul>
+<li><code>AiSession</code> 只有实体类，没有表、Mapper 或 Service。</li>
+<li>当前对话历史主要通过 <code>ai_session_id</code> 字段与 <code>AiMessage</code> 关联，而非通过 <code>AiSession</code> 实体查询。</li>
+</ul>
+</li>
+</ol>
+<h3 id="建议的排障顺序"><a class="anchor" href="#建议的排障顺序">#</a>建议的排障顺序</h3><div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    A[&quot;接口不可访问&quot;] --&gt; B{&quot;是否经过网关？&quot;}
+    B --&gt;|是| C[&quot;检查网关是否配置 /leads/** 路由&quot;]
+    B --&gt;|否| D[&quot;尝试直连 9301 端口&quot;]
+    C --&gt; E{&quot;服务是否注册到 Nacos？&quot;}
+    D --&gt; F{&quot;Nacos 是否可连接？&quot;}
+    E --&gt;|否| G[&quot;检查 zealux-ai-leads-dev.yml 是否存在&quot;]
+    F --&gt;|否| H[&quot;检查 Nacos 地址与网络&quot;]
+    G --&gt; I{&quot;VectorStore 是否配置？&quot;}
+    H --&gt; I
+    I --&gt; J{&quot;Redis 是否启用 RediSearch？&quot;}
+    J --&gt; K{&quot;ai_message 表是否存在？&quot;}
+    K --&gt; L[&quot;验证接口&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+<li><span class="fileref">gateway.yml</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">bootstrap.yml:1-27</span></li>
+<li><span class="fileref">gateway.yml</span></li>
+</ul>
+<h2 id="后续落地方案"><a class="anchor" href="#后续落地方案">#</a>后续落地方案</h2><p>以下内容属于待实现的方案与建议，不代表当前已上线能力。</p>
+<h3 id="补全前端能力"><a class="anchor" href="#补全前端能力">#</a>补全前端能力</h3><ul>
+<li>在 <code>zealux-ai-ui-master</code> 中新增 leads 相关页面、API 调用、路由与菜单项。</li>
+<li>不建议以 <code>zealux-ai-master/zealux-ai-ui</code> 作为主源码，因为它与独立前端仓库是逐字节相同的重复拷贝，且未纳入根 POM 构建。</li>
+</ul>
+<h3 id="补充网关路由"><a class="anchor" href="#补充网关路由">#</a>补充网关路由</h3><ul>
+<li>在网关配置中添加 <code>/leads/**</code> 路由，指向 <code>zealux-ai-leads</code> 服务。</li>
+<li>若希望保持与现有 <code>/auth/**</code>、<code>/system/**</code> 等一致的风格，应在同一份网关配置文件中集中维护。</li>
+</ul>
+<h3 id="补齐-Nacos-配置"><a class="anchor" href="#补齐-Nacos-配置">#</a>补齐 Nacos 配置</h3><ul>
+<li>在 Nacos 中创建 <code>zealux-ai-leads-dev.yml</code>，至少包含数据库、Redis、向量存储、大模型接入等运行期配置。</li>
+<li>不要将本地 <code>_setup</code> 下的临时副本当作生产配置。</li>
+</ul>
+<h3 id="完善持久化设计"><a class="anchor" href="#完善持久化设计">#</a>完善持久化设计</h3><ul>
+<li>为 <code>AiSession</code> 建立数据库表、Mapper 与 Service。</li>
+<li>将 <code>AiSession</code> 与 <code>AiMessage</code> 的一对多关系落到数据库，而不是仅停留在对象字段。</li>
+<li>将 <code>ai_message</code> 建表语句纳入仓库，避免继续依赖手工建表。</li>
+</ul>
+<h3 id="完善向量检索运行环境"><a class="anchor" href="#完善向量检索运行环境">#</a>完善向量检索运行环境</h3><ul>
+<li>确保 Redis 启用 RediSearch 模块，或切换到已配置的其它向量存储实现。</li>
+<li>在仓库中补充 <code>ChatClientConfig</code>、<code>RedisVectorConfig</code> 等 Bean 定义，使向量检索依赖可被静态核验。</li>
+<li>明确向量检索仅在配置正确时可用，不能在文档中写成“系统已提供向量检索”。</li>
+</ul>
+<h3 id="收敛控制器命名"><a class="anchor" href="#收敛控制器命名">#</a>收敛控制器命名</h3><ul>
+<li>若业务规范需要使用 <code>ChatController</code>，应将现有 <code>AiMessageController</code>、<code>LeadsETLController</code> 的职责整合进统一的控制器，并保持包路径与命名一致。</li>
+<li>当前仓库中不存在 <code>ChatController</code>，因此不应以该名称描述现有实现。</li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>zealux-ai-leads</code> 是一个基于 RuoYi-Cloud 3.6.5 二次开发的 AI 功能模块，代码中确实存在 AI 对话、文档 ETL 与向量检索的设计骨架。但从产品可用性角度看，它仍处于半成品阶段：</p>
+<ul>
+<li>已实现：消息保存、SSE 流式对话、文档读取与分片、向量嵌入与查询、聊天历史适配、服务端口与 Nacos 启动配置。</li>
+<li>未实现或缺失：前端页面、菜单入口、<code>zealux-ai-leads-dev.yml</code>、网关 <code>/leads/**</code> 路由、<code>AiSession</code> 的数据库落地、<code>ai_message</code> 表的仓库化建表语句、向量存储 Bean 定义，以及本地 Redis RediSearch 模块。</li>
+</ul>
+<p>因此，在对外沟通或技术评审中，应严格区分“代码中存在相关骨架”和“功能已上线可用”。当前最准确的表述是：<strong>AI Leads 模块已具备初步的技术骨架，但尚未形成完整可用的产品能力。</strong></p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">← 字典与参数管理</a>
+    <a class="next" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#当前能力总览与缺失项">当前能力总览与缺失项</a></li><li class="d3"><a href="#已具备的设计骨架">已具备的设计骨架</a></li><li class="d3"><a href="#必须明确的四项缺失">必须明确的四项缺失</a></li><li class="d3"><a href="#其他重要限制">其他重要限制</a></li><li class="d2"><a href="#架构概览">架构概览</a></li><li class="d2"><a href="#已实现骨架分析">已实现骨架分析</a></li><li class="d3"><a href="#控制器层">控制器层</a></li><li class="d3"><a href="#服务层与记忆适配层">服务层与记忆适配层</a></li><li class="d3"><a href="#文档-ETL-与向量检索骨架">文档 ETL 与向量检索骨架</a></li><li class="d2"><a href="#数据模型与持久化现状">数据模型与持久化现状</a></li><li class="d3"><a href="#领域模型">领域模型</a></li><li class="d2"><a href="#网关、配置与服务注册现状">网关、配置与服务注册现状</a></li><li class="d3"><a href="#服务启动配置">服务启动配置</a></li><li class="d3"><a href="#网关路由">网关路由</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#运行限制与排障建议">运行限制与排障建议</a></li><li class="d3"><a href="#当前不可运行的原因">当前不可运行的原因</a></li><li class="d3"><a href="#建议的排障顺序">建议的排障顺序</a></li><li class="d2"><a href="#后续落地方案">后续落地方案</a></li><li class="d3"><a href="#补全前端能力">补全前端能力</a></li><li class="d3"><a href="#补充网关路由">补充网关路由</a></li><li class="d3"><a href="#补齐-Nacos-配置">补齐 Nacos 配置</a></li><li class="d3"><a href="#完善持久化设计">完善持久化设计</a></li><li class="d3"><a href="#完善向量检索运行环境">完善向量检索运行环境</a></li><li class="d3"><a href="#收敛控制器命名">收敛控制器命名</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

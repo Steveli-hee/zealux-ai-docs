@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>认证中心（Auth） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html" class="active">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>认证中心（Auth）</b></div><article><h1 id="认证中心（Auth）"><a class="anchor" href="#认证中心（Auth）">#</a>认证中心（Auth）</h1><cite>
+**本文引用的文件**   
+- [RuoYiAuthApplication.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/RuoYiAuthApplication.java)
+- [TokenController.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/controller/TokenController.java)
+- [SysLoginService.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/service/SysLoginService.java)
+- [SysPasswordService.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/service/SysPasswordService.java)
+- [bootstrap.yml（认证服务）](file://zealux-ai-master/zealux-ai-auth/src/main/resources/bootstrap.yml)
+- [JwtUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/utils/JwtUtils.java)
+- [SecurityUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/utils/SecurityUtils.java)
+- [TokenService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/service/TokenService.java)
+- [AuthFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/AuthFilter.java)
+- [bootstrap.yml（网关服务）](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/bootstrap.yml)
+- [login.js](file://zealux-ai-ui-master/src/api/login.js)
+- [request.js](file://zealux-ai-ui-master/src/utils/request.js)
+- [auth.js](file://zealux-ai-ui-master/src/utils/auth.js)
+- [user.js](file://zealux-ai-ui-master/src/store/modules/user.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构与定位">项目结构与定位</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#架构与请求流程">架构与请求流程</a></li>
+<li><a href="#登录注册与退出接口">登录、注册与退出接口</a></li>
+<li><a href="#jwt-生成负载与过期策略">JWT 生成、负载与过期策略</a></li>
+<li><a href="#redis-中的会话与动态权限数据">Redis 中的会话与动态权限数据</a></li>
+<li><a href="#网关-authfilter-与认证中心的协作">网关 AuthFilter 与认证中心的协作</a></li>
+<li><a href="#前端-token-保存与携带方式">前端 Token 保存与携带方式</a></li>
+<li><a href="#安全建议">安全建议</a></li>
+<li><a href="#生产环境高可用部署建议">生产环境高可用部署建议</a></li>
+<li><a href="#故障排查要点">故障排查要点</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本系统是基于 RuoYi-Cloud 的重命名二次开发产物，根工程 artifactId 为 zealux-ai，版本为 3.6.5。认证中心是一个独立的 Spring Boot 服务，启动类名为 <code>RuoYiAuthApplication</code>，对外暴露 <code>/auth/**</code> 相关接口，承担用户名密码登录、注册、验证码校验、Token 签发、刷新与登出等能力。该服务依赖 Redis 维护用户会话，通过 Feign 调用 system 模块获取用户信息，并通过网关的 <code>AuthFilter</code> 完成后续业务请求的鉴权。</p>
+<p>需要特别说明的是：当前仓库中未发现 CRM 相关数据库表或已上线的 CRM 功能实现；本文仅围绕代码中实际存在的认证流程展开。</p>
+<h2 id="项目结构与定位"><a class="anchor" href="#项目结构与定位">#</a>项目结构与定位</h2><p>认证中心位于 <code>zealux-ai-master/zealux-ai-auth</code> 模块下，是 Maven 多模块中的一个独立子工程。它使用 Spring Boot 启动，排除数据源自动配置，说明其本身不直接操作业务数据库，而是通过远程接口访问 system 模块的用户数据。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>包路径</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用入口</td>
+<td><code>com.zealux.auth.RuoYiAuthApplication</code></td>
+<td>启动认证服务，启用 Feign 客户端</td>
+</tr>
+<tr>
+<td>Web 层</td>
+<td><code>com.zealux.auth.controller.TokenController</code></td>
+<td>暴露登录、注册、刷新、退出接口</td>
+</tr>
+<tr>
+<td>登录逻辑</td>
+<td><code>com.zealux.auth.service.SysLoginService</code></td>
+<td>用户名密码校验、IP 黑名单检查、登录日志记录</td>
+</tr>
+<tr>
+<td>密码校验</td>
+<td><code>com.zealux.auth.service.SysPasswordService</code></td>
+<td>错误次数限制、账户锁定、BCrypt 密码匹配</td>
+</tr>
+<tr>
+<td>通用安全工具</td>
+<td><code>com.zealux.common.security.utils.SecurityUtils</code></td>
+<td>从请求头取 Token、密码加密与比对</td>
+</tr>
+<tr>
+<td>令牌管理</td>
+<td><code>com.zealux.common.security.service.TokenService</code></td>
+<td>创建、刷新、删除、验证用户会话</td>
+</tr>
+<tr>
+<td>JWT 工具</td>
+<td><code>com.zealux.common.core.utils.JwtUtils</code></td>
+<td>使用 HS512 生成和解析 JWT</td>
+</tr>
+<tr>
+<td>网关鉴权</td>
+<td><code>com.zealux.gateway.filter.AuthFilter</code></td>
+<td>全局过滤未授权请求，向下游注入用户标识</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    A[&quot;浏览器&quot;] --&gt; B[&quot;网关&lt;br/&gt;端口 8080&quot;]
+    B --&gt; C[&quot;认证中心&lt;br/&gt;端口 9200&quot;]
+    B --&gt; D[&quot;系统服务&lt;br/&gt;system 模块&quot;]
+    C --&gt; E[&quot;Redis&quot;]
+    C --&gt; D
+    D --&gt; F[&quot;关系型数据库&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiAuthApplication.java:1-31</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）:1-25</span></li>
+<li><span class="fileref">bootstrap.yml（网关服务）:1-44</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiAuthApplication.java:1-31</span></li>
+<li><span class="fileref">bootstrap.yml（认证服务）:1-25</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><h3 id="认证服务入口"><a class="anchor" href="#认证服务入口">#</a>认证服务入口</h3><p><code>RuoYiAuthApplication</code> 使用 <code>@SpringBootApplication</code> 启动 Spring Boot 应用，并排除了 <code>DataSourceAutoConfiguration</code>，表明认证服务不直接使用本地数据源。它同时启用 <code>@EnableRyFeignClients</code>，用于通过 Feign 调用其他微服务。</p>
+<h3 id="TokenController"><a class="anchor" href="#TokenController">#</a>TokenController</h3><p><code>TokenController</code> 暴露四个主要接口：</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>路径</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录</td>
+<td>POST</td>
+<td><code>/auth/login</code></td>
+<td>校验用户名密码，返回 access_token 与过期时间</td>
+</tr>
+<tr>
+<td>注册</td>
+<td>POST</td>
+<td><code>/auth/register</code></td>
+<td>调用 system 模块注册用户</td>
+</tr>
+<tr>
+<td>刷新</td>
+<td>POST</td>
+<td><code>/auth/refresh</code></td>
+<td>根据已有有效 Token 刷新会话有效期</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>DELETE</td>
+<td><code>/auth/logout</code></td>
+<td>清理 Redis 会话并记录退出日志</td>
+</tr>
+</tbody></table>
+<h3 id="SysLoginService"><a class="anchor" href="#SysLoginService">#</a>SysLoginService</h3><p>该服务负责完整登录流程：</p>
+<ol>
+<li>校验用户名和密码是否为空。</li>
+<li>校验用户名和密码长度是否符合常量定义的最小值与最大值。</li>
+<li>查询 Redis 中的 IP 黑名单，若命中则拒绝登录。</li>
+<li>通过 <code>RemoteUserService</code> 远程调用 system 模块获取用户信息。</li>
+<li>检查用户是否被删除或停用。</li>
+<li>调用 <code>SysPasswordService.validate</code> 进行密码校验与错误次数控制。</li>
+<li>记录登录成功信息与用户登录 IP、时间。</li>
+</ol>
+<h3 id="SysPasswordService"><a class="anchor" href="#SysPasswordService">#</a>SysPasswordService</h3><p>该服务集中处理密码相关安全逻辑：</p>
+<ul>
+<li>使用 Redis 缓存用户名对应的密码错误次数。</li>
+<li>达到最大重试次数后抛出“账户锁定”异常。</li>
+<li>每次失败时递增计数并设置过期时间。</li>
+<li>登录成功后清除错误计数缓存。</li>
+<li>使用 <code>SecurityUtils.matchesPassword</code> 做 BCrypt 密码比对。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">SysPasswordService.java:1-85</span></li>
+</ul>
+<h2 id="架构与请求流程"><a class="anchor" href="#架构与请求流程">#</a>架构与请求流程</h2><p>认证中心不是无状态的身份提供者，而是采用“JWT + Redis 会话”的混合模式：</p>
+<ul>
+<li>JWT 作为轻量级身份凭证，由认证服务签发。</li>
+<li>用户完整会话对象 <code>LoginUser</code> 存储在 Redis 中。</li>
+<li>网关在每次请求中校验 JWT 签名，并检查 Redis 中是否存在对应会话。</li>
+<li>业务服务从请求头中读取用户 ID、用户名等上下文信息。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant 浏览器 as &quot;浏览器&quot;
+    participant 网关 as &quot;网关 AuthFilter&quot;
+    participant 认证中心 as &quot;TokenController&quot;
+    participant 系统服务 as &quot;system 模块&quot;
+    participant Redis as &quot;Redis&quot;
+
+    浏览器-&gt;&gt;认证中心: &quot;POST /auth/login&quot;
+    认证中心-&gt;&gt;系统服务: &quot;远程获取用户信息&quot;
+    系统服务--&gt;&gt;认证中心: &quot;返回 LoginUser&quot;
+    认证中心-&gt;&gt;Redis: &quot;存储会话&quot;
+    认证中心--&gt;&gt;浏览器: &quot;access_token、expires_in&quot;
+
+    浏览器-&gt;&gt;网关: &quot;携带 Authorization 请求业务接口&quot;
+    网关-&gt;&gt;网关: &quot;解析 JWT&quot;
+    网关-&gt;&gt;Redis: &quot;检查会话键是否存在&quot;
+    Redis--&gt;&gt;网关: &quot;存在或不存在&quot;
+    网关--&gt;&gt;浏览器: &quot;放行或 401&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="登录、注册与退出接口"><a class="anchor" href="#登录、注册与退出接口">#</a>登录、注册与退出接口</h2><h3 id="登录流程"><a class="anchor" href="#登录流程">#</a>登录流程</h3><p>登录请求进入 <code>TokenController.login</code>，参数来自 <code>LoginBody</code>，包含用户名、密码以及验证码字段。后端执行顺序如下：</p>
+<ol>
+<li>调用 <code>SysLoginService.login</code>。</li>
+<li>校验用户名、密码长度。</li>
+<li>校验 IP 黑名单。</li>
+<li>通过 Feign 调用 <code>RemoteUserService.getUserInfo</code> 获取用户及权限信息。</li>
+<li>检查用户状态。</li>
+<li>调用 <code>SysPasswordService.validate</code> 校验密码与错误次数。</li>
+<li>调用 <code>TokenService.createToken</code> 生成 Token 并返回。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;收到登录请求&quot;]) --&gt; CheckEmpty[&quot;校验用户名与密码是否为空&quot;]
+    CheckEmpty --&gt; LengthCheck{&quot;长度合法？&quot;}
+    LengthCheck --&gt;|否| FailEmpty[&quot;抛出服务异常&quot;]
+    LengthCheck --&gt; Blacklist[&quot;查询 IP 黑名单&quot;]
+    Blacklist --&gt; RemoteUser[&quot;远程调用 system 获取用户信息&quot;]
+    RemoteUser --&gt; StatusCheck{&quot;用户未被删除且已启用？&quot;}
+    StatusCheck --&gt;|否| FailStatus[&quot;抛出服务异常&quot;]
+    StatusCheck --&gt; PasswordCheck[&quot;调用密码服务校验&quot;]
+    PasswordCheck --&gt; Success[&quot;创建 Token 并返回&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">SysPasswordService.java:1-85</span></li>
+</ul>
+<h3 id="注册流程"><a class="anchor" href="#注册流程">#</a>注册流程</h3><p><code>TokenController.register</code> 接收 <code>RegisterBody</code>，交给 <code>SysLoginService.register</code>。注册流程会：</p>
+<ul>
+<li>校验用户名和密码非空。</li>
+<li>校验用户名和密码长度。</li>
+<li>使用 <code>SecurityUtils.encryptPassword</code> 对密码进行 BCrypt 加密。</li>
+<li>通过 <code>RemoteUserService.registerUserInfo</code> 写入 system 模块。</li>
+<li>记录注册日志。</li>
+</ul>
+<h3 id="退出流程"><a class="anchor" href="#退出流程">#</a>退出流程</h3><p><code>TokenController.logout</code> 从请求头取出 Token，调用 <code>AuthUtil.logoutByToken</code> 清理会话，并记录退出日志。注意：当前退出逻辑并未直接调用 <code>TokenService.delLoginUser</code>，而是通过 <code>AuthUtil</code> 处理，因此具体会话删除行为取决于 <code>AuthUtil</code> 的实现。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">SysPasswordService.java:1-85</span></li>
+</ul>
+<h2 id="JWT-生成、负载与过期策略"><a class="anchor" href="#JWT-生成、负载与过期策略">#</a>JWT 生成、负载与过期策略</h2><h3 id="生成过程"><a class="anchor" href="#生成过程">#</a>生成过程</h3><p><code>TokenService.createToken</code> 是 Token 签发的核心方法：</p>
+<ol>
+<li>生成一个 UUID 作为 Token 字符串。</li>
+<li>从 <code>LoginUser</code> 中提取用户 ID、用户名、IP 地址。</li>
+<li>调用 <code>refreshToken</code> 将完整 <code>LoginUser</code> 存入 Redis。</li>
+<li>构建 JWT 负载，包含：<ul>
+<li>用户键：<code>SecurityConstants.USER_KEY</code>，值为 Token。</li>
+<li>用户 ID：<code>SecurityConstants.DETAILS_USER_ID</code>。</li>
+<li>用户名：<code>SecurityConstants.DETAILS_USERNAME</code>。</li>
+</ul>
+</li>
+<li>调用 <code>JwtUtils.createToken</code> 生成 JWT。</li>
+<li>返回 <code>access_token</code> 与 <code>expires_in</code>。</li>
+</ol>
+<h3 id="JWT-负载结构"><a class="anchor" href="#JWT-负载结构">#</a>JWT 负载结构</h3><table>
+<thead>
+<tr>
+<th>负载字段</th>
+<th>含义</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>user_key</code></td>
+<td>会话唯一键，通常等于 Token 值</td>
+<td>JWT 负载</td>
+</tr>
+<tr>
+<td><code>details.user_id</code></td>
+<td>用户编号</td>
+<td>JWT 负载</td>
+</tr>
+<tr>
+<td><code>details.username</code></td>
+<td>用户名</td>
+<td>JWT 负载</td>
+</tr>
+</tbody></table>
+<p>JWT 工具类 <code>JwtUtils</code> 使用 HS512 算法进行签名，密钥来源于 <code>TokenConstants.SECRET</code>。解析时使用相同密钥校验签名。</p>
+<h3 id="过期时间"><a class="anchor" href="#过期时间">#</a>过期时间</h3><p>系统使用分钟为单位的时间常量：</p>
+<ul>
+<li><code>TOKEN_EXPIRE_TIME</code> 来自 <code>CacheConstants.EXPIRATION</code>。</li>
+<li><code>createToken</code> 返回的 <code>expires_in</code> 表示 Token 在 Redis 中的存活分钟数。</li>
+<li><code>verifyToken</code> 会在剩余有效期小于阈值时主动刷新会话。</li>
+</ul>
+<p>需要注意：当前 <code>TokenService.refreshToken</code> 在 <code>/auth/refresh</code> 接口中只更新 Redis 中的会话过期时间，并没有重新签发新的 JWT。因此刷新接口更准确地说是“延长会话有效期”，而不是传统意义上的“签发新 Token”。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class TokenService {
+        +createToken(loginUser) Map
+        +getLoginUser(request) LoginUser
+        +refreshToken(loginUser) void
+        +verifyToken(loginUser) void
+        +delLoginUser(token) void
+    }
+
+    class JwtUtils {
+        +createToken(claims) String
+        +parseToken(token) Claims
+        +getUserKey(token) String
+        +getUserId(token) String
+        +getUserName(token) String
+    }
+
+    class SecurityUtils {
+        +encryptPassword(password) String
+        +matchesPassword(raw, encoded) boolean
+        +getToken(request) String
+    }
+
+    TokenService --&gt; JwtUtils : &quot;签发和解析 JWT&quot;
+    TokenService --&gt; SecurityUtils : &quot;提取请求 Token&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">JwtUtils.java:1-123</span></li>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">JwtUtils.java:1-123</span></li>
+</ul>
+<h2 id="Redis-中的会话与动态权限数据"><a class="anchor" href="#Redis-中的会话与动态权限数据">#</a>Redis 中的会话与动态权限数据</h2><h3 id="会话存储"><a class="anchor" href="#会话存储">#</a>会话存储</h3><p><code>TokenService</code> 使用 Redis 保存完整的 <code>LoginUser</code> 对象。关键键前缀来自 <code>CacheConstants.LOGIN_TOKEN_KEY</code>，实际键名由 Token 值拼接而成。会话中包含用户 ID、用户名、IP、登录时间和过期时间等信息。</p>
+<h3 id="动态权限数据"><a class="anchor" href="#动态权限数据">#</a>动态权限数据</h3><p>认证中心通过 <code>RemoteUserService.getUserInfo</code> 获取 <code>LoginUser</code>，其中包含用户基本信息及其角色、权限等扩展信息。这些权限数据由 system 模块从数据库加载后封装进 <code>LoginUser</code>，再由认证服务写入 Redis。因此：</p>
+<ul>
+<li>权限数据最终落在 Redis 中，而不是 JWT 负载里。</li>
+<li>业务服务如果需要权限，应优先从当前线程上下文或 Redis 中读取，而不是完全信任 JWT 内容。</li>
+<li>权限变更会通过 system 模块刷新 Redis 中的会话或相关缓存，从而让后续请求读到最新权限。</li>
+</ul>
+<p>当前代码中没有看到显式的“权限缓存 key 名称”或统一的“权限缓存同步方法”，但登录流程确实把 <code>LoginUser</code> 写入了 Redis，这是权限数据落盘的关键路径。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    A[&quot;system 模块加载用户、角色、权限&quot;] --&gt; B[&quot;封装为 LoginUser&quot;]
+    B --&gt; C[&quot;认证服务写入 Redis&quot;]
+    C --&gt; D[&quot;网关校验会话&quot;]
+    C --&gt; E[&quot;业务服务读取当前用户上下文&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysLoginService.java:1-155</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+</ul>
+<h2 id="网关-AuthFilter-与认证中心的协作"><a class="anchor" href="#网关-AuthFilter-与认证中心的协作">#</a>网关 AuthFilter 与认证中心的协作</h2><p><code>AuthFilter</code> 是网关的全局过滤器，负责拦截所有经过网关的请求。其核心逻辑如下：</p>
+<ol>
+<li>判断 URL 是否在白名单中；如果是，则直接放行。</li>
+<li>从请求头读取 <code>Authorization</code>。</li>
+<li>去除可能的前缀。</li>
+<li>使用 <code>JwtUtils.parseToken</code> 解析 JWT。</li>
+<li>如果解析失败，返回 401。</li>
+<li>从 JWT 中取出 <code>user_key</code>，并在 Redis 中检查对应键是否存在。</li>
+<li>如果 Redis 中不存在会话，返回“登录状态已过期”。</li>
+<li>将用户 ID、用户名、用户键写入下游请求头。</li>
+<li>移除内部来源标记，避免敏感信息泄露给下游服务。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant 浏览器 as &quot;浏览器&quot;
+    participant 网关 as &quot;AuthFilter&quot;
+    participant Redis as &quot;Redis&quot;
+    participant 业务服务 as &quot;下游服务&quot;
+
+    浏览器-&gt;&gt;网关: &quot;带 Authorization 的请求&quot;
+    网关-&gt;&gt;网关: &quot;白名单判断&quot;
+    网关-&gt;&gt;网关: &quot;解析 JWT&quot;
+    网关-&gt;&gt;Redis: &quot;hasKey(user_key)&quot;
+    Redis--&gt;&gt;网关: &quot;存在&quot;
+    网关-&gt;&gt;业务服务: &quot;转发并注入 userId、username、userKey&quot;
+    业务服务--&gt;&gt;网关: &quot;业务响应&quot;
+    网关--&gt;&gt;浏览器: &quot;返回响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="前端-Token-保存与携带方式"><a class="anchor" href="#前端-Token-保存与携带方式">#</a>前端 Token 保存与携带方式</h2><h3 id="登录-API"><a class="anchor" href="#登录-API">#</a>登录 API</h3><p>前端 <code>api/login.js</code> 定义了以下接口：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>路径</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>login</code></td>
+<td><code>/auth/login</code></td>
+<td>提交用户名、密码、验证码</td>
+</tr>
+<tr>
+<td><code>register</code></td>
+<td><code>/auth/register</code></td>
+<td>注册用户</td>
+</tr>
+<tr>
+<td><code>refreshToken</code></td>
+<td><code>/auth/refresh</code></td>
+<td>刷新 Token</td>
+</tr>
+<tr>
+<td><code>getInfo</code></td>
+<td><code>/system/user/getInfo</code></td>
+<td>获取用户信息</td>
+</tr>
+<tr>
+<td><code>logout</code></td>
+<td><code>/auth/logout</code></td>
+<td>退出登录</td>
+</tr>
+<tr>
+<td><code>getCodeImg</code></td>
+<td><code>/code</code></td>
+<td>获取验证码</td>
+</tr>
+</tbody></table>
+<p>登录请求明确设置 <code>isToken: false</code>，表示不需要携带 Token。</p>
+<h3 id="Axios-拦截器"><a class="anchor" href="#Axios-拦截器">#</a>Axios 拦截器</h3><p><code>utils/request.js</code> 在请求拦截器中：</p>
+<ul>
+<li>从 <code>utils/auth.js</code> 读取 Token。</li>
+<li>若存在且请求允许携带 Token，则设置请求头 <code>Authorization: Bearer &lt;token&gt;</code>。</li>
+<li>对重复提交做简单防抖。</li>
+<li>响应拦截器中处理 401、500、601 等状态码。</li>
+<li>401 时弹出对话框，并触发登出流程。</li>
+</ul>
+<h3 id="Token-持久化"><a class="anchor" href="#Token-持久化">#</a>Token 持久化</h3><p><code>utils/auth.js</code> 使用 Cookie 保存：</p>
+<ul>
+<li><code>Admin-Token</code>：Token 值。</li>
+<li><code>Admin-Expires-In</code>：过期时间。</li>
+</ul>
+<p><code>store/modules/user.js</code> 在登录成功后：</p>
+<ul>
+<li>调用 <code>setToken</code> 保存 Token。</li>
+<li>调用 <code>setExpiresIn</code> 保存过期时间。</li>
+<li>在 Vuex state 中维护 token、roles、permissions 等字段。</li>
+<li>退出时清空 Token、角色、权限并移除 Cookie。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    A[&quot;用户输入用户名、密码、验证码&quot;] --&gt; B[&quot;调用 /auth/login&quot;]
+    B --&gt; C[&quot;后端返回 access_token、expires_in&quot;]
+    C --&gt; D[&quot;Cookie 保存 Admin-Token&quot;]
+    C --&gt; E[&quot;Vuex 保存 token、expires_in&quot;]
+    D --&gt; F[&quot;后续请求附加 Authorization&quot;]
+    E --&gt; F</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">login.js:1-62</span></li>
+<li><span class="fileref">request.js:1-152</span></li>
+<li><span class="fileref">auth.js:1-29</span></li>
+<li><span class="fileref">user.js:1-122</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">login.js:1-62</span></li>
+<li><span class="fileref">request.js:1-152</span></li>
+<li><span class="fileref">auth.js:1-29</span></li>
+<li><span class="fileref">user.js:1-122</span></li>
+</ul>
+<h2 id="安全建议"><a class="anchor" href="#安全建议">#</a>安全建议</h2><h3 id="密钥轮换"><a class="anchor" href="#密钥轮换">#</a>密钥轮换</h3><p>当前 <code>JwtUtils</code> 使用静态字段 <code>secret = TokenConstants.SECRET</code>，并以 HS512 固定密钥签名。生产环境中建议：</p>
+<ul>
+<li>将密钥从配置文件或 Nacos 中读取，而不是硬编码。</li>
+<li>支持密钥版本标识，以便旧 Token 与新密钥之间平滑过渡。</li>
+<li>定期轮换密钥，并在轮换期间允许新旧密钥共同验证一段时间。</li>
+<li>轮换后考虑强制刷新 Token，使旧 Token 尽快失效。</li>
+</ul>
+<h3 id="Token-黑名单"><a class="anchor" href="#Token-黑名单">#</a>Token 黑名单</h3><p>当前认证中心没有显式的 Token 黑名单集合。建议新增：</p>
+<ul>
+<li>在注销、修改密码、管理员强制下线时，将 Token 加入黑名单。</li>
+<li>黑名单键使用 <code>token:版本号</code> 形式，便于配合密钥轮换。</li>
+<li>在网关 <code>AuthFilter</code> 中先查黑名单，再查正常会话。</li>
+<li>使用 Redis 过期时间控制黑名单生命周期。</li>
+</ul>
+<h3 id="并发登录控制"><a class="anchor" href="#并发登录控制">#</a>并发登录控制</h3><p>当前登录逻辑未限制同一用户同时在线数量。可考虑：</p>
+<ul>
+<li>在 Redis 中以用户 ID 为键记录最近登录的 Token 列表。</li>
+<li>配置允许的最大并发登录数。</li>
+<li>超出限制时选择拒绝新登录或踢掉最早登录的会话。</li>
+<li>踢人场景下向前端返回特定状态码，提示重新登录。</li>
+</ul>
+<h3 id="密码加密存储"><a class="anchor" href="#密码加密存储">#</a>密码加密存储</h3><p>当前密码使用 BCrypt 加密，符合一般实践：</p>
+<ul>
+<li>注册时使用 <code>SecurityUtils.encryptPassword</code>。</li>
+<li>登录时使用 <code>SecurityUtils.matchesPassword</code>。</li>
+<li>不建议自行替换为弱哈希算法。</li>
+<li>建议对明文密码进行传输保护，例如全站 HTTPS。</li>
+</ul>
+<h3 id="验证码防刷策略"><a class="anchor" href="#验证码防刷策略">#</a>验证码防刷策略</h3><p>验证码目前由网关侧提供，并与登录接口分离。建议增强：</p>
+<ul>
+<li>验证码以 <code>uuid</code> 为键，短期过期。</li>
+<li>单次验证码只能使用一次。</li>
+<li>对同一 IP 或同一 uuid 增加频率限制。</li>
+<li>对频繁失败的用户名增加冷却时间。</li>
+<li>将验证码图片服务与认证服务解耦，避免单点瓶颈。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">JwtUtils.java:1-123</span></li>
+<li><span class="fileref">SecurityUtils.java:1-117</span></li>
+<li><span class="fileref">SysPasswordService.java:1-85</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="生产环境高可用部署建议"><a class="anchor" href="#生产环境高可用部署建议">#</a>生产环境高可用部署建议</h2><h3 id="认证服务"><a class="anchor" href="#认证服务">#</a>认证服务</h3><ul>
+<li>至少部署两个以上 <code>zealux-ai-auth</code> 实例，通过 Nacos 服务发现。</li>
+<li>使用外部共享 Redis，避免单机 Redis 成为单点。</li>
+<li>使用外部 Nacos 集群管理配置与服务注册。</li>
+<li>通过网关或反向代理做健康检查和负载均衡。</li>
+<li>对认证接口开启限流，防止暴力破解和撞库。</li>
+</ul>
+<h3 id="网关"><a class="anchor" href="#网关">#</a>网关</h3><ul>
+<li>网关本身是高可用入口，建议多个实例运行。</li>
+<li>白名单配置通过 Nacos 动态下发，避免重启服务。</li>
+<li>对登录、验证码等高风险接口单独限流。</li>
+<li>启用 Sentinel 规则，对认证链路做熔断降级。</li>
+</ul>
+<h3 id="Redis"><a class="anchor" href="#Redis">#</a>Redis</h3><ul>
+<li>使用 Redis 主从或哨兵模式。</li>
+<li>合理设置会话 TTL，避免内存泄漏。</li>
+<li>对 Redis 连接池、超时、重试做监控。</li>
+<li>备份敏感键空间，如密码错误计数、IP 黑名单。</li>
+</ul>
+<h3 id="监控与审计"><a class="anchor" href="#监控与审计">#</a>监控与审计</h3><ul>
+<li>收集认证成功率、失败率、平均耗时。</li>
+<li>记录登录失败、强制下线、密码修改等审计日志。</li>
+<li>对异常 401 和 Redis 不可用告警。</li>
+<li>关注 JWT 解析失败率，用于检测密钥配置问题。</li>
+</ul>
+<p>[本节为部署与安全建议，不直接分析具体源码文件]</p>
+<h2 id="故障排查要点"><a class="anchor" href="#故障排查要点">#</a>故障排查要点</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录后立即 401</td>
+<td>Redis 会话未写入或键不一致</td>
+<td>检查 <code>TokenService.refreshToken</code> 写入的键是否与 <code>AuthFilter</code> 使用的键一致</td>
+</tr>
+<tr>
+<td>JWT 解析失败</td>
+<td>密钥不一致或 Token 被篡改</td>
+<td>检查 <code>JwtUtils.secret</code> 与网关、认证服务是否使用相同密钥</td>
+</tr>
+<tr>
+<td>刷新 Token 无效</td>
+<td>刷新接口未返回新 Token</td>
+<td>确认是否需要前端同时刷新 Cookie 和 Vuex 中的 Token</td>
+</tr>
+<tr>
+<td>退出后仍可访问</td>
+<td>退出逻辑未正确删除会话</td>
+<td>检查 <code>AuthUtil.logoutByToken</code> 是否真正删除 Redis 会话</td>
+</tr>
+<tr>
+<td>验证码频繁失败</td>
+<td>验证码未一次性消费或频率限制不足</td>
+<td>检查验证码服务实现和前端 uuid 传递</td>
+</tr>
+<tr>
+<td>权限变更后未生效</td>
+<td>Redis 中会话未刷新</td>
+<td>检查 system 模块是否更新了 <code>LoginUser</code> 所在缓存</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">TokenService.java:1-174</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>认证中心在本系统中承担统一认证入口的职责。它以 <code>RuoYiAuthApplication</code> 启动，通过 <code>TokenController</code> 暴露登录、注册、刷新和退出接口，结合 <code>SysLoginService</code> 和 <code>SysPasswordService</code> 完成用户名密码校验、IP 黑名单检查、密码错误锁定等基础安全能力。JWT 由 <code>JwtUtils</code> 使用 HS512 签名，而真正的用户会话和权限数据保存在 Redis 中。网关 <code>AuthFilter</code> 负责校验 JWT 并检查 Redis 会话，再将用户标识传递给下游服务。</p>
+<p>当前实现适合中小型系统的快速接入，但在密钥轮换、Token 黑名单、并发登录控制、验证码防刷和高可用方面仍有改进空间。生产环境应重点保障 Redis、Nacos、网关和认证服务的可用性，并对认证链路建立完善的监控与审计机制。</p>
+<p>[本节为总结性内容，不直接分析具体源码文件]</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">← 可视化监控（Monitor）</a>
+    <a class="next" href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security） →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构与定位">项目结构与定位</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d3"><a href="#认证服务入口">认证服务入口</a></li><li class="d3"><a href="#TokenController">TokenController</a></li><li class="d3"><a href="#SysLoginService">SysLoginService</a></li><li class="d3"><a href="#SysPasswordService">SysPasswordService</a></li><li class="d2"><a href="#架构与请求流程">架构与请求流程</a></li><li class="d2"><a href="#登录、注册与退出接口">登录、注册与退出接口</a></li><li class="d3"><a href="#登录流程">登录流程</a></li><li class="d3"><a href="#注册流程">注册流程</a></li><li class="d3"><a href="#退出流程">退出流程</a></li><li class="d2"><a href="#JWT-生成、负载与过期策略">JWT 生成、负载与过期策略</a></li><li class="d3"><a href="#生成过程">生成过程</a></li><li class="d3"><a href="#JWT-负载结构">JWT 负载结构</a></li><li class="d3"><a href="#过期时间">过期时间</a></li><li class="d2"><a href="#Redis-中的会话与动态权限数据">Redis 中的会话与动态权限数据</a></li><li class="d3"><a href="#会话存储">会话存储</a></li><li class="d3"><a href="#动态权限数据">动态权限数据</a></li><li class="d2"><a href="#网关-AuthFilter-与认证中心的协作">网关 AuthFilter 与认证中心的协作</a></li><li class="d2"><a href="#前端-Token-保存与携带方式">前端 Token 保存与携带方式</a></li><li class="d3"><a href="#登录-API">登录 API</a></li><li class="d3"><a href="#Axios-拦截器">Axios 拦截器</a></li><li class="d3"><a href="#Token-持久化">Token 持久化</a></li><li class="d2"><a href="#安全建议">安全建议</a></li><li class="d3"><a href="#密钥轮换">密钥轮换</a></li><li class="d3"><a href="#Token-黑名单">Token 黑名单</a></li><li class="d3"><a href="#并发登录控制">并发登录控制</a></li><li class="d3"><a href="#密码加密存储">密码加密存储</a></li><li class="d3"><a href="#验证码防刷策略">验证码防刷策略</a></li><li class="d2"><a href="#生产环境高可用部署建议">生产环境高可用部署建议</a></li><li class="d3"><a href="#认证服务">认证服务</a></li><li class="d3"><a href="#网关">网关</a></li><li class="d3"><a href="#Redis">Redis</a></li><li class="d3"><a href="#监控与审计">监控与审计</a></li><li class="d2"><a href="#故障排查要点">故障排查要点</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

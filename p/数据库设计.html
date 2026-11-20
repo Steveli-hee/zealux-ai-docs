@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据库设计 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec" open><summary>数据库设计</summary><ul><li><a href="../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html" class="active">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">数据库设计 / <b>数据库设计</b></div><article><h1 id="数据库设计"><a class="anchor" href="#数据库设计">#</a>数据库设计</h1><cite>
+**本文引用的文件**   
+- [ry_20240629.sql](file://_setup/sql/ry_20240629.sql)
+- [quartz.sql](file://_setup/sql/quartz.sql)
+- [ry_config_20240902.sql](file://_setup/sql/ry_config_20240902.sql)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构与数据来源说明">项目结构与数据来源说明</a></li>
+<li><a href="#数据库表分类与规模">数据库表分类与规模</a></li>
+<li><a href="#核心实体关系图">核心实体关系图</a></li>
+<li><a href="#系统权限表结构说明">系统权限表结构说明</a></li>
+<li><a href="#quartz-调度表结构说明">Quartz 调度表结构说明</a></li>
+<li><a href="#代码生成表结构说明">代码生成表结构说明</a></li>
+<li><a href="#ai-消息表现状">AI 消息表现状</a></li>
+<li><a href="#索引策略与典型查询模式">索引策略与典型查询模式</a></li>
+<li><a href="#备份恢复建议">备份恢复建议</a></li>
+<li><a href="#分库分表扩展建议">分库分表扩展建议</a></li>
+<li><a href="#sql-审计与慢查询优化">SQL 审计与慢查询优化</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本仓库是开源 RuoYi-Cloud 3.6.5 的重命名二次开发产物，根工程 artifactId 为 <code>zealux-ai</code>、版本 <code>3.6.5</code>；前端包名仍为 <code>ruoyi@3.6.5</code>，多个服务启动类仍沿用 <code>RuoYi*Application.java</code>。因此，当前本地数据库并非由本项目从零设计的业务库，而是由 RuoYi-Cloud 第三方初始化脚本创建的系统基础库，并在本地运行过程中手工追加了 AI 消息相关数据。</p>
+<p>需要特别强调：</p>
+<ul>
+<li><code>_setup/sql/ry_20240629.sql</code>、<code>_setup/sql/quartz.sql</code>、<code>_setup/sql/ry_config_20240902.sql</code> 属于第三方初始化脚本和本地重建件，不是本项目的自研表结构设计。</li>
+<li>不得把这些脚本描述成系统的正式数据库设计，也不得为它们单独生成页面。</li>
+<li>当前本地库中不存在任何 <code>crm_</code> 前缀的表，也没有已落地的 CRM 模块能力。</li>
+<li><code>ai_message</code> 表是本地手工创建的，仓库内没有其建表语句；实体类 <code>AiSession</code> 只有模型定义，没有对应 Mapper、接口或数据库映射。</li>
+</ul>
+<h2 id="项目结构与数据来源说明"><a class="anchor" href="#项目结构与数据来源说明">#</a>项目结构与数据来源说明</h2><p>本地 MariaDB 11.4.4 实例由以下三个脚本依次初始化：</p>
+<table>
+<thead>
+<tr>
+<th>脚本</th>
+<th>作用</th>
+<th>产生的对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>_setup/sql/ry_20240629.sql</code></td>
+<td>RuoYi-Cloud 系统基础表与初始数据</td>
+<td><code>sys_dept</code>、<code>sys_user</code>、<code>sys_post</code>、<code>sys_role</code>、<code>sys_menu</code>、<code>sys_user_role</code>、<code>sys_role_menu</code>、<code>sys_role_dept</code>、<code>sys_user_post</code>、<code>sys_oper_log</code>、<code>sys_dict_type</code>、<code>sys_dict_data</code>、<code>sys_config</code>、<code>sys_logininfor</code>、<code>sys_job</code>、<code>sys_job_log</code>、<code>sys_notice</code>、<code>gen_table</code>、<code>gen_table_column</code></td>
+</tr>
+<tr>
+<td><code>_setup/sql/quartz.sql</code></td>
+<td>Quartz 分布式任务调度基础表</td>
+<td>11 张 <code>QRTZ_*</code> 表</td>
+</tr>
+<tr>
+<td><code>_setup/sql/ry_config_20240902.sql</code></td>
+<td>Nacos 配置中心 <code>ry-config</code> 数据库</td>
+<td><code>config_info</code>、<code>config_info_aggr</code>、<code>config_info_beta</code>、<code>config_info_tag</code>、<code>config_tags_relation</code>、<code>group_capacity</code> 等</td>
+</tr>
+</tbody></table>
+<p>此外，本地运行环境中手工创建了 <code>ai_message</code> 表，用于保存 AI 会话消息；但该表不在仓库 SQL 脚本中，也不应被视作系统正式设计。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    A[&quot;本地 MariaDB 11.4.4&quot;] --&gt; B[&quot;第三方初始化脚本&lt;br/&gt;ry_20240629.sql&quot;]
+    A --&gt; C[&quot;第三方初始化脚本&lt;br/&gt;quartz.sql&quot;]
+    A --&gt; D[&quot;第三方初始化脚本&lt;br/&gt;ry_config_20240902.sql&quot;]
+    A --&gt; E[&quot;本地手工补充&lt;br/&gt;ai_message 表&quot;]
+    B --&gt; F[&quot;系统权限与基础表&lt;br/&gt;约 17 张 sys_* 表&quot;]
+    C --&gt; G[&quot;Quartz 调度表&lt;br/&gt;11 张 QRTZ_* 表&quot;]
+    D --&gt; H[&quot;Nacos 配置库&lt;br/&gt;ry-config&quot;]
+    E --&gt; I[&quot;AI 消息临时存储&lt;br/&gt;非仓库正式设计&quot;]</pre></div><p><strong>图表来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:1-182</span>  </li>
+<li><span class="fileref">quartz.sql:1-150</span>  </li>
+<li><span class="fileref">ry_config_20240902.sql:1-129</span></li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:1-697</span>  </li>
+<li><span class="fileref">quartz.sql:1-174</span>  </li>
+<li><span class="fileref">ry_config_20240902.sql:1-219</span></li>
+</ul>
+<h2 id="数据库表分类与规模"><a class="anchor" href="#数据库表分类与规模">#</a>数据库表分类与规模</h2><p>根据本地库实测，当前数据库中共有 31 张表，分类如下：</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th align="right">数量</th>
+<th>主要表前缀</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统权限与基础表</td>
+<td align="right">17</td>
+<td><code>sys_*</code></td>
+<td><code>ry_20240629.sql</code></td>
+</tr>
+<tr>
+<td>Quartz 调度表</td>
+<td align="right">11</td>
+<td><code>QRTZ_*</code></td>
+<td><code>quartz.sql</code></td>
+</tr>
+<tr>
+<td>代码生成表</td>
+<td align="right">2</td>
+<td><code>gen_*</code></td>
+<td><code>ry_20240629.sql</code></td>
+</tr>
+<tr>
+<td>AI 消息表</td>
+<td align="right">1</td>
+<td><code>ai_message</code></td>
+<td>本地手工创建</td>
+</tr>
+<tr>
+<td>Nacos 配置库表</td>
+<td align="right">未计入上述 31 张</td>
+<td><code>config_*</code></td>
+<td><code>ry_config_20240902.sql</code>（独立数据库）</td>
+</tr>
+</tbody></table>
+<p>需要注意：</p>
+<ul>
+<li><code>sys_*</code> 表中包含部门、用户、岗位、角色、菜单、字典、参数、登录日志、操作日志、定时任务、通知公告和代码生成元数据。</li>
+<li><code>QRTZ_*</code> 表由 Quartz 管理，通常由框架自动维护。</li>
+<li><code>gen_*</code> 表是代码生成器使用的元数据表。</li>
+<li><code>ai_message</code> 表不在仓库 SQL 中，不能据此推断存在 <code>AiSessionMapper</code>、持久层接口或 ORM 映射。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:7-696</span>  </li>
+<li><span class="fileref">quartz.sql:1-174</span></li>
+</ul>
+<h2 id="核心实体关系图"><a class="anchor" href="#核心实体关系图">#</a>核心实体关系图</h2><p>本节聚焦系统权限与基础业务中最常用的核心实体，包括部门、用户、岗位、角色、菜单、字典类型、字典数据和代码生成表。</p>
+<div class="mermaid-wrap"><pre class="mermaid">erDiagram
+  SYS_DEPT {
+    bigint dept_id PK
+    bigint parent_id
+    varchar ancestors
+    varchar dept_name
+    int order_num
+    varchar leader
+    varchar phone
+    varchar email
+    char status
+    char del_flag
+  }
+
+  SYS_USER {
+    bigint user_id PK
+    bigint dept_id FK
+    varchar user_name
+    varchar nick_name
+    varchar user_type
+    varchar email
+    varchar phonenumber
+    char sex
+    varchar avatar
+    varchar password
+    char status
+    char del_flag
+    varchar login_ip
+    datetime login_date
+  }
+
+  SYS_POST {
+    bigint post_id PK
+    varchar post_code
+    varchar post_name
+    int post_sort
+    char status
+  }
+
+  SYS_ROLE {
+    bigint role_id PK
+    varchar role_name
+    varchar role_key
+    int role_sort
+    char data_scope
+    tinyint menu_check_strictly
+    tinyint dept_check_strictly
+    char status
+    char del_flag
+  }
+
+  SYS_MENU {
+    bigint menu_id PK
+    varchar menu_name
+    bigint parent_id
+    int order_num
+    varchar path
+    varchar component
+    varchar perms
+    char menu_type
+    char visible
+    char status
+  }
+
+  SYS_DICT_TYPE {
+    bigint dict_id PK
+    varchar dict_name
+    varchar dict_type
+    char status
+  }
+
+  SYS_DICT_DATA {
+    bigint dict_code PK
+    bigint dict_type FK
+    varchar dict_label
+    varchar dict_value
+    varchar dict_sort
+    char status
+  }
+
+  GEN_TABLE {
+    bigint table_id PK
+    varchar table_name
+    varchar table_comment
+    varchar className
+    varchar dataName
+  }
+
+  GEN_TABLE_COLUMN {
+    bigint column_id PK
+    bigint table_id FK
+    varchar columnName
+    varchar columnComment
+    varchar columnType
+    varchar javaField
+  }
+
+  SYS_USER ||--o{ SYS_DEPT : &quot;dept_id&quot;
+  SYS_USER ||--o{ SYS_POST : &quot;通过中间表关联&quot;
+  SYS_ROLE ||--o{ SYS_MENU : &quot;通过中间表关联&quot;
+  SYS_ROLE ||--o{ SYS_DEPT : &quot;通过中间表关联&quot;
+  SYS_DICT_DATA ||--|| SYS_DICT_TYPE : &quot;dict_type&quot;
+  GEN_TABLE_COLUMN ||--|| GEN_TABLE : &quot;table_id&quot;</pre></div><p><strong>图表来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:7-696</span></li>
+</ul>
+<h3 id="字段含义与主外键关系要点"><a class="anchor" href="#字段含义与主外键关系要点">#</a>字段含义与主外键关系要点</h3><ul>
+<li><strong>部门表 <code>sys_dept</code></strong>：以 <code>dept_id</code> 为主键，<code>parent_id</code> 表示上级部门，<code>ancestors</code> 记录祖级路径，便于按树形结构查询。</li>
+<li><strong>用户表 <code>sys_user</code></strong>：以 <code>user_id</code> 为主键，<code>dept_id</code> 指向部门，<code>user_name</code> 是登录账号，<code>password</code> 使用加密存储。</li>
+<li><strong>岗位表 <code>sys_post</code></strong>：以 <code>post_id</code> 为主键，<code>post_code</code> 表示岗位编码，<code>post_name</code> 表示岗位名称。</li>
+<li><strong>角色表 <code>sys_role</code></strong>：以 <code>role_id</code> 为主键，<code>role_key</code> 作为权限标识，<code>data_scope</code> 控制数据范围。</li>
+<li><strong>菜单表 <code>sys_menu</code></strong>：以 <code>menu_id</code> 为主键，<code>parent_id</code> 构成菜单树，<code>perms</code> 表示按钮或接口权限标识。</li>
+<li><strong>字典类型 <code>sys_dict_type</code> 与字典数据 <code>sys_dict_data</code></strong>：通过 <code>dict_type</code> 建立一对多关系，前者定义字典类别，后者定义具体枚举值。</li>
+<li><strong>代码生成表 <code>gen_table</code> 与 <code>gen_table_column</code></strong>：通过 <code>table_id</code> 建立一对多关系，前者记录待生成表的元信息，后者记录字段元信息。</li>
+</ul>
+<h3 id="中间关系表"><a class="anchor" href="#中间关系表">#</a>中间关系表</h3><p>系统权限采用中间表解耦多对多关系：</p>
+<ul>
+<li><code>sys_user_role</code>：用户与角色关联，联合主键 <code>(user_id, role_id)</code>。</li>
+<li><code>sys_role_menu</code>：角色与菜单关联，联合主键 <code>(role_id, menu_id)</code>。</li>
+<li><code>sys_role_dept</code>：角色与部门关联，联合主键 <code>(role_id, dept_id)</code>。</li>
+<li><code>sys_user_post</code>：用户与岗位关联，联合主键 <code>(user_id, post_id)</code>。</li>
+</ul>
+<p>这些中间表的主键组合天然具备唯一性约束，避免重复授权。</p>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:7-696</span></li>
+</ul>
+<h2 id="系统权限表结构说明"><a class="anchor" href="#系统权限表结构说明">#</a>系统权限表结构说明</h2><p>系统权限体系围绕“用户—角色—菜单—部门—岗位”展开，同时配合字典、参数、操作日志、登录日志和通知公告。</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>主键</th>
+<th>关键字段</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sys_dept</code></td>
+<td><code>dept_id</code></td>
+<td><code>parent_id</code>、<code>ancestors</code>、<code>dept_name</code>、<code>status</code></td>
+<td>组织部门树</td>
+</tr>
+<tr>
+<td><code>sys_user</code></td>
+<td><code>user_id</code></td>
+<td><code>dept_id</code>、<code>user_name</code>、<code>password</code>、<code>status</code></td>
+<td>系统用户</td>
+</tr>
+<tr>
+<td><code>sys_post</code></td>
+<td><code>post_id</code></td>
+<td><code>post_code</code>、<code>post_name</code>、<code>status</code></td>
+<td>岗位管理</td>
+</tr>
+<tr>
+<td><code>sys_role</code></td>
+<td><code>role_id</code></td>
+<td><code>role_name</code>、<code>role_key</code>、<code>data_scope</code>、<code>status</code></td>
+<td>角色与数据范围</td>
+</tr>
+<tr>
+<td><code>sys_menu</code></td>
+<td><code>menu_id</code></td>
+<td><code>parent_id</code>、<code>perms</code>、<code>menu_type</code>、<code>visible</code></td>
+<td>菜单与按钮权限</td>
+</tr>
+<tr>
+<td><code>sys_user_role</code></td>
+<td><code>(user_id, role_id)</code></td>
+<td>用户角色关联</td>
+<td>多对多授权</td>
+</tr>
+<tr>
+<td><code>sys_role_menu</code></td>
+<td><code>(role_id, menu_id)</code></td>
+<td>角色菜单关联</td>
+<td>多对多授权</td>
+</tr>
+<tr>
+<td><code>sys_role_dept</code></td>
+<td><code>(role_id, dept_id)</code></td>
+<td>角色部门关联</td>
+<td>数据范围扩展</td>
+</tr>
+<tr>
+<td><code>sys_user_post</code></td>
+<td><code>(user_id, post_id)</code></td>
+<td>用户岗位关联</td>
+<td>多对多授权</td>
+</tr>
+<tr>
+<td><code>sys_dict_type</code></td>
+<td><code>dict_id</code></td>
+<td><code>dict_name</code>、<code>dict_type</code></td>
+<td>字典分类</td>
+</tr>
+<tr>
+<td><code>sys_dict_data</code></td>
+<td><code>dict_code</code></td>
+<td><code>dict_type</code>、<code>dict_label</code>、<code>dict_value</code></td>
+<td>字典值</td>
+</tr>
+<tr>
+<td><code>sys_config</code></td>
+<td><code>config_id</code></td>
+<td><code>config_key</code>、<code>config_value</code></td>
+<td>系统参数</td>
+</tr>
+<tr>
+<td><code>sys_oper_log</code></td>
+<td><code>oper_id</code></td>
+<td><code>business_type</code>、<code>status</code>、<code>oper_time</code></td>
+<td>操作日志</td>
+</tr>
+<tr>
+<td><code>sys_logininfor</code></td>
+<td><code>info_id</code></td>
+<td><code>status</code>、<code>access_time</code></td>
+<td>登录日志</td>
+</tr>
+<tr>
+<td><code>sys_notice</code></td>
+<td><code>notice_id</code></td>
+<td><code>notice_title</code>、<code>notice_content</code></td>
+<td>通知公告</td>
+</tr>
+</tbody></table>
+<h3 id="典型查询模式"><a class="anchor" href="#典型查询模式">#</a>典型查询模式</h3><ul>
+<li><strong>按用户查角色</strong>：从 <code>sys_user</code> 经 <code>sys_user_role</code> 到 <code>sys_role</code>。</li>
+<li><strong>按角色查菜单</strong>：从 <code>sys_role</code> 经 <code>sys_role_menu</code> 到 <code>sys_menu</code>。</li>
+<li><strong>按部门查下级部门</strong>：利用 <code>ancestors</code> 字段进行前缀匹配。</li>
+<li><strong>按字典类型查字典项</strong>：用 <code>sys_dict_type.dict_type = sys_dict_data.dict_type</code> 关联。</li>
+<li><strong>按业务类型和时间范围查操作日志</strong>：使用 <code>sys_oper_log.business_type</code> 与 <code>oper_time</code> 条件。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:7-696</span></li>
+</ul>
+<h2 id="Quartz-调度表结构说明"><a class="anchor" href="#Quartz-调度表结构说明">#</a>Quartz 调度表结构说明</h2><p>Quartz 使用 11 张表完成作业、触发器、日历、锁和调度器状态管理。核心关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>主键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>QRTZ_JOB_DETAILS</code></td>
+<td><code>(sched_name, job_name, job_group)</code></td>
+<td>任务详情</td>
+</tr>
+<tr>
+<td><code>QRTZ_TRIGGERS</code></td>
+<td><code>(sched_name, trigger_name, trigger_group)</code></td>
+<td>触发器总表</td>
+</tr>
+<tr>
+<td><code>QRTZ_SIMPLE_TRIGGERS</code></td>
+<td><code>(sched_name, trigger_name, trigger_group)</code></td>
+<td>简单重复触发器</td>
+</tr>
+<tr>
+<td><code>QRTZ_CRON_TRIGGERS</code></td>
+<td><code>(sched_name, trigger_name, trigger_group)</code></td>
+<td>Cron 触发器</td>
+</tr>
+<tr>
+<td><code>QRTZ_BLOB_TRIGGERS</code></td>
+<td><code>(sched_name, trigger_name, trigger_group)</code></td>
+<td>Blob 触发器</td>
+</tr>
+<tr>
+<td><code>QRTZ_CALENDARS</code></td>
+<td><code>(sched_name, calendar_name)</code></td>
+<td>日历</td>
+</tr>
+<tr>
+<td><code>QRTZ_PAUSED_TRIGGER_GRPS</code></td>
+<td><code>(sched_name, trigger_group)</code></td>
+<td>暂停组</td>
+</tr>
+<tr>
+<td><code>QRTZ_FIRED_TRIGGERS</code></td>
+<td><code>(sched_name, entry_id)</code></td>
+<td>已触发记录</td>
+</tr>
+<tr>
+<td><code>QRTZ_SCHEDULER_STATE</code></td>
+<td><code>(sched_name, instance_name)</code></td>
+<td>调度器状态</td>
+</tr>
+<tr>
+<td><code>QRTZ_LOCKS</code></td>
+<td><code>(sched_name, lock_name)</code></td>
+<td>悲观锁</td>
+</tr>
+<tr>
+<td><code>QRTZ_SIMPROP_TRIGGERS</code></td>
+<td>复合主键</td>
+<td>简单属性触发器</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    JD[&quot;QRTZ_JOB_DETAILS&quot;] --&gt; T[&quot;QRTZ_TRIGGERS&quot;]
+    T --&gt; ST[&quot;QRTZ_SIMPLE_TRIGGERS&quot;]
+    T --&gt; CT[&quot;QRTZ_CRON_TRIGGERS&quot;]
+    T --&gt; BT[&quot;QRTZ_BLOB_TRIGGERS&quot;]
+    T --&gt; FT[&quot;QRTZ_FIRED_TRIGGERS&quot;]
+    T --&gt; PTG[&quot;QRTZ_PAUSED_TRIGGER_GRPS&quot;]
+    S[&quot;QRTZ_SCHEDULER_STATE&quot;] -.-&gt; JD
+    L[&quot;QRTZ_LOCKS&quot;] -.-&gt; JD</pre></div><p><strong>图表来源</strong>  </p>
+<ul>
+<li><span class="fileref">quartz.sql:1-150</span></li>
+</ul>
+<p>Quartz 表通常由框架自动写入和清理，业务代码不应直接修改。若出现调度异常，应优先检查触发器状态、Cron 表达式、时区设置以及集群环境下的锁竞争。</p>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">quartz.sql:1-174</span></li>
+</ul>
+<h2 id="代码生成表结构说明"><a class="anchor" href="#代码生成表结构说明">#</a>代码生成表结构说明</h2><p><code>gen_table</code> 与 <code>gen_table_column</code> 是代码生成器的元数据存储表，不直接承载业务数据。</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>主键</th>
+<th>关键字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gen_table</code></td>
+<td><code>table_id</code></td>
+<td><code>table_name</code>、<code>table_comment</code>、<code>className</code>、<code>dataName</code></td>
+<td>待生成表的元信息</td>
+</tr>
+<tr>
+<td><code>gen_table_column</code></td>
+<td><code>column_id</code></td>
+<td><code>table_id</code>、<code>columnName</code>、<code>columnComment</code>、<code>columnType</code>、<code>javaField</code></td>
+<td>字段元信息</td>
+</tr>
+</tbody></table>
+<p>典型流程：</p>
+<ol>
+<li>将目标业务表导入 <code>gen_table</code>。</li>
+<li>扫描表结构后填充 <code>gen_table_column</code>。</li>
+<li>使用代码生成器基于这两张表生成 Java、XML、Vue 等模板代码。</li>
+<li>生成完成后，业务表本身才是实际数据表，<code>gen_*</code> 仅保留元数据。</li>
+</ol>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:643-696</span></li>
+</ul>
+<h2 id="AI-消息表现状"><a class="anchor" href="#AI-消息表现状">#</a>AI 消息表现状</h2><p>本地环境中存在 <code>ai_message</code> 表，用于保存 AI 对话或消息记录。但仓库中没有该表的建表语句，也没有对应的 Mapper、Service 或 Controller。实体类 <code>AiSession</code> 只定义了对象结构，不代表数据库中存在同名实体表。</p>
+<p>因此，在文档中只能陈述事实：</p>
+<ul>
+<li><code>ai_message</code> 表是本地手工创建的。</li>
+<li>它不属于 RuoYi-Cloud 第三方脚本产物。</li>
+<li>不能依据实体类名称推断已有完整持久化实现。</li>
+<li>若后续要将其纳入系统设计，应先明确表结构、字段语义、生命周期、归档策略以及与 AI 会话上下文的关系。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:1-697</span>  </li>
+<li><span class="fileref">quartz.sql:1-174</span></li>
+</ul>
+<h2 id="索引策略与典型查询模式"><a class="anchor" href="#索引策略与典型查询模式">#</a>索引策略与典型查询模式</h2><p>当前脚本中显式定义的索引主要集中在日志类和维度查找场景：</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>现有索引或约束</th>
+<th>典型查询</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sys_oper_log</code></td>
+<td>主键 <code>oper_id</code>；<code>business_type</code>、<code>status</code>、<code>oper_time</code> 普通索引</td>
+<td>按业务类型、状态、时间范围查询操作日志</td>
+</tr>
+<tr>
+<td><code>sys_logininfor</code></td>
+<td>主键 <code>info_id</code>；<code>status</code>、<code>access_time</code> 普通索引</td>
+<td>按登录状态、访问时间查询登录日志</td>
+</tr>
+<tr>
+<td><code>sys_user_role</code></td>
+<td>联合主键 <code>(user_id, role_id)</code></td>
+<td>按用户查角色、去重授权</td>
+</tr>
+<tr>
+<td><code>sys_role_menu</code></td>
+<td>联合主键 <code>(role_id, menu_id)</code></td>
+<td>按角色查菜单</td>
+</tr>
+<tr>
+<td><code>sys_role_dept</code></td>
+<td>联合主键 <code>(role_id, dept_id)</code></td>
+<td>按角色查授权部门</td>
+</tr>
+<tr>
+<td><code>sys_user_post</code></td>
+<td>联合主键 <code>(user_id, post_id)</code></td>
+<td>按用户查岗位</td>
+</tr>
+<tr>
+<td><code>sys_dict_data</code></td>
+<td>主键 <code>dict_code</code>；<code>dict_type</code> 参与逻辑关联</td>
+<td>按字典类型查字典值</td>
+</tr>
+</tbody></table>
+<h3 id="建议补充的索引方向"><a class="anchor" href="#建议补充的索引方向">#</a>建议补充的索引方向</h3><p>以下为扩展建议，不是当前脚本中已有的实现：</p>
+<ul>
+<li>为 <code>sys_user.dept_id</code>、<code>user_name</code>、<code>status</code> 增加合适索引，以支持按部门筛选、按账号登录和按状态过滤。</li>
+<li>为 <code>sys_menu.parent_id</code>、<code>perms</code>、<code>menu_type</code> 增加索引，以支持菜单树构建和权限标识快速匹配。</li>
+<li>为 <code>sys_role.data_scope</code>、<code>status</code> 增加索引，以支持数据范围与状态筛选。</li>
+<li>为 <code>sys_dept.ancestors</code> 使用前缀查询时注意 MySQL 下前缀索引的限制；若频繁按祖先路径查询，可考虑应用层缓存或物化视图方案。</li>
+<li>对 <code>ai_message</code> 表，应根据实际查询维度增加索引，例如会话 ID、用户 ID、时间范围、消息方向等。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:419-446</span>  </li>
+<li><span class="fileref">ry_20240629.sql:558-573</span></li>
+</ul>
+<h2 id="备份恢复建议"><a class="anchor" href="#备份恢复建议">#</a>备份恢复建议</h2><p>由于本数据库由第三方脚本初始化，并叠加了本地手工数据，建议区分三类备份：</p>
+<table>
+<thead>
+<tr>
+<th>备份类型</th>
+<th>内容</th>
+<th>恢复方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统基础表备份</td>
+<td><code>ry_20240629.sql</code> 生成的 <code>sys_*</code>、<code>gen_*</code> 表</td>
+<td>重新执行第三方脚本或导出增量数据</td>
+</tr>
+<tr>
+<td>调度表备份</td>
+<td><code>QRTZ_*</code> 表</td>
+<td>一般由框架重建，重要任务状态需单独归档</td>
+</tr>
+<tr>
+<td>本地业务数据备份</td>
+<td><code>ai_message</code> 及后续新增业务表</td>
+<td>单独导出，不参与第三方脚本覆盖</td>
+</tr>
+<tr>
+<td>Nacos 配置库备份</td>
+<td><code>ry-config</code> 中的 <code>config_info</code> 等表</td>
+<td>单独备份，避免误删配置</td>
+</tr>
+</tbody></table>
+<p>推荐做法：</p>
+<ul>
+<li>不要在生产恢复时直接重新执行 <code>DROP TABLE IF EXISTS</code> 类型的第三方脚本，除非确认整库重建。</li>
+<li>对 <code>sys_oper_log</code>、<code>sys_logininfor</code> 等大体积日志表，先做历史归档再备份。</li>
+<li>对 <code>ai_message</code> 表，建议按月或按会话周期归档，避免单表无限增长。</li>
+<li>所有凭据（用户名、密码、token、API Key）在备份文件中都应脱敏，示例中统一使用占位形式，例如「账号与口令见本地凭据记录」。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:1-697</span>  </li>
+<li><span class="fileref">quartz.sql:1-174</span></li>
+</ul>
+<h2 id="分库分表扩展建议"><a class="anchor" href="#分库分表扩展建议">#</a>分库分表扩展建议</h2><p>当前 31 张表体量较小，适合单库部署。当业务持续增长时，可按以下原则拆分：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>建议</th>
+<th>影响范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初期</td>
+<td>单库单实例</td>
+<td>简化运维，降低一致性成本</td>
+</tr>
+<tr>
+<td>中期</td>
+<td>读写分离</td>
+<td>将读多写少的日志表、字典表、配置表分到从库</td>
+</tr>
+<tr>
+<td>后期</td>
+<td>水平分表</td>
+<td>对 <code>sys_oper_log</code>、<code>sys_logininfor</code>、<code>ai_message</code> 按时间或租户分片</td>
+</tr>
+<tr>
+<td>跨服务</td>
+<td>共享基础表</td>
+<td><code>sys_*</code> 基础权限表可由系统服务集中维护，其他服务通过 API 访问</td>
+</tr>
+<tr>
+<td>高可用</td>
+<td>主从 + 备份</td>
+<td>结合 MariaDB 主从复制与定期快照</td>
+</tr>
+</tbody></table>
+<p>分表注意事项：</p>
+<ul>
+<li>避免跨分片事务；将强一致操作下沉到同一分片。</li>
+<li>分片键应覆盖高频查询条件，例如 <code>oper_time</code>、<code>user_id</code>、<code>session_id</code>。</li>
+<li>历史表与在线表分离，便于归档和压缩。</li>
+<li>对于字典、菜单、角色等低频变更数据，优先考虑 Redis 或本地缓存，减轻数据库压力。</li>
+</ul>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:419-696</span></li>
+</ul>
+<h2 id="SQL-审计与慢查询优化"><a class="anchor" href="#SQL-审计与慢查询优化">#</a>SQL 审计与慢查询优化</h2><h3 id="SQL-审计"><a class="anchor" href="#SQL-审计">#</a>SQL 审计</h3><p>建议在应用层与数据库层共同实现：</p>
+<ul>
+<li>应用层：使用日志模块记录关键 SQL、参数、耗时和执行上下文。</li>
+<li>数据库层：开启 MariaDB/MySQL 通用日志或慢查询日志，并结合外部审计工具采集。</li>
+<li>安全要求：日志中不得记录真实账号、口令、token 或 API Key，敏感字段必须脱敏。</li>
+</ul>
+<h3 id="慢查询优化方法"><a class="anchor" href="#慢查询优化方法">#</a>慢查询优化方法</h3><ol>
+<li><strong>定位慢查询</strong>  <ul>
+<li>启用慢查询日志，设置合理阈值。</li>
+<li>结合业务监控观察高频慢查询。</li>
+</ul>
+</li>
+<li><strong>分析执行计划</strong>  <ul>
+<li>对涉及 <code>sys_oper_log</code>、<code>sys_logininfor</code>、<code>ai_message</code> 的大表查询重点分析。</li>
+<li>检查是否发生全表扫描、临时表、文件排序。</li>
+</ul>
+</li>
+<li><strong>优化索引</strong>  <ul>
+<li>优先使用复合索引覆盖常用查询条件。</li>
+<li>避免在索引列上使用函数或隐式类型转换。</li>
+</ul>
+</li>
+<li><strong>分页与查询改写</strong>  <ul>
+<li>大表分页避免深分页，可改用游标或基于主键范围查询。</li>
+<li>减少 <code>SELECT *</code>，只取必要字段。</li>
+</ul>
+</li>
+<li><strong>日志与历史数据分离</strong>  <ul>
+<li>对操作日志、登录日志、AI 消息等增长型表进行分区或归档。</li>
+</ul>
+</li>
+<li><strong>缓存热点数据</strong>  <ul>
+<li>将字典、菜单、角色、部门等热数据放入 Redis，降低数据库压力。</li>
+</ul>
+</li>
+</ol>
+<p><strong>章节来源</strong>  </p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:419-573</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本项目的本地数据库本质上是 RuoYi-Cloud 第三方初始化结果，而非从零设计的业务数据库。当前 31 张表主要由 17 张系统权限表、11 张 Quartz 调度表和 2 张代码生成表组成，另加本地手工创建的 1 张 AI 消息表。</p>
+<p>在实际使用中应遵守以下边界：</p>
+<ul>
+<li>把 <code>_setup/sql</code> 下的脚本视为第三方初始化脚本和本地重建件。</li>
+<li>不把 <code>crm_</code> 表、CRM 路由或 CRM 能力描述为已实现功能。</li>
+<li>不把 <code>ai_message</code> 表或 <code>AiSession</code> 实体当作已有完整数据库与持久层实现。</li>
+<li>后续扩展应以当前表结构为基础，逐步完善索引、备份、归档、分片和审计策略。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">← AI Leads 模块</a>
+    <a class="next" href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构与数据来源说明">项目结构与数据来源说明</a></li><li class="d2"><a href="#数据库表分类与规模">数据库表分类与规模</a></li><li class="d2"><a href="#核心实体关系图">核心实体关系图</a></li><li class="d3"><a href="#字段含义与主外键关系要点">字段含义与主外键关系要点</a></li><li class="d3"><a href="#中间关系表">中间关系表</a></li><li class="d2"><a href="#系统权限表结构说明">系统权限表结构说明</a></li><li class="d3"><a href="#典型查询模式">典型查询模式</a></li><li class="d2"><a href="#Quartz-调度表结构说明">Quartz 调度表结构说明</a></li><li class="d2"><a href="#代码生成表结构说明">代码生成表结构说明</a></li><li class="d2"><a href="#AI-消息表现状">AI 消息表现状</a></li><li class="d2"><a href="#索引策略与典型查询模式">索引策略与典型查询模式</a></li><li class="d3"><a href="#建议补充的索引方向">建议补充的索引方向</a></li><li class="d2"><a href="#备份恢复建议">备份恢复建议</a></li><li class="d2"><a href="#分库分表扩展建议">分库分表扩展建议</a></li><li class="d2"><a href="#SQL-审计与慢查询优化">SQL 审计与慢查询优化</a></li><li class="d3"><a href="#SQL-审计">SQL 审计</a></li><li class="d3"><a href="#慢查询优化方法">慢查询优化方法</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html";</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>布局系统与导航 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec" open><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html" class="active">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">前端架构设计 / <b>布局系统与导航</b></div><article><h1 id="布局系统与导航"><a class="anchor" href="#布局系统与导航">#</a>布局系统与导航</h1><cite>
+**本文引用的文件**
+- [layout/index.vue](file://zealux-ai-ui-master/src/layout/index.vue)
+- [layout/components/Sidebar/index.vue](file://zealux-ai-ui-master/src/layout/components/Sidebar/index.vue)
+- [layout/components/Sidebar/Item.vue](file://zealux-ai-ui-master/src/layout/components/Sidebar/Item.vue)
+- [layout/components/Sidebar/SidebarItem.vue](file://zealux-ai-ui-master/src/layout/components/Sidebar/SidebarItem.vue)
+- [layout/components/Sidebar/Logo.vue](file://zealux-ai-ui-master/src/layout/components/Sidebar/Logo.vue)
+- [layout/components/Navbar.vue](file://zealux-ai-ui-master/src/layout/components/Navbar.vue)
+- [layout/components/AppMain.vue](file://zealux-ai-ui-master/src/layout/components/AppMain.vue)
+- [layout/components/TagsView/index.vue](file://zealux-ai-ui-master/src/layout/components/TagsView/index.vue)
+- [layout/mixin/ResizeHandler.js](file://zealux-ai-ui-master/src/layout/mixin/ResizeHandler.js)
+- [store/modules/app.js](file://zealux-ai-ui-master/src/store/modules/app.js)
+- [store/modules/tagsView.js](file://zealux-ai-ui-master/src/store/modules/tagsView.js)
+- [store/modules/permission.js](file://zealux-ai-ui-master/src/store/modules/permission.js)
+- [components/Breadcrumb/index.vue](file://zealux-ai-ui-master/src/components/Breadcrumb/index.vue)
+- [permission.js](file://zealux-ai-ui-master/src/permission.js)
+- [settings.js](file://zealux-ai-ui-master/src/settings.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#架构与数据流">架构与数据流</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#状态同步与动态路由绑定">状态同步与动态路由绑定</a></li>
+<li><a href="#常见定制示例">常见定制示例</a></li>
+<li><a href="#性能与体验特性">性能与体验特性</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#总结">总结</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本文聚焦 zealux-ai-ui-master 前端仓库中的布局与导航系统。该系统基于 Vue 2、Element UI 与 Vuex，以 <code>layout/index.vue</code> 作为整体布局容器，组合侧边栏、顶部导航、主内容区与标签页；通过 Vuex 管理侧边栏开关、设备类型、主题与标签页状态，并结合权限模块完成动态路由渲染。文档同时说明移动端适配、面包屑联动、多标签页缓存与 iframe 页面处理机制，并提供可操作的定制方式与常见问题排查方法。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>布局相关代码集中在以下路径：</p>
+<ul>
+<li>布局容器与子组件：<code>zealux-ai-ui-master/src/layout</code></li>
+<li>全局状态：<code>zealux-ai-ui-master/src/store/modules</code></li>
+<li>通用界面组件：<code>zealux-ai-ui-master/src/components</code></li>
+<li>路由守卫与权限控制：<code>zealux-ai-ui-master/src/permission.js</code></li>
+<li>默认布局配置：<code>zealux-ai-ui-master/src/settings.js</code></li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Layout[&quot;布局容器&lt;br/&gt;layout/index.vue&quot;] --&gt; Sidebar[&quot;侧边栏容器&lt;br/&gt;Sidebar/index.vue&quot;]
+    Layout --&gt; Navbar[&quot;顶部导航&lt;br/&gt;Navbar.vue&quot;]
+    Layout --&gt; AppMain[&quot;主内容区&lt;br/&gt;AppMain.vue&quot;]
+    Layout --&gt; TagsView[&quot;标签页&lt;br/&gt;TagsView/index.vue&quot;]
+    Sidebar --&gt; Logo[&quot;站点标识&lt;br/&gt;Logo.vue&quot;]
+    Sidebar --&gt; Item[&quot;菜单图标与标题&lt;br/&gt;Item.vue&quot;]
+    Sidebar --&gt; SidebarItem[&quot;递归菜单项&lt;br/&gt;SidebarItem.vue&quot;]
+    Navbar --&gt; Breadcrumb[&quot;面包屑&lt;br/&gt;Breadcrumb/index.vue&quot;]
+    Layout --&gt; Resize[&quot;尺寸监听混入&lt;br/&gt;ResizeHandler.js&quot;]
+    Layout --&gt; StoreApp[&quot;应用状态&lt;br/&gt;store/modules/app.js&quot;]
+    Layout --&gt; StoreSettings[&quot;设置状态&lt;br/&gt;store/modules/settings.js&quot;]
+    Layout --&gt; StoreTags[&quot;标签状态&lt;br/&gt;store/modules/tagsView.js&quot;]
+    TagsView --&gt; Permission[&quot;权限与动态路由&lt;br/&gt;store/modules/permission.js&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/Item.vue:1-33</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/Sidebar/Logo.vue:1-93</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+<li><span class="fileref">store/modules/app.js:1-66</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+<li><span class="fileref">store/modules/app.js:1-66</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+<li><span class="fileref">permission.js:1-63</span></li>
+<li><span class="fileref">settings.js:1-44</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>职责</th>
+<th>关键行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>layout/index.vue</code></td>
+<td>整体布局容器</td>
+<td>组合 Sidebar、Navbar、AppMain、TagsView、RightPanel；响应式类名切换；移动端遮罩关闭侧边栏；注入主题变量</td>
+</tr>
+<tr>
+<td><code>Sidebar/index.vue</code></td>
+<td>侧边栏容器</td>
+<td>根据 <code>sidebarRouters</code> 渲染菜单；读取 settings 决定主题、Logo 显示；计算当前激活菜单项</td>
+</tr>
+<tr>
+<td><code>Sidebar/Item.vue</code></td>
+<td>菜单图标与标题</td>
+<td>函数式组件，根据 icon 和 title 生成 SVG 图标与标题节点</td>
+</tr>
+<tr>
+<td><code>Sidebar/SidebarItem.vue</code></td>
+<td>菜单项递归渲染</td>
+<td>单子项直接渲染为菜单项；多子项渲染为子菜单；解析外部链接与相对路径；过滤 hidden 子项</td>
+</tr>
+<tr>
+<td><code>Sidebar/Logo.vue</code></td>
+<td>站点标识</td>
+<td>折叠时展示短标题或图标；根据 sideTheme 调整背景与文字颜色</td>
+</tr>
+<tr>
+<td><code>Navbar.vue</code></td>
+<td>顶部导航</td>
+<td>汉堡按钮切换侧边栏；面包屑或顶部菜单；搜索、全屏、布局大小、用户头像下拉、退出登录</td>
+</tr>
+<tr>
+<td><code>AppMain.vue</code></td>
+<td>动态页面承载</td>
+<td>keep-alive 配合 cachedViews 缓存；处理 iframe 页面；按 fixedHeader 与 hasTagsView 调整高度</td>
+</tr>
+<tr>
+<td><code>TagsView/index.vue</code></td>
+<td>多标签页管理</td>
+<td>添加、关闭、刷新、固定、关闭左右侧标签；右键菜单；滚动定位到当前标签</td>
+</tr>
+<tr>
+<td><code>Breadcrumb/index.vue</code></td>
+<td>面包屑导航</td>
+<td>从 matched 路由或 defaultRoutes 推导层级；首页前缀；点击跳转</td>
+</tr>
+<tr>
+<td><code>ResizeHandler.js</code></td>
+<td>移动端适配混入</td>
+<td>窗口 resize 检测 mobile/desktop；自动关闭侧边栏；路由变化时清理移动态侧边栏</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/Item.vue:1-33</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/Sidebar/Logo.vue:1-93</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+</ul>
+<h2 id="架构与数据流"><a class="anchor" href="#架构与数据流">#</a>架构与数据流</h2><h3 id="整体交互时序"><a class="anchor" href="#整体交互时序">#</a>整体交互时序</h3><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant User as &quot;用户&quot;
+    participant Layout as &quot;Layout 容器&quot;
+    participant Sidebar as &quot;Sidebar&quot;
+    participant Navbar as &quot;Navbar&quot;
+    participant AppMain as &quot;AppMain&quot;
+    participant TagsView as &quot;TagsView&quot;
+    participant Store as &quot;Vuex&quot;
+    participant Router as &quot;Vue Router&quot;
+
+    User-&gt;&gt;Router: 访问受保护路由
+    Router-&gt;&gt;Store: permission.js 触发 GetInfo、GenerateRoutes
+    Store--&gt;&gt;Router: addRoutes 动态路由
+    Router--&gt;&gt;Layout: 渲染 Layout
+    Layout-&gt;&gt;Sidebar: 读取 sidebarRouters
+    Sidebar-&gt;&gt;Sidebar: 递归渲染菜单项
+    Navbar-&gt;&gt;Store: toggleSideBar / logout
+    TagsView-&gt;&gt;Store: addVisitedView / addCachedView
+    AppMain-&gt;&gt;Store: 读取 cachedViews
+    User-&gt;&gt;TagsView: 点击标签或右键操作
+    TagsView-&gt;&gt;Router: push / replace</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">permission.js:1-63</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+</ul>
+<h3 id="关键数据流"><a class="anchor" href="#关键数据流">#</a>关键数据流</h3><ul>
+<li><strong>侧边栏开关</strong>：Navbar 的 Hamburger 调用 <code>app/toggleSideBar</code>；Layout 的 classObj 根据 <code>state.app.sidebar.opened</code> 输出 <code>hideSidebar/openSidebar/mobile</code> 等类名；ResizeHandler 在移动端自动关闭侧边栏。</li>
+<li><strong>菜单高亮</strong>：Sidebar 使用 <code>$route.meta.activeMenu</code> 优先匹配，否则使用当前 path；SidebarItem 递归渲染 children，并支持只展示一个可见子项的场景。</li>
+<li><strong>标签页状态</strong>：TagsView 监听 <code>$route</code>，调用 <code>tagsView/addView</code>；AppMain 通过 <code>keep-alive</code> 的 <code>include</code> 读取 <code>tagsView.cachedViews</code>；iframe 页面额外维护 <code>iframeViews</code>。</li>
+<li><strong>动态路由</strong>：<code>permission.js</code> 在进入非白名单路由时拉取用户信息并执行 <code>GenerateRoutes</code>，将后端菜单转换为前端路由树，追加到 router。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">permission.js:1-63</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="布局容器-layoutindex.vue"><a class="anchor" href="#布局容器-layoutindex.vue">#</a>布局容器 layout/index.vue</h3><ul>
+<li>组装 <code>Sidebar</code>、<code>Navbar</code>、<code>AppMain</code>、<code>TagsView</code>、<code>RightPanel</code> 与 <code>Settings</code>。</li>
+<li>通过 <code>mapState</code> 订阅 <code>theme</code>、<code>sideTheme</code>、<code>sidebar</code>、<code>device</code>、<code>needTagsView</code>、<code>fixedHeader</code>。</li>
+<li><code>classObj</code> 输出 <code>hideSidebar</code>、<code>openSidebar</code>、<code>withoutAnimation</code>、<code>mobile</code>，驱动 CSS 布局宽度与移动端遮罩。</li>
+<li>移动端点击遮罩层调用 <code>app/closeSideBar</code> 关闭侧边栏。</li>
+<li>通过 CSS 变量 <code>--current-color</code> 将主题色传递给子组件。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;进入 Layout&quot;]) --&gt; ReadState[&quot;读取 theme/sidebar/device/needTagsView/fixedHeader&quot;]
+    ReadState --&gt; ComputeClass[&quot;计算 hideSidebar/openSidebar/mobile&quot;]
+    ComputeClass --&gt; RenderSidebar{&quot;是否隐藏侧边栏?&quot;}
+    RenderSidebar --&gt;|否| ShowSidebar[&quot;渲染 Sidebar&quot;]
+    RenderSidebar --&gt;|是| SkipSidebar[&quot;跳过 Sidebar&quot;]
+    ShowSidebar --&gt; RenderNavbar[&quot;渲染 Navbar&quot;]
+    SkipSidebar --&gt; RenderNavbar
+    RenderNavbar --&gt; RenderTags{&quot;是否需要标签页?&quot;}
+    RenderTags --&gt;|是| ShowTags[&quot;渲染 TagsView&quot;]
+    RenderTags --&gt;|否| SkipTags[&quot;跳过 TagsView&quot;]
+    ShowTags --&gt; RenderApp[&quot;渲染 AppMain&quot;]
+    SkipTags --&gt; RenderApp
+    RenderApp --&gt; End([&quot;完成布局&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+</ul>
+<h3 id="侧边栏-Sidebar-子系统"><a class="anchor" href="#侧边栏-Sidebar-子系统">#</a>侧边栏 Sidebar 子系统</h3><h4 id="Sidebarindex.vue"><a class="anchor" href="#Sidebarindex.vue">#</a>Sidebar/index.vue</h4><ul>
+<li>使用 Element UI <code>el-menu</code> 垂直菜单模式，唯一打开子菜单 <code>unique-opened=true</code>。</li>
+<li>背景与文本颜色由 <code>settings.sideTheme</code> 与 variables 决定；活动项颜色使用 <code>settings.theme</code>。</li>
+<li><code>activeMenu</code> 优先取 <code>meta.activeMenu</code>，否则取当前 route path。</li>
+<li><code>showLogo</code> 来自 <code>settings.sidebarLogo</code>；<code>isCollapse</code> 来自 <code>sidebar.opened</code>。</li>
+<li>遍历 <code>sidebarRouters</code> 渲染 <code>SidebarItem</code>。</li>
+</ul>
+<h4 id="SidebarItem.vue"><a class="anchor" href="#SidebarItem.vue">#</a>Sidebar/Item.vue</h4><ul>
+<li>函数式组件，仅负责渲染图标与标题。</li>
+<li>长标题使用 HTML <code>title</code> 提供悬浮提示。</li>
+</ul>
+<h4 id="SidebarSidebarItem.vue"><a class="anchor" href="#SidebarSidebarItem.vue">#</a>Sidebar/SidebarItem.vue</h4><ul>
+<li>当只有一个可见子项且未声明 <code>alwaysShow</code> 时，直接渲染为 <code>el-menu-item</code>。</li>
+<li>否则渲染 <code>el-submenu</code>，递归渲染 <code>child</code>。</li>
+<li><code>hasOneShowingChild</code> 过滤 <code>hidden</code> 子项，并在无可见子项时把父项作为“空”子项显示。</li>
+<li><code>resolvePath</code> 支持外部链接、相对路径与 JSON 序列化 query。</li>
+</ul>
+<h4 id="SidebarLogo.vue"><a class="anchor" href="#SidebarLogo.vue">#</a>Sidebar/Logo.vue</h4><ul>
+<li>折叠时显示 logo 图片或站点标题；展开时同样支持图片与标题。</li>
+<li>根据 <code>settings.sideTheme</code> 切换背景与标题颜色。</li>
+<li>默认标题来自环境变量，默认 logo 来自本地资源。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SidebarIndex {
+        +sidebarRouters
+        +activeMenu()
+        +showLogo()
+        +isCollapse()
+    }
+    class SidebarItem {
+        +item
+        +isNest
+        +basePath
+        +hasOneShowingChild(children, parent)
+        +resolvePath(routePath, routeQuery)
+    }
+    class Item {
+        +icon
+        +title
+        +render(h, context)
+    }
+    class Logo {
+        +collapse
+        +sideTheme()
+    }
+
+    SidebarIndex --&gt; SidebarItem : &quot;v-for 渲染&quot;
+    SidebarItem --&gt; Item : &quot;图标与标题&quot;
+    SidebarIndex --&gt; Logo : &quot;可选显示&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/Sidebar/Item.vue:1-33</span></li>
+<li><span class="fileref">layout/components/Sidebar/Logo.vue:1-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/Item.vue:1-33</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/Sidebar/Logo.vue:1-93</span></li>
+</ul>
+<h3 id="顶部导航-Navbar"><a class="anchor" href="#顶部导航-Navbar">#</a>顶部导航 Navbar</h3><ul>
+<li>左侧汉堡按钮触发 <code>app/toggleSideBar</code>。</li>
+<li>非移动端显示搜索、源码地址、文档地址、全屏、布局大小；移动端隐藏这些工具。</li>
+<li>用户头像下拉包含个人中心、布局设置、退出登录。</li>
+<li>布局设置通过 <code>settings/showSettings</code> 控制右侧面板显示。</li>
+<li>退出登录确认后再调用 <code>LogOut</code> 并跳转首页。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+</ul>
+<h3 id="主内容区-AppMain"><a class="anchor" href="#主内容区-AppMain">#</a>主内容区 AppMain</h3><ul>
+<li>使用 <code>&lt;transition&gt;</code> 实现页面切换动画。</li>
+<li><code>&lt;keep-alive :include=&quot;cachedViews&quot;&gt;</code> 配合 <code>tagsView.cachedViews</code> 缓存已访问页面。</li>
+<li>当 <code>$route.meta.link</code> 存在时不渲染普通 <code>&lt;router-view&gt;</code>，而是交由 iframe 组件处理。</li>
+<li><code>addIframe</code> 在路由变化与挂载时向 <code>tagsView/iframeViews</code> 注册 iframe 页面。</li>
+<li>样式中根据 <code>fixed-header</code> 与 <code>hasTagsView</code> 调整主内容区最小高度。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+</ul>
+<h3 id="标签页-TagsView"><a class="anchor" href="#标签页-TagsView">#</a>标签页 TagsView</h3><ul>
+<li><code>visitedViews</code> 记录已访问标签，<code>cachedViews</code> 记录需要 keep-alive 的页面名称，<code>iframeViews</code> 记录外链 iframe 页面。</li>
+<li>初始化时扫描 <code>permission.routes</code> 中的 <code>affix</code> 标签并加入 visited。</li>
+<li>监听 <code>$route</code>，自动调用 <code>addTags</code> 与 <code>moveToCurrentTag</code>。</li>
+<li>右键菜单支持刷新、关闭当前、关闭其他、关闭左侧、关闭右侧、全部关闭。</li>
+<li><code>refreshSelectedTag</code> 调用 <code>$tab.refreshPage</code>，并清理对应 iframe 视图。</li>
+<li>关闭逻辑会判断当前是否仍为活跃标签，必要时跳转到最后一个可用标签。</li>
+<li>样式中定义标签激活色、关闭按钮 hover 效果与右键菜单定位。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    RouteChange[&quot;$route 变化&quot;] --&gt; AddTag[&quot;addTags()&quot;]
+    AddTag --&gt; UpdateCache[&quot;addVisitedView + addCachedView&quot;]
+    UpdateCache --&gt; ScrollTo[&quot;moveToCurrentTag()&quot;]
+    ScrollTo --&gt; SyncFullPath{&quot;fullPath 是否变化?&quot;}
+    SyncFullPath --&gt;|是| UpdateView[&quot;updateVisitedView&quot;]
+    SyncFullPath --&gt;|否| KeepAsIs[&quot;保持原值&quot;]
+    RightClick[&quot;右键菜单&quot;] --&gt; Action{&quot;选择操作&quot;}
+    Action --&gt;|刷新| Refresh[&quot;refreshSelectedTag&quot;]
+    Action --&gt;|关闭当前| CloseOne[&quot;closeSelectedTag&quot;]
+    Action --&gt;|关闭其他| CloseOthers[&quot;closeOthersTags&quot;]
+    Action --&gt;|关闭左侧| CloseLeft[&quot;closeLeftTags&quot;]
+    Action --&gt;|关闭右侧| CloseRight[&quot;closeRightTags&quot;]
+    Action --&gt;|全部关闭| CloseAll[&quot;closeAllTags&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+</ul>
+<h3 id="面包屑-Breadcrumb"><a class="anchor" href="#面包屑-Breadcrumb">#</a>面包屑 Breadcrumb</h3><ul>
+<li>监听 <code>$route</code>，对 <code>/redirect/</code> 开头的路径不做更新。</li>
+<li>多级菜单通过正则匹配路径段，再根据 <code>defaultRoutes</code> 递归匹配路由树。</li>
+<li>若首项不是 Dashboard，则自动插入“首页”项。</li>
+<li>过滤掉 <code>breadcrumb=false</code> 的路由项；点击跳转时使用 <code>redirect</code> 或直接 <code>path</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+</ul>
+<h3 id="移动端适配-ResizeHandler"><a class="anchor" href="#移动端适配-ResizeHandler">#</a>移动端适配 ResizeHandler</h3><ul>
+<li>以 992px 作为移动端阈值。</li>
+<li>进入布局时检测是否为移动端，若是则设置 <code>device=mobile</code> 并关闭侧边栏。</li>
+<li>监听 window resize，动态切换 device；移动端始终关闭侧边栏。</li>
+<li>监听 <code>$route</code>，当处于移动端且侧边栏仍处于打开状态时自动关闭。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+</ul>
+<h2 id="状态同步与动态路由绑定"><a class="anchor" href="#状态同步与动态路由绑定">#</a>状态同步与动态路由绑定</h2><h3 id="Vuex-状态关系"><a class="anchor" href="#Vuex-状态关系">#</a>Vuex 状态关系</h3><div class="mermaid-wrap"><pre class="mermaid">graph LR
+    Settings[&quot;settings.js&lt;br/&gt;默认配置&quot;] --&gt; StoreSettings[&quot;store/modules/settings.js&quot;]
+    App[&quot;store/modules/app.js&quot;] --&gt; Layout[&quot;layout/index.vue&quot;]
+    App --&gt; Sidebar[&quot;Sidebar/index.vue&quot;]
+    App --&gt; Navbar[&quot;Navbar.vue&quot;]
+    Tags[&quot;store/modules/tagsView.js&quot;] --&gt; TagsView[&quot;TagsView/index.vue&quot;]
+    Tags --&gt; AppMain[&quot;AppMain.vue&quot;]
+    Permission[&quot;store/modules/permission.js&quot;] --&gt; Sidebar
+    Permission --&gt; TagsView
+    Permission --&gt; AppMain
+    Permission --&gt; Breadcrumb[&quot;Breadcrumb/index.vue&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">settings.js:1-44</span></li>
+<li><span class="fileref">store/modules/app.js:1-66</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+</ul>
+<h3 id="动态路由流程"><a class="anchor" href="#动态路由流程">#</a>动态路由流程</h3><ol>
+<li><code>permission.js</code> 路由守卫检查 token。</li>
+<li>有 token 且未获取用户信息时，调用 <code>GetInfo</code> 后执行 <code>GenerateRoutes</code>。</li>
+<li><code>GenerateRoutes</code> 请求后端菜单，转换为带组件引用的异步路由树。</li>
+<li>将常量路由与动态路由合并，追加到 router。</li>
+<li>将侧边栏路由、默认路由、顶部路由写入 permission store。</li>
+<li>Layout、Sidebar、TagsView、Breadcrumb 通过 getters/state 读取最新路由并渲染。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">permission.js:1-63</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+</ul>
+<h2 id="常见定制示例"><a class="anchor" href="#常见定制示例">#</a>常见定制示例</h2><h3 id="自定义布局主题"><a class="anchor" href="#自定义布局主题">#</a>自定义布局主题</h3><ul>
+<li>修改默认侧边栏主题：编辑 <code>settings.js</code> 中的 <code>sideTheme</code>，支持深色与浅色主题。</li>
+<li>修改全局主题色：通过右侧设置面板或 settings store 更新 <code>theme</code>，布局容器会将其作为 CSS 变量传入。</li>
+<li>控制侧边栏 Logo 显示：修改 <code>settings.js</code> 中的 <code>sidebarLogo</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">settings.js:1-44</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/Logo.vue:1-93</span></li>
+</ul>
+<h3 id="隐藏侧边栏"><a class="anchor" href="#隐藏侧边栏">#</a>隐藏侧边栏</h3><ul>
+<li>运行时调用 <code>app/toggleSideBarHide</code> 设置 <code>sidebar.hide</code>，此时 Navbar 的切换按钮不会展开侧边栏。</li>
+<li>也可在特定页面通过布局类名控制显示区域宽度；但推荐通过 <code>sidebar.hide</code> 统一控制。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">store/modules/app.js:1-66</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+</ul>
+<h3 id="新增顶部菜单项"><a class="anchor" href="#新增顶部菜单项">#</a>新增顶部菜单项</h3><ul>
+<li>若启用 <code>topNav</code>，则在 permission store 中 <code>topbarRouters</code> 会参与顶部菜单渲染；该数组通常由 <code>sidebarRouters</code> 复制而来。</li>
+<li>后端返回的菜单树经 <code>filterAsyncRouter</code> 转换后写入 <code>SET_TOPBAR_ROUTES</code>。</li>
+<li>若需独立顶部菜单，可在菜单数据结构中添加顶层项，并确保其 <code>component</code> 能被正确解析。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">settings.js:1-44</span></li>
+</ul>
+<h3 id="调整标签页行为"><a class="anchor" href="#调整标签页行为">#</a>调整标签页行为</h3><ul>
+<li>设置页面不缓存：在路由 <code>meta.noCache</code> 设为 true，<code>addCachedView</code> 不会加入 <code>cachedViews</code>。</li>
+<li>固定标签页：在路由 <code>meta.affix</code> 设为 true，初始化时会加入 visited 且不允许普通关闭。</li>
+<li>外链 iframe：在路由 <code>meta.link</code> 存在时，AppMain 使用 iframe 渲染，并维护 <code>iframeViews</code>。</li>
+<li>自定义刷新行为：可通过 <code>$tab.refreshPage</code> 与 <code>tagsView/delIframeView</code> 组合控制。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+</ul>
+<h2 id="性能与体验特性"><a class="anchor" href="#性能与体验特性">#</a>性能与体验特性</h2><ul>
+<li><strong>菜单递归渲染</strong>：SidebarItem 递归渲染菜单树，复杂度与菜单节点数线性相关；应避免过深层级与过多隐藏项。</li>
+<li><strong>keep-alive 缓存</strong>：通过 <code>cachedViews</code> 精准缓存页面，减少重复渲染；注意合理设置 <code>noCache</code>，避免大页面长期驻留内存。</li>
+<li><strong>懒加载路由</strong>：<code>loadView</code> 在开发环境使用 require，生产环境使用 import，实现组件按需加载。</li>
+<li><strong>移动端自适应</strong>：ResizeHandler 在窗口缩放时切换设备模式并关闭侧边栏，提升移动端可用性。</li>
+<li><strong>固定头部与标签页高度</strong>：AppMain 根据 <code>fixedHeader</code> 与 <code>hasTagsView</code> 调整 padding，避免内容被遮挡。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+</ul>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><h3 id="侧边栏菜单不显示"><a class="anchor" href="#侧边栏菜单不显示">#</a>侧边栏菜单不显示</h3><ul>
+<li>检查后端菜单接口是否返回有效数据，以及 <code>sidebarRouters</code> 是否正确写入 permission store。</li>
+<li>检查菜单项 <code>hidden</code> 字段：被隐藏的菜单不会出现在 Sidebar。</li>
+<li>检查 <code>onlyOneChild</code> 逻辑：若子项全部 hidden，父项会以“空”形式显示；确认业务期望。</li>
+<li>检查外部链接：<code>resolvePath</code> 对外部链接直接返回原始路径，确保 <code>isExternal</code> 判断符合预期。</li>
+<li>检查权限过滤：<code>filterDynamicRoutes</code> 会根据 permissions 或 roles 过滤动态路由。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+<li><span class="fileref">layout/components/Sidebar/index.vue:1-57</span></li>
+<li><span class="fileref">layout/components/Sidebar/SidebarItem.vue:1-99</span></li>
+</ul>
+<h3 id="标签页丢失"><a class="anchor" href="#标签页丢失">#</a>标签页丢失</h3><ul>
+<li>检查路由是否带有 <code>name</code>：<code>addTags</code> 仅在 name 存在时添加 visited。</li>
+<li>检查 <code>meta.affix</code>：固定标签会在“全部关闭”后保留，若误配可能导致行为异常。</li>
+<li>检查 <code>meta.noCache</code>：若希望页面重新渲染而非缓存，应显式设置。</li>
+<li>检查 iframe 页面：外链页面会维护在 <code>iframeViews</code>，关闭右侧或左侧标签时会同步清理。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/components/TagsView/index.vue:1-328</span></li>
+<li><span class="fileref">store/modules/tagsView.js:1-228</span></li>
+<li><span class="fileref">layout/components/AppMain.vue:1-91</span></li>
+</ul>
+<h3 id="移动端布局错乱"><a class="anchor" href="#移动端布局错乱">#</a>移动端布局错乱</h3><ul>
+<li>确认 <code>ResizeHandler</code> 已混入布局容器，并在 mounted 时检测设备类型。</li>
+<li>检查是否在移动端错误地保持了侧边栏打开状态；路由变化时应自动关闭。</li>
+<li>检查 Navbar 右侧工具是否被意外显示；Navbar 在非移动端才显示搜索、全屏等工具。</li>
+<li>检查 CSS 类名：<code>mobile</code>、<code>hideSidebar</code>、<code>sidebarHide</code> 是否正确应用到 <code>.app-wrapper</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">layout/mixin/ResizeHandler.js:1-45</span></li>
+<li><span class="fileref">layout/components/Navbar.vue:1-200</span></li>
+<li><span class="fileref">layout/index.vue:1-111</span></li>
+</ul>
+<h3 id="面包屑与当前路由不一致"><a class="anchor" href="#面包屑与当前路由不一致">#</a>面包屑与当前路由不一致</h3><ul>
+<li>检查路由 <code>meta.title</code> 是否存在；Breadcrumb 只显示带 title 的路由项。</li>
+<li>检查 <code>meta.breadcrumb=false</code>：该路由会被排除在面包屑之外。</li>
+<li>检查 redirect 路由：Breadcrumb 会忽略 <code>/redirect/</code> 开头路径的更新。</li>
+<li>检查多级菜单路径解析：Breadcrumb 通过路径段匹配 defaultRoutes，确保菜单结构与 URL 一致。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">components/Breadcrumb/index.vue:1-103</span></li>
+</ul>
+<h3 id="动态路由未生效"><a class="anchor" href="#动态路由未生效">#</a>动态路由未生效</h3><ul>
+<li>检查 <code>permission.js</code> 是否进入有 token 分支并调用 <code>GenerateRoutes</code>。</li>
+<li>检查后端返回菜单是否包含合法 component 字段，能否被 <code>filterAsyncRouter</code> 转换为真实组件。</li>
+<li>检查 <code>dynamicRoutes</code> 与权限过滤：只有满足 permissions 或 roles 的动态路由才会被加入。</li>
+<li>检查 <code>router.addRoutes</code> 后是否使用 <code>next({ ...to, replace: true })</code> 重新导航，以确保动态路由已生效。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">permission.js:1-63</span></li>
+<li><span class="fileref">store/modules/permission.js:1-122</span></li>
+</ul>
+<h2 id="总结"><a class="anchor" href="#总结">#</a>总结</h2><p>本布局系统以 <code>layout/index.vue</code> 为核心，串联 Sidebar、Navbar、AppMain、TagsView 与 Breadcrumb，并通过 Vuex 的 app、settings、tagsView、permission 四个模块协调状态。侧边栏负责递归渲染菜单，Navbar 提供导航与用户操作入口，AppMain 承载页面并保持缓存，TagsView 管理多标签页生命周期。系统在移动端通过 ResizeHandler 自动适配，在权限控制下动态生成路由。扩展时可围绕 settings、菜单数据、路由 meta 与 Vuex actions 进行定制；排查问题时建议从状态源头出发，逐步验证组件渲染条件与路由匹配逻辑。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">← 前端架构设计</a>
+    <a class="next" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d2"><a href="#架构与数据流">架构与数据流</a></li><li class="d3"><a href="#整体交互时序">整体交互时序</a></li><li class="d3"><a href="#关键数据流">关键数据流</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#布局容器-layoutindex.vue">布局容器 layout/index.vue</a></li><li class="d3"><a href="#侧边栏-Sidebar-子系统">侧边栏 Sidebar 子系统</a></li><li class="d3"><a href="#顶部导航-Navbar">顶部导航 Navbar</a></li><li class="d3"><a href="#主内容区-AppMain">主内容区 AppMain</a></li><li class="d3"><a href="#标签页-TagsView">标签页 TagsView</a></li><li class="d3"><a href="#面包屑-Breadcrumb">面包屑 Breadcrumb</a></li><li class="d3"><a href="#移动端适配-ResizeHandler">移动端适配 ResizeHandler</a></li><li class="d2"><a href="#状态同步与动态路由绑定">状态同步与动态路由绑定</a></li><li class="d3"><a href="#Vuex-状态关系">Vuex 状态关系</a></li><li class="d3"><a href="#动态路由流程">动态路由流程</a></li><li class="d2"><a href="#常见定制示例">常见定制示例</a></li><li class="d3"><a href="#自定义布局主题">自定义布局主题</a></li><li class="d3"><a href="#隐藏侧边栏">隐藏侧边栏</a></li><li class="d3"><a href="#新增顶部菜单项">新增顶部菜单项</a></li><li class="d3"><a href="#调整标签页行为">调整标签页行为</a></li><li class="d2"><a href="#性能与体验特性">性能与体验特性</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d3"><a href="#侧边栏菜单不显示">侧边栏菜单不显示</a></li><li class="d3"><a href="#标签页丢失">标签页丢失</a></li><li class="d3"><a href="#移动端布局错乱">移动端布局错乱</a></li><li class="d3"><a href="#面包屑与当前路由不一致">面包屑与当前路由不一致</a></li><li class="d3"><a href="#动态路由未生效">动态路由未生效</a></li><li class="d2"><a href="#总结">总结</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

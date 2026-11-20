@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>swagger API 文档模块 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec" open><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html" class="active">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">通用模块(common)设计 / <b>swagger API 文档模块</b></div><article><h1 id="swagger-API-文档模块"><a class="anchor" href="#swagger-API-文档模块">#</a>swagger API 文档模块</h1><cite>
+**本文引用的文件**   
+- [SpringDocAutoConfiguration.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-swagger/src/main/java/com/zealux/common/swagger/config/SpringDocAutoConfiguration.java)
+- [SpringDocProperties.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-swagger/src/main/java/com/zealux/common/swagger/config/properties/SpringDocProperties.java)
+- [SpringDocConfig.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/SpringDocConfig.java)
+- [pom.xml（公共 Swagger 模块）](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-swagger/pom.xml)
+- [pom.xml（网关模块）](file://zealux-ai-master/zealux-ai-gateway/pom.xml)
+- [pom.xml（系统模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/pom.xml)
+- [pom.xml（代码生成模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/pom.xml)
+- [pom.xml（定时任务模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/pom.xml)
+- [Nacos 配置：zealux-ai-system-dev.yml](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-system-dev.yml)
+- [Nacos 配置：zealux-ai-gateway-dev.yml](file://_setup/stack/nacos/nacos/data/config-data/DEFAULT_GROUP/zealux-ai-gateway-dev.yml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与行为特性">性能与行为特性</a></li>
+<li><a href="#接口文档注解规范">接口文档注解规范</a></li>
+<li><a href="#nacos-配置控制">Nacos 配置控制</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本模块基于 springdoc-openapi 实现 RuoYi-Cloud 3.6.5 的 OpenAPI 文档能力。它不是自研框架，而是对开源 RuoYi-Cloud 中 swagger 相关能力的继承与扩展：根工程 artifactId 为 zealux-ai、版本为 3.6.5；公共库子目录仍保留 ruoyi-common-sensitive 等原命名，后端服务启动类也沿用 RuoYi*Application 风格。</p>
+<p>当前仓库中并未发现业务 Controller 直接使用 @Operation、@Parameter、@ApiResponses 等 SpringDoc 注解；因此这些注解在本项目中属于“建议用法”，而非已有实现。本文会说明如何正确使用它们，并严格区分“已实现”和“方案”。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>Swagger 相关代码主要分布在两个位置：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>位置</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公共配置层</td>
+<td><code>zealux-ai-common/zealux-ai-common-swagger</code></td>
+<td>定义 SpringDoc 自动装配、OpenAPI 元数据、认证头与服务器地址</td>
+</tr>
+<tr>
+<td>网关聚合层</td>
+<td><code>zealux-ai-gateway</code></td>
+<td>订阅 Nacos 服务实例，动态注册各微服务的 <code>/v3/api-docs</code> 分组</td>
+</tr>
+<tr>
+<td>业务模块层</td>
+<td><code>zealux-ai-modules/*</code></td>
+<td>通过 Maven 依赖引入 springdoc-openapi，从而暴露 OpenAPI JSON</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;公共库&quot;
+        CommonSwagger[&quot;zealux-ai-common-swagger&lt;br/&gt;SpringDoc 自动装配&quot;]
+    end
+
+    subgraph &quot;网关&quot;
+        Gateway[&quot;zealux-ai-gateway&lt;br/&gt;SpringDoc 聚合配置&quot;]
+        Nacos[&quot;Nacos 注册中心&quot;]
+    end
+
+    subgraph &quot;业务微服务&quot;
+        SystemService[&quot;zealux-ai-system&quot;]
+        GenService[&quot;zealux-ai-gen&quot;]
+        JobService[&quot;zealux-ai-job&quot;]
+    end
+
+    CommonSwagger --&gt; SystemService
+    CommonSwagger --&gt; GenService
+    CommonSwagger --&gt; JobService
+
+    Gateway --&gt; Nacos
+    Gateway --&gt; SystemService
+    Gateway --&gt; GenService
+    Gateway --&gt; JobService</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><h3 id="SpringDocAutoConfiguration"><a class="anchor" href="#SpringDocAutoConfiguration">#</a>SpringDocAutoConfiguration</h3><p>这是整个 Swagger 文档的入口自动装配类，关键行为如下：</p>
+<ol>
+<li><p><strong>启用时机</strong>  </p>
+<ul>
+<li>使用 <code>@AutoConfiguration(before = SpringDocConfiguration.class)</code>，在 springdoc 默认配置之前加载。  </li>
+<li>使用 <code>@ConditionalOnProperty(name = &quot;springdoc.api-docs.enabled&quot;, havingValue = &quot;true&quot;, matchIfMissing = true)</code>，默认开启。</li>
+</ul>
+</li>
+<li><p><strong>注册 OpenAPI 元数据</strong>  </p>
+<ul>
+<li>创建 <code>OpenAPI</code> Bean，注入标题、描述、联系人、许可证、版本等信息。  </li>
+<li>设置全局安全要求，默认要求名为 <code>apikey</code> 的安全方案。</li>
+</ul>
+</li>
+<li><p><strong>注册认证头</strong>  </p>
+<ul>
+<li>添加名为 <code>apikey</code> 的 <code>SecurityScheme</code>。  </li>
+<li>类型为 <code>APIKEY</code>，位置为请求头 <code>Authorization</code>，scheme 为 <code>Bearer</code>。  </li>
+<li>这意味着文档中的“授权”按钮应填写 Bearer Token，而不是普通 Cookie。</li>
+</ul>
+</li>
+<li><p><strong>设置文档服务器地址</strong>  </p>
+<ul>
+<li>从 <code>springdoc.gatewayUrl</code> 读取网关地址，作为 OpenAPI 的 Server URL。  </li>
+<li>这会影响在线测试时请求的目标地址。</li>
+</ul>
+</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SpringDocAutoConfiguration {
+        +openApi(properties) OpenAPI
+        +securityScheme() SecurityScheme
+        +servers(gatewayUrl) List~Server~
+    }
+
+    class SpringDocProperties {
+        +gatewayUrl String
+        +info InfoProperties
+    }
+
+    class OpenAPI
+    class Components
+    class SecurityScheme
+    class Info
+    class Server
+
+    SpringDocAutoConfiguration --&gt; SpringDocProperties : &quot;读取配置&quot;
+    SpringDocAutoConfiguration --&gt; OpenAPI : &quot;创建&quot;
+    OpenAPI --&gt; Components : &quot;添加安全方案&quot;
+    OpenAPI --&gt; Info : &quot;设置文档信息&quot;
+    OpenAPI --&gt; Server : &quot;设置网关地址&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocProperties.java:1-135</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocProperties.java:1-135</span></li>
+</ul>
+<h3 id="SpringDocProperties"><a class="anchor" href="#SpringDocProperties">#</a>SpringDocProperties</h3><p>该配置类把 <code>springdoc.*</code> 映射到 Java 对象：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>springdoc.gatewayUrl</code></td>
+<td>String</td>
+<td>文档中的服务器地址，通常指向网关</td>
+</tr>
+<tr>
+<td><code>springdoc.info.title</code></td>
+<td>String</td>
+<td>文档标题</td>
+</tr>
+<tr>
+<td><code>springdoc.info.description</code></td>
+<td>String</td>
+<td>文档描述</td>
+</tr>
+<tr>
+<td><code>springdoc.info.contact.name</code></td>
+<td>String</td>
+<td>联系人名称</td>
+</tr>
+<tr>
+<td><code>springdoc.info.contact.url</code></td>
+<td>String</td>
+<td>联系人链接</td>
+</tr>
+<tr>
+<td><code>springdoc.info.version</code></td>
+<td>String</td>
+<td>文档版本</td>
+</tr>
+<tr>
+<td><code>springdoc.api-docs.enabled</code></td>
+<td>Boolean</td>
+<td>控制是否启用 <code>/v3/api-docs</code> 端点</td>
+</tr>
+</tbody></table>
+<p>注意：该类只定义了 <code>gatewayUrl</code> 和 <code>info</code> 字段；如果未来需要按模块控制开关，应在此类中添加对应属性，而不是直接假设已有字段。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocProperties.java:1-135</span></li>
+</ul>
+<h3 id="网关中的-SpringDocConfig"><a class="anchor" href="#网关中的-SpringDocConfig">#</a>网关中的 SpringDocConfig</h3><p>网关不承载业务接口，但负责聚合多个微服务的文档。其核心逻辑是：</p>
+<ol>
+<li>当 <code>springdoc.api-docs.enabled</code> 为真或未设置时启用。</li>
+<li>在初始化后注册 Nacos 实例变更订阅器。</li>
+<li>监听 <code>InstancesChangeEvent</code>，遍历所有已注册服务。</li>
+<li>排除网关自身及若干内部服务：<code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-file</code>、<code>zealux-ai-monitor</code>。</li>
+<li>将每个服务实例转换为一个 Swagger 分组，URL 形如 <code>/{serviceId}/v3/api-docs</code>。</li>
+<li>把这些分组写入 <code>swaggerUiConfigProperties.urls</code>，供前端 UI 选择。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Nacos as &quot;Nacos&quot;
+    participant Gateway as &quot;网关 SpringDocConfig&quot;
+    participant Discovery as &quot;DiscoveryClient&quot;
+    participant Ui as &quot;Swagger UI&quot;
+
+    Nacos--&gt;&gt;Gateway: &quot;实例变更事件&quot;
+    Gateway-&gt;&gt;Discovery: &quot;获取所有服务实例&quot;
+    Discovery--&gt;&gt;Gateway: &quot;服务列表&quot;
+    Gateway-&gt;&gt;Gateway: &quot;过滤内部服务&quot;
+    Gateway-&gt;&gt;Gateway: &quot;构造 /{serviceId}/v3/api-docs&quot;
+    Gateway-&gt;&gt;Ui: &quot;更新分组 URL 列表&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>下图展示一次典型访问流程：用户打开网关上的 Swagger UI，选择某个业务服务分组，然后由该业务服务暴露 <code>/v3/api-docs</code>。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Browser as &quot;浏览器&quot;
+    participant Gateway as &quot;网关&quot;
+    participant SystemSvc as &quot;zealux-ai-system&quot;
+    participant OpenApi as &quot;springdoc-openapi&quot;
+
+    Browser-&gt;&gt;Gateway: &quot;GET /swagger-ui.html 或 /swagger-ui/**&quot;
+    Gateway-&gt;&gt;SystemSvc: &quot;转发到 /system/v3/api-docs&quot;
+    SystemSvc-&gt;&gt;OpenApi: &quot;扫描 Controller 注解&quot;
+    OpenApi--&gt;&gt;SystemSvc: &quot;返回 OpenAPI JSON&quot;
+    SystemSvc--&gt;&gt;Browser: &quot;返回文档 JSON&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="SpringDocAutoConfiguration-的工作机制"><a class="anchor" href="#SpringDocAutoConfiguration-的工作机制">#</a>SpringDocAutoConfiguration 的工作机制</h3><p>该类承担以下职责：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>实现方式</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启用条件</td>
+<td><code>@ConditionalOnProperty(&quot;springdoc.api-docs.enabled=true&quot;)</code></td>
+<td>关闭该属性后，不会创建 OpenAPI Bean</td>
+</tr>
+<tr>
+<td>全局安全方案</td>
+<td>注册名为 <code>apikey</code> 的 API Key 安全方案</td>
+<td>文档中出现“授权”按钮</td>
+</tr>
+<tr>
+<td>认证头</td>
+<td>Authorization，Bearer</td>
+<td>测试时需填入 <code>Bearer &lt;token&gt;</code></td>
+</tr>
+<tr>
+<td>文档信息</td>
+<td>从 <code>springdoc.info.*</code> 读取</td>
+<td>显示标题、描述、联系人、版本</td>
+</tr>
+<tr>
+<td>服务器地址</td>
+<td>从 <code>springdoc.gatewayUrl</code> 读取</td>
+<td>在线测试请求目标</td>
+</tr>
+</tbody></table>
+<p>需要特别注意：虽然类名在搜索中被命名为 <code>SpringDocAutoConfiguration</code>，但题目要求的 <code>SwaggerAutoConfiguration</code> 在当前仓库源码中并不存在。当前实现以 <code>SpringDocAutoConfiguration</code> 为准。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;应用启动&quot;]) --&gt; CheckEnabled{&quot;springdoc.api-docs.enabled 是否为 true&quot;}
+    CheckEnabled --&gt;|否| Skip[&quot;跳过文档装配&quot;]
+    CheckEnabled --&gt;|是| CreateOpenAPI[&quot;创建 OpenAPI Bean&quot;]
+    CreateOpenAPI --&gt; AddSecurity[&quot;添加 Authorization Bearer 认证&quot;]
+    AddSecurity --&gt; SetInfo[&quot;填充文档标题、描述、版本&quot;]
+    SetInfo --&gt; SetServer[&quot;设置网关服务器地址&quot;]
+    SetServer --&gt; End([&quot;文档可用&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+</ul>
+<h3 id="网关聚合文档分组"><a class="anchor" href="#网关聚合文档分组">#</a>网关聚合文档分组</h3><p>网关根据 Nacos 的服务发现结果，动态构建 Swagger 分组。关键点：</p>
+<ul>
+<li>排除列表包括：<code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-file</code>、<code>zealux-ai-monitor</code>。</li>
+<li>分组 URL 格式为 <code>/{serviceId}/v3/api-docs</code>。</li>
+<li>分组集合最终写入 <code>swaggerUiConfigProperties.urls</code>。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Event[&quot;收到 Nacos 实例变更事件&quot;] --&gt; GetServices[&quot;获取所有服务 ID&quot;]
+    GetServices --&gt; Filter[&quot;过滤内部服务&quot;]
+    Filter --&gt; MapUrl[&quot;构造 /{serviceId}/v3/api-docs&quot;]
+    MapUrl --&gt; UpdateUrls[&quot;更新 Swagger UI 分组&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p>目前可确认 springdoc-openapi 依赖存在于以下 Maven 模块：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>依赖情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>zealux-ai-common/zealux-ai-common-swagger</code></td>
+<td>包含 springdoc-openapi 相关依赖</td>
+<td>提供公共 OpenAPI 配置</td>
+</tr>
+<tr>
+<td><code>zealux-ai-gateway</code></td>
+<td>包含 springdoc-openapi 相关依赖</td>
+<td>聚合多服务文档</td>
+</tr>
+<tr>
+<td><code>zealux-ai-modules/zealux-ai-system</code></td>
+<td>包含 springdoc-openapi 相关依赖</td>
+<td>暴露系统接口文档</td>
+</tr>
+<tr>
+<td><code>zealux-ai-modules/zealux-ai-gen</code></td>
+<td>包含 springdoc-openapi 相关依赖</td>
+<td>暴露代码生成接口文档</td>
+</tr>
+<tr>
+<td><code>zealux-ai-modules/zealux-ai-job</code></td>
+<td>包含 springdoc-openapi 相关依赖</td>
+<td>暴露定时任务接口文档</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    CommonSwagger[&quot;common-swagger&quot;] --&gt; SpringDoc[&quot;springdoc-openapi&quot;]
+    Gateway[&quot;gateway&quot;] --&gt; SpringDoc
+    SystemModule[&quot;system 模块&quot;] --&gt; SpringDoc
+    GenModule[&quot;gen 模块&quot;] --&gt; SpringDoc
+    JobModule[&quot;job 模块&quot;] --&gt; SpringDoc</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml（公共 Swagger 模块）</span></li>
+<li><span class="fileref">pom.xml（网关模块）</span></li>
+<li><span class="fileref">pom.xml（系统模块）</span></li>
+<li><span class="fileref">pom.xml（代码生成模块）</span></li>
+<li><span class="fileref">pom.xml（定时任务模块）</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">pom.xml（公共 Swagger 模块）</span></li>
+<li><span class="fileref">pom.xml（网关模块）</span></li>
+<li><span class="fileref">pom.xml（系统模块）</span></li>
+<li><span class="fileref">pom.xml（代码生成模块）</span></li>
+<li><span class="fileref">pom.xml（定时任务模块）</span></li>
+</ul>
+<h2 id="性能与行为特性"><a class="anchor" href="#性能与行为特性">#</a>性能与行为特性</h2><ul>
+<li>默认启用：<code>springdoc.api-docs.enabled</code> 未配置时视为 <code>true</code>。</li>
+<li>文档扫描开销：springdoc 会在启动阶段扫描控制器、方法、参数、返回值等注解。接口数量较多时会增加启动时间。</li>
+<li>网关聚合开销：每次 Nacos 实例变化都会重新计算 Swagger 分组。</li>
+<li>安全风险：若生产环境未关闭该开关，可能泄露接口结构、参数、部分响应模型。</li>
+</ul>
+<p>[本节为通用行为说明，不涉及具体文件分析]</p>
+<h2 id="接口文档注解规范"><a class="anchor" href="#接口文档注解规范">#</a>接口文档注解规范</h2><h3 id="已在仓库中观察到的状态"><a class="anchor" href="#已在仓库中观察到的状态">#</a>已在仓库中观察到的状态</h3><ul>
+<li>未发现任何业务 Controller 使用 @Operation、@Parameter、@ApiResponses。</li>
+<li>未发现 Controller 上使用 @Hidden、@Tag(hidden = ...) 等隐藏注解。</li>
+<li>未发现全局 OpenAPI 自定义器用于统一过滤敏感接口。</li>
+<li>未发现针对开发环境的条件化文档配置。</li>
+</ul>
+<p>因此，以下示例属于<strong>建议写法</strong>，用于指导后续新增或改造接口时使用。</p>
+<h3 id="推荐注解用法"><a class="anchor" href="#推荐注解用法">#</a>推荐注解用法</h3><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>用途</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Operation</code></td>
+<td>描述接口方法与摘要</td>
+<td>每个 Controller 方法都应补充</td>
+</tr>
+<tr>
+<td><code>@Parameter</code></td>
+<td>描述路径变量、查询参数、请求体字段</td>
+<td>避免让文档字段名代替可读说明</td>
+</tr>
+<tr>
+<td><code>@ApiResponses</code> / <code>@ApiResponse</code></td>
+<td>描述成功与失败响应</td>
+<td>至少声明常见错误码</td>
+</tr>
+<tr>
+<td><code>@Tag</code></td>
+<td>对 Controller 分组</td>
+<td>便于 Swagger UI 分组展示</td>
+</tr>
+<tr>
+<td><code>@Hidden</code> 或 <code>@Tag(hidden = true)</code></td>
+<td>隐藏内部接口</td>
+<td>仅对非对外接口使用</td>
+</tr>
+</tbody></table>
+<h3 id="示例：Controller-上添加文档注解"><a class="anchor" href="#示例：Controller-上添加文档注解">#</a>示例：Controller 上添加文档注解</h3><p>以下为建议结构，不包含实际代码内容：</p>
+<ul>
+<li>在 Controller 类上使用 <code>@Tag(name = &quot;用户管理&quot;)</code> 表示接口分组。</li>
+<li>在查询方法上使用 <code>@Operation(summary = &quot;分页查询用户&quot;)</code>。</li>
+<li>在分页参数上使用 <code>@Parameter(description = &quot;页码&quot;)</code>、<code>@Parameter(description = &quot;每页条数&quot;)</code>。</li>
+<li>在删除或修改方法上使用 <code>@ApiResponses</code> 列出成功与权限不足等情况。</li>
+<li>对内部调试接口加上 <code>@Hidden</code>，使其不出现在文档中。</li>
+</ul>
+<h3 id="示例：Token-如何带入测试"><a class="anchor" href="#示例：Token-如何带入测试">#</a>示例：Token 如何带入测试</h3><p>由于全局安全方案定义为：</p>
+<ul>
+<li>名称：<code>apikey</code></li>
+<li>位置：请求头</li>
+<li>Header 名称：<code>Authorization</code></li>
+<li>Scheme：<code>Bearer</code></li>
+</ul>
+<p>因此在 Swagger UI 中点击“授权”后，应填入完整的 Bearer Token，例如：</p>
+<pre><code class="hljs language-text">Bearer 你的令牌值</code></pre><p>不要把原始 token 粘贴到公开仓库或聊天记录中。本地凭据应放在独立的凭据记录或密钥管理系统中。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+</ul>
+<h2 id="Nacos-配置控制"><a class="anchor" href="#Nacos-配置控制">#</a>Nacos 配置控制</h2><h3 id="系统模块配置"><a class="anchor" href="#系统模块配置">#</a>系统模块配置</h3><p>本地 Nacos 中 <code>zealux-ai-system-dev.yml</code> 包含：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>当前值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>springdoc.gatewayUrl</code></td>
+<td><code>http://localhost:8080/</code></td>
+<td>文档服务器地址</td>
+</tr>
+<tr>
+<td><code>springdoc.api-docs.enabled</code></td>
+<td><code>true</code></td>
+<td>开启 <code>/v3/api-docs</code></td>
+</tr>
+<tr>
+<td><code>springdoc.info.title</code></td>
+<td>系统模块接口文档</td>
+<td>文档标题</td>
+</tr>
+<tr>
+<td><code>springdoc.info.description</code></td>
+<td>系统模块接口描述</td>
+<td>文档描述</td>
+</tr>
+<tr>
+<td><code>springdoc.info.contact.name</code></td>
+<td>RuoYi</td>
+<td>联系人名称</td>
+</tr>
+<tr>
+<td><code>springdoc.info.contact.url</code></td>
+<td><a href="https://ruoyi.vip" target="_blank" rel="noopener">https://ruoyi.vip</a></td>
+<td>联系人链接</td>
+</tr>
+</tbody></table>
+<h3 id="网关模块配置"><a class="anchor" href="#网关模块配置">#</a>网关模块配置</h3><p><code>zealux-ai-gateway-dev.yml</code> 中与文档相关的关键点是：</p>
+<ul>
+<li>路由前缀：<code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code>。</li>
+<li>白名单中包含 <code>/v3/api-docs/**</code>、<code>/swagger-ui/**</code>、<code>/swagger-resources/**</code>，允许网关放行文档访问。</li>
+<li>不存在 <code>/leads/**</code> 路由，也不存在 CRM 相关路由。</li>
+</ul>
+<h3 id="如何控制是否暴露文档"><a class="anchor" href="#如何控制是否暴露文档">#</a>如何控制是否暴露文档</h3><table>
+<thead>
+<tr>
+<th>环境</th>
+<th>建议配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发环境</td>
+<td><code>springdoc.api-docs.enabled: true</code></td>
+<td>正常暴露文档</td>
+</tr>
+<tr>
+<td>测试环境</td>
+<td><code>springdoc.api-docs.enabled: true</code></td>
+<td>配合鉴权白名单使用</td>
+</tr>
+<tr>
+<td>预发环境</td>
+<td><code>springdoc.api-docs.enabled: false</code></td>
+<td>建议关闭</td>
+</tr>
+<tr>
+<td>生产环境</td>
+<td><code>springdoc.api-docs.enabled: false</code></td>
+<td>必须关闭</td>
+</tr>
+</tbody></table>
+<p>如果希望更细粒度控制，可在 <code>SpringDocProperties</code> 中新增布尔字段，并在 <code>SpringDocAutoConfiguration</code> 中增加额外条件。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Dev[&quot;dev 配置&quot;] --&gt; Enabled{&quot;enabled 为 true？&quot;}
+    Test[&quot;test 配置&quot;] --&gt; Enabled
+    Pre[&quot;pre 配置&quot;] --&gt; Enabled
+    Prod[&quot;prod 配置&quot;] --&gt; Enabled
+    Enabled --&gt;|是| Expose[&quot;暴露 /v3/api-docs&quot;]
+    Enabled --&gt;|否| Hide[&quot;隐藏文档端点&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">Nacos 配置：zealux-ai-system-dev.yml</span></li>
+<li><span class="fileref">Nacos 配置：zealux-ai-gateway-dev.yml</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Nacos 配置：zealux-ai-system-dev.yml</span></li>
+<li><span class="fileref">Nacos 配置：zealux-ai-gateway-dev.yml</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><h3 id="问题一：文档不显示"><a class="anchor" href="#问题一：文档不显示">#</a>问题一：文档不显示</h3><p><strong>可能原因</strong></p>
+<ol>
+<li><code>springdoc.api-docs.enabled</code> 被设置为 <code>false</code>。</li>
+<li>业务模块未引入 springdoc-openapi 依赖。</li>
+<li>Nacos 中没有正确注册服务，网关无法发现实例。</li>
+<li>网关路由没有放行 <code>/v3/api-docs/**</code>。</li>
+<li>文档服务器地址 <code>springdoc.gatewayUrl</code> 与实际网关地址不一致。</li>
+</ol>
+<p><strong>排查步骤</strong></p>
+<ol>
+<li>检查 Nacos 中 <code>springdoc.api-docs.enabled</code> 是否为 <code>true</code>。</li>
+<li>检查业务模块 pom.xml 是否包含 springdoc-openapi 依赖。</li>
+<li>访问 <code>http://网关地址/{服务ID}/v3/api-docs</code>，看是否能返回 JSON。</li>
+<li>检查网关是否放行 <code>/v3/api-docs/**</code>。</li>
+<li>修正 <code>springdoc.gatewayUrl</code>，使其指向真实网关地址。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+<li><span class="fileref">SpringDocConfig.java:1-93</span></li>
+<li><span class="fileref">Nacos 配置：zealux-ai-gateway-dev.yml</span></li>
+</ul>
+<h3 id="问题二：接口重复"><a class="anchor" href="#问题二：接口重复">#</a>问题二：接口重复</h3><p><strong>可能原因</strong></p>
+<ol>
+<li>同一 Controller 同时被多个包扫描到。</li>
+<li>多个模块重复声明相同接口。</li>
+<li>网关聚合时出现同名 serviceId。</li>
+<li>使用了错误的包路径导致同一个类被多次注册。</li>
+</ol>
+<p><strong>修复建议</strong></p>
+<ol>
+<li>确保每个 Controller 只位于一个包路径下。</li>
+<li>检查 Maven 依赖是否重复引入不同版本的 springdoc-openapi。</li>
+<li>检查 Nacos 服务注册是否出现同名服务。</li>
+<li>如需隐藏重复内部接口，可使用 <code>@Hidden</code> 或 <code>@Tag(hidden = true)</code>。</li>
+</ol>
+<p>[本节为通用排查建议，未直接分析具体文件]</p>
+<h3 id="问题三：Token-无法带入测试"><a class="anchor" href="#问题三：Token-无法带入测试">#</a>问题三：Token 无法带入测试</h3><p><strong>可能原因</strong></p>
+<ol>
+<li>全局安全方案使用 <code>Authorization</code> 头，但测试时传入了其他 header。</li>
+<li>没有点击 Swagger UI 的“授权”按钮。</li>
+<li>传入的 token 缺少 <code>Bearer </code> 前缀。</li>
+<li>后端安全过滤器拒绝 token，与文档无关。</li>
+</ol>
+<p><strong>修复建议</strong></p>
+<ol>
+<li>在 Swagger UI 中点击“授权”。</li>
+<li>输入 <code>Bearer &lt;token&gt;</code>，其中 <code>&lt;token&gt;</code> 替换为本地凭据记录中的令牌占位值。</li>
+<li>确认 <code>springdoc.gatewayUrl</code> 指向正确的网关地址。</li>
+<li>如果 Token 校验失败，优先排查后端认证逻辑，而不是只改文档。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SpringDocAutoConfiguration.java:1-66</span></li>
+</ul>
+<h3 id="问题四：生产环境误开放文档的安全风险"><a class="anchor" href="#问题四：生产环境误开放文档的安全风险">#</a>问题四：生产环境误开放文档的安全风险</h3><p><strong>风险</strong></p>
+<ul>
+<li>外部人员可能看到接口路径、参数、请求体结构、响应模型。</li>
+<li>结合其他漏洞，攻击面可能被扩大。</li>
+<li>文档可能间接暴露数据库字段、内部服务调用约定。</li>
+</ul>
+<p><strong>修复方法</strong></p>
+<ol>
+<li>在生产 Nacos 配置中将 <code>springdoc.api-docs.enabled</code> 设为 <code>false</code>。</li>
+<li>在网关层不再放行 <code>/v3/api-docs/**</code>。</li>
+<li>不要依赖“隐藏 Controller”作为唯一防护手段。</li>
+<li>若确实需要生产调试文档，应通过独立网段、强身份认证和审计日志保护。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">Nacos 配置：zealux-ai-system-dev.yml</span></li>
+<li><span class="fileref">Nacos 配置：zealux-ai-gateway-dev.yml</span></li>
+</ul>
+<h3 id="问题五：敏感接口未过滤"><a class="anchor" href="#问题五：敏感接口未过滤">#</a>问题五：敏感接口未过滤</h3><p><strong>现状</strong></p>
+<ul>
+<li>当前 <code>SpringDocAutoConfiguration</code> 没有实现全局接口过滤规则。</li>
+<li>也没有 <code>OperationCustomizer</code> 或 <code>GlobalOpenApiCustomizer</code> 的统一过滤逻辑。</li>
+<li>因此不能声称系统已经具备“敏感接口自动过滤”的能力。</li>
+</ul>
+<p><strong>建议方案</strong></p>
+<ol>
+<li>在 <code>SpringDocProperties</code> 中新增敏感接口配置，例如黑名单路径或正则。</li>
+<li>在自动装配类中读取该配置，并通过 SpringDoc 提供的 Operation 自定义机制过滤。</li>
+<li>对于明确内部使用的接口，优先使用 <code>@Hidden</code>。</li>
+<li>对仅开发环境开放的接口，使用 Spring Profile 或 Nacos 配置开关控制。</li>
+</ol>
+<p>[本节为方案建议，未对应现有实现]</p>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本项目的 Swagger 文档能力建立在 springdoc-openapi 之上，并由公共库 <code>zealux-ai-common-swagger</code> 提供统一的 OpenAPI 配置，由网关 <code>zealux-ai-gateway</code> 动态聚合各微服务的 <code>/v3/api-docs</code>。当前实现的关键要点是：</p>
+<ul>
+<li>默认启用文档端点。</li>
+<li>全局安全方案使用 <code>Authorization: Bearer</code>。</li>
+<li>文档服务器地址来自 <code>springdoc.gatewayUrl</code>。</li>
+<li>网关根据 Nacos 实例动态注册文档分组。</li>
+<li>业务模块尚未使用 @Operation、@Parameter、@ApiResponses 等注解，这些属于建议规范。</li>
+<li>敏感接口过滤、开发环境隔离、分组标签等能力当前未完全实现，需通过新增配置与注解逐步完善。</li>
+<li>生产环境必须显式关闭 <code>springdoc.api-docs.enabled</code>，避免文档泄露。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">← sensitive 数据脱敏模块</a>
+    <a class="next" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d3"><a href="#SpringDocAutoConfiguration">SpringDocAutoConfiguration</a></li><li class="d3"><a href="#SpringDocProperties">SpringDocProperties</a></li><li class="d3"><a href="#网关中的-SpringDocConfig">网关中的 SpringDocConfig</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#SpringDocAutoConfiguration-的工作机制">SpringDocAutoConfiguration 的工作机制</a></li><li class="d3"><a href="#网关聚合文档分组">网关聚合文档分组</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与行为特性">性能与行为特性</a></li><li class="d2"><a href="#接口文档注解规范">接口文档注解规范</a></li><li class="d3"><a href="#已在仓库中观察到的状态">已在仓库中观察到的状态</a></li><li class="d3"><a href="#推荐注解用法">推荐注解用法</a></li><li class="d3"><a href="#示例：Controller-上添加文档注解">示例：Controller 上添加文档注解</a></li><li class="d3"><a href="#示例：Token-如何带入测试">示例：Token 如何带入测试</a></li><li class="d2"><a href="#Nacos-配置控制">Nacos 配置控制</a></li><li class="d3"><a href="#系统模块配置">系统模块配置</a></li><li class="d3"><a href="#网关模块配置">网关模块配置</a></li><li class="d3"><a href="#如何控制是否暴露文档">如何控制是否暴露文档</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d3"><a href="#问题一：文档不显示">问题一：文档不显示</a></li><li class="d3"><a href="#问题二：接口重复">问题二：接口重复</a></li><li class="d3"><a href="#问题三：Token-无法带入测试">问题三：Token 无法带入测试</a></li><li class="d3"><a href="#问题四：生产环境误开放文档的安全风险">问题四：生产环境误开放文档的安全风险</a></li><li class="d3"><a href="#问题五：敏感接口未过滤">问题五：敏感接口未过滤</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

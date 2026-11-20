@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>生产环境部署 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec" open><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html" class="active">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">部署与运维 / <b>生产环境部署</b></div><article><h1 id="生产环境部署"><a class="anchor" href="#生产环境部署">#</a>生产环境部署</h1><cite>
+**本文引用的文件**   
+- [zealux-ai-master/pom.xml](file://zealux-ai-master/pom.xml)
+- [zealux-ai-master/README.md](file://zealux-ai-master/README.md)
+- [zealux-ai-ui-master/package.json](file://zealux-ai-ui-master/package.json)
+- [RuoYiGatewayApplication.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/RuoYiGatewayApplication.java)
+- [RuoYiAuthApplication.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/RuoYiAuthApplication.java)
+- [RuoYiSystemApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/RuoYiSystemApplication.java)
+- [RuoYiGenApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/RuoYiGenApplication.java)
+- [RuoYiJobApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/RuoYiJobApplication.java)
+- [RuoYiFileApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/RuoYiFileApplication.java)
+- [RuoYiMonitorApplication.java](file://zealux-ai-master/zealux-ai-visual/zealux-ai-monitor/src/main/java/com/zealux/modules/monitor/RuoYiMonitorApplication.java)
+- [gateway bootstrap.yml](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/bootstrap.yml)
+- [auth bootstrap.yml](file://zealux-ai-master/zealux-ai-auth/src/main/resources/bootstrap.yml)
+- [system bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/bootstrap.yml)
+- [gen bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/resources/bootstrap.yml)
+- [job bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/resources/bootstrap.yml)
+- [file bootstrap.yml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/resources/bootstrap.yml)
+- [monitor bootstrap.yml](file://zealux-ai-master/zealux-ai-visual/zealux-ai-monitor/src/main/resources/bootstrap.yml)
+- [GatewayConfig.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/GatewayConfig.java)
+- [RouterFunctionConfiguration.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/RouterFunctionConfiguration.java)
+- [AuthFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/AuthFilter.java)
+- [TokenController.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/controller/TokenController.java)
+- [MinioConfig.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/config/MinioConfig.java)
+- [LocalSysFileServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/service/LocalSysFileServiceImpl.java)
+- [MinioSysFileServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/service/MinioSysFileServiceImpl.java)
+- [logback.xml（系统模块）](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/logback.xml)
+- [logback.xml（认证模块）](file://zealux-ai-master/zealux-ai-auth/src/main/resources/logback.xml)
+- [zealux-ai-common-datasource pom.xml](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/pom.xml)
+- [zealux-ai-common-redis pom.xml](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/pom.xml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#构建与产物">构建与产物</a></li>
+<li><a href="#运行环境与外部依赖">运行环境与外部依赖</a></li>
+<li><a href="#服务启动顺序与依赖关系">服务启动顺序与依赖关系</a></li>
+<li><a href="#配置管理">配置管理</a></li>
+<li><a href="#反向代理与网关路由">反向代理与网关路由</a></li>
+<li><a href="#健康检查与可观测性">健康检查与可观测性</a></li>
+<li><a href="#容器化与编排">容器化与编排</a></li>
+<li><a href="#容量规划与性能参数">容量规划与性能参数</a></li>
+<li><a href="#发布灰度与回滚">发布、灰度与回滚</a></li>
+<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本部署指南面向生产环境，目标是把当前基于 Spring Cloud Alibaba 的微服务架构稳定地构建、部署和运行。该系统是开源 RuoYi-Cloud 的重命名二次开发：根 <code>pom.xml</code> 的 <code>artifactId=zealux-ai</code>、版本 <code>3.6.5</code>；前端 <code>package.json</code> 名称仍为 <code>ruoyi@3.6.5</code>；七个后端服务的启动类仍保留 <code>RuoYi*Application.java</code> 的原始命名；公共库子目录 <code>zealux-ai-common/ruoyi-common-sensitive</code> 也沿用了原目录名。因此，本文在描述架构时明确承认这一继承关系，不将其包装成自研框架。</p>
+<p>系统采用前后端分离：后端使用 Spring Boot 3.3.5、Spring Cloud 2023.0.3、Spring Cloud Alibaba 2023.0.1.2；注册中心与配置中心为 Nacos；缓存使用 Redis；数据库通过 Druid 与动态数据源访问；文件存储支持本地磁盘与 MinIO；监控通过 Spring Boot Admin 风格的 monitor 模块提供；流量控制集成 Sentinel。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-master/pom.xml:1-200</span></li>
+<li><span class="fileref">zealux-ai-master/README.md:1-60</span></li>
+</ul>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>后端采用多模块 Maven 工程，核心模块包括：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th align="right">默认端口</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>zealux-ai-gateway</code></td>
+<td align="right">8080</td>
+<td>网关、全局鉴权、验证码直连路由、Sentinel 网关限流入口</td>
+</tr>
+<tr>
+<td><code>zealux-ai-auth</code></td>
+<td align="right">9200</td>
+<td>登录、注册、刷新令牌、注销</td>
+</tr>
+<tr>
+<td><code>zealux-ai-system</code></td>
+<td align="right">9201</td>
+<td>用户、角色、菜单、部门、字典、参数等系统管理接口</td>
+</tr>
+<tr>
+<td><code>zealux-ai-gen</code></td>
+<td align="right">9202</td>
+<td>代码生成器，基于 Velocity 模板生成 Java、SQL、Vue 等代码</td>
+</tr>
+<tr>
+<td><code>zealux-ai-job</code></td>
+<td align="right">9203</td>
+<td>定时任务管理，基于 Quartz</td>
+</tr>
+<tr>
+<td><code>zealux-ai-file</code></td>
+<td align="right">9300</td>
+<td>文件上传，支持本地磁盘或 MinIO</td>
+</tr>
+<tr>
+<td><code>zealux-ai-monitor</code></td>
+<td align="right">9100</td>
+<td>可视化监控应用</td>
+</tr>
+</tbody></table>
+<p>前端有两份逐字节相同的源码拷贝：独立仓库 <code>zealux-ai-ui-master</code>，以及嵌在后端里的 <code>zealux-ai-master/zealux-ai-ui</code>。部署时应以 <code>zealux-ai-ui-master</code> 为准，不要为重复拷贝单独生成镜像或页面。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Browser[&quot;浏览器&quot;] --&gt; Gateway[&quot;网关&lt;br/&gt;zealux-ai-gateway:8080&quot;]
+    Gateway --&gt; Auth[&quot;认证中心&lt;br/&gt;zealux-ai-auth:9200&quot;]
+    Gateway --&gt; System[&quot;系统服务&lt;br/&gt;zealux-ai-system:9201&quot;]
+    Gateway --&gt; Gen[&quot;代码生成&lt;br/&gt;zealux-ai-gen:9202&quot;]
+    Gateway --&gt; Job[&quot;定时任务&lt;br/&gt;zealux-ai-job:9203&quot;]
+    Gateway --&gt; File[&quot;文件服务&lt;br/&gt;zealux-ai-file:9300&quot;]
+    Gateway --&gt; Monitor[&quot;监控服务&lt;br/&gt;zealux-ai-monitor:9100&quot;]
+    System --&gt; DB[&quot;MySQL/MariaDB&quot;]
+    Auth --&gt; DB
+    Gen --&gt; DB
+    Job --&gt; DB
+    File --&gt; ObjectStore[&quot;对象存储或本地磁盘&quot;]
+    System --&gt; Cache[&quot;Redis&quot;]
+    Auth --&gt; Cache
+    Gateway --&gt; Cache
+    Monitor --&gt; DB</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">gateway bootstrap.yml:1-44</span></li>
+<li><span class="fileref">auth bootstrap.yml:1-25</span></li>
+<li><span class="fileref">system bootstrap.yml:1-25</span></li>
+<li><span class="fileref">gen bootstrap.yml:1-25</span></li>
+<li><span class="fileref">job bootstrap.yml:1-25</span></li>
+<li><span class="fileref">file bootstrap.yml:1-25</span></li>
+<li><span class="fileref">monitor bootstrap.yml:1-25</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-master/README.md:1-60</span></li>
+<li><span class="fileref">zealux-ai-ui-master/package.json:1-90</span></li>
+</ul>
+<h2 id="构建与产物"><a class="anchor" href="#构建与产物">#</a>构建与产物</h2><h3 id="后端构建"><a class="anchor" href="#后端构建">#</a>后端构建</h3><p>后端使用 JDK 17 与 Maven 构建。根 <code>pom.xml</code> 定义了统一版本：Spring Boot 3.3.5、Spring Cloud 2023.0.3、Spring Cloud Alibaba 2023.0.1.2、MyBatis-Plus 3.5.10、Druid 1.2.23、Fastjson2 2.0.53、MinIO 8.2.2 等。</p>
+<p>推荐在生产构建机执行以下流程：</p>
+<ol>
+<li>安装 JDK 17、Maven 3.9+。</li>
+<li>拉取源码到工作区。</li>
+<li>执行非测试打包命令，跳过测试以减少构建分支差异：<ul>
+<li>Unix/Linux/macOS：<code>mvn clean package -DskipTests -pl &#39;!zealux-ai-leads&#39; -am</code></li>
+<li>Windows PowerShell：<code>mvn clean package -DskipTests -pl &quot;!zealux-ai-leads&quot; -am</code></li>
+</ul>
+</li>
+<li>构建成功后，每个模块 <code>target</code> 目录下会生成对应 Spring Boot 可执行 jar。</li>
+<li>将需要的服务 jar 推入制品库，并打上 Git commit 与构建时间标签。</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li><code>zealux-ai-leads</code> 当前只有少量 Java 文件，缺少前端页面、菜单、Nacos 配置与网关路由，且本地 Redis 缺 RediSearch 模块，不应作为生产可运行服务纳入常规构建清单。</li>
+<li>若仅需最小生产集，可显式排除 <code>zealux-ai-leads</code>，避免其参与依赖解析。</li>
+</ul>
+<h3 id="前端构建"><a class="anchor" href="#前端构建">#</a>前端构建</h3><p>前端基于 Vue CLI，<code>package.json</code> 中定义脚本：</p>
+<table>
+<thead>
+<tr>
+<th>脚本</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dev</code></td>
+<td>本地开发服务</td>
+</tr>
+<tr>
+<td><code>build:prod</code></td>
+<td>构建生产静态资源</td>
+</tr>
+<tr>
+<td><code>build:stage</code></td>
+<td>构建预发布静态资源</td>
+</tr>
+<tr>
+<td><code>preview</code></td>
+<td>预览构建结果</td>
+</tr>
+<tr>
+<td><code>lint</code></td>
+<td>ESLint 检查</td>
+</tr>
+</tbody></table>
+<p>生产构建建议：</p>
+<ol>
+<li>安装 Node.js 版本满足引擎要求，推荐使用长期支持版本。</li>
+<li>进入 <code>zealux-ai-ui-master</code> 目录。</li>
+<li>安装依赖：<code>pnpm install --frozen-lockfile</code> 或 <code>npm ci</code>。</li>
+<li>执行生产构建：<code>pnpm run build:prod</code>。</li>
+<li>产物位于 <code>dist</code> 目录，包含 <code>index.html</code>、静态资源与主题文件。</li>
+<li>将 <code>dist</code> 作为 Nginx 或 Kubernetes Ingress 的静态站点根目录。</li>
+</ol>
+<p>前端构建产物不包含后端配置，只负责提供 HTML/CSS/JS 静态资源；后端地址、网关前缀、第三方域名等应由运行时配置或反向代理决定。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-master/pom.xml:1-200</span></li>
+<li><span class="fileref">zealux-ai-ui-master/package.json:1-90</span></li>
+</ul>
+<h2 id="运行环境与外部依赖"><a class="anchor" href="#运行环境与外部依赖">#</a>运行环境与外部依赖</h2><h3 id="必需外部组件"><a class="anchor" href="#必需外部组件">#</a>必需外部组件</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>用途</th>
+<th>生产建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nacos</td>
+<td>服务注册发现与配置中心</td>
+<td>至少三节点高可用集群；持久化 MySQL</td>
+</tr>
+<tr>
+<td>MySQL/MariaDB</td>
+<td>业务与系统表</td>
+<td>主从或托管数据库，启用 binlog、慢查询日志</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>登录态、验证码、缓存</td>
+<td>主从或集群模式；禁用危险命令，设置密码与 ACL</td>
+</tr>
+<tr>
+<td>MinIO 或对象存储</td>
+<td>文件对象存储</td>
+<td>多节点纠删码或复制；独立挂载卷</td>
+</tr>
+<tr>
+<td>Nginx 或云 Ingress</td>
+<td>反向代理、HTTPS、静态资源</td>
+<td>转发 <code>/gateway/**</code>、<code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code></td>
+</tr>
+</tbody></table>
+<h3 id="可选外部组件"><a class="anchor" href="#可选外部组件">#</a>可选外部组件</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sentinel Dashboard</td>
+<td>网关与服务限流控制台</td>
+<td>网关 bootstrap 中已声明 Sentinel 配置</td>
+</tr>
+<tr>
+<td>Spring Boot Admin / monitor</td>
+<td>监控服务</td>
+<td>由 <code>zealux-ai-monitor</code> 提供</td>
+</tr>
+<tr>
+<td>Seata</td>
+<td>分布式事务</td>
+<td>仓库存在 <code>zealux-ai-common-seata</code> 模块，但当前模块清单未体现广泛启用，应结合压测确认</td>
+</tr>
+</tbody></table>
+<h3 id="数据库初始化"><a class="anchor" href="#数据库初始化">#</a>数据库初始化</h3><p>本地环境由 <code>_setup/sql</code> 下的 <code>ry_20240629.sql</code>、<code>quartz.sql</code>、<code>ry_config_20240902.sql</code> 初始化，但这些是 RuoYi-Cloud 与 Nacos 的第三方初始化脚本，不是本项目的数据库设计文档。本地实测数据库中不存在任何 <code>crm_</code> 前缀的表，也未发现 CRM 建表方案落库。因此不得把 CRM 模块、CRM 表结构或 CRM 业务接口描述成系统已具备的能力。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-master/README.md:1-60</span></li>
+<li><span class="fileref">zealux-ai-master/zealux-ai-common/zealux-ai-common-datasource/pom.xml:1-35</span></li>
+<li><span class="fileref">zealux-ai-master/zealux-ai-common/zealux-ai-common-redis/pom.xml:1-33</span></li>
+</ul>
+<h2 id="服务启动顺序与依赖关系"><a class="anchor" href="#服务启动顺序与依赖关系">#</a>服务启动顺序与依赖关系</h2><p>微服务依赖 Nacos 完成注册与配置加载。典型启动顺序如下：</p>
+<ol>
+<li><strong>启动基础设施</strong>：Nacos、MySQL/MariaDB、Redis、MinIO。</li>
+<li><strong>启动网关</strong>：<code>zealux-ai-gateway</code> 暴露统一入口。</li>
+<li><strong>启动认证中心</strong>：<code>zealux-ai-auth</code> 提供登录与令牌能力。</li>
+<li><strong>启动系统服务</strong>：<code>zealux-ai-system</code> 提供用户、角色、菜单等基础能力。</li>
+<li><strong>启动辅助服务</strong>：<code>zealux-ai-gen</code>、<code>zealux-ai-job</code>、<code>zealux-ai-file</code>、<code>zealux-ai-monitor</code>。</li>
+<li><strong>启动反向代理</strong>：Nginx 或 Ingress 指向网关。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Infra[&quot;Nacos&lt;br/&gt;MySQL/MariaDB&lt;br/&gt;Redis&lt;br/&gt;MinIO&quot;] --&gt; Gateway[&quot;网关&quot;]
+    Infra --&gt; Auth[&quot;认证中心&quot;]
+    Infra --&gt; System[&quot;系统服务&quot;]
+    Infra --&gt; Gen[&quot;代码生成&quot;]
+    Infra --&gt; Job[&quot;定时任务&quot;]
+    Infra --&gt; File[&quot;文件服务&quot;]
+    Infra --&gt; Monitor[&quot;监控服务&quot;]
+    Gateway --&gt; Auth
+    Gateway --&gt; System
+    Gateway --&gt; Gen
+    Gateway --&gt; Job
+    Gateway --&gt; File
+    Gateway --&gt; Monitor</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">gateway bootstrap.yml:1-44</span></li>
+<li><span class="fileref">auth bootstrap.yml:1-25</span></li>
+<li><span class="fileref">system bootstrap.yml:1-25</span></li>
+<li><span class="fileref">gen bootstrap.yml:1-25</span></li>
+<li><span class="fileref">job bootstrap.yml:1-25</span></li>
+<li><span class="fileref">file bootstrap.yml:1-25</span></li>
+<li><span class="fileref">monitor bootstrap.yml:1-25</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java</span></li>
+<li><span class="fileref">RuoYiAuthApplication.java</span></li>
+<li><span class="fileref">RuoYiSystemApplication.java</span></li>
+<li><span class="fileref">RuoYiGenApplication.java</span></li>
+<li><span class="fileref">RuoYiJobApplication.java</span></li>
+<li><span class="fileref">RuoYiFileApplication.java</span></li>
+<li><span class="fileref">RuoYiMonitorApplication.java</span></li>
+</ul>
+<h2 id="配置管理"><a class="anchor" href="#配置管理">#</a>配置管理</h2><p>所有服务的 <code>bootstrap.yml</code> 都通过 Spring Cloud Bootstrap 加载 Nacos 配置：</p>
+<ul>
+<li>应用名称来自 <code>spring.application.name</code>。</li>
+<li>环境通过 <code>spring.profiles.active</code> 切换。</li>
+<li>Nacos 注册与配置地址在 <code>spring.cloud.nacos.discovery.server-addr</code> 与 <code>spring.cloud.nacos.config.server-addr</code>。</li>
+<li>共享配置使用 <code>shared-configs</code>，形式为 <code>application-${spring.profiles.active}.yml</code>。</li>
+</ul>
+<p>生产中的正确做法：</p>
+<ol>
+<li>在 Nacos 中为每个服务创建 dataId，例如：<ul>
+<li><code>zealux-ai-gateway-dev.yml</code></li>
+<li><code>zealux-ai-auth-dev.yml</code></li>
+<li><code>zealux-ai-system-dev.yml</code></li>
+<li><code>zealux-ai-gen-dev.yml</code></li>
+<li><code>zealux-ai-job-dev.yml</code></li>
+<li><code>zealux-ai-file-dev.yml</code></li>
+<li><code>zealux-ai-monitor-dev.yml</code></li>
+</ul>
+</li>
+<li>将数据库连接、Redis 地址、MinIO 凭证、JWT 密钥、短信/邮件 API key 等敏感值写入 Nacos dataId。</li>
+<li>不要把真实账号、口令、token、api-key 的值写入仓库。示例中统一写占位形式，如「数据库用户名与口令见本地凭据记录」。</li>
+<li>生产 profile 建议使用 <code>prod</code>，并把 <code>active: prod</code> 放入 Nacos shared 配置或通过环境变量注入，而不是修改源码中的 <code>bootstrap.yml</code>。</li>
+<li>对 Nacos 本身做访问控制：开启鉴权、强口令、TLS、IP 白名单。</li>
+</ol>
+<p>当前仓库中的 <code>bootstrap.yml</code> 仍指向 <code>127.0.0.1:8848</code>，这是本地开发配置。生产部署时必须通过 Nacos dataId 覆盖这些值。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">gateway bootstrap.yml:1-44</span></li>
+<li><span class="fileref">auth bootstrap.yml:1-25</span></li>
+<li><span class="fileref">system bootstrap.yml:1-25</span></li>
+<li><span class="fileref">gen bootstrap.yml:1-25</span></li>
+<li><span class="fileref">job bootstrap.yml:1-25</span></li>
+<li><span class="fileref">file bootstrap.yml:1-25</span></li>
+<li><span class="fileref">monitor bootstrap.yml:1-25</span></li>
+</ul>
+<h2 id="反向代理与网关路由"><a class="anchor" href="#反向代理与网关路由">#</a>反向代理与网关路由</h2><h3 id="网关暴露的路由"><a class="anchor" href="#网关暴露的路由">#</a>网关暴露的路由</h3><p>当前网关配置中存在两类路由相关逻辑：</p>
+<ol>
+<li><strong>全局鉴权过滤器</strong>：<code>AuthFilter</code> 对所有请求进行 JWT 校验，并根据白名单放行。</li>
+<li><strong>直连路由</strong>：<code>RouterFunctionConfiguration</code> 暴露了 GET <code>/code</code>，用于验证码。</li>
+<li><strong>Sentinel 网关异常处理</strong>：<code>GatewayConfig</code> 注册了 <code>SentinelFallbackHandler</code>。</li>
+</ol>
+<p>根据实际代码，网关并非通过 Spring Cloud Gateway 的 YAML 路由集中声明所有后端路径，而是通过全局过滤器和直连路由配合 Nacos 服务发现完成转发。仓库中未发现集中式 YAML 路由表，也没有 <code>/leads/**</code> 或 CRM 路由。</p>
+<h3 id="Nginx-转发规则建议"><a class="anchor" href="#Nginx-转发规则建议">#</a>Nginx 转发规则建议</h3><p>Nginx 应作为对外入口，将已知前缀转发到网关：</p>
+<table>
+<thead>
+<tr>
+<th>客户端路径</th>
+<th>上游目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gateway/**</code></td>
+<td><code>http://localhost:8080/</code></td>
+<td>网关内部路由前缀</td>
+</tr>
+<tr>
+<td><code>/auth/**</code></td>
+<td><code>http://localhost:8080/auth/</code></td>
+<td>认证接口</td>
+</tr>
+<tr>
+<td><code>/system/**</code></td>
+<td><code>http://localhost:8080/system/</code></td>
+<td>系统管理接口</td>
+</tr>
+<tr>
+<td><code>/code/**</code></td>
+<td><code>http://localhost:8080/code/</code></td>
+<td>验证码直连路由</td>
+</tr>
+<tr>
+<td><code>/schedule/**</code></td>
+<td><code>http://localhost:8080/schedule/</code></td>
+<td>定时任务相关接口</td>
+</tr>
+<tr>
+<td><code>/file/**</code></td>
+<td><code>http://localhost:8080/file/</code></td>
+<td>文件上传下载接口</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>静态资源目录</td>
+<td>前端 <code>dist</code> 目录</td>
+</tr>
+</tbody></table>
+<p>Ingress 规则应与上述 Nginx 映射保持一致，并通过 TLS 终止、超时、重试、熔断策略统一管理。</p>
+<h3 id="登录鉴权流程"><a class="anchor" href="#登录鉴权流程">#</a>登录鉴权流程</h3><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;浏览器&quot;
+    participant Nginx as &quot;反向代理&quot;
+    participant Gateway as &quot;网关&quot;
+    participant Auth as &quot;认证中心&quot;
+    participant Redis as &quot;Redis&quot;
+
+    Client-&gt;&gt;Nginx: &quot;POST /auth/login&quot;
+    Nginx-&gt;&gt;Gateway: &quot;转发 /auth/**&quot;
+    Gateway-&gt;&gt;Auth: &quot;POST /login&quot;
+    Auth-&gt;&gt;Redis: &quot;验证或写入登录态&quot;
+    Redis--&gt;&gt;Auth: &quot;返回状态&quot;
+    Auth--&gt;&gt;Gateway: &quot;返回令牌&quot;
+    Gateway--&gt;&gt;Nginx: &quot;返回响应&quot;
+    Nginx--&gt;&gt;Client: &quot;返回令牌与用户信息&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">RouterFunctionConfiguration.java:1-31</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GatewayConfig.java:1-23</span></li>
+<li><span class="fileref">RouterFunctionConfiguration.java:1-31</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="健康检查与可观测性"><a class="anchor" href="#健康检查与可观测性">#</a>健康检查与可观测性</h2><h3 id="健康检查端点"><a class="anchor" href="#健康检查端点">#</a>健康检查端点</h3><p>当前各服务 <code>bootstrap.yml</code> 中未显式暴露 Spring Boot Actuator 的健康检查端点。生产部署时应：</p>
+<ol>
+<li>为每个服务引入 Actuator 依赖。</li>
+<li>暴露 <code>/actuator/health</code> 与 <code>/actuator/info</code>。</li>
+<li>仅暴露必要指标，避免泄露敏感信息。</li>
+<li>在 Nginx 层屏蔽或限制访问 <code>/actuator/**</code>。</li>
+<li>在 Kubernetes 中使用 HTTP 探针调用 <code>/actuator/health</code>，TCP 探针作为兜底。</li>
+</ol>
+<p>如果无法直接暴露 Actuator，至少应实现一个轻量级 <code>/health</code> 控制器，返回服务是否成功连接 Nacos、Redis、数据库或 MinIO。</p>
+<h3 id="日志轮转"><a class="anchor" href="#日志轮转">#</a>日志轮转</h3><p>各服务使用 Logback，按天轮转 info 与 error 日志，历史保留 60 天：</p>
+<ul>
+<li>系统模块日志路径：<code>logs/zealux-ai-system</code></li>
+<li>认证模块日志路径：<code>logs/zealux-ai-auth</code></li>
+<li>其他模块遵循相同模式，但日志路径需以各自 <code>logback.xml</code> 为准。</li>
+</ul>
+<p>生产建议：</p>
+<ul>
+<li>将 <code>log.path</code> 挂载到独立持久卷或外置日志收集系统。</li>
+<li>容器内输出到 stdout/stderr，由 Sidecar 或 DaemonSet 收集。</li>
+<li>调整日志级别：生产默认 <code>info</code>，异常场景临时提升到 <code>debug</code>。</li>
+<li>对慢 SQL、鉴权失败、文件上传失败等关键路径单独采集错误日志。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">logback.xml（系统模块）:1-74</span></li>
+<li><span class="fileref">logback.xml（认证模块）:1-74</span></li>
+</ul>
+<h2 id="容器化与编排"><a class="anchor" href="#容器化与编排">#</a>容器化与编排</h2><h3 id="Docker-镜像建议"><a class="anchor" href="#Docker-镜像建议">#</a>Docker 镜像建议</h3><p>后端推荐多阶段构建：</p>
+<ol>
+<li>第一阶段：JDK 17 + Maven，执行 <code>mvn clean package -DskipTests</code>。</li>
+<li>第二阶段：精简 JRE 镜像，复制目标 jar。</li>
+<li>通过 <code>ENTRYPOINT</code> 传入 JVM 参数与启动命令。</li>
+<li>镜像标签使用 Git commit SHA，禁止使用 <code>latest</code>。</li>
+</ol>
+<p>前端推荐：</p>
+<ol>
+<li>构建阶段：Node + pnpm/npm，执行 <code>pnpm run build:prod</code>。</li>
+<li>运行阶段：Nginx 镜像，挂载 <code>dist</code> 目录。</li>
+<li>通过环境变量注入 API 前缀与静态资源版本。</li>
+</ol>
+<h3 id="Kubernetes-Pod-模型"><a class="anchor" href="#Kubernetes-Pod-模型">#</a>Kubernetes Pod 模型</h3><p>每个微服务一个 Deployment 和一个 Service：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th align="right">副本数</th>
+<th>探针</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nacos</td>
+<td align="right">3</td>
+<td>就绪/存活探针</td>
+</tr>
+<tr>
+<td>MySQL/MariaDB</td>
+<td align="right">主 1 + 从 N</td>
+<td>主从状态探针</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td align="right">主从或集群</td>
+<td>主从同步探针</td>
+</tr>
+<tr>
+<td>MinIO</td>
+<td align="right">多节点</td>
+<td>桶可用性探针</td>
+</tr>
+<tr>
+<td>网关</td>
+<td align="right">≥2</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>认证中心</td>
+<td align="right">≥2</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>系统服务</td>
+<td align="right">≥2</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>代码生成</td>
+<td align="right">≥1</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td align="right">≥1</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>文件服务</td>
+<td align="right">≥2</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+<tr>
+<td>监控服务</td>
+<td align="right">≥1</td>
+<td>HTTP <code>/actuator/health</code></td>
+</tr>
+</tbody></table>
+<p>Pod 资源配置建议：</p>
+<ul>
+<li>每个 Pod 设置 requests 与 limits。</li>
+<li>使用 HorizontalPodAutoscaler 按 CPU、内存或自定义指标扩缩容。</li>
+<li>使用 PodDisruptionBudget 保证最低副本数。</li>
+<li>使用 ReadinessProbe 防止新实例过早接收流量。</li>
+<li>使用 LivenessProbe 检测进程卡死。</li>
+</ul>
+<h3 id="Nacos-高可用"><a class="anchor" href="#Nacos-高可用">#</a>Nacos 高可用</h3><ul>
+<li>至少三个节点，避免脑裂。</li>
+<li>持久化元数据到 MySQL。</li>
+<li>使用独立域名与负载均衡。</li>
+<li>关闭开发模式，开启鉴权。</li>
+<li>为不同环境划分 Nacos namespace 或 groupId。</li>
+</ul>
+<h3 id="Redis-高可用"><a class="anchor" href="#Redis-高可用">#</a>Redis 高可用</h3><ul>
+<li>主从复制：主写从读，提升读取吞吐。</li>
+<li>集群模式：分片扩容，适合大规模缓存。</li>
+<li>持久化：AOF + RDB，根据数据重要性调整。</li>
+<li>淘汰策略：<code>allkeys-lru</code> 或业务自定义 TTL。</li>
+<li>安全：绑定内网 IP，启用密码与 ACL。</li>
+</ul>
+<h3 id="MinIO-多节点"><a class="anchor" href="#MinIO-多节点">#</a>MinIO 多节点</h3><ul>
+<li>使用纠删码模式部署多节点。</li>
+<li>每个节点独立磁盘。</li>
+<li>配置独立域名与 HTTPS。</li>
+<li>通过 MinIO Client 或对象存储 SDK 校验桶权限。</li>
+<li>文件服务通过 <code>minio.*</code> 配置接入。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">MinioConfig.java:1-82</span></li>
+</ul>
+<h2 id="容量规划与性能参数"><a class="anchor" href="#容量规划与性能参数">#</a>容量规划与性能参数</h2><p>下列数值为参考起点，不是最终生产值。实际大小必须经过压测、基准测试与容量评审后确定。</p>
+<h3 id="JVM-参数"><a class="anchor" href="#JVM-参数">#</a>JVM 参数</h3><table>
+<thead>
+<tr>
+<th>参数类别</th>
+<th>参考值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>堆内存 <code>-Xms</code> / <code>-Xmx</code></td>
+<td>2G ~ 4G</td>
+<td>初始堆等于最大堆，减少动态扩容抖动</td>
+</tr>
+<tr>
+<td>元空间 <code>-XX:MetaspaceSize</code> / <code>-XX:MaxMetaspaceSize</code></td>
+<td>256MB ~ 512MB</td>
+<td>微服务类数量相对固定</td>
+</tr>
+<tr>
+<td>GC 选择</td>
+<td>G1GC</td>
+<td>Spring Boot 3 默认，适合中等堆</td>
+</tr>
+<tr>
+<td>堆外内存</td>
+<td>留足操作系统缓冲</td>
+<td>避免 OOM Killer 触发</td>
+</tr>
+<tr>
+<td>日志与线程栈</td>
+<td>每线程 1MB</td>
+<td>线程池越大，峰值内存越高</td>
+</tr>
+</tbody></table>
+<h3 id="数据库连接池"><a class="anchor" href="#数据库连接池">#</a>数据库连接池</h3><p>系统使用 Druid 与动态数据源。参考值：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>参考值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最大连接数</td>
+<td>单服务 20 ~ 50</td>
+</tr>
+<tr>
+<td>最小空闲连接</td>
+<td>5 ~ 10</td>
+</tr>
+<tr>
+<td>连接超时</td>
+<td>5 ~ 10 秒</td>
+</tr>
+<tr>
+<td>获取连接超时</td>
+<td>3 ~ 5 秒</td>
+</tr>
+<tr>
+<td>慢 SQL 阈值</td>
+<td>500ms ~ 2000ms</td>
+</tr>
+<tr>
+<td>总连接数</td>
+<td>不超过数据库 max_connections 的 60%~80%</td>
+</tr>
+</tbody></table>
+<h3 id="线程池"><a class="anchor" href="#线程池">#</a>线程池</h3><ul>
+<li>网关使用 Reactor 非阻塞模型，不建议手动扩大线程池。</li>
+<li>业务服务异步任务应使用独立线程池，限制队列长度与拒绝策略。</li>
+<li>定时任务与文件上传等 IO 密集型任务应隔离线程池，避免阻塞普通请求。</li>
+</ul>
+<h3 id="磁盘与内存"><a class="anchor" href="#磁盘与内存">#</a>磁盘与内存</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th align="right">参考容量</th>
+<th>增长因素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用磁盘</td>
+<td align="right">20GB ~ 50GB</td>
+<td>日志、临时文件、本地文件存储</td>
+</tr>
+<tr>
+<td>数据库磁盘</td>
+<td align="right">按数据量 × 3 ~ 5 倍</td>
+<td>增量、binlog、快照、备份</td>
+</tr>
+<tr>
+<td>Redis 内存</td>
+<td align="right">按热点键 × 1.5 倍</td>
+<td>大对象、过期延迟清理</td>
+</tr>
+<tr>
+<td>MinIO 磁盘</td>
+<td align="right">按文件大小 × 纠删系数</td>
+<td>文件增长、删除延迟回收</td>
+</tr>
+<tr>
+<td>日志盘</td>
+<td align="right">按日日志 × 保留天数</td>
+<td>错误日志突增</td>
+</tr>
+</tbody></table>
+<h3 id="连接池与线程复杂度"><a class="anchor" href="#连接池与线程复杂度">#</a>连接池与线程复杂度</h3><ul>
+<li>数据库连接池复杂度近似 O(并发连接数)，连接数过大可能导致锁竞争与上下文切换开销上升。</li>
+<li>Redis 连接池复杂度近似 O(活跃请求数)，连接泄漏会导致连接耗尽。</li>
+<li>线程池复杂度近似 O(队列长度 + 线程数)，队列过长会放大内存占用与延迟。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-master/pom.xml:1-200</span></li>
+<li><span class="fileref">zealux-ai-common-datasource pom.xml:1-35</span></li>
+</ul>
+<h2 id="发布、灰度与回滚"><a class="anchor" href="#发布、灰度与回滚">#</a>发布、灰度与回滚</h2><h3 id="滚动升级"><a class="anchor" href="#滚动升级">#</a>滚动升级</h3><ul>
+<li>先升级无状态服务：网关、系统、文件、监控。</li>
+<li>再升级有状态依赖较少的服务：认证、代码生成。</li>
+<li>最后升级定时任务，避免旧版本与新版本调度冲突。</li>
+<li>每次只升级一个副本，等待就绪后再替换下一个。</li>
+<li>升级期间观察错误率、延迟、CPU、内存、数据库连接数、Redis 命中率。</li>
+</ul>
+<h3 id="灰度发布"><a class="anchor" href="#灰度发布">#</a>灰度发布</h3><ul>
+<li>使用 Ingress 权重或 Kuma/Traefik 等流量切分机制，将 1%~5% 流量导入新版本。</li>
+<li>对灰度流量添加额外 Header 或 Cookie，便于链路追踪。</li>
+<li>灰度期只开放功能开关允许的小范围用户。</li>
+<li>灰度通过后逐步扩大到 10%、50%、100%。</li>
+</ul>
+<h3 id="回滚策略"><a class="anchor" href="#回滚策略">#</a>回滚策略</h3><ul>
+<li>保留上一个版本的镜像标签与配置快照。</li>
+<li>一旦错误率或延迟超过阈值，立即将流量切回上一版本。</li>
+<li>数据库变更应向前兼容：新增字段可为空，新增表不应被旧版本访问。</li>
+<li>回滚后清理灰度 Pod，但不立即删除旧镜像，保留至少一个发布周期。</li>
+</ul>
+<h3 id="停机维护窗口"><a class="anchor" href="#停机维护窗口">#</a>停机维护窗口</h3><ul>
+<li>全量停机维护仅在必要时进行，例如不可向前兼容的数据库结构变更。</li>
+<li>提前公告、关闭写入口、迁移数据、验证数据一致性、重启服务。</li>
+<li>维护完成后执行冒烟测试与核心业务流程回归。</li>
+<li>对文件服务，停机前确保无上传写入，或切换到只读模式。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiGatewayApplication.java</span></li>
+<li><span class="fileref">RuoYiAuthApplication.java</span></li>
+<li><span class="fileref">RuoYiSystemApplication.java</span></li>
+<li><span class="fileref">RuoYiFileApplication.java</span></li>
+<li><span class="fileref">RuoYiJobApplication.java</span></li>
+</ul>
+<h2 id="故障排查"><a class="anchor" href="#故障排查">#</a>故障排查</h2><h3 id="常见启动问题"><a class="anchor" href="#常见启动问题">#</a>常见启动问题</h3><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务无法注册到 Nacos</td>
+<td>Nacos 地址错误或未启动</td>
+<td>检查 Nacos dataId 中的 discovery 地址</td>
+</tr>
+<tr>
+<td>配置未生效</td>
+<td>profile 不一致或 dataId 缺失</td>
+<td>核对 <code>application-prod.yml</code> 是否存在</td>
+</tr>
+<tr>
+<td>登录失败</td>
+<td>Redis 不可用或 JWT 密钥不一致</td>
+<td>查看认证模块日志与 Redis 连通性</td>
+</tr>
+<tr>
+<td>文件上传失败</td>
+<td>MinIO 凭证错误或桶不存在</td>
+<td>检查 <code>minio.*</code> 配置</td>
+</tr>
+<tr>
+<td>本地文件访问 404</td>
+<td>反向代理未映射文件域名或路径</td>
+<td>检查 Nginx 静态资源与文件前缀</td>
+</tr>
+<tr>
+<td>网关返回鉴权失败</td>
+<td>白名单未放行或 token 过期</td>
+<td>检查 <code>AuthFilter</code> 白名单与 Redis 登录态</td>
+</tr>
+</tbody></table>
+<h3 id="文件存储选择"><a class="anchor" href="#文件存储选择">#</a>文件存储选择</h3><p><code>zealux-ai-file</code> 提供两种实现：</p>
+<ul>
+<li><code>LocalSysFileServiceImpl</code>：本地磁盘存储，默认优先级更高。</li>
+<li><code>MinioSysFileServiceImpl</code>：MinIO 对象存储。</li>
+</ul>
+<p>生产建议优先使用 MinIO，避免多副本 Pod 之间本地文件不一致。本地模式适合单机调试，不适合多副本生产。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Upload[&quot;上传请求&quot;] --&gt; Choice{&quot;是否启用 MinIO&quot;}
+    Choice --&gt;|否| Local[&quot;本地文件服务&quot;]
+    Choice --&gt;|是| Minio[&quot;MinIO 文件服务&quot;]
+    Local --&gt; Disk[&quot;本地磁盘路径&quot;]
+    Minio --&gt; Store[&quot;MinIO 对象存储&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">LocalSysFileServiceImpl.java:1-50</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:1-60</span></li>
+<li><span class="fileref">MinioConfig.java:1-82</span></li>
+</ul>
+<h3 id="日志定位"><a class="anchor" href="#日志定位">#</a>日志定位</h3><ul>
+<li>查看对应模块 <code>logs/zealux-ai-*</code> 下的 info 与 error 日志。</li>
+<li>关注鉴权失败、数据库连接失败、Redis 连接失败、MinIO 上传失败。</li>
+<li>对于生产问题，先缩小范围：网关 → 认证 → 业务服务 → 数据库/缓存/对象存储。</li>
+<li>不要在生产日志中打印完整 token、数据库口令或用户明文口令。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">LocalSysFileServiceImpl.java:1-50</span></li>
+<li><span class="fileref">MinioSysFileServiceImpl.java:1-60</span></li>
+<li><span class="fileref">logback.xml（系统模块）:1-74</span></li>
+<li><span class="fileref">logback.xml（认证模块）:1-74</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>该系统的生产部署应以可重复构建为核心：后端使用 JDK 17 与 Maven 构建 jar，前端使用 pnpm 或 npm 构建 <code>dist</code> 静态资源。Nacos 作为唯一可信配置来源，所有敏感配置通过 dataId 注入；Redis、MySQL/MariaDB、MinIO 均应采用高可用架构；网关通过反向代理统一暴露 <code>/gateway/**</code>、<code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 路由。每个微服务一个容器或 Pod，配合健康检查、滚动升级、灰度发布与回滚策略，才能在生产环境中保持稳定运行。所有容量与性能参数必须以压测结果为准，本文提供的数值仅是起点而非承诺。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">← 开发环境部署</a>
+    <a class="next" href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#构建与产物">构建与产物</a></li><li class="d3"><a href="#后端构建">后端构建</a></li><li class="d3"><a href="#前端构建">前端构建</a></li><li class="d2"><a href="#运行环境与外部依赖">运行环境与外部依赖</a></li><li class="d3"><a href="#必需外部组件">必需外部组件</a></li><li class="d3"><a href="#可选外部组件">可选外部组件</a></li><li class="d3"><a href="#数据库初始化">数据库初始化</a></li><li class="d2"><a href="#服务启动顺序与依赖关系">服务启动顺序与依赖关系</a></li><li class="d2"><a href="#配置管理">配置管理</a></li><li class="d2"><a href="#反向代理与网关路由">反向代理与网关路由</a></li><li class="d3"><a href="#网关暴露的路由">网关暴露的路由</a></li><li class="d3"><a href="#Nginx-转发规则建议">Nginx 转发规则建议</a></li><li class="d3"><a href="#登录鉴权流程">登录鉴权流程</a></li><li class="d2"><a href="#健康检查与可观测性">健康检查与可观测性</a></li><li class="d3"><a href="#健康检查端点">健康检查端点</a></li><li class="d3"><a href="#日志轮转">日志轮转</a></li><li class="d2"><a href="#容器化与编排">容器化与编排</a></li><li class="d3"><a href="#Docker-镜像建议">Docker 镜像建议</a></li><li class="d3"><a href="#Kubernetes-Pod-模型">Kubernetes Pod 模型</a></li><li class="d3"><a href="#Nacos-高可用">Nacos 高可用</a></li><li class="d3"><a href="#Redis-高可用">Redis 高可用</a></li><li class="d3"><a href="#MinIO-多节点">MinIO 多节点</a></li><li class="d2"><a href="#容量规划与性能参数">容量规划与性能参数</a></li><li class="d3"><a href="#JVM-参数">JVM 参数</a></li><li class="d3"><a href="#数据库连接池">数据库连接池</a></li><li class="d3"><a href="#线程池">线程池</a></li><li class="d3"><a href="#磁盘与内存">磁盘与内存</a></li><li class="d3"><a href="#连接池与线程复杂度">连接池与线程复杂度</a></li><li class="d2"><a href="#发布、灰度与回滚">发布、灰度与回滚</a></li><li class="d3"><a href="#滚动升级">滚动升级</a></li><li class="d3"><a href="#灰度发布">灰度发布</a></li><li class="d3"><a href="#回滚策略">回滚策略</a></li><li class="d3"><a href="#停机维护窗口">停机维护窗口</a></li><li class="d2"><a href="#故障排查">故障排查</a></li><li class="d3"><a href="#常见启动问题">常见启动问题</a></li><li class="d3"><a href="#文件存储选择">文件存储选择</a></li><li class="d3"><a href="#日志定位">日志定位</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>datascope 数据权限模块 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec" open><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html" class="active">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">通用模块(common)设计 / <b>datascope 数据权限模块</b></div><article><h1 id="datascope-数据权限模块"><a class="anchor" href="#datascope-数据权限模块">#</a>datascope 数据权限模块</h1><cite>
+**本文引用的文件**   
+- [DataScope.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/annotation/DataScope.java)
+- [DataScopeAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/aspect/DataScopeAspect.java)
+- [SysDeptServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysDeptServiceImpl.java)
+- [SysUserServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysUserServiceImpl.java)
+- [SysRoleServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysRoleServiceImpl.java)
+- [ry_20240629.sql](file://_setup/sql/ry_20240629.sql)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#注解与切面工作原理">注解与切面工作原理</a></li>
+<li><a href="#属性与数据权限范围说明">属性与数据权限范围说明</a></li>
+<li><a href="#service-使用示例">Service 使用示例</a></li>
+<li><a href="#与部门用户角色数据的关系">与部门、用户、角色数据的关系</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与索引建议">性能与索引建议</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本模块为基于 RuoYi-Cloud 的数据权限过滤能力，属于 <code>zealux-ai-common</code> 中的 <code>zealux-ai-common-datascope</code> 子模块。它通过一个自定义注解和一个 AOP 切面，在 Service 层查询方法执行前，根据当前登录用户的角色、部门及权限字符，向 MyBatis-Plus 的查询参数中注入一段 SQL WHERE 片段，从而实现行级数据权限控制。</p>
+<p>需要特别注意：仓库中定义的 <code>@DataScope</code> 注解只有 <code>deptAlias</code>、<code>userAlias</code> 和 <code>permission</code> 三个属性；代码中并未定义 <code>roleAlias</code>、<code>deptChildren</code>、<code>userChildren</code> 等属性。文档后续将严格以实际源码为准，不把这些不存在属性描述为已有能力。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:1-33</span></li>
+<li><span class="fileref">DataScopeAspect.java:1-184</span></li>
+</ul>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p>该模块位于后端公共库中，对外暴露两个核心 Java 类：</p>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>com.zealux.common.datascope.annotation.DataScope</code></td>
+<td>定义用于标注 Service 方法的注解及其属性</td>
+</tr>
+<tr>
+<td><code>com.zealux.common.datascope.aspect.DataScopeAspect</code></td>
+<td>解析注解、读取当前用户上下文、拼接数据权限 SQL 片段</td>
+</tr>
+</tbody></table>
+<p>系统模块 <code>zealux-ai-system</code> 中的部门、用户、角色服务在其列表查询方法上使用该注解，从而复用同一套数据权限逻辑。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    A[&quot;业务 Service&lt;br/&gt;SysDeptServiceImpl / SysUserServiceImpl / SysRoleServiceImpl&quot;] --&gt; B[&quot;@DataScope 注解&quot;]
+    B --&gt; C[&quot;DataScopeAspect 切面&quot;]
+    C --&gt; D[&quot;当前用户上下文&lt;br/&gt;SecurityUtils / SecurityContextHolder&quot;]
+    C --&gt; E[&quot;角色数据权限范围常量&quot;]
+    C --&gt; F[&quot;MyBatis-Plus BaseEntity 参数&quot;]
+    F --&gt; G[&quot;Mapper XML 或 QueryWrapper&lt;br/&gt;读取 params.dataScope&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:39-184</span></li>
+<li><span class="fileref">SysDeptServiceImpl.java:44-63</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:66-99</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:39-47</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:1-33</span></li>
+<li><span class="fileref">DataScopeAspect.java:1-184</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><ul>
+<li><strong>注解处理器（AOP 切面）</strong>：<code>DataScopeAspect</code><ul>
+<li>在目标方法执行前拦截带有 <code>@DataScope</code> 的方法。</li>
+<li>从安全上下文中获取当前登录用户。</li>
+<li>跳过超级管理员。</li>
+<li>根据用户角色的数据权限范围生成 SQL 条件片段。</li>
+<li>将条件写入第一个参数的 <code>params.dataScope</code>。</li>
+</ul>
+</li>
+<li><strong>注解定义</strong>：<code>DataScope</code><ul>
+<li>仅支持 <code>deptAlias</code>、<code>userAlias</code>、<code>permission</code>。</li>
+<li>未支持 <code>roleAlias</code>、<code>deptChildren</code>、<code>userChildren</code>。</li>
+</ul>
+</li>
+<li><strong>典型使用方</strong>：<ul>
+<li>部门服务：<code>selectDeptList</code> 使用 <code>deptAlias = &quot;d&quot;</code>。</li>
+<li>用户服务：<code>selectUserList</code>、<code>selectAllocatedList</code>、<code>selectUnallocatedList</code> 同时使用 <code>deptAlias = &quot;d&quot;</code> 与 <code>userAlias = &quot;u&quot;</code>。</li>
+<li>角色服务：<code>selectRoleList</code> 使用 <code>deptAlias = &quot;d&quot;</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:39-184</span></li>
+<li><span class="fileref">SysDeptServiceImpl.java:44-63</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:66-99</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:39-47</span></li>
+</ul>
+<h2 id="注解与切面工作原理"><a class="anchor" href="#注解与切面工作原理">#</a>注解与切面工作原理</h2><h3 id="执行流程"><a class="anchor" href="#执行流程">#</a>执行流程</h3><div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Client as &quot;调用方&quot;
+    participant Service as &quot;业务 Service&quot;
+    participant Aspect as &quot;DataScopeAspect&quot;
+    participant Context as &quot;安全上下文&quot;
+    participant Mapper as &quot;数据访问层&quot;
+
+    Client-&gt;&gt;Service: 调用带 @DataScope 的查询方法
+    Service-&gt;&gt;Aspect: AOP 前置通知
+    Aspect-&gt;&gt;Context: 获取当前登录用户
+    Context--&gt;&gt;Aspect: 返回 LoginUser / SysUser
+    Aspect-&gt;&gt;Aspect: 判断是否为超级管理员
+    alt 不是超级管理员
+        Aspect-&gt;&gt;Aspect: 遍历用户角色并计算数据权限
+        Aspect-&gt;&gt;Service: 向参数 params 写入 dataScope
+        Service-&gt;&gt;Mapper: 执行查询
+        Mapper--&gt;&gt;Client: 返回受限结果集
+    else 是超级管理员或未匹配权限
+        Service-&gt;&gt;Mapper: 按原条件执行
+        Mapper--&gt;&gt;Client: 返回完整或空结果
+    end</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:39-184</span></li>
+</ul>
+<h3 id="关键处理逻辑"><a class="anchor" href="#关键处理逻辑">#</a>关键处理逻辑</h3><ul>
+<li>若当前用户为空，则不注入任何限制。</li>
+<li>若当前用户是超级管理员，则直接跳过数据权限过滤。</li>
+<li>若用户角色均不包含所需权限字符，则注入一个恒假条件，使查询返回空结果。</li>
+<li>最终把 SQL 片段放入 <code>BaseEntity.getParams().put(&quot;dataScope&quot;, ...)</code>，供后续 SQL 拼接使用。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:39-184</span></li>
+</ul>
+<h2 id="属性与数据权限范围说明"><a class="anchor" href="#属性与数据权限范围说明">#</a>属性与数据权限范围说明</h2><h3 id="注解属性"><a class="anchor" href="#注解属性">#</a>注解属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>deptAlias</code></td>
+<td>String</td>
+<td>空字符串</td>
+<td>业务表中代表“所属部门”的表别名</td>
+</tr>
+<tr>
+<td><code>userAlias</code></td>
+<td>String</td>
+<td>空字符串</td>
+<td>业务表中代表“创建人/归属用户”的表别名</td>
+</tr>
+<tr>
+<td><code>permission</code></td>
+<td>String</td>
+<td>空字符串</td>
+<td>权限字符，用于筛选符合要求的角色；为空时回退到安全上下文中的权限集合</td>
+</tr>
+</tbody></table>
+<h3 id="不存在属性的明确说明"><a class="anchor" href="#不存在属性的明确说明">#</a>不存在属性的明确说明</h3><ul>
+<li>源码中<strong>没有</strong> <code>roleAlias</code> 属性。</li>
+<li>源码中<strong>没有</strong> <code>deptChildren</code> 属性。</li>
+<li>源码中<strong>没有</strong> <code>userChildren</code> 属性。</li>
+<li>因此不能把这三个名称当作现有注解配置项使用。</li>
+</ul>
+<h3 id="五种数据权限范围"><a class="anchor" href="#五种数据权限范围">#</a>五种数据权限范围</h3><p>切面内部定义了五个范围常量：</p>
+<table>
+<thead>
+<tr>
+<th>常量名</th>
+<th align="right">值</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DATA_SCOPE_ALL</code></td>
+<td align="right"><code>1</code></td>
+<td>全部数据权限，清空已拼接的条件</td>
+</tr>
+<tr>
+<td><code>DATA_SCOPE_CUSTOM</code></td>
+<td align="right"><code>2</code></td>
+<td>自定义数据权限，通过 <code>sys_role_dept</code> 表关联角色可查部门</td>
+</tr>
+<tr>
+<td><code>DATA_SCOPE_DEPT</code></td>
+<td align="right"><code>3</code></td>
+<td>本部门数据</td>
+</tr>
+<tr>
+<td><code>DATA_SCOPE_DEPT_AND_CHILD</code></td>
+<td align="right"><code>4</code></td>
+<td>本部门及以下部门数据</td>
+</tr>
+<tr>
+<td><code>DATA_SCOPE_SELF</code></td>
+<td align="right"><code>5</code></td>
+<td>仅本人数据</td>
+</tr>
+</tbody></table>
+<p>这些值来自 <code>SysRole.getDataScope()</code>，由系统模块中的角色数据提供。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:12-33</span></li>
+<li><span class="fileref">DataScopeAspect.java:27-172</span></li>
+</ul>
+<h2 id="Service-使用示例"><a class="anchor" href="#Service-使用示例">#</a>Service 使用示例</h2><h3 id="在-Service-方法上标注-@DataScope"><a class="anchor" href="#在-Service-方法上标注-@DataScope">#</a>在 Service 方法上标注 <code>@DataScope</code></h3><p>以下三类查询方法展示了该注解的典型用法：</p>
+<table>
+<thead>
+<tr>
+<th>服务类</th>
+<th>方法</th>
+<th>注解配置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SysDeptServiceImpl</code></td>
+<td><code>selectDeptList</code></td>
+<td><code>deptAlias = &quot;d&quot;</code></td>
+<td>对部门列表按角色数据权限过滤</td>
+</tr>
+<tr>
+<td><code>SysUserServiceImpl</code></td>
+<td><code>selectUserList</code></td>
+<td><code>deptAlias = &quot;d&quot;</code>, <code>userAlias = &quot;u&quot;</code></td>
+<td>对用户列表按部门和用户归属过滤</td>
+</tr>
+<tr>
+<td><code>SysRoleServiceImpl</code></td>
+<td><code>selectRoleList</code></td>
+<td><code>deptAlias = &quot;d&quot;</code></td>
+<td>对角色列表按部门数据权限过滤</td>
+</tr>
+</tbody></table>
+<h3 id="配合-MyBatis-Plus-的-QueryWrapper-使用"><a class="anchor" href="#配合-MyBatis-Plus-的-QueryWrapper-使用">#</a>配合 MyBatis-Plus 的 QueryWrapper 使用</h3><p>切面写入的是 <code>BaseEntity</code> 的 <code>params.dataScope</code> 字段。因此，业务层通常有两种方式消费该片段：</p>
+<ol>
+<li><strong>XML 方式</strong>：Mapper XML 中使用 <code>&lt;if test=&quot;params.dataScope != null&quot;&gt; AND ${params.dataScope}&lt;/if&gt;</code> 拼接。</li>
+<li><strong>QueryWrapper 方式</strong>：通过 <code>QueryWrapper</code> 的 <code>.last()</code> 或类似机制，或在构造 Wrapper 后追加该片段。</li>
+</ol>
+<p>注意：切面不会自动修改 <code>QueryWrapper</code> 对象本身，而是向请求参数中注入 SQL 文本片段。若业务代码使用纯 <code>QueryWrapper</code> 构建 SQL，必须显式读取并拼接 <code>params.dataScope</code>，否则数据权限不会生效。</p>
+<h3 id="推荐的使用步骤"><a class="anchor" href="#推荐的使用步骤">#</a>推荐的使用步骤</h3><ol>
+<li>在 Service 实现类的列表查询方法上加 <code>@DataScope</code>。</li>
+<li>设置正确的 <code>deptAlias</code>；如果业务表有用户归属字段，再设置 <code>userAlias</code>。</li>
+<li>如需限定某些角色才允许访问，设置 <code>permission</code>；否则让切面使用安全上下文中的权限集合。</li>
+<li>在数据访问层读取 <code>params.dataScope</code> 并拼接到 WHERE 条件末尾。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDeptServiceImpl.java:44-63</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:66-99</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:39-47</span></li>
+<li><span class="fileref">DataScopeAspect.java:160-184</span></li>
+</ul>
+<h2 id="与部门、用户、角色数据的关系"><a class="anchor" href="#与部门、用户、角色数据的关系">#</a>与部门、用户、角色数据的关系</h2><h3 id="数据权限如何映射到数据库表"><a class="anchor" href="#数据权限如何映射到数据库表">#</a>数据权限如何映射到数据库表</h3><p>切面在处理不同数据权限范围时，会直接或间接引用以下系统表：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>使用的表或字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自定义数据权限</td>
+<td><code>sys_role_dept</code>、<code>dept_id</code>、<code>role_id</code></td>
+<td>根据角色关联部门决定可查部门</td>
+</tr>
+<tr>
+<td>本部门</td>
+<td>业务表的部门字段</td>
+<td>匹配当前用户的 <code>deptId</code></td>
+</tr>
+<tr>
+<td>本部门及以下</td>
+<td><code>sys_dept.dept_id</code>、<code>sys_dept.ancestors</code></td>
+<td>利用部门祖先链判断子部门</td>
+</tr>
+<tr>
+<td>仅本人</td>
+<td>业务表的 <code>user_id</code></td>
+<td>需要 <code>userAlias</code>，否则退化为不可见</td>
+</tr>
+<tr>
+<td>全部数据</td>
+<td>无额外条件</td>
+<td>覆盖之前拼接的条件</td>
+</tr>
+</tbody></table>
+<h3 id="系统表结构要点"><a class="anchor" href="#系统表结构要点">#</a>系统表结构要点</h3><p>本地初始化脚本包含以下相关表：</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>关键字段</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sys_dept</code></td>
+<td><code>dept_id</code>、<code>parent_id</code>、<code>ancestors</code></td>
+<td>部门树与祖先链</td>
+</tr>
+<tr>
+<td><code>sys_user</code></td>
+<td><code>user_id</code>、<code>dept_id</code></td>
+<td>用户及其所属部门</td>
+</tr>
+<tr>
+<td><code>sys_role</code></td>
+<td><code>role_id</code>、<code>role_key</code>、<code>status</code>、<code>data_scope</code>、<code>permissions</code></td>
+<td>角色、状态、数据权限范围与权限字符</td>
+</tr>
+<tr>
+<td><code>sys_user_role</code></td>
+<td><code>user_id</code>、<code>role_id</code></td>
+<td>用户与角色关系</td>
+</tr>
+<tr>
+<td><code>sys_role_menu</code></td>
+<td><code>role_id</code>、<code>menu_id</code></td>
+<td>角色菜单权限（与本模块间接相关）</td>
+</tr>
+</tbody></table>
+<p>注意：<code>sys_role_dept</code> 在上述 SQL 片段中被切面引用，但本节不扩展其建表语句；应以实际数据库结构为准。</p>
+<div class="mermaid-wrap"><pre class="mermaid">erDiagram
+  SYS_ROLE ||--o{ SYS_USER_ROLE : &quot;拥有&quot;
+  SYS_USER ||--o{ SYS_USER_ROLE : &quot;拥有&quot;
+  SYS_USER }o--|| SYS_DEPT : &quot;所属部门&quot;
+  SYS_ROLE ||--o{ SYS_ROLE_MENU : &quot;分配菜单&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">ry_20240629.sql:6-37</span></li>
+<li><span class="fileref">ry_20240629.sql:43-70</span></li>
+<li><span class="fileref">ry_20240629.sql:105-128</span></li>
+<li><span class="fileref">ry_20240629.sql:267-309</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:89-158</span></li>
+<li><span class="fileref">ry_20240629.sql:6-37</span></li>
+<li><span class="fileref">ry_20240629.sql:43-70</span></li>
+<li><span class="fileref">ry_20240629.sql:105-128</span></li>
+<li><span class="fileref">ry_20240629.sql:267-309</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><h3 id="注解处理器依赖"><a class="anchor" href="#注解处理器依赖">#</a>注解处理器依赖</h3><p><code>DataScopeAspect</code> 依赖以下运行时信息：</p>
+<ul>
+<li>Spring AOP：<code>@Aspect</code>、<code>@Before</code>。</li>
+<li>当前用户：<code>SecurityUtils.getLoginUser()</code>。</li>
+<li>权限上下文：<code>SecurityContextHolder.getPermission()</code>。</li>
+<li>用户模型：<code>SysUser</code>、<code>SysRole</code>、<code>LoginUser</code>。</li>
+<li>基础实体：<code>BaseEntity</code>，用于写入 <code>params.dataScope</code>。</li>
+<li>工具类：<code>StringUtils</code>、<code>Convert</code>。</li>
+</ul>
+<h3 id="业务模块依赖"><a class="anchor" href="#业务模块依赖">#</a>业务模块依赖</h3><p>系统模块的服务实现类通过 <code>@DataScope</code> 声明自身的数据权限语义，并把具体 SQL 交给底层 Mapper 执行。</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class DataScope {
+        +String deptAlias
+        +String userAlias
+        +String permission
+    }
+
+    class DataScopeAspect {
+        +doBefore(joinPoint, controllerDataScope) void
+        +handleDataScope(joinPoint, controllerDataScope) void
+        +dataScopeFilter(joinPoint, user, deptAlias, userAlias, permission) void
+        -clearDataScope(joinPoint) void
+    }
+
+    class SysDeptServiceImpl {
+        +selectDeptList(dept) List~SysDept~
+    }
+
+    class SysUserServiceImpl {
+        +selectUserList(user) List~SysUser~
+        +selectAllocatedList(user) List~SysUser~
+        +selectUnallocatedList(user) List~SysUser~
+    }
+
+    class SysRoleServiceImpl {
+        +selectRoleList(role) List~SysRole~
+    }
+
+    DataScopeAspect --&gt; DataScope : &quot;解析注解&quot;
+    SysDeptServiceImpl --&gt; DataScope : &quot;标注&quot;
+    SysUserServiceImpl --&gt; DataScope : &quot;标注&quot;
+    SysRoleServiceImpl --&gt; DataScope : &quot;标注&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:12-33</span></li>
+<li><span class="fileref">DataScopeAspect.java:21-184</span></li>
+<li><span class="fileref">SysDeptServiceImpl.java:44-63</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:66-99</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:39-47</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:1-184</span></li>
+<li><span class="fileref">SysDeptServiceImpl.java:44-63</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:66-99</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:39-47</span></li>
+</ul>
+<h2 id="性能与索引建议"><a class="anchor" href="#性能与索引建议">#</a>性能与索引建议</h2><h3 id="大数据量下的主要风险"><a class="anchor" href="#大数据量下的主要风险">#</a>大数据量下的主要风险</h3><ul>
+<li>自定义数据权限可能产生 <code>IN (SELECT dept_id FROM sys_role_dept WHERE role_id IN (...))</code> 子查询。</li>
+<li>本部门及以下权限可能涉及 <code>sys_dept</code> 上的祖先链扫描。</li>
+<li>多个角色且多个自定义权限时，条件拼接会更复杂。</li>
+<li>若业务表数据量大且未对部门或用户字段建立索引，WHERE 条件可能退化为全表扫描。</li>
+</ul>
+<h3 id="索引优化建议"><a class="anchor" href="#索引优化建议">#</a>索引优化建议</h3><ul>
+<li>在业务表上为被用作权限过滤的字段建立索引，例如：<ul>
+<li>部门维度：<code>dept_id</code>。</li>
+<li>用户维度：<code>user_id</code>。</li>
+</ul>
+</li>
+<li>确保 <code>sys_dept</code> 的 <code>dept_id</code>、<code>parent_id</code>、<code>ancestors</code> 具备合适的索引或主键约束。</li>
+<li>确保 <code>sys_role_dept</code> 的 <code>role_id</code>、<code>dept_id</code> 有合适索引，避免子查询成为瓶颈。</li>
+<li>对于高频分页查询，尽量结合业务查询条件一起走索引，不要只依赖 <code>dataScope</code> 片段。</li>
+<li>当部门树很深或子部门非常多时，应评估 <code>ancestors</code> 列上的查询成本，必要时考虑缓存常用部门的可见范围。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:108-158</span></li>
+<li><span class="fileref">ry_20240629.sql:6-37</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><h3 id="1.-注解属性拼写错误"><a class="anchor" href="#1.-注解属性拼写错误">#</a>1. 注解属性拼写错误</h3><p><strong>现象</strong><br>使用了 <code>roleAlias</code>、<code>deptChildren</code>、<code>userChildren</code> 等属性，编译失败或注解无法生效。</p>
+<p><strong>原因</strong><br><code>@DataScope</code> 仅定义 <code>deptAlias</code>、<code>userAlias</code>、<code>permission</code>，不存在其他属性。</p>
+<p><strong>处理</strong>  </p>
+<ul>
+<li>删除不存在的属性。</li>
+<li>使用 <code>deptAlias</code> 指定业务部门字段别名。</li>
+<li>使用 <code>userAlias</code> 指定业务用户字段别名。</li>
+<li>如需限制角色，使用 <code>permission</code>。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:12-33</span></li>
+</ul>
+<h3 id="2.-SQL-拼接异常或权限未生效"><a class="anchor" href="#2.-SQL-拼接异常或权限未生效">#</a>2. SQL 拼接异常或权限未生效</h3><p><strong>现象</strong><br>查询结果不符合预期，或者数据权限完全无效。</p>
+<p><strong>可能原因</strong>  </p>
+<ul>
+<li>Mapper XML 或 QueryWrapper 中没有读取 <code>params.dataScope</code>。</li>
+<li>业务表别名与注解中配置的 <code>deptAlias</code>、<code>userAlias</code> 不一致。</li>
+<li>当前用户是超级管理员，切面主动跳过数据权限过滤。</li>
+<li>用户角色都不包含 <code>permission</code>，导致注入恒假条件，返回空结果。</li>
+</ul>
+<p><strong>排查步骤</strong>  </p>
+<ol>
+<li>确认 Service 方法是否标注了 <code>@DataScope</code>。</li>
+<li>检查注解中的别名是否与 SQL 中的表别名一致。</li>
+<li>检查数据访问层是否拼接了 <code>params.dataScope</code>。</li>
+<li>查看当前用户角色是否包含对应权限字符。</li>
+<li>确认用户是否被判定为超级管理员。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:61-184</span></li>
+</ul>
+<h3 id="3.-仅本人权限却查不到数据"><a class="anchor" href="#3.-仅本人权限却查不到数据">#</a>3. 仅本人权限却查不到数据</h3><p><strong>现象</strong><br>设置了 <code>userAlias</code> 后仍返回空结果，或没有设置 <code>userAlias</code> 时所有数据都不可见。</p>
+<p><strong>原因</strong>  </p>
+<ul>
+<li>当数据权限范围为“仅本人”且未提供 <code>userAlias</code> 时，切面会注入一个恒假条件。</li>
+<li>即使提供了 <code>userAlias</code>，若业务表没有正确维护归属用户字段，也可能查不到数据。</li>
+</ul>
+<p><strong>处理</strong>  </p>
+<ul>
+<li>为“仅本人”权限的场景提供正确的 <code>userAlias</code>。</li>
+<li>校验业务表中归属用户字段是否填写。</li>
+<li>检查用户角色数据权限范围是否确实是“仅本人”。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:136-158</span></li>
+</ul>
+<h3 id="4.-大数据量下查询缓慢"><a class="anchor" href="#4.-大数据量下查询缓慢">#</a>4. 大数据量下查询缓慢</h3><p><strong>现象</strong><br>部门树较大、用户较多或角色自定义权限较多时，列表查询变慢。</p>
+<p><strong>处理</strong>  </p>
+<ul>
+<li>为业务表的部门、用户字段加索引。</li>
+<li>为 <code>sys_dept</code> 和 <code>sys_role_dept</code> 的关键字段加索引。</li>
+<li>避免在分页前先加载大量中间数据。</li>
+<li>对高频可见部门范围做缓存设计，减少重复子查询。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScopeAspect.java:108-158</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p><code>zealux-ai-common-datascope</code> 是一个轻量但关键的行级数据权限基础设施。它通过 <code>@DataScope</code> 注解和 AOP 切面，把当前用户角色对应的部门、用户、自定义权限范围转化为 SQL WHERE 片段，并由业务数据访问层消费。</p>
+<p>使用时必须注意：</p>
+<ul>
+<li>只使用注解中真实存在的属性：<code>deptAlias</code>、<code>userAlias</code>、<code>permission</code>。</li>
+<li>不要把 <code>roleAlias</code>、<code>deptChildren</code>、<code>userChildren</code> 当成已有能力。</li>
+<li>必须在数据访问层读取并拼接 <code>params.dataScope</code>，否则权限不会生效。</li>
+<li>合理配置角色数据权限范围，并确保数据库中对部门、用户、角色关联字段建立必要索引。</li>
+</ul>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">← core 核心模块</a>
+    <a class="next" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d2"><a href="#注解与切面工作原理">注解与切面工作原理</a></li><li class="d3"><a href="#执行流程">执行流程</a></li><li class="d3"><a href="#关键处理逻辑">关键处理逻辑</a></li><li class="d2"><a href="#属性与数据权限范围说明">属性与数据权限范围说明</a></li><li class="d3"><a href="#注解属性">注解属性</a></li><li class="d3"><a href="#不存在属性的明确说明">不存在属性的明确说明</a></li><li class="d3"><a href="#五种数据权限范围">五种数据权限范围</a></li><li class="d2"><a href="#Service-使用示例">Service 使用示例</a></li><li class="d3"><a href="#在-Service-方法上标注-`@DataScope`">在 Service 方法上标注 `@DataScope`</a></li><li class="d3"><a href="#配合-MyBatis-Plus-的-QueryWrapper-使用">配合 MyBatis-Plus 的 QueryWrapper 使用</a></li><li class="d3"><a href="#推荐的使用步骤">推荐的使用步骤</a></li><li class="d2"><a href="#与部门、用户、角色数据的关系">与部门、用户、角色数据的关系</a></li><li class="d3"><a href="#数据权限如何映射到数据库表">数据权限如何映射到数据库表</a></li><li class="d3"><a href="#系统表结构要点">系统表结构要点</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d3"><a href="#注解处理器依赖">注解处理器依赖</a></li><li class="d3"><a href="#业务模块依赖">业务模块依赖</a></li><li class="d2"><a href="#性能与索引建议">性能与索引建议</a></li><li class="d3"><a href="#大数据量下的主要风险">大数据量下的主要风险</a></li><li class="d3"><a href="#索引优化建议">索引优化建议</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d3"><a href="#1.-注解属性拼写错误">1. 注解属性拼写错误</a></li><li class="d3"><a href="#2.-SQL-拼接异常或权限未生效">2. SQL 拼接异常或权限未生效</a></li><li class="d3"><a href="#3.-仅本人权限却查不到数据">3. 仅本人权限却查不到数据</a></li><li class="d3"><a href="#4.-大数据量下查询缓慢">4. 大数据量下查询缓慢</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

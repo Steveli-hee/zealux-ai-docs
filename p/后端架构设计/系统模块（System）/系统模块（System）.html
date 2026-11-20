@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>系统模块（System） · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="stylesheet" href="../../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html" class="active">系统模块（System）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>系统模块（System）</b></div><article><h1 id="系统模块（System）"><a class="anchor" href="#系统模块（System）">#</a>系统模块（System）</h1><cite>
+**本文引用的文件**   
+- [RuoYiSystemApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/RuoYiSystemApplication.java)
+- [SysUserController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserController.java)
+- [SysRoleController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysRoleController.java)
+- [SysMenuController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysMenuController.java)
+- [SysUserServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysUserServiceImpl.java)
+- [SysRoleServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysRoleServiceImpl.java)
+- [SysMenuServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysMenuServiceImpl.java)
+- [DataScope.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-datascope/src/main/java/com/zealux/common/datascope/annotation/DataScope.java)
+- [LogAspect.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-log/src/main/java/com/zealux/common/log/aspect/LogAspect.java)
+- [RequiresPermissions.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/annotation/RequiresPermissions.java)
+- [TokenService.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/service/TokenService.java)
+- [SecurityUtils.java](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/utils/SecurityUtils.java)
+- [SysUserMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysUserMapper.xml)
+- [SysRoleMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysRoleMapper.xml)
+- [SysMenuMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysMenuMapper.xml)
+- [SysUserRoleMapper.xml](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/resources/mapper/system/SysUserRoleMapper.xml)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与缓存策略">性能与缓存策略</a></li>
+<li><a href="#故障排查指南">故障排查指南</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本模块是 RuoYi-Cloud 体系中的 RBAC 权限与系统基础数据服务。启动类 <code>RuoYiSystemApplication</code> 承载系统模块，对外暴露 <code>/system/**</code> 路径下的用户、角色、部门、岗位、菜单、字典参数等能力。业务实现位于 <code>zealux-ai-modules/zealux-ai-system</code>，公共安全、数据权限、操作日志、Redis 等能力由 <code>zealux-ai-common</code> 提供；前端以 <code>zealux-ai-ui-master</code> 为准。</p>
+<p>需要特别说明：</p>
+<ul>
+<li>该项目是对 RuoYi-Cloud 3.6.5 的重命名二次开发，但模块内仍保留原启动类名与服务边界，不应描述为自研框架。</li>
+<li>当前仓库未包含 CRM 相关数据库表或接口，也不存在 <code>/leads/**</code> 网关路由，不得将 CRM 能力描述为已实现功能。</li>
+<li>本地运行环境 <code>_setup</code> 下脚本与产物不属于仓库源码，不应作为配置来源引用。</li>
+</ul>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>系统模块采用 Spring Boot + MyBatis-Plus 的分层结构：</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    subgraph &quot;系统模块&quot;
+        App[&quot;RuoYiSystemApplication&lt;br/&gt;Spring Boot 启动入口&quot;]
+        CtlUser[&quot;SysUserController&lt;br/&gt;/user/*&quot;]
+        CtlRole[&quot;SysRoleController&lt;br/&gt;/role/*&quot;]
+        CtlMenu[&quot;SysMenuController&lt;br/&gt;/menu/*&quot;]
+        SvcUser[&quot;SysUserServiceImpl&quot;]
+        SvcRole[&quot;SysRoleServiceImpl&quot;]
+        SvcMenu[&quot;SysMenuServiceImpl&quot;]
+        MapperUser[&quot;SysUserMapper.xml&quot;]
+        MapperRole[&quot;SysRoleMapper.xml&quot;]
+        MapperMenu[&quot;SysMenuMapper.xml&quot;]
+        MapperURel[&quot;SysUserRoleMapper.xml&quot;]
+    end
+
+    subgraph &quot;公共库&quot;
+        Sec[&quot;common-security&lt;br/&gt;@RequiresPermissions / TokenService / SecurityUtils&quot;]
+        DS[&quot;common-datascope&lt;br/&gt;@DataScope 注解&quot;]
+        LogA[&quot;common-log&lt;br/&gt;@Log 切面 LogAspect&quot;]
+        Redis[&quot;common-redis&lt;br/&gt;Redis 客户端与缓存工具&quot;]
+    end
+
+    App --&gt; CtlUser --&gt; SvcUser --&gt; MapperUser
+    App --&gt; CtlRole --&gt; SvcRole --&gt; MapperRole
+    App --&gt; CtlMenu --&gt; SvcMenu --&gt; MapperMenu
+
+    CtlUser -.-&gt; Sec
+    CtlRole -.-&gt; Sec
+    CtlMenu -.-&gt; Sec
+    SvcUser -.-&gt; DS
+    SvcRole -.-&gt; DS
+    CtlUser -.-&gt; LogA
+    CtlRole -.-&gt; LogA
+    CtlMenu -.-&gt; LogA</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiSystemApplication.java:10-22</span></li>
+<li><span class="fileref">SysUserController.java:1-40</span></li>
+<li><span class="fileref">SysRoleController.java:1-40</span></li>
+<li><span class="fileref">SysMenuController.java:1-40</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RuoYiSystemApplication.java:10-22</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>职责</th>
+<th>关键行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RuoYiSystemApplication</code></td>
+<td>系统模块启动类</td>
+<td>启用自定义配置与 Feign 客户端，启动 Spring Boot 应用</td>
+</tr>
+<tr>
+<td><code>SysUserController</code></td>
+<td>用户管理接口</td>
+<td>用户分页、导入导出、注册、登录记录、当前用户信息、角色与权限加载</td>
+</tr>
+<tr>
+<td><code>SysRoleController</code></td>
+<td>角色管理接口</td>
+<td>角色分页、新增修改、状态变更、删除、数据权限分配、用户授权</td>
+</tr>
+<tr>
+<td><code>SysMenuController</code></td>
+<td>菜单管理接口</td>
+<td>菜单树、下拉树、按角色选菜单、路由构建、CRUD</td>
+</tr>
+<tr>
+<td><code>SysUserServiceImpl</code></td>
+<td>用户业务实现</td>
+<td>多对多用户-角色、用户-岗位、数据权限校验、唯一性校验</td>
+</tr>
+<tr>
+<td><code>SysRoleServiceImpl</code></td>
+<td>角色业务实现</td>
+<td>角色-菜单、角色-用户、角色-部门关联维护，数据权限校验</td>
+</tr>
+<tr>
+<td><code>SysMenuServiceImpl</code></td>
+<td>菜单业务实现</td>
+<td>菜单树构建、权限字符拆分、前端路由转换、角色菜单选择</td>
+</tr>
+<tr>
+<td><code>@DataScope</code></td>
+<td>数据权限注解</td>
+<td>声明部门别名、用户别名和权限字符，供 AOP 注入 SQL 条件</td>
+</tr>
+<tr>
+<td><code>@Log</code> 切面</td>
+<td>操作日志</td>
+<td>拦截 Controller 方法，异步保存操作日志</td>
+</tr>
+<tr>
+<td><code>@RequiresPermissions</code></td>
+<td>权限注解</td>
+<td>配合 security 模块进行方法级权限校验</td>
+</tr>
+<tr>
+<td><code>Sys*Mapper.xml</code></td>
+<td>MyBatis-Plus XML 映射</td>
+<td>访问 <code>sys_*</code> 表并执行分页、树形查询与关联查询</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:1-120</span></li>
+<li><span class="fileref">SysRoleController.java:1-160</span></li>
+<li><span class="fileref">SysMenuController.java:1-120</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>系统模块的请求链路遵循“网关 → 控制器 → 服务 → 数据访问对象 → 数据库”的分层模型。RBAC 的权限判断由 <code>common-security</code> 完成，数据范围过滤由 <code>common-datascope</code> 完成，操作日志由 <code>common-log</code> 的 AOP 异步落库。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant FE as &quot;前端页面&quot;
+    participant GW as &quot;网关&quot;
+    participant CT as &quot;SystemController&quot;
+    participant SV as &quot;SystemServiceImpl&quot;
+    participant MP as &quot;MyBatis Mapper&quot;
+    participant DB as &quot;MySQL&quot;
+
+    FE-&gt;&gt;GW: &quot;HTTP 请求 /system/user/list&quot;
+    GW--&gt;&gt;CT: &quot;转发到系统模块&quot;
+    CT-&gt;&gt;CT: &quot;@RequiresPermissions 权限校验&quot;
+    CT-&gt;&gt;SV: &quot;selectUserList(用户查询条件)&quot;
+    SV-&gt;&gt;SV: &quot;@DataScope 解析数据权限&quot;
+    SV-&gt;&gt;MP: &quot;selectUserList(user)&quot;
+    MP-&gt;&gt;DB: &quot;查询 sys_user 及关联表&quot;
+    DB--&gt;&gt;MP: &quot;结果集&quot;
+    MP--&gt;&gt;SV: &quot;用户列表&quot;
+    SV--&gt;&gt;CT: &quot;返回 TableDataInfo&quot;
+    CT--&gt;&gt;FE: &quot;分页响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:40-90</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-120</span></li>
+<li><span class="fileref">DataScope.java:1-33</span></li>
+<li><span class="fileref">SysUserMapper.xml</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="用户管理与多对多关系"><a class="anchor" href="#用户管理与多对多关系">#</a>用户管理与多对多关系</h3><p><code>SysUserController</code> 暴露用户分页、导入导出、注册、登录记录与当前用户信息接口。用户查询使用 BaseController 的 <code>startPage()</code> 进入分页流程，调用 <code>ISysUserService.selectUserList</code>。</p>
+<p><code>SysUserServiceImpl</code> 中：</p>
+<ul>
+<li>通过 <code>SysUserMapper</code>、<code>SysRoleMapper</code>、<code>SysPostMapper</code>、<code>SysUserRoleMapper</code>、<code>SysUserPostMapper</code> 维护用户与角色、岗位的多对多关系。</li>
+<li><code>selectUserList</code>、<code>selectAllocatedList</code>、<code>selectUnallocatedList</code> 都标注 <code>@DataScope(deptAlias = &quot;d&quot;, userAlias = &quot;u&quot;)</code>，表示这些查询会受当前用户的数据权限约束。</li>
+<li>用户唯一性校验包括用户名、手机号、邮箱；超级管理员不允许被普通用户修改或删除。</li>
+<li><code>checkUserDataScope</code> 通过再次调用自身代理方法执行带数据权限的查询，若结果为空则抛出业务异常。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SysUserServiceImpl {
+        +selectUserList(user) List~SysUser~
+        +selectAllocatedList(user) List~SysUser~
+        +selectUnallocatedList(user) List~SysUser~
+        +selectUserByUserName(userName) SysUser
+        +selectUserById(userId) SysUser
+        +checkUserNameUnique(user) boolean
+        +checkPhoneUnique(user) boolean
+        +checkEmailUnique(user) boolean
+        +checkUserAllowed(user) void
+        +checkUserDataScope(userId) void
+    }
+
+    class SysRoleServiceImpl {
+        +selectRolesByUserId(userId) List~SysRole~
+        +selectRolePermissionByUserId(userId) Set~String~
+        +insertRole(role) int
+        +updateRole(role) int
+        +authDataScope(role) int
+        +checkRoleDataScope(roleIds) void
+    }
+
+    SysUserServiceImpl --&gt; SysRoleServiceImpl : &quot;读取角色名称组&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:60-250</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:60-180</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:40-200</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-250</span></li>
+<li><span class="fileref">SysUserRoleMapper.xml</span></li>
+</ul>
+<h3 id="角色管理与数据权限范围"><a class="anchor" href="#角色管理与数据权限范围">#</a>角色管理与数据权限范围</h3><p><code>SysRoleController</code> 负责角色的分页、新增、修改、状态切换、删除、数据权限分配和用户授权。新增和修改前会校验角色名称与权限键的唯一性，并写入操作用户名。</p>
+<p><code>SysRoleServiceImpl</code> 的核心逻辑包括：</p>
+<ul>
+<li><code>selectRoleList</code> 标注 <code>@DataScope(deptAlias = &quot;d&quot;)</code>，用于按角色数据权限过滤。</li>
+<li><code>selectRolesByUserId</code> 将用户已有角色标记为选中状态。</li>
+<li><code>selectRolePermissionByUserId</code> 从角色权限键字符串拆分出权限集合。</li>
+<li><code>insertRole</code>、<code>updateRole</code> 使用 <code>@Transactional</code> 保证角色主表与角色-菜单、角色-用户等关联表一致性。</li>
+<li><code>checkRoleDataScope</code> 非管理员查询时再次调用自身代理方法做数据权限校验。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;角色新增或修改&quot;]) --&gt; CheckName[&quot;校验角色名称唯一性&quot;]
+    CheckName --&gt; NameOK{&quot;名称唯一？&quot;}
+    NameOK --&gt;|否| ReturnErr[&quot;返回名称重复错误&quot;]
+    NameOK --&gt;|是| CheckKey[&quot;校验权限键唯一性&quot;]
+    CheckKey --&gt; KeyOK{&quot;权限键唯一？&quot;}
+    KeyOK --&gt;|否| ReturnKeyErr[&quot;返回权限键重复错误&quot;]
+    KeyOK --&gt;|是| SaveRole[&quot;保存角色主表&quot;]
+    SaveRole --&gt; SaveRel[&quot;保存角色-菜单/用户/部门关联&quot;]
+    SaveRel --&gt; Commit[&quot;事务提交&quot;]
+    Commit --&gt; End([&quot;成功&quot;])
+    ReturnErr --&gt; End
+    ReturnKeyErr --&gt; End</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysRoleController.java:80-160</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:120-250</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysRoleController.java:40-200</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:60-250</span></li>
+<li><span class="fileref">SysRoleMapper.xml</span></li>
+</ul>
+<h3 id="菜单树结构与前端路由"><a class="anchor" href="#菜单树结构与前端路由">#</a>菜单树结构与前端路由</h3><p><code>SysMenuController</code> 提供菜单列表、菜单详情、菜单下拉树、按角色选择菜单、菜单 CRUD 以及前端路由生成接口。其中 <code>getRouters</code> 会调用 <code>selectMenuTreeByUserId</code>，再转换为前端路由结构。</p>
+<p><code>SysMenuServiceImpl</code> 的职责更偏向“权限→菜单→路由”的转换：</p>
+<ul>
+<li>管理员直接查全部菜单；其他用户通过用户 ID 查其权限范围内的菜单。</li>
+<li><code>selectMenuPermsByUserId</code>、<code>selectMenuPermsByRoleId</code> 将逗号分隔的权限字符拆成集合。</li>
+<li><code>selectMenuTreeByUserId</code> 查询菜单树后调用子节点组装方法得到完整树。</li>
+<li><code>buildMenus</code> 把 <code>SysMenu</code> 转为 <code>RouterVo</code>，处理目录、外链、内链、隐藏、缓存等前端路由属性。</li>
+<li><code>buildMenuTreeSelect</code> 构建前端树形下拉结构。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant UI as &quot;前端&quot;
+    participant MenuCtl as &quot;SysMenuController&quot;
+    participant MenuSvc as &quot;SysMenuServiceImpl&quot;
+    participant MenuMap as &quot;SysMenuMapper&quot;
+    participant RoleMap as &quot;SysRoleMapper&quot;
+
+    UI-&gt;&gt;MenuCtl: &quot;GET /menu/getRouters&quot;
+    MenuCtl-&gt;&gt;MenuSvc: &quot;selectMenuTreeByUserId(userId)&quot;
+    MenuSvc-&gt;&gt;MenuMap: &quot;selectMenuTreeByUserId(userId)&quot;
+    MenuMap--&gt;&gt;MenuSvc: &quot;菜单树&quot;
+    MenuSvc-&gt;&gt;MenuSvc: &quot;buildMenus() 转换为 RouterVo&quot;
+    MenuSvc--&gt;&gt;MenuCtl: &quot;前端路由列表&quot;
+    MenuCtl--&gt;&gt;UI: &quot;路由响应&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuController.java:80-159</span></li>
+<li><span class="fileref">SysMenuServiceImpl.java:60-200</span></li>
+<li><span class="fileref">SysMenuMapper.xml</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuController.java:1-159</span></li>
+<li><span class="fileref">SysMenuServiceImpl.java:1-200</span></li>
+</ul>
+<h3 id="数据权限与操作日志"><a class="anchor" href="#数据权限与操作日志">#</a>数据权限与操作日志</h3><p>数据权限通过 <code>@DataScope</code> 注解表达。该注解定义部门别名、用户别名和可选的权限字符，供 AOP 在 SQL 层追加数据范围条件。常见用法包括：</p>
+<ul>
+<li>用户列表查询标注 <code>deptAlias = &quot;d&quot;</code>、<code>userAlias = &quot;u&quot;</code>。</li>
+<li>角色列表查询标注 <code>deptAlias = &quot;d&quot;</code>。</li>
+</ul>
+<p>操作日志通过 <code>@Log</code> 注解配合 <code>LogAspect</code> 实现：</p>
+<ul>
+<li>在方法执行前记录时间戳。</li>
+<li>成功返回后记录业务类型、标题、操作人、IP、URL、方法、请求参数、响应结果和耗时。</li>
+<li>异常分支记录失败状态和错误信息。</li>
+<li>最终通过 <code>AsyncLogService.saveSysLog</code> 异步保存，避免阻塞业务线程。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Entry([&quot;Controller 方法执行&quot;]) --&gt; Before[&quot;@Log 切面记录开始时间&quot;]
+    Before --&gt; Biz[&quot;执行业务逻辑&quot;]
+    Biz --&gt; Success{&quot;是否抛出异常？&quot;}
+    Success --&gt;|否| AfterOk[&quot;记录成功日志&quot;]
+    Success --&gt;|是| AfterErr[&quot;记录失败日志&quot;]
+    AfterOk --&gt; AsyncSave[&quot;异步保存 SysOperLog&quot;]
+    AfterErr --&gt; AsyncSave
+    AsyncSave --&gt; Exit([&quot;方法返回&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">LogAspect.java:1-120</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">DataScope.java:1-33</span></li>
+<li><span class="fileref">LogAspect.java:1-200</span></li>
+</ul>
+<h3 id="MyBatis-Plus-与-sys_*-表访问"><a class="anchor" href="#MyBatis-Plus-与-sys_*-表访问">#</a>MyBatis-Plus 与 sys_* 表访问</h3><p>系统模块通过 MyBatis-Plus 的 XML 映射文件访问 <code>sys_*</code> 表，包括用户、角色、菜单、部门、岗位、字典数据、字典类型以及用户-角色、角色-菜单、角色-部门等关联表。典型访问方式：</p>
+<ul>
+<li>用户分页查询：<code>SysUserMapper.xml</code> 对应 <code>selectUserList</code>。</li>
+<li>角色分页查询：<code>SysRoleMapper.xml</code> 对应 <code>selectRoleList</code>。</li>
+<li>菜单树查询：<code>SysMenuMapper.xml</code> 对应 <code>selectMenuTreeByUserId</code> 或 <code>selectMenuListByUserId</code>。</li>
+<li>用户-角色关联：<code>SysUserRoleMapper.xml</code> 对应用户角色分配与查询。</li>
+</ul>
+<p>这些 Mapper XML 是数据层契约的具体位置；新增业务表时应参照现有 XML 风格编写查询语句，并在 Service 中组合多个 Mapper 完成复杂业务。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserMapper.xml</span></li>
+<li><span class="fileref">SysRoleMapper.xml</span></li>
+<li><span class="fileref">SysMenuMapper.xml</span></li>
+<li><span class="fileref">SysUserRoleMapper.xml</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p>系统模块依赖以下公共能力：</p>
+<table>
+<thead>
+<tr>
+<th>依赖模块</th>
+<th>用途</th>
+<th>在本模块中的体现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>common-security</code></td>
+<td>认证、授权、Token、安全工具</td>
+<td><code>@RequiresPermissions</code>、<code>TokenService.refreshToken</code>、<code>SecurityUtils.getLoginUser</code></td>
+</tr>
+<tr>
+<td><code>common-datascope</code></td>
+<td>数据权限注解</td>
+<td><code>@DataScope(deptAlias, userAlias, permission)</code></td>
+</tr>
+<tr>
+<td><code>common-log</code></td>
+<td>操作日志 AOP</td>
+<td><code>@Log</code>、<code>LogAspect</code>、<code>AsyncLogService</code></td>
+</tr>
+<tr>
+<td><code>common-core</code></td>
+<td>通用领域对象、分页、异常、工具</td>
+<td><code>AjaxResult</code>、<code>TableDataInfo</code>、<code>BaseController</code></td>
+</tr>
+<tr>
+<td><code>common-redis</code></td>
+<td>Redis 客户端与缓存工具</td>
+<td>权限、字典、菜单等缓存的读写载体</td>
+</tr>
+</tbody></table>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    SystemModule[&quot;zealux-ai-system&quot;] --&gt; CommonSecurity[&quot;common-security&quot;]
+    SystemModule --&gt; CommonDatascope[&quot;common-datascope&quot;]
+    SystemModule --&gt; CommonLog[&quot;common-log&quot;]
+    SystemModule --&gt; CommonCore[&quot;common-core&quot;]
+    SystemModule --&gt; CommonRedis[&quot;common-redis&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:1-40</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:1-60</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RequiresPermissions.java</span></li>
+<li><span class="fileref">TokenService.java</span></li>
+<li><span class="fileref">SecurityUtils.java</span></li>
+</ul>
+<h2 id="性能与缓存策略"><a class="anchor" href="#性能与缓存策略">#</a>性能与缓存策略</h2><h3 id="权限与菜单缓存到-Redis"><a class="anchor" href="#权限与菜单缓存到-Redis">#</a>权限与菜单缓存到 Redis</h3><p>权限和菜单数据通常放在 Redis 中以减少每次登录或刷新时的数据库压力：</p>
+<ul>
+<li>用户登录后，权限集合可通过 <code>permissionService.getRolePermission</code> 和 <code>permissionService.getMenuPermission</code> 获取。</li>
+<li><code>SysUserController.getInfo</code> 在发现后端权限发生变化时，会更新前端缓存并调用 <code>tokenService.refreshToken(loginUser)</code>，使前端携带新的权限上下文。</li>
+<li>实际缓存 key、过期时间和序列化格式位于 <code>common-redis</code> 与 <code>common-security</code> 的实现中，系统模块通过服务调用间接使用。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>权限变更后应主动失效对应用户的权限缓存。</li>
+<li>菜单缓存应以用户维度或角色维度区分，避免不同用户共享错误路由。</li>
+<li>不要直接把原始口令、token、api-key 等敏感值写入缓存或日志。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:90-160</span></li>
+<li><span class="fileref">TokenService.java</span></li>
+</ul>
+<h3 id="菜单加载性能优化"><a class="anchor" href="#菜单加载性能优化">#</a>菜单加载性能优化</h3><p>菜单加载涉及三层开销：数据库查询、Java 对象组装、前端树渲染。优化方向：</p>
+<ul>
+<li>数据库层：优先使用 <code>selectMenuTreeByUserId</code> 或 <code>selectMenuListByUserId</code> 一次性拉取用户可见菜单，避免 N+1 多次查询。</li>
+<li>业务层：<code>buildMenus</code> 只做轻量转换，避免在循环中再次查库。</li>
+<li>缓存层：对静态菜单树可考虑按角色或全局缓存；对用户动态菜单按用户或权限集合缓存。</li>
+<li>前端层：懒加载子菜单、按需展开、虚拟滚动渲染大量菜单节点。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuServiceImpl.java:60-200</span></li>
+<li><span class="fileref">SysMenuController.java:100-159</span></li>
+</ul>
+<h3 id="大数据量分页查询优化"><a class="anchor" href="#大数据量分页查询优化">#</a>大数据量分页查询优化</h3><p>系统模块普遍使用 BaseController 的 <code>startPage()</code> 进入分页流程，Service 返回 List，再由 <code>getDataTable</code> 封装为分页结果。优化要点：</p>
+<ul>
+<li>确保查询条件命中索引，尤其是用户编号、角色编号、部门编号、菜单父级编号等常用过滤字段。</li>
+<li>避免在 Service 层对全量结果再做内存过滤；尽量下沉到 SQL。</li>
+<li>导出 Excel 前应评估数据规模，必要时分批次导出或异步任务导出。</li>
+<li>对于用户-角色、用户-岗位等多对多关联查询，注意关联表索引和 SQL 复杂度。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:40-90</span></li>
+<li><span class="fileref">SysRoleController.java:40-90</span></li>
+</ul>
+<h3 id="新增业务模块的分层规范"><a class="anchor" href="#新增业务模块的分层规范">#</a>新增业务模块的分层规范</h3><p>新增业务模块应遵循以下规范：</p>
+<ol>
+<li><strong>Controller</strong>：仅做参数接收、权限校验、分页开关、调用 Service、返回统一响应。</li>
+<li><strong>Service</strong>：封装业务规则、事务、数据权限校验、唯一性校验和跨表协调。</li>
+<li><strong>Mapper/XML</strong>：只关注 SQL 与实体映射，不写业务分支。</li>
+<li><strong>注解使用</strong>：<ul>
+<li>需要权限控制的方法加 <code>@RequiresPermissions</code>。</li>
+<li>需要数据范围过滤的查询方法加 <code>@DataScope</code>。</li>
+<li>需要审计的操作方法加 <code>@Log</code>。</li>
+</ul>
+</li>
+<li><strong>异常与日志</strong>：业务异常使用 <code>ServiceException</code>，关键操作通过 <code>@Log</code> 记录操作日志。</li>
+<li><strong>缓存</strong>：读多写少的权限、字典、菜单数据放入 Redis，写操作后主动失效。</li>
+</ol>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:40-120</span></li>
+<li><span class="fileref">SysRoleController.java:40-160</span></li>
+<li><span class="fileref">SysMenuController.java:40-120</span></li>
+</ul>
+<h2 id="故障排查指南"><a class="anchor" href="#故障排查指南">#</a>故障排查指南</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>排查步骤</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户列表为空</td>
+<td>数据权限限制导致 SQL 自动追加部门或用户条件</td>
+<td>检查 <code>@DataScope</code> 配置与当前登录用户所属部门</td>
+</tr>
+<tr>
+<td>角色无法修改</td>
+<td>角色是超级管理员或被数据权限拒绝</td>
+<td>检查 <code>checkRoleAllowed</code> 与 <code>checkRoleDataScope</code></td>
+</tr>
+<tr>
+<td>菜单路由缺失</td>
+<td>用户未被分配对应菜单或权限字符不匹配</td>
+<td>检查角色-菜单关联、菜单权限字符、前端路由构建</td>
+</tr>
+<tr>
+<td>操作日志未落库</td>
+<td><code>LogAspect</code> 未生效或异步服务异常</td>
+<td>查看 <code>LogAspect</code> 是否被扫描，检查异步日志保存逻辑</td>
+</tr>
+<tr>
+<td>权限未刷新</td>
+<td>后端权限变化但前端未刷新 Token</td>
+<td>检查 <code>getInfo</code> 中权限比较与 <code>tokenService.refreshToken</code> 调用</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:180-250</span></li>
+<li><span class="fileref">SysRoleServiceImpl.java:180-250</span></li>
+<li><span class="fileref">LogAspect.java:60-200</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>系统模块是 RuoYi-Cloud 体系中 RBAC 权限与系统基础数据的承载服务。它以 <code>RuoYiSystemApplication</code> 为入口，通过 <code>/system/**</code> 暴露用户、角色、菜单等核心能力；以 <code>SysUserServiceImpl</code>、<code>SysRoleServiceImpl</code>、<code>SysMenuServiceImpl</code> 为核心业务实现，分别处理用户与角色的多对多关系、菜单树结构和权限转换；以 <code>@DataScope</code> 实现数据范围过滤，以 <code>@Log</code> 和 <code>LogAspect</code> 实现操作日志审计，并以 MyBatis-Plus 的 Mapper XML 访问 <code>sys_*</code> 表。</p>
+<p>在实际扩展中，新增业务模块应坚持 Controller → Service → Mapper 分层，合理使用 <code>common-security</code>、<code>common-datascope</code>、<code>common-log</code>、<code>common-redis</code> 提供的注解与工具，并在设计阶段就考虑权限缓存、菜单加载与大数据分页的性能问题。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">← 角色管理</a>
+    <a class="next" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#用户管理与多对多关系">用户管理与多对多关系</a></li><li class="d3"><a href="#角色管理与数据权限范围">角色管理与数据权限范围</a></li><li class="d3"><a href="#菜单树结构与前端路由">菜单树结构与前端路由</a></li><li class="d3"><a href="#数据权限与操作日志">数据权限与操作日志</a></li><li class="d3"><a href="#MyBatis-Plus-与-sys_*-表访问">MyBatis-Plus 与 sys_* 表访问</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与缓存策略">性能与缓存策略</a></li><li class="d3"><a href="#权限与菜单缓存到-Redis">权限与菜单缓存到 Redis</a></li><li class="d3"><a href="#菜单加载性能优化">菜单加载性能优化</a></li><li class="d3"><a href="#大数据量分页查询优化">大数据量分页查询优化</a></li><li class="d3"><a href="#新增业务模块的分层规范">新增业务模块的分层规范</a></li><li class="d2"><a href="#故障排查指南">故障排查指南</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html";</script>
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API 调用封装与请求层 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec" open><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html" class="active">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">前端架构设计 / <b>API 调用封装与请求层</b></div><article><h1 id="API-调用封装与请求层"><a class="anchor" href="#API-调用封装与请求层">#</a>API 调用封装与请求层</h1><cite>
+**本文引用的文件**   
+- [zealux-ai-ui-master/src/utils/request.js](file://zealux-ai-ui-master/src/utils/request.js)
+- [zealux-ai-ui-master/src/utils/errorCode.js](file://zealux-ai-ui-master/src/utils/errorCode.js)
+- [zealux-ai-ui-master/src/utils/ruoyi.js](file://zealux-ai-ui-master/src/utils/ruoyi.js)
+- [zealux-ai-ui-master/vue.config.js](file://zealux-ai-ui-master/vue.config.js)
+- [zealux-ai-ui-master/package.json](file://zealux-ai-ui-master/package.json)
+- [zealux-ai-ui-master/src/api/login.js](file://zealux-ai-ui-master/src/api/login.js)
+- [zealux-ai-ui-master/src/api/menu.js](file://zealux-ai-ui-master/src/api/menu.js)
+- [zealux-ai-ui-master/src/api/system/user.js](file://zealux-ai-ui-master/src/api/system/user.js)
+- [zealux-ai-ui-master/src/api/system/role.js](file://zealux-ai-ui-master/src/api/system/role.js)
+- [zealux-ai-ui-master/src/api/system/dept.js](file://zealux-ai-ui-master/src/api/system/dept.js)
+- [zealux-ai-ui-master/src/api/system/config.js](file://zealux-ai-ui-master/src/api/system/config.js)
+- [zealux-ai-ui-master/src/api/system/dict/data.js](file://zealux-ai-ui-master/src/api/system/dict/data.js)
+- [zealux-ai-ui-master/src/api/system/dict/type.js](file://zealux-ai-ui-master/src/api/system/dict/type.js)
+- [zealux-ai-ui-master/src/api/system/menu.js](file://zealux-ai-ui-master/src/api/system/menu.js)
+- [zealux-ai-ui-master/src/api/system/post.js](file://zealux-ai-ui-master/src/api/system/post.js)
+- [zealux-ai-ui-master/src/api/system/operlog.js](file://zealux-ai-ui-master/src/api/system/operlog.js)
+- [zealux-ai-ui-master/src/api/system/logininfor.js](file://zealux-ai-ui-master/src/api/system/logininfor.js)
+- [zealux-ai-ui-master/src/api/system/notice.js](file://zealux-ai-ui-master/src/api/system/notice.js)
+- [zealux-ai-ui-master/src/api/tool/gen.js](file://zealux-ai-ui-master/src/api/tool/gen.js)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#核心请求封装分析">核心请求封装分析</a></li>
+<li><a href="#统一错误处理机制">统一错误处理机制</a></li>
+<li><a href="#api-模块分类与函数签名">API 模块分类与函数签名</a></li>
+<li><a href="#前后端接口约定">前后端接口约定</a></li>
+<li><a href="#跨域代理与部署">跨域、代理与部署</a></li>
+<li><a href="#新增业务接口模板">新增业务接口模板</a></li>
+<li><a href="#依赖关系图">依赖关系图</a></li>
+<li><a href="#性能与可维护性建议">性能与可维护性建议</a></li>
+<li><a href="#故障排查清单">故障排查清单</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本文面向前端开发者，详细说明本项目的 API 调用层：以 <code>src/utils/request.js</code> 中的 Axios 实例为核心，解释 Token 注入、重复提交防护、响应拦截器、统一错误码与消息提示、文件下载、分页参数格式等；随后按功能域梳理登录、菜单、系统管理、代码生成等 API 模块的函数签名、入参结构与返回 Promise；最后给出开发环境跨域配置、Nginx 部署建议、Mock 切换方式以及新增接口的最佳实践。</p>
+<p>需要特别注意：本项目是开源 RuoYi-Cloud 的重命名二次开发，前端包名仍为 <code>ruoyi@3.6.5</code>，前端源码以独立仓库 <code>zealux-ai-ui-master</code> 为准；后端服务入口类名仍沿用 <code>RuoYi*Application.java</code>，不应把当前实现描述成自研框架。</p>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p>前端源码位于 <code>zealux-ai-ui-master/src</code>，其中与 API 调用直接相关的目录包括：</p>
+<ul>
+<li><code>src/utils/request.js</code>：Axios 实例、请求拦截器、响应拦截器、下载方法。</li>
+<li><code>src/utils/errorCode.js</code>：业务状态码到用户可读消息的映射。</li>
+<li><code>src/utils/ruoyi.js</code>：通用工具函数，包括参数序列化 <code>tansParams</code>、Blob 校验 <code>blobValidate</code> 等。</li>
+<li><code>src/api/*</code>：按业务域拆分的 API 模块，均通过 <code>import request from &#39;@/utils/request&#39;</code> 调用。</li>
+<li><code>vue.config.js</code>：Vue CLI 开发服务器与代理配置。</li>
+<li><code>package.json</code>：前端工程元信息、依赖（Axios、Element UI、file-saver 等）。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+  subgraph &quot;前端&quot;
+    ui[&quot;页面组件&lt;br/&gt;views / store&quot;]
+    api_mod[&quot;API 模块&lt;br/&gt;api/login.js / api/system/* / api/tool/gen.js&quot;]
+    req[&quot;请求封装&lt;br/&gt;utils/request.js&quot;]
+    util[&quot;工具函数&lt;br/&gt;utils/ruoyi.js / utils/errorCode.js&quot;]
+  end
+
+  subgraph &quot;运行时&quot;
+    dev[&quot;开发服务器&lt;br/&gt;vue.config.js devServer&quot;]
+    backend[&quot;后端网关与服务&lt;br/&gt;/auth /system /code /file /schedule&quot;]
+  end
+
+  ui --&gt; api_mod
+  api_mod --&gt; req
+  req --&gt; util
+  req --&gt; dev
+  dev --&gt; backend</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:1-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:23-51</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/package.json:1-90</span></li>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:1-131</span></li>
+</ul>
+<h2 id="核心请求封装分析"><a class="anchor" href="#核心请求封装分析">#</a>核心请求封装分析</h2><p><code>request.js</code> 是本系统唯一集中创建 Axios 实例的地方，所有业务 API 都通过它发起请求。</p>
+<h3 id="Axios-实例基础配置"><a class="anchor" href="#Axios-实例基础配置">#</a>Axios 实例基础配置</h3><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>值或行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>baseURL</code></td>
+<td><code>process.env.VUE_APP_BASE_API</code></td>
+<td>从环境变量读取，开发环境由 <code>vue.config.js</code> 代理转发，生产环境通常指向 Nginx 反向代理路径</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td><code>10000</code></td>
+<td>默认 10 秒超时；验证码等接口可单独覆盖</td>
+</tr>
+<tr>
+<td>全局 <code>Content-Type</code></td>
+<td><code>application/json;charset=utf-8</code></td>
+<td>普通 JSON 请求使用此类型</td>
+</tr>
+<tr>
+<td>GET 参数处理</td>
+<td><code>tansParams(config.params)</code></td>
+<td>将对象参数序列化为 URL 查询字符串，并清空 <code>config.params</code></td>
+</tr>
+<tr>
+<td>重复提交防护</td>
+<td>POST/PUT 请求在 Session 中缓存最近一次请求对象</td>
+<td>1 秒内相同 URL 和相同数据视为重复提交，直接拒绝</td>
+</tr>
+<tr>
+<td>最大重复提交缓存大小</td>
+<td>5 MB</td>
+<td>超过后跳过重复提交检查，避免占用过多 Session</td>
+</tr>
+</tbody></table>
+<p>Token 注入规则如下：</p>
+<ul>
+<li>如果存在 Token 且请求头 <code>isToken !== false</code>，则设置 <code>Authorization: Bearer &lt;token&gt;</code>。</li>
+<li>登录、注册、获取验证码等不需要鉴权的接口，应显式设置 <code>headers.isToken = false</code>。</li>
+<li>重复提交开关 <code>repeatSubmit = false</code> 时禁用防重复逻辑；登录和验证码已使用该方式关闭。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+  Start([&quot;进入请求拦截器&quot;]) --&gt; CheckToken[&quot;是否存在 Token 且 isToken 不为 false&quot;]
+  CheckToken --&gt;|是| AddAuth[&quot;添加 Authorization: Bearer token&quot;]
+  CheckToken --&gt;|否| SkipAuth[&quot;不添加 Authorization&quot;]
+  AddAuth --&gt; MethodCheck[&quot;判断是否为 GET 请求&quot;]
+  SkipAuth --&gt; MethodCheck
+  MethodCheck --&gt;|是| SerializeParams[&quot;用 tansParams 序列化 params 并拼接 URL&quot;]
+  MethodCheck --&gt;|否| RepeatCheck[&quot;判断是否 POST 或 PUT&quot;]
+  SerializeParams --&gt; RepeatCheck
+  RepeatCheck --&gt;|是| SizeCheck[&quot;计算请求对象大小是否超过 5MB&quot;]
+  SizeCheck --&gt;|是| Allow[&quot;允许继续发送&quot;]
+  SizeCheck --&gt;|否| CacheCheck[&quot;比较 Session 中上一次请求 URL、data、时间&quot;]
+  CacheCheck --&gt;|重复| Reject[&quot;拒绝并返回重复提交错误&quot;]
+  CacheCheck --&gt;|不重复| UpdateCache[&quot;更新 sessionObj 后继续&quot;]
+  RepeatCheck --&gt;|否| Continue[&quot;继续发送&quot;]
+  Allow --&gt; Continue
+  UpdateCache --&gt; Continue</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:19-85</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:1-18</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:19-85</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/ruoyi.js:192-208</span></li>
+</ul>
+<h3 id="响应拦截器与消息提示"><a class="anchor" href="#响应拦截器与消息提示">#</a>响应拦截器与消息提示</h3><p>响应拦截器根据后端返回的 <code>res.data.code</code> 做分支处理：</p>
+<ul>
+<li><code>401</code>：弹出 Element MessageBox 确认框；用户选择“重新登录”后触发登出并跳转 <code>/index</code>；否则取消提示。</li>
+<li><code>500</code>：使用 <code>Message.error</code> 显示后端消息，并拒绝 Promise。</li>
+<li><code>601</code>：使用 <code>Message.warning</code> 显示警告，并拒绝 Promise。</li>
+<li>其他非 200 码：使用 <code>Notification.error</code> 显示标题为错误消息的通知。</li>
+<li><code>200</code>：返回 <code>res.data</code>，即业务数据体。</li>
+<li>二进制响应：当 <code>responseType</code> 为 <code>blob</code> 或 <code>arraybuffer</code> 时，直接返回原始数据，不走业务状态码分支。</li>
+</ul>
+<p>网络层异常由响应拦截器的 <code>error</code> 分支处理：</p>
+<ul>
+<li><code>Network Error</code> 转换为“后端接口连接异常”。</li>
+<li>包含 <code>timeout</code> 的消息转换为“系统接口请求超时”。</li>
+<li>包含 HTTP 状态码的消息转换为“系统接口 xxx 异常”。</li>
+<li>所有网络异常统一通过 <code>Message.error</code> 展示，并保留 5 秒。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+  participant Caller as &quot;调用方&quot;
+  participant Request as &quot;Axios 实例&quot;
+  participant Backend as &quot;后端服务&quot;
+  
+  Caller-&gt;&gt;Request: 发起 API 请求
+  Request-&gt;&gt;Backend: 发送 HTTP 请求
+  alt 后端返回成功业务码
+    Backend--&gt;&gt;Request: { code: 200, data }
+    Request--&gt;&gt;Caller: 返回 res.data
+  else 后端返回认证失败
+    Backend--&gt;&gt;Request: { code: 401, msg }
+    Request-&gt;&gt;Request: 弹出登录过期确认框
+    Request--&gt;&gt;Caller: 拒绝 Promise
+  else 后端返回服务端错误
+    Backend--&gt;&gt;Request: { code: 500, msg }
+    Request-&gt;&gt;Request: 显示 Message.error(msg)
+    Request--&gt;&gt;Caller: 拒绝 Promise
+  else 网络层异常
+    Backend--x Request: 连接失败/超时/HTTP 错误
+    Request-&gt;&gt;Request: 标准化错误消息并提示
+    Request--&gt;&gt;Caller: 拒绝 Promise
+  end</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:87-152</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:87-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/errorCode.js:1-6</span></li>
+</ul>
+<h3 id="通用下载方法"><a class="anchor" href="#通用下载方法">#</a>通用下载方法</h3><p><code>download(url, params, filename, config)</code> 用于导出 Excel 等二进制文件：</p>
+<ul>
+<li>使用 <code>Loading.service</code> 显示“正在下载数据，请稍候”。</li>
+<li>使用 POST 请求，<code>transformRequest</code> 将 <code>params</code> 转为表单样式字符串，<code>Content-Type</code> 设为 <code>application/x-www-form-urlencoded</code>，<code>responseType</code> 设为 <code>blob</code>。</li>
+<li>成功后先用 <code>blobValidate</code> 判断是否为文件流；如果是，则用 <code>file-saver</code> 的 <code>saveAs</code> 保存。</li>
+<li>如果返回的不是 Blob，则解析为文本再解析 JSON，从 <code>errorCode</code> 或 <code>msg</code> 提取错误消息并提示。</li>
+<li>下载结束无论成功还是失败都会关闭 Loading。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+  Enter([&quot;调用 download&quot;]) --&gt; ShowLoading[&quot;显示下载 Loading&quot;]
+  ShowLoading --&gt; PostBlob[&quot;POST 请求并设置 responseType=blob&quot;]
+  PostBlob --&gt; Validate{&quot;返回数据是否为 Blob&quot;}
+  Validate --&gt;|是| SaveFile[&quot;使用 saveAs 保存文件&quot;]
+  Validate --&gt;|否| ParseError[&quot;解析响应文本为 JSON 并提取错误消息&quot;]
+  ParseError --&gt; ShowError[&quot;显示错误消息&quot;]
+  SaveFile --&gt; CloseLoading[&quot;关闭 Loading&quot;]
+  ShowError --&gt; CloseLoading
+  CloseLoading --&gt; Exit([&quot;完成&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:119-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/ruoyi.js:221-228</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:119-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/ruoyi.js:221-228</span></li>
+</ul>
+<h2 id="统一错误处理机制"><a class="anchor" href="#统一错误处理机制">#</a>统一错误处理机制</h2><p>错误消息来源有两个层级：</p>
+<ol>
+<li><strong>业务错误码映射</strong>：<code>errorCode.js</code> 提供 <code>401</code>、<code>403</code>、<code>404</code>、<code>default</code> 等中文消息。</li>
+<li><strong>后端响应消息</strong>：<code>res.data.msg</code> 优先于默认错误码消息。</li>
+</ol>
+<p>在响应拦截器中：</p>
+<ul>
+<li><code>401</code>：主要走登录过期流程，同时拒绝 Promise。</li>
+<li><code>500</code>：显示 <code>Message.error(msg)</code>。</li>
+<li><code>601</code>：显示 <code>Message.warning(msg)</code>。</li>
+<li>其他非 200：使用 <code>Notification.error({ title: msg })</code>。</li>
+<li>网络异常：将 Axios 原生错误消息标准化后再提示。</li>
+</ul>
+<p>注意：<code>errorCode.js</code> 中未定义 <code>403</code>、<code>404</code>、<code>500</code>、<code>601</code> 的映射键，因此这些场景会回退到 <code>res.data.msg</code> 或 <code>errorCode[&#39;default&#39;]</code>。若希望统一文案，可在 <code>errorCode.js</code> 中补充对应键。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/errorCode.js:1-6</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:87-118</span></li>
+</ul>
+<h2 id="API-模块分类与函数签名"><a class="anchor" href="#API-模块分类与函数签名">#</a>API 模块分类与函数签名</h2><p>以下模块均以 <code>export function</code> 暴露函数，返回值均为 <code>request()</code> 返回的 Promise。调用方一般使用 <code>async/await</code> 或 <code>.then().catch()</code>。</p>
+<h3 id="认证模块：apilogin.js"><a class="anchor" href="#认证模块：apilogin.js">#</a>认证模块：<code>api/login.js</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>方法</th>
+<th>路径</th>
+<th>入参</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>login(username, password, code, uuid)</code></td>
+<td>POST</td>
+<td><code>/auth/login</code></td>
+<td>用户名、密码、验证码、UUID</td>
+<td>Promise，业务数据体</td>
+</tr>
+<tr>
+<td><code>register(data)</code></td>
+<td>POST</td>
+<td><code>/auth/register</code></td>
+<td>注册对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>refreshToken()</code></td>
+<td>POST</td>
+<td><code>/auth/refresh</code></td>
+<td>无请求体</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getInfo()</code></td>
+<td>GET</td>
+<td><code>/system/user/getInfo</code></td>
+<td>无</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>logout()</code></td>
+<td>DELETE</td>
+<td><code>/auth/logout</code></td>
+<td>无</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getCodeImg()</code></td>
+<td>GET</td>
+<td><code>/code</code></td>
+<td>无，额外设置 <code>timeout: 20000</code></td>
+<td>Promise</td>
+</tr>
+</tbody></table>
+<p>典型调用示例（仅示意）：</p>
+<ul>
+<li>登录：调用 <code>login(username, password, code, uuid)</code>，成功后保存 Token，再调用 <code>getInfo()</code> 获取用户信息。</li>
+<li>退出：调用 <code>logout()</code>，成功后跳转登录页。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:1-62</span></li>
+</ul>
+<h3 id="路由与菜单模块：apimenu.js"><a class="anchor" href="#路由与菜单模块：apimenu.js">#</a>路由与菜单模块：<code>api/menu.js</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>方法</th>
+<th>路径</th>
+<th>入参</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getRouters()</code></td>
+<td>GET</td>
+<td><code>/system/menu/getRouters</code></td>
+<td>无</td>
+<td>Promise，动态路由树</td>
+</tr>
+</tbody></table>
+<p>该模块用于前端根据后端返回的路由构建侧边栏与权限路由。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/menu.js:1-9</span></li>
+</ul>
+<h3 id="系统用户模块：apisystemuser.js"><a class="anchor" href="#系统用户模块：apisystemuser.js">#</a>系统用户模块：<code>api/system/user.js</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>方法</th>
+<th>路径</th>
+<th>入参</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>listUser(query)</code></td>
+<td>GET</td>
+<td><code>/system/user/list</code></td>
+<td>分页与筛选对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getUser(userId)</code></td>
+<td>GET</td>
+<td><code>/system/user/{userId}</code></td>
+<td>用户 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>addUser(data)</code></td>
+<td>POST</td>
+<td><code>/system/user</code></td>
+<td>用户对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateUser(data)</code></td>
+<td>PUT</td>
+<td><code>/system/user</code></td>
+<td>用户对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>delUser(userId)</code></td>
+<td>DELETE</td>
+<td><code>/system/user/{userId}</code></td>
+<td>用户 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>resetUserPwd(userId, password)</code></td>
+<td>PUT</td>
+<td><code>/system/user/resetPwd</code></td>
+<td><code>{ userId, password }</code></td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>changeUserStatus(userId, status)</code></td>
+<td>PUT</td>
+<td><code>/system/user/changeStatus</code></td>
+<td><code>{ userId, status }</code></td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getUserProfile()</code></td>
+<td>GET</td>
+<td><code>/system/user/profile</code></td>
+<td>无</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateUserProfile(data)</code></td>
+<td>PUT</td>
+<td><code>/system/user/profile</code></td>
+<td>个人信息对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateUserPwd(oldPassword, newPassword)</code></td>
+<td>PUT</td>
+<td><code>/system/user/profile/updatePwd</code></td>
+<td><code>{ oldPassword, newPassword }</code></td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>uploadAvatar(data)</code></td>
+<td>POST</td>
+<td><code>/system/user/profile/avatar</code></td>
+<td>FormData 或表单对象，<code>Content-Type</code> 为 <code>application/x-www-form-urlencoded</code></td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getAuthRole(userId)</code></td>
+<td>GET</td>
+<td><code>/system/user/authRole/{userId}</code></td>
+<td>用户 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateAuthRole(data)</code></td>
+<td>PUT</td>
+<td><code>/system/user/authRole</code></td>
+<td>授权角色参数对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>deptTreeSelect()</code></td>
+<td>GET</td>
+<td><code>/system/user/deptTree</code></td>
+<td>无</td>
+<td>Promise</td>
+</tr>
+</tbody></table>
+<p>注意：头像上传接口明确设置了 <code>Content-Type: application/x-www-form-urlencoded</code>，与普通 JSON 请求不同。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/user.js:1-136</span></li>
+</ul>
+<h3 id="系统角色模块：apisystemrole.js"><a class="anchor" href="#系统角色模块：apisystemrole.js">#</a>系统角色模块：<code>api/system/role.js</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>方法</th>
+<th>路径</th>
+<th>入参</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>listRole(query)</code></td>
+<td>GET</td>
+<td><code>/system/role/list</code></td>
+<td>分页与筛选对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getRole(roleId)</code></td>
+<td>GET</td>
+<td><code>/system/role/{roleId}</code></td>
+<td>角色 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>addRole(data)</code></td>
+<td>POST</td>
+<td><code>/system/role</code></td>
+<td>角色对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateRole(data)</code></td>
+<td>PUT</td>
+<td><code>/system/role</code></td>
+<td>角色对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>dataScope(data)</code></td>
+<td>PUT</td>
+<td><code>/system/role/dataScope</code></td>
+<td>数据权限对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>changeRoleStatus(roleId, status)</code></td>
+<td>PUT</td>
+<td><code>/system/role/changeStatus</code></td>
+<td><code>{ roleId, status }</code></td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>delRole(roleId)</code></td>
+<td>DELETE</td>
+<td><code>/system/role/{roleId}</code></td>
+<td>角色 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>allocatedUserList(query)</code></td>
+<td>GET</td>
+<td><code>/system/role/authUser/allocatedList</code></td>
+<td>分页对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>unallocatedUserList(query)</code></td>
+<td>GET</td>
+<td><code>/system/role/authUser/unallocatedList</code></td>
+<td>分页对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>authUserCancel(data)</code></td>
+<td>PUT</td>
+<td><code>/system/role/authUser/cancel</code></td>
+<td>取消授权参数</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>authUserCancelAll(data)</code></td>
+<td>PUT</td>
+<td><code>/system/role/authUser/cancelAll</code></td>
+<td>批量取消参数</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>authUserSelectAll(data)</code></td>
+<td>PUT</td>
+<td><code>/system/role/authUser/selectAll</code></td>
+<td>批量选中参数</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>deptTreeSelect(roleId)</code></td>
+<td>GET</td>
+<td><code>/system/role/deptTree/{roleId}</code></td>
+<td>角色 ID</td>
+<td>Promise</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/role.js:1-119</span></li>
+</ul>
+<h3 id="部门、岗位、字典、公告、日志等系统模块"><a class="anchor" href="#部门、岗位、字典、公告、日志等系统模块">#</a>部门、岗位、字典、公告、日志等系统模块</h3><table>
+<thead>
+<tr>
+<th>模块</th>
+<th>主要职责</th>
+<th>典型路径前缀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>api/system/dept.js</code></td>
+<td>部门增删改查、排除子节点列表</td>
+<td><code>/system/dept</code></td>
+</tr>
+<tr>
+<td><code>api/system/post.js</code></td>
+<td>岗位增删改查</td>
+<td><code>/system/post</code></td>
+</tr>
+<tr>
+<td><code>api/system/dict/data.js</code></td>
+<td>字典数据增删改查、按类型获取</td>
+<td><code>/system/dict/data</code></td>
+</tr>
+<tr>
+<td><code>api/system/dict/type.js</code></td>
+<td>字典类型增删改查、刷新缓存、选项下拉</td>
+<td><code>/system/dict/type</code></td>
+</tr>
+<tr>
+<td><code>api/system/menu.js</code></td>
+<td>菜单增删改查、树形结构、角色菜单树</td>
+<td><code>/system/menu</code></td>
+</tr>
+<tr>
+<td><code>api/system/notice.js</code></td>
+<td>公告增删改查</td>
+<td><code>/system/notice</code></td>
+</tr>
+<tr>
+<td><code>api/system/operlog.js</code></td>
+<td>操作日志查询、删除、清空</td>
+<td><code>/system/operlog</code></td>
+</tr>
+<tr>
+<td><code>api/system/logininfor.js</code></td>
+<td>登录日志查询、解锁、清空</td>
+<td><code>/system/logininfor</code></td>
+</tr>
+<tr>
+<td><code>api/system/config.js</code></td>
+<td>系统参数配置增删改查、刷新缓存</td>
+<td><code>/system/config</code></td>
+</tr>
+</tbody></table>
+<p>这些模块遵循一致的 RESTful 风格：列表查询使用 GET + <code>query</code> 参数，详情使用 GET + ID，新增使用 POST，修改使用 PUT，删除使用 DELETE。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/dept.js:1-52</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/post.js:1-44</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/dict/data.js:1-52</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/dict/type.js:1-60</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/menu.js:1-60</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/notice.js:1-44</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/operlog.js:1-26</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/logininfor.js:1-33</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/config.js:1-60</span></li>
+</ul>
+<h3 id="代码生成模块：apitoolgen.js"><a class="anchor" href="#代码生成模块：apitoolgen.js">#</a>代码生成模块：<code>api/tool/gen.js</code></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>方法</th>
+<th>路径</th>
+<th>入参</th>
+<th>返回</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>listTable(query)</code></td>
+<td>GET</td>
+<td><code>/code/gen/list</code></td>
+<td>分页对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>listDbTable(query)</code></td>
+<td>GET</td>
+<td><code>/code/gen/db/list</code></td>
+<td>分页对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>getGenTable(tableId)</code></td>
+<td>GET</td>
+<td><code>/code/gen/{tableId}</code></td>
+<td>表 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>updateGenTable(data)</code></td>
+<td>PUT</td>
+<td><code>/code/gen</code></td>
+<td>生成配置对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>importTable(data)</code></td>
+<td>POST</td>
+<td><code>/code/gen/importTable</code></td>
+<td>导入参数对象</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>previewTable(tableId)</code></td>
+<td>GET</td>
+<td><code>/code/gen/preview/{tableId}</code></td>
+<td>表 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>delTable(tableId)</code></td>
+<td>DELETE</td>
+<td><code>/code/gen/{tableId}</code></td>
+<td>表 ID</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>genCode(tableName)</code></td>
+<td>GET</td>
+<td><code>/code/gen/genCode/{tableName}</code></td>
+<td>表名</td>
+<td>Promise</td>
+</tr>
+<tr>
+<td><code>synchDb(tableName)</code></td>
+<td>GET</td>
+<td><code>/code/gen/synchDb/{tableName}</code></td>
+<td>表名</td>
+<td>Promise</td>
+</tr>
+</tbody></table>
+<p>该模块用于数据库表元数据管理、代码预览与生成。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/tool/gen.js:1-76</span></li>
+</ul>
+<h2 id="前后端接口约定"><a class="anchor" href="#前后端接口约定">#</a>前后端接口约定</h2><h3 id="RESTful-风格"><a class="anchor" href="#RESTful-风格">#</a>RESTful 风格</h3><ul>
+<li>列表查询：GET + <code>params.query</code>。</li>
+<li>详情查询：GET + 路径参数。</li>
+<li>新增：POST + JSON body。</li>
+<li>修改：PUT + JSON body。</li>
+<li>删除：DELETE + 路径参数。</li>
+<li>特殊动作：如状态变更、数据权限、刷新缓存、解锁用户等使用专用路径。</li>
+</ul>
+<h3 id="分页参数"><a class="anchor" href="#分页参数">#</a>分页参数</h3><p>虽然当前前端 API 模块没有对分页字段做强制约定，但常见后端分页结构通常包含页码、页大小及查询条件。前端 <code>list*</code> 系列接口统一接收一个 <code>query</code> 对象并通过 <code>params</code> 传递。建议新增接口保持：</p>
+<ul>
+<li><code>pageNum</code> 或 <code>page</code></li>
+<li><code>pageSize</code> 或 <code>limit</code></li>
+<li>业务筛选字段作为同层属性</li>
+<li>日期范围可使用 <code>beginTime</code>、<code>endTime</code> 或通过 <code>addDateRange</code> 工具函数追加</li>
+</ul>
+<h3 id="通用响应体结构"><a class="anchor" href="#通用响应体结构">#</a>通用响应体结构</h3><p>响应拦截器依赖后端返回体中包含 <code>code</code> 字段：</p>
+<ul>
+<li><code>code === 200</code>：成功。</li>
+<li><code>code === 401</code>：会话失效。</li>
+<li><code>code === 500</code>：服务端错误。</li>
+<li><code>code === 601</code>：业务警告。</li>
+<li>其他非 200：通用错误通知。</li>
+<li><code>msg</code> 字段用于向用户展示具体错误信息。</li>
+<li>业务数据通常位于 <code>res.data.data</code> 或直接就是 <code>res.data</code>，调用方应根据实际后端返回结构解构。</li>
+</ul>
+<h3 id="文件上传与下载"><a class="anchor" href="#文件上传与下载">#</a>文件上传与下载</h3><ul>
+<li>下载：使用 <code>request.download(url, params, filename, config)</code>，后端应返回二进制流或文件名正确的 Blob。</li>
+<li>上传：现有 <code>uploadAvatar</code> 使用 <code>Content-Type: application/x-www-form-urlencoded</code>，如需上传文件，应结合 Vue 的 <code>FormData</code> 并在调用处覆盖 <code>Content-Type</code>。</li>
+</ul>
+<h3 id="Swagger-文档地址"><a class="anchor" href="#Swagger-文档地址">#</a>Swagger 文档地址</h3><p>当前前端源码中没有发现任何 Swagger、springdoc、knife4j 或 <code>doc.html</code>、<code>v3/api-docs</code> 相关引用。因此不能断言系统已暴露 Swagger 文档地址。若后端启用了 Swagger，其地址应由后端网关或服务自身决定，而不是由前端 <code>request.js</code> 控制。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:87-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/user.js:1-136</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/tool/gen.js:1-76</span></li>
+</ul>
+<h2 id="跨域、代理与部署"><a class="anchor" href="#跨域、代理与部署">#</a>跨域、代理与部署</h2><h3 id="开发环境跨域与代理"><a class="anchor" href="#开发环境跨域与代理">#</a>开发环境跨域与代理</h3><p><code>vue.config.js</code> 中配置了 <code>devServer.proxy</code>：</p>
+<ul>
+<li>代理目标：<code>http://127.0.0.1:8080</code>。</li>
+<li><code>changeOrigin: true</code>。</li>
+<li><code>pathRewrite</code> 会将 <code>VUE_APP_BASE_API</code> 前缀替换为空字符串。</li>
+<li>这意味着前端访问 <code>/auth/login</code> 会被代理到 <code>http://127.0.0.1:8080/auth/login</code>。</li>
+</ul>
+<p>开发模式下的端口由 <code>process.env.port</code>、<code>npm_config_port</code> 或默认 <code>80</code> 决定。</p>
+<h3 id="Nginx-部署"><a class="anchor" href="#Nginx-部署">#</a>Nginx 部署</h3><p>打包输出目录为 <code>dist</code>，静态资源放在 <code>static</code>。生产环境下前端通常由 Nginx 托管静态文件，并将 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code> 等接口反向代理到后端网关或服务。由于本仓库只包含前端源码，不包含 Nginx 配置文件，因此部署时应根据后端网关路由规则配置反向代理，不要在前端代码里硬编码后端 IP。</p>
+<h3 id="Mock-开发与测试环境切换"><a class="anchor" href="#Mock-开发与测试环境切换">#</a>Mock 开发与测试环境切换</h3><p>当前前端源码中没有发现独立的 Mock 模块或 Mock 开关。切换 Mock 的可行方案包括：</p>
+<ul>
+<li>通过环境变量区分：例如新增 <code>VUE_APP_USE_MOCK</code>，在 <code>request.js</code> 中根据变量切换 baseURL。</li>
+<li>通过本地代理：在 <code>vue.config.js</code> 中增加一条针对特定路径的 proxy 规则，指向本地 Mock 服务。</li>
+<li>通过 Vite/Vue CLI 的 mode：新增 <code>staging</code> 或 <code>mock</code> 模式，分别加载不同环境变量。</li>
+</ul>
+<p>当前仓库中只有 <code>build:prod</code> 和 <code>build:stage</code> 脚本，没有 <code>build:mock</code>。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:23-51</span></li>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:1-22</span></li>
+<li><span class="fileref">zealux-ai-ui-master/package.json:1-30</span></li>
+</ul>
+<h2 id="新增业务接口模板"><a class="anchor" href="#新增业务接口模板">#</a>新增业务接口模板</h2><p>新增 API 模块时，建议遵循以下模板：</p>
+<ol>
+<li>新建文件：<code>src/api/domain/module.js</code>。</li>
+<li>引入请求封装：<code>import request from &#39;@/utils/request&#39;</code>。</li>
+<li>列表接口：<ul>
+<li>函数名：<code>listXxx(query)</code></li>
+<li>方法：GET</li>
+<li>路径：<code>/system/xxx/list</code></li>
+<li>参数：<code>params: query</code></li>
+</ul>
+</li>
+<li>详情接口：<ul>
+<li>函数名：<code>getXxx(id)</code></li>
+<li>方法：GET</li>
+<li>路径：<code>/system/xxx/{id}</code></li>
+</ul>
+</li>
+<li>新增接口：<ul>
+<li>函数名：<code>addXxx(data)</code></li>
+<li>方法：POST</li>
+<li>路径：<code>/system/xxx</code></li>
+<li>参数：<code>data</code></li>
+</ul>
+</li>
+<li>修改接口：<ul>
+<li>函数名：<code>updateXxx(data)</code></li>
+<li>方法：PUT</li>
+<li>路径：<code>/system/xxx</code></li>
+</ul>
+</li>
+<li>删除接口：<ul>
+<li>函数名：<code>delXxx(id)</code></li>
+<li>方法：DELETE</li>
+<li>路径：<code>/system/xxx/{id}</code></li>
+</ul>
+</li>
+<li>特殊接口：<ul>
+<li>如果需要 Token：保持默认，不要设置 <code>isToken: false</code>。</li>
+<li>如果不需要 Token：显式设置 <code>headers.isToken = false</code>。</li>
+<li>如果需要禁用重复提交：设置 <code>headers.repeatSubmit = false</code>。</li>
+<li>如果返回文件：改用 <code>request.download</code> 或自定义 <code>responseType: &#39;blob&#39;</code>。</li>
+<li>如果上传文件：在调用处设置 <code>Content-Type: multipart/form-data</code> 或 <code>application/x-www-form-urlencoded</code>。</li>
+</ul>
+</li>
+</ol>
+<p>典型调用示例（仅示意）：</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 新增条目</span>
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">addXxx</span>({ name, status })
+  <span class="hljs-comment">// 成功后可刷新列表或提示成功</span>
+} <span class="hljs-keyword">catch</span> (err) {
+  <span class="hljs-comment">// 统一错误已由 request.js 提示，此处可做额外处理</span>
+}</code></pre><p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/user.js:1-136</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/role.js:1-119</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:19-85</span></li>
+</ul>
+<h2 id="依赖关系图"><a class="anchor" href="#依赖关系图">#</a>依赖关系图</h2><p>前端 API 层依赖关系如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+  login_api[&quot;api/login.js&quot;] --&gt; req_js[&quot;utils/request.js&quot;]
+  menu_api[&quot;api/menu.js&quot;] --&gt; req_js
+  system_user[&quot;api/system/user.js&quot;] --&gt; req_js
+  system_role[&quot;api/system/role.js&quot;] --&gt; req_js
+  system_dept[&quot;api/system/dept.js&quot;] --&gt; req_js
+  system_config[&quot;api/system/config.js&quot;] --&gt; req_js
+  gen_api[&quot;api/tool/gen.js&quot;] --&gt; req_js
+  req_js --&gt; error_code[&quot;utils/errorCode.js&quot;]
+  req_js --&gt; ruoyi_util[&quot;utils/ruoyi.js&quot;]
+  req_js --&gt; element_ui[&quot;Element UI&lt;br/&gt;Notification/MessageBox/Message/Loading&quot;]
+  req_js --&gt; file_saver[&quot;file-saver&quot;]
+  req_js --&gt; axios_dep[&quot;axios&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:1-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/errorCode.js:1-6</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/ruoyi.js:192-228</span></li>
+<li><span class="fileref">zealux-ai-ui-master/package.json:31-60</span></li>
+</ul>
+<h2 id="性能与可维护性建议"><a class="anchor" href="#性能与可维护性建议">#</a>性能与可维护性建议</h2><ol>
+<li><strong>避免在业务组件中直接调用 Axios</strong>：所有接口都应经过 <code>src/api/*</code> 模块，便于统一管理路径、参数与错误处理。</li>
+<li><strong>谨慎使用重复提交防护</strong>：对于大文件或高频按钮，必要时设置 <code>repeatSubmit = false</code>，但要避免误放行真正重复请求。</li>
+<li><strong>合理设置超时时间</strong>：默认 10 秒适用于多数接口；验证码、文件下载等长耗时接口应在调用处覆盖 <code>timeout</code>。</li>
+<li><strong>统一错误文案</strong>：如果后端频繁返回固定业务错误码，建议在 <code>errorCode.js</code> 中补充对应键，减少分支判断。</li>
+<li><strong>避免在响应拦截器中抛出复杂对象</strong>：当前网络异常分支返回 <code>Promise.reject(error)</code>，调用方可根据 <code>message</code> 判断，但部分非 200 业务错误只返回字符串 <code>&#39;error&#39;</code>，上层捕获时需兼容。</li>
+<li><strong>文件上传与下载分离</strong>：普通 JSON 接口保持默认 <code>Content-Type</code>；文件上传使用 FormData；文件下载使用 <code>request.download</code>。</li>
+<li><strong>前端不暴露敏感凭据</strong>：Token 来自 <code>utils/auth</code>，不要在日志或界面中打印完整 Token。</li>
+</ol>
+<p>[本节为通用建议，不直接分析具体文件]</p>
+<h2 id="故障排查清单"><a class="anchor" href="#故障排查清单">#</a>故障排查清单</h2><h3 id="网络异常"><a class="anchor" href="#网络异常">#</a>网络异常</h3><ul>
+<li>现象：浏览器控制台出现“后端接口连接异常”“系统接口请求超时”“系统接口 xxx 异常”。</li>
+<li>排查步骤：<ol>
+<li>检查开发服务器是否启动，端口是否正确。</li>
+<li>检查 <code>VUE_APP_BASE_API</code> 环境变量是否与 <code>vue.config.js</code> 中代理规则一致。</li>
+<li>检查后端服务是否运行在 <code>http://127.0.0.1:8080</code>。</li>
+<li>检查防火墙、代理、Docker 或容器网络是否阻断连接。</li>
+<li>对超时问题适当增大接口 <code>timeout</code>。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:108-118</span></li>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:23-51</span></li>
+</ul>
+<h3 id="Token-过期或丢失"><a class="anchor" href="#Token-过期或丢失">#</a>Token 过期或丢失</h3><ul>
+<li>现象：弹出“登录状态已过期”，确认后跳转到 <code>/index</code>。</li>
+<li>排查步骤：<ol>
+<li>检查 <code>utils/auth</code> 中是否保存了 Token。</li>
+<li>检查请求是否被错误地设置 <code>isToken: false</code>。</li>
+<li>检查后端是否要求 <code>Authorization: Bearer &lt;token&gt;</code>。</li>
+<li>检查登录后是否正确调用 <code>getInfo</code> 或相关接口刷新用户信息。</li>
+<li>检查网关或后端是否主动使 Token 失效。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:27-36</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:95-107</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/api/login.js:1-62</span></li>
+</ul>
+<h3 id="CORS-跨域报错"><a class="anchor" href="#CORS-跨域报错">#</a>CORS 跨域报错</h3><ul>
+<li>现象：开发环境出现跨域错误或预检请求失败。</li>
+<li>排查步骤：<ol>
+<li>确认使用 <code>npm run dev</code> 启动前端开发服务器。</li>
+<li>确认 <code>vue.config.js</code> 中 <code>proxy</code> 的 <code>changeOrigin</code> 为 <code>true</code>。</li>
+<li>确认请求路径以 <code>VUE_APP_BASE_API</code> 开头。</li>
+<li>如果绕过开发服务器直接访问后端，需在后端或网关开启 CORS。</li>
+<li>生产环境应通过 Nginx 反向代理解决跨域，而不是依赖浏览器跨域白名单。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/vue.config.js:23-51</span></li>
+</ul>
+<h3 id="文件上传失败"><a class="anchor" href="#文件上传失败">#</a>文件上传失败</h3><ul>
+<li>现象：头像上传或其他文件上传接口返回错误。</li>
+<li>排查步骤：<ol>
+<li>确认调用处是否设置正确的 <code>Content-Type</code>。</li>
+<li>确认传入的是 <code>FormData</code> 或后端期望的表单数据。</li>
+<li>检查后端是否启用文件上传解析。</li>
+<li>检查文件大小限制与临时目录权限。</li>
+<li>检查 <code>request.js</code> 中默认 <code>Content-Type</code> 是否被意外覆盖。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/api/system/user.js:90-98</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:12-18</span></li>
+</ul>
+<h3 id="文件下载失败"><a class="anchor" href="#文件下载失败">#</a>文件下载失败</h3><ul>
+<li>现象：点击导出后没有下载文件，或下载后显示错误消息。</li>
+<li>排查步骤：<ol>
+<li>确认调用的是 <code>request.download</code>。</li>
+<li>确认后端返回的是二进制流或文件名正确。</li>
+<li>检查 <code>blobValidate</code> 是否能识别返回类型。</li>
+<li>检查 <code>file-saver</code> 的 <code>saveAs</code> 是否被浏览器安全策略阻止。</li>
+<li>检查后端是否返回了 JSON 错误而非文件流。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:119-152</span></li>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/ruoyi.js:221-228</span></li>
+</ul>
+<h3 id="重复提交被拦截"><a class="anchor" href="#重复提交被拦截">#</a>重复提交被拦截</h3><ul>
+<li>现象：连续快速点击按钮时提示“数据正在处理，请勿重复提交”。</li>
+<li>排查步骤：<ol>
+<li>确认请求是否为 POST 或 PUT。</li>
+<li>确认没有设置 <code>headers.repeatSubmit = false</code>。</li>
+<li>确认请求 URL 和请求体在 1 秒内完全相同。</li>
+<li>如果业务确实允许快速重复提交，应在调用处设置 <code>repeatSubmit = false</code>。</li>
+</ol>
+</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">zealux-ai-ui-master/src/utils/request.js:47-85</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本前端 API 层以 <code>src/utils/request.js</code> 为中心，封装了 Axios 实例、Token 注入、重复提交防护、统一错误处理与消息提示、通用下载能力。业务 API 模块按认证、菜单、系统管理与代码生成等域拆分，遵循 RESTful 风格，统一通过 <code>request()</code> 返回 Promise。开发环境通过 <code>vue.config.js</code> 的 <code>devServer.proxy</code> 解决跨域；生产环境应由 Nginx 反向代理后端接口。新增接口时应复用现有模式，避免在业务组件中直接调用 Axios，并确保 Token、Content-Type、分页参数与错误处理保持一致。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">← 状态管理与数据流</a>
+    <a class="next" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#核心请求封装分析">核心请求封装分析</a></li><li class="d3"><a href="#Axios-实例基础配置">Axios 实例基础配置</a></li><li class="d3"><a href="#响应拦截器与消息提示">响应拦截器与消息提示</a></li><li class="d3"><a href="#通用下载方法">通用下载方法</a></li><li class="d2"><a href="#统一错误处理机制">统一错误处理机制</a></li><li class="d2"><a href="#API-模块分类与函数签名">API 模块分类与函数签名</a></li><li class="d3"><a href="#认证模块：`apilogin.js`">认证模块：`api/login.js`</a></li><li class="d3"><a href="#路由与菜单模块：`apimenu.js`">路由与菜单模块：`api/menu.js`</a></li><li class="d3"><a href="#系统用户模块：`apisystemuser.js`">系统用户模块：`api/system/user.js`</a></li><li class="d3"><a href="#系统角色模块：`apisystemrole.js`">系统角色模块：`api/system/role.js`</a></li><li class="d3"><a href="#部门、岗位、字典、公告、日志等系统模块">部门、岗位、字典、公告、日志等系统模块</a></li><li class="d3"><a href="#代码生成模块：`apitoolgen.js`">代码生成模块：`api/tool/gen.js`</a></li><li class="d2"><a href="#前后端接口约定">前后端接口约定</a></li><li class="d3"><a href="#RESTful-风格">RESTful 风格</a></li><li class="d3"><a href="#分页参数">分页参数</a></li><li class="d3"><a href="#通用响应体结构">通用响应体结构</a></li><li class="d3"><a href="#文件上传与下载">文件上传与下载</a></li><li class="d3"><a href="#Swagger-文档地址">Swagger 文档地址</a></li><li class="d2"><a href="#跨域、代理与部署">跨域、代理与部署</a></li><li class="d3"><a href="#开发环境跨域与代理">开发环境跨域与代理</a></li><li class="d3"><a href="#Nginx-部署">Nginx 部署</a></li><li class="d3"><a href="#Mock-开发与测试环境切换">Mock 开发与测试环境切换</a></li><li class="d2"><a href="#新增业务接口模板">新增业务接口模板</a></li><li class="d2"><a href="#依赖关系图">依赖关系图</a></li><li class="d2"><a href="#性能与可维护性建议">性能与可维护性建议</a></li><li class="d2"><a href="#故障排查清单">故障排查清单</a></li><li class="d3"><a href="#网络异常">网络异常</a></li><li class="d3"><a href="#Token-过期或丢失">Token 过期或丢失</a></li><li class="d3"><a href="#CORS-跨域报错">CORS 跨域报错</a></li><li class="d3"><a href="#文件上传失败">文件上传失败</a></li><li class="d3"><a href="#文件下载失败">文件下载失败</a></li><li class="d3"><a href="#重复提交被拦截">重复提交被拦截</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

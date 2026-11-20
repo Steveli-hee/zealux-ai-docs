@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>项目概述 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec" open><summary>项目概述</summary><ul><li><a href="../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html" class="active">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">项目概述 / <b>项目概述</b></div><article><h1 id="项目概述"><a class="anchor" href="#项目概述">#</a>项目概述</h1><cite>
+**本文引用的文件**   
+- [根 pom.xml](file://zealux-ai-master/pom.xml)
+- [前端 package.json](file://zealux-ai-ui-master/package.json)
+- [网关启动类 RuoYiGatewayApplication.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/RuoYiGatewayApplication.java)
+- [认证启动类 RuoYiAuthApplication.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/RuoYiAuthApplication.java)
+- [系统服务启动类 RuoYiSystemApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/RuoYiSystemApplication.java)
+- [代码生成器启动类 RuoYiGenApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/RuoYiGenApplication.java)
+- [定时任务启动类 RuoYiJobApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/RuoYiJobApplication.java)
+- [文件服务启动类 RuoYiFileApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/RuoYiFileApplication.java)
+- [AI leads 启动类 ZealuxAiLeadsApplication.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-leads/src/main/java/com/zealux/leads/ZealuxAiLeadsApplication.java)
+- [可视化监控启动类 RuoYiMonitorApplication.java](file://zealux-ai-master/zealux-ai-visual/zealux-ai-monitor/src/main/java/com/zealux/modules/monitor/RuoYiMonitorApplication.java)
+- [网关 bootstrap.yml](file://zealux-ai-master/zealux-ai-gateway/src/main/resources/bootstrap.yml)
+- [前端入口 main.js](file://zealux-ai-ui-master/src/main.js)
+- [前端权限控制 permission.js](file://zealux-ai-ui-master/src/permission.js)
+- [前端应用状态 store/index.js](file://zealux-ai-ui-master/src/store/index.js)
+- [通用核心模块 zealux-ai-common-core](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-core/src/main/java/com/zealux/common/core/)
+- [安全模块 zealux-ai-common-security](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-security/src/main/java/com/zealux/common/security/)
+- [数据脱敏模块 ruoyi-common-sensitive](file://zealux-ai-master/zealux-ai-common/ruoyi-common-sensitive/src/main/java/com/ruoyi/common/sensitive/)
+- [AI 配置模块 zealux-ai-common-ai](file://zealux-ai-master/zealux-ai-common/zealux-ai-common-ai/src/main/java/com/zealux/common/ai/config/)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与可扩展性">性能与可扩展性</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+<li><a href="#附录技术栈版本表">附录：技术栈版本表</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本仓库是开源 RuoYi-Cloud 3.6.5 的重命名二次开发产物，工程根 <code>pom.xml</code> 的 <code>artifactId=zealux-ai</code>、<code>version=3.6.5</code>；前端 <code>package.json</code> 的名称仍为 <code>ruoyi@3.6.5</code>。尽管包名已改为 <code>com.zealux</code>，但七个后端服务的启动类仍保留 <code>RuoYi*Application.java</code> 命名，公共库子目录 <code>zealux-ai-common/ruoyi-common-sensitive</code> 的目录名也未被重命名。这说明本项目应被理解为“基于 RuoYi-Cloud 的微服务二次开发基座”，而不是从零自研框架。</p>
+<p>系统采用 Spring Cloud Alibaba + Vue2/Element UI 的前后端分离架构，已实现的核心能力包括：</p>
+<ul>
+<li>RBAC 角色权限模型</li>
+<li>Nacos 服务注册与配置中心</li>
+<li>Sentinel 流量治理</li>
+<li>Seata 分布式事务扩展点</li>
+<li>MyBatis-Plus 持久层</li>
+<li>代码生成器</li>
+<li>定时任务</li>
+<li>MinIO 文件服务</li>
+<li>AI 对话与向量检索扩展（当前处于不完整扩展阶段）</li>
+</ul>
+<p>需要特别注意：<strong>本仓库中没有 CRM 相关数据库表或完整 CRM 业务接口</strong>，也没有 <code>/leads/**</code> 网关路由；<code>zealux-ai-leads</code> 模块当前仅有少量 Java 文件，且本地 Redis 缺少 RediSearch 模块，因此该服务在当前工作区中不可运行。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>项目由 Maven 多模块构成，主要划分为四类：</p>
+<ul>
+<li>根聚合工程：<code>zealux-ai-master/pom.xml</code></li>
+<li>基础设施模块：<code>zealux-ai-gateway</code>、<code>zealux-ai-auth</code>、<code>zealux-ai-visual</code></li>
+<li>业务模块：<code>zealux-ai-modules/{system,gen,job,file,leads}</code></li>
+<li>通用库模块：<code>zealux-ai-common/*</code></li>
+<li>前端工程：<code>zealux-ai-ui-master</code>（独立仓库），以及一份不参与构建的重复拷贝 <code>zealux-ai-master/zealux-ai-ui</code></li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Root[&quot;根工程&lt;br/&gt;artifactId=zealux-ai&lt;br/&gt;version=3.6.5&quot;] --&gt; Gateway[&quot;网关服务&lt;br/&gt;端口 8080&quot;]
+    Root --&gt; Auth[&quot;认证服务&lt;br/&gt;端口 9200&quot;]
+    Root --&gt; Visual[&quot;可视化监控&lt;br/&gt;端口 9100&quot;]
+    Root --&gt; Modules[&quot;业务模块集合&quot;]
+    Root --&gt; Common[&quot;通用库集合&quot;]
+    Root --&gt; Frontend[&quot;前端工程&lt;br/&gt;ruoyi@3.6.5&quot;]
+
+    Modules --&gt; System[&quot;系统服务&lt;br/&gt;9201&quot;]
+    Modules --&gt; Gen[&quot;代码生成器&lt;br/&gt;9202&quot;]
+    Modules --&gt; Job[&quot;定时任务&lt;br/&gt;9203&quot;]
+    Modules --&gt; File[&quot;文件服务&lt;br/&gt;9300&quot;]
+    Modules --&gt; Leads[&quot;AI leads 扩展&lt;br/&gt;9301&quot;]
+
+    Common --&gt; Core[&quot;core 核心&quot;]
+    Common --&gt; Security[&quot;security 安全&quot;]
+    Common --&gt; Log[&quot;log 日志&quot;]
+    Common --&gt; Redis[&quot;redis 缓存&quot;]
+    Common --&gt; Swagger[&quot;swagger API&quot;]
+    Common --&gt; Datasource[&quot;datasource 多数据源&quot;]
+    Common --&gt; Datascope[&quot;datascope 权限范围&quot;]
+    Common --&gt; Sensitive[&quot;sensitive 数据脱敏&quot;]
+    Common --&gt; Ai[&quot;ai AI 扩展&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:1-12</span></li>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+<li><span class="fileref">根 pom.xml:261-331</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:1-12</span></li>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+<li><span class="fileref">根 pom.xml:261-331</span></li>
+<li><span class="fileref">前端 package.json:1-20</span></li>
+</ul>
+<h2 id="核心组件"><a class="anchor" href="#核心组件">#</a>核心组件</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>类型</th>
+<th align="right">端口</th>
+<th>职责</th>
+<th>是否已实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网关</td>
+<td>Spring Cloud Gateway</td>
+<td align="right">8080</td>
+<td>统一入口、Nacos 发现、Sentinel 网关限流</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>认证</td>
+<td>OAuth2/JWT 认证服务</td>
+<td align="right">9200</td>
+<td>登录、令牌签发与校验、RBAC 鉴权</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>系统</td>
+<td>系统管理服务</td>
+<td align="right">9201</td>
+<td>用户、角色、菜单、字典、操作日志等基础功能</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>代码生成器</td>
+<td>模板代码生成服务</td>
+<td align="right">9202</td>
+<td>根据数据库元信息生成前后端代码</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td>XXL-JOB 调度服务</td>
+<td align="right">9203</td>
+<td>任务定义、执行与日志</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>文件服务</td>
+<td>MinIO 文件上传下载服务</td>
+<td align="right">9300</td>
+<td>文件存储、预览与管理</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td>AI leads</td>
+<td>AI 对话与向量检索扩展</td>
+<td align="right">9301</td>
+<td>仅含少量控制器、领域对象与服务骨架</td>
+<td>未完成</td>
+</tr>
+<tr>
+<td>可视化监控</td>
+<td>Spring Boot Admin 监控</td>
+<td align="right">9100</td>
+<td>微服务健康与运行状态监控</td>
+<td>已实现</td>
+</tr>
+</tbody></table>
+<p>上述服务启动类名称可直接作为定位依据：</p>
+<ul>
+<li>网关：<code>RuoYiGatewayApplication.java</code></li>
+<li>认证：<code>RuoYiAuthApplication.java</code></li>
+<li>系统：<code>RuoYiSystemApplication.java</code></li>
+<li>代码生成器：<code>RuoYiGenApplication.java</code></li>
+<li>定时任务：<code>RuoYiJobApplication.java</code></li>
+<li>文件服务：<code>RuoYiFileApplication.java</code></li>
+<li>AI leads：<code>ZealuxAiLeadsApplication.java</code></li>
+<li>监控：<code>RuoYiMonitorApplication.java</code></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">网关启动类 RuoYiGatewayApplication.java</span></li>
+<li><span class="fileref">认证启动类 RuoYiAuthApplication.java</span></li>
+<li><span class="fileref">系统服务启动类 RuoYiSystemApplication.java</span></li>
+<li><span class="fileref">代码生成器启动类 RuoYiGenApplication.java</span></li>
+<li><span class="fileref">定时任务启动类 RuoYiJobApplication.java</span></li>
+<li><span class="fileref">文件服务启动类 RuoYiFileApplication.java</span></li>
+<li><span class="fileref">AI leads 启动类 ZealuxAiLeadsApplication.java</span></li>
+<li><span class="fileref">可视化监控启动类 RuoYiMonitorApplication.java</span></li>
+</ul>
+<h2 id="架构总览"><a class="anchor" href="#架构总览">#</a>架构总览</h2><p>系统整体遵循典型的微服务分层：浏览器通过前端 SPA 访问网关，网关再转发到认证、系统、代码生成、定时任务、文件服务和监控服务。所有服务通过 Nacos 完成服务注册与配置获取，并集成 Sentinel 进行流量治理。数据库使用 MariaDB，缓存使用 Redis，MinIO 提供文件存储，Seata 作为分布式事务扩展点引入。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Browser as &quot;浏览器&quot;
+    participant Frontend as &quot;Vue2 前端&lt;br/&gt;ruoyi@3.6.5&quot;
+    participant Gateway as &quot;网关 8080&quot;
+    participant Auth as &quot;认证服务 9200&quot;
+    participant System as &quot;系统服务 9201&quot;
+    participant Nacos as &quot;Nacos 注册与配置中心&quot;
+    participant DB as &quot;MariaDB&quot;
+    participant Cache as &quot;Redis&quot;
+    participant Storage as &quot;MinIO 文件存储&quot;
+
+    Browser-&gt;&gt;Frontend: 打开管理后台
+    Frontend-&gt;&gt;Gateway: 请求 /auth/**、/system/** 等接口
+    Gateway-&gt;&gt;Nacos: 解析服务地址
+    Gateway-&gt;&gt;Auth: 转发认证请求
+    Auth--&gt;&gt;Gateway: 返回 JWT 令牌
+    Gateway-&gt;&gt;System: 转发受保护的业务请求
+    System-&gt;&gt;DB: 读写业务数据
+    System-&gt;&gt;Cache: 读取缓存或会话
+    System-&gt;&gt;Storage: 上传或下载文件
+    System--&gt;&gt;Frontend: 返回 JSON 响应
+    Frontend--&gt;&gt;Browser: 渲染页面</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">网关 bootstrap.yml:1-44</span></li>
+<li><span class="fileref">前端入口 main.js</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+</ul>
+<p>从前端视角看，SPA 通过 Axios 调用后端 REST 接口，路由与权限由前端 <code>router</code>、<code>store</code>、<code>permission.js</code> 共同维护；从后端视角看，网关承担统一入口和鉴权拦截，各业务服务只暴露最小 API 集。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">网关 bootstrap.yml:1-44</span></li>
+<li><span class="fileref">前端入口 main.js</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+</ul>
+<h2 id="详细组件分析"><a class="anchor" href="#详细组件分析">#</a>详细组件分析</h2><h3 id="微服务与网关"><a class="anchor" href="#微服务与网关">#</a>微服务与网关</h3><p>网关服务监听 8080 端口，使用 Spring Cloud Gateway 接入 Nacos 服务发现与配置中心，并启用 Sentinel 网关流控规则。网关配置中明确指定 Nacos 地址 <code>127.0.0.1:8848</code>，同时声明共享配置文件与 Sentinel 控制台地址。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;客户端请求进入&quot;] --&gt; Route[&quot;网关路由匹配&quot;]
+    Route --&gt; AuthCheck{&quot;是否需要鉴权？&quot;}
+    AuthCheck --&gt;|否| Direct[&quot;直接转发到目标服务&quot;]
+    AuthCheck --&gt;|Yes| Validate[&quot;校验 JWT 与权限&quot;]
+    Validate --&gt; Valid{&quot;校验通过？&quot;}
+    Valid --&gt;|否| Deny[&quot;返回未授权响应&quot;]
+    Valid --&gt;|是| Forward[&quot;转发到业务服务&quot;]
+    Forward --&gt; Limit[&quot;Sentinel 限流检查&quot;]
+    Limit --&gt; Return[&quot;返回响应&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">网关 bootstrap.yml:1-44</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">网关 bootstrap.yml:1-44</span></li>
+</ul>
+<h3 id="认证与-RBAC-权限"><a class="anchor" href="#认证与-RBAC-权限">#</a>认证与 RBAC 权限</h3><p>认证服务负责登录、令牌签发与权限校验；系统服务则承载 RBAC 所需的基础数据，如用户、角色、菜单与权限码。前端通过 <code>permission.js</code> 与 <code>store/modules/permission.js</code> 维护动态路由与按钮级权限，后端通过注解或拦截器控制接口访问。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant User as &quot;用户&quot;
+    participant FE as &quot;前端&quot;
+    participant GW as &quot;网关&quot;
+    participant AUTH as &quot;认证服务&quot;
+    participant SYS as &quot;系统服务&quot;
+    participant CACHE as &quot;Redis&quot;
+
+    User-&gt;&gt;FE: 输入账号与口令
+    FE-&gt;&gt;GW: POST /auth/login
+    GW-&gt;&gt;AUTH: 转发登录请求
+    AUTH-&gt;&gt;SYS: 查询用户与角色
+    SYS--&gt;&gt;AUTH: 返回用户权限信息
+    AUTH-&gt;&gt;CACHE: 写入会话或缓存
+    AUTH--&gt;&gt;GW: 返回令牌
+    GW--&gt;&gt;FE: 返回登录结果
+    FE-&gt;&gt;FE: 保存令牌并加载动态菜单</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">认证启动类 RuoYiAuthApplication.java</span></li>
+<li><span class="fileref">系统服务启动类 RuoYiSystemApplication.java</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+</ul>
+<p>面向初学者的说明：</p>
+<ul>
+<li><strong>微服务</strong>：把一个大应用拆成多个小服务，每个服务负责一个业务能力，可独立部署。</li>
+<li><strong>前后端分离</strong>：前端用 Vue2 和 Element UI 构建界面，后端用 Spring Boot 提供 REST API，两者通过 HTTP 通信。</li>
+<li><strong>RBAC</strong>：以“用户—角色—权限”为核心，用户拥有角色，角色拥有菜单或接口权限，从而决定能看到哪些页面、能调用哪些接口。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">认证启动类 RuoYiAuthApplication.java</span></li>
+<li><span class="fileref">系统服务启动类 RuoYiSystemApplication.java</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+</ul>
+<h3 id="代码生成器与定时任务"><a class="anchor" href="#代码生成器与定时任务">#</a>代码生成器与定时任务</h3><p>代码生成器基于 Velocity 模板与数据库元信息生成前后端代码；定时任务模块集成调度框架，提供任务定义、执行与日志查看。两者都通过网关暴露接口，并由系统权限模型控制访问。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    GenStart[&quot;选择数据库表&quot;] --&gt; Template[&quot;Velocity 模板渲染&quot;]
+    Template --&gt; Code[&quot;生成 Controller/Service/Mapper/前端页面&quot;]
+    Code --&gt; Review[&quot;开发者审查并入库&quot;]
+
+    JobStart[&quot;创建定时任务&quot;] --&gt; Schedule[&quot;调度器触发&quot;]
+    Schedule --&gt; Exec[&quot;执行业务方法&quot;]
+    Exec --&gt; Log[&quot;记录任务日志&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">代码生成器启动类 RuoYiGenApplication.java</span></li>
+<li><span class="fileref">定时任务启动类 RuoYiJobApplication.java</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">代码生成器启动类 RuoYiGenApplication.java</span></li>
+<li><span class="fileref">定时任务启动类 RuoYiJobApplication.java</span></li>
+</ul>
+<h3 id="文件服务与-MinIO"><a class="anchor" href="#文件服务与-MinIO">#</a>文件服务与 MinIO</h3><p>文件服务封装了文件上传、下载与管理逻辑，底层使用 MinIO 作为对象存储。前端提供图片与文件上传组件，后端将文件路径或 URL 返回给前端展示。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Upload[&quot;前端上传文件&quot;] --&gt; Gateway[&quot;网关转发&quot;]
+    Gateway --&gt; FileSvc[&quot;文件服务&quot;]
+    FileSvc --&gt; MinIO[&quot;MinIO 存储桶&quot;]
+    MinIO --&gt; FileSvc[&quot;返回文件地址&quot;]
+    FileSvc --&gt; Frontend[&quot;返回存储路径或 URL&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">文件服务启动类 RuoYiFileApplication.java</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">文件服务启动类 RuoYiFileApplication.java</span></li>
+</ul>
+<h3 id="AI-leads-扩展：现状与未完成点"><a class="anchor" href="#AI-leads-扩展：现状与未完成点">#</a>AI leads 扩展：现状与未完成点</h3><p><code>zealux-ai-leads</code> 模块包含 <code>ZealuxAiLeadsApplication.java</code>、控制器、领域对象、Mapper、内存上下文和服务类等少量 Java 文件，其意图是扩展 AI 对话与文档 ETL、向量检索能力。但在当前仓库中，它存在以下关键缺失：</p>
+<ol>
+<li>没有对应的前端页面与菜单入口。</li>
+<li>Nacos 中没有 <code>zealux-ai-leads-dev.yml</code> 配置。</li>
+<li>网关没有 <code>/leads/**</code> 路由。</li>
+<li>本地 Redis 缺少 RediSearch 模块，导致向量检索依赖无法正常运行。</li>
+<li><code>AiSession</code> 只有实体类，不存在对应的数据库表、Mapper 或接口。</li>
+</ol>
+<p>因此，不能把 AI leads 描述为“系统已具备的 CRM 或对话能力”，只能把它视为尚未完成的扩展点。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Idea[&quot;AI 对话与向量检索设想&quot;] --&gt; Current[&quot;当前仓库中的最少实现&quot;]
+    Current --&gt; MissingUI[&quot;缺少前端页面与菜单&quot;]
+    Current --&gt; MissingRoute[&quot;网关无 /leads/** 路由&quot;]
+    Current --&gt; MissingConfig[&quot;Nacos 无 leads 配置&quot;]
+    Current --&gt; MissingVector[&quot;Redis 缺 RediSearch&quot;]
+    Current --&gt; MissingTable[&quot;AiSession 无数据库表与 Mapper&quot;]
+    MissingUI --&gt; NotRunnable[&quot;服务当前不可运行&quot;]
+    MissingRoute --&gt; NotRunnable
+    MissingConfig --&gt; NotRunnable
+    MissingVector --&gt; NotRunnable
+    MissingTable --&gt; NotRunnable</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">AI leads 启动类 ZealuxAiLeadsApplication.java</span></li>
+<li><span class="fileref">AI 配置模块 zealux-ai-common-ai</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AI leads 启动类 ZealuxAiLeadsApplication.java</span></li>
+<li><span class="fileref">AI 配置模块 zealux-ai-common-ai</span></li>
+</ul>
+<h3 id="前端工程结构"><a class="anchor" href="#前端工程结构">#</a>前端工程结构</h3><p>前端位于 <code>zealux-ai-ui-master/src</code>，采用 Vue2、Vue Router、Vuex 和 Element UI。其目录结构可以按职责分为七层：</p>
+<ul>
+<li><code>api/</code>：Axios 封装后的后端接口调用</li>
+<li><code>views/</code>：页面视图</li>
+<li><code>store/</code>：全局状态管理</li>
+<li><code>router/</code>：前端路由</li>
+<li><code>permission.js</code>：全局权限守卫</li>
+<li><code>components/</code>：可复用组件</li>
+<li><code>layout/</code>：主布局与侧边栏</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Main[&quot;main.js 应用入口&quot;] --&gt; Router[&quot;router 前端路由&quot;]
+    Main --&gt; Store[&quot;store Vuex 状态&quot;]
+    Main --&gt; Permission[&quot;permission.js 权限守卫&quot;]
+    Permission --&gt; Views[&quot;views 页面&quot;]
+    Views --&gt; Api[&quot;api 后端接口&quot;]
+    Views --&gt; Components[&quot;components 通用组件&quot;]
+    Views --&gt; Layout[&quot;layout 主布局&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">前端入口 main.js</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+<li><span class="fileref">前端应用状态 store/index.js</span></li>
+</ul>
+<p>需要注意：<code>zealux-ai-master/zealux-ai-ui</code> 是与 <code>zealux-ai-ui-master</code> 逐字节相同的重复拷贝，不在根 <code>pom.xml</code> 的 <code>&lt;modules&gt;</code> 中，也不参与构建。文档以后端嵌入的这份拷贝不作为独立前端模块引用。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">前端入口 main.js</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+<li><span class="fileref">前端应用状态 store/index.js</span></li>
+<li><span class="fileref">前端 package.json:1-20</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><p>根 <code>pom.xml</code> 通过 <code>dependencyManagement</code> 统一管理 Spring Boot、Spring Cloud、Spring Cloud Alibaba、MyBatis、MyBatis-Plus、Hutool、Druid、Fastjson2、JWT、MinIO、Velocity、Springdoc 等第三方依赖，并通过内部 common 模块聚合核心能力。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph LR
+    RootPom[&quot;根 pom.xml&quot;] --&gt; SpringBoot[&quot;Spring Boot 3.3.5&quot;]
+    RootPom --&gt; SpringCloud[&quot;Spring Cloud 2023.0.3&quot;]
+    RootPom --&gt; SpringCloudAlibaba[&quot;Spring Cloud Alibaba 2023.0.1.2&quot;]
+    RootPom --&gt; MybatisPlus[&quot;MyBatis-Plus 3.5.10&quot;]
+    RootPom --&gt; Hutool[&quot;Hutool 5.8.16&quot;]
+    RootPom --&gt; Druid[&quot;Druid 1.2.23&quot;]
+    RootPom --&gt; Fastjson[&quot;Fastjson2 2.0.53&quot;]
+    RootPom --&gt; Jwt[&quot;JWT 0.9.1&quot;]
+    RootPom --&gt; Minio[&quot;MinIO 8.2.2&quot;]
+    RootPom --&gt; Velocity[&quot;Velocity 2.3&quot;]
+    RootPom --&gt; Springdoc[&quot;Springdoc 2.6.0&quot;]
+    RootPom --&gt; CommonModules[&quot;通用模块依赖&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+</ul>
+<p>通用模块之间的依赖关系可概括为：</p>
+<ul>
+<li><code>core</code> 提供基础常量、异常、工具与 Web 抽象</li>
+<li><code>security</code> 提供鉴权与安全相关能力</li>
+<li><code>datascope</code> 提供数据权限范围</li>
+<li><code>datasource</code> 提供多数据源注解</li>
+<li><code>log</code> 提供操作日志切面</li>
+<li><code>redis</code> 提供 Redis 工具与自动装配</li>
+<li><code>swagger</code> 提供 OpenAPI/Swagger 配置</li>
+<li><code>sensitive</code> 提供数据脱敏注解与序列化</li>
+<li><code>ai</code> 提供 ChatClient 与 Redis 向量配置</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Core[&quot;core 核心&quot;] --&gt; All[&quot;业务服务&quot;]
+    Security[&quot;security 安全&quot;] --&gt; All
+    Datascope[&quot;datascope 权限范围&quot;] --&gt; All
+    Datasource[&quot;datasource 多数据源&quot;] --&gt; All
+    Log[&quot;log 日志&quot;] --&gt; All
+    Redis[&quot;redis 缓存&quot;] --&gt; All
+    Swagger[&quot;swagger API&quot;] --&gt; All
+    Sensitive[&quot;sensitive 数据脱敏&quot;] --&gt; All
+    Ai[&quot;ai AI 扩展&quot;] --&gt; Leads[&quot;AI leads 模块&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:130-260</span></li>
+<li><span class="fileref">通用核心模块 zealux-ai-common-core</span></li>
+<li><span class="fileref">安全模块 zealux-ai-common-security</span></li>
+<li><span class="fileref">数据脱敏模块 ruoyi-common-sensitive</span></li>
+<li><span class="fileref">AI 配置模块 zealux-ai-common-ai</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+<li><span class="fileref">根 pom.xml:130-260</span></li>
+<li><span class="fileref">通用核心模块 zealux-ai-common-core</span></li>
+<li><span class="fileref">安全模块 zealux-ai-common-security</span></li>
+<li><span class="fileref">数据脱敏模块 ruoyi-common-sensitive</span></li>
+<li><span class="fileref">AI 配置模块 zealux-ai-common-ai</span></li>
+</ul>
+<h2 id="性能与可扩展性"><a class="anchor" href="#性能与可扩展性">#</a>性能与可扩展性</h2><ul>
+<li>网关层可通过 Sentinel 配置限流规则，防止突发流量打垮下游服务。</li>
+<li>Redis 用于缓存热点数据与部分会话信息，减少数据库压力。</li>
+<li>MyBatis-Plus 提供分页、条件构造器等能力，配合 Druid 连接池提升数据库访问效率。</li>
+<li>MinIO 支持横向扩展的对象存储，适合企业级文件增长场景。</li>
+<li>Seata 在工程中作为依赖引入，可作为分布式事务扩展点；是否实际启用取决于具体业务模块的配置与事务边界设计。</li>
+<li>AI 扩展目前仅提供了 ChatClient 与 Redis 向量配置骨架，若要真正落地向量检索，还需要补齐 Redis RediSearch、索引构建、向量存储表或服务间调用链路。</li>
+</ul>
+<p>[本节为通用建议，不直接分析具体源码文件]</p>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><ul>
+<li><strong>Nacos 无法连接</strong>：检查网关 <code>bootstrap.yml</code> 中的 Nacos 地址是否为 <code>127.0.0.1:8848</code>，并确保 Nacos 服务已启动且配置 dataId 正确。</li>
+<li><strong>网关 404 或路由失败</strong>：确认请求前缀是否属于网关已配置的 <code>/auth/**</code>、<code>/system/**</code>、<code>/code/**</code>、<code>/schedule/**</code>、<code>/file/**</code>，当前仓库没有 <code>/leads/**</code> 路由。</li>
+<li><strong>AI leads 服务不可运行</strong>：除 Redis 缺少 RediSearch 外，还需补充 Nacos 配置、网关路由、前端页面及必要的数据库表与 Mapper。</li>
+<li><strong>前端权限不生效</strong>：检查 <code>permission.js</code> 是否正确处理登录态、动态路由与按钮权限指令。</li>
+<li><strong>数据库初始化脚本误读</strong>：<code>_setup/sql</code> 下的 <code>ry_20240629.sql</code>、<code>quartz.sql</code>、<code>ry_config_20240902.sql</code> 是 RuoYi-Cloud 与 Nacos 的第三方初始化脚本，不是本项目的数据库设计文件。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">网关 bootstrap.yml:1-44</span></li>
+<li><span class="fileref">前端权限控制 permission.js</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>Zealux-AI 是一个基于 RuoYi-Cloud 3.6.5 的企业级微服务快速开发平台二次开发分支。它保留了 RuoYi 的成熟架构与常见后端能力，并在包名、工程名和部分扩展点上做了品牌化调整。对于初学者，可以把该项目当作学习 Spring Cloud Alibaba、微服务拆分、RBAC 权限和前后端分离的入门样板；对于有经验的开发者，它可以作为进一步扩展 AI 对话、向量检索、CRM 等业务能力的基座。</p>
+<p>需要严格区分“已实现”和“未完成”：</p>
+<ul>
+<li>已实现：网关、认证、系统、代码生成器、定时任务、文件服务、可视化监控、RBAC、Nacos、Sentinel、MyBatis-Plus、MinIO、Seata 依赖。</li>
+<li>未完成：AI leads 的完整运行链路、CRM 业务模块、CRM 数据库表、<code>/leads/**</code> 网关路由、<code>AiSession</code> 的数据库映射。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:1-12</span></li>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+<li><span class="fileref">AI leads 启动类 ZealuxAiLeadsApplication.java</span></li>
+</ul>
+<h2 id="附录：技术栈版本表"><a class="anchor" href="#附录：技术栈版本表">#</a>附录：技术栈版本表</h2><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>组件</th>
+<th align="right">版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>运行时</td>
+<td>JDK</td>
+<td align="right">17</td>
+</tr>
+<tr>
+<td>后端框架</td>
+<td>Spring Boot</td>
+<td align="right">3.3.5</td>
+</tr>
+<tr>
+<td>微服务框架</td>
+<td>Spring Cloud</td>
+<td align="right">2023.0.3</td>
+</tr>
+<tr>
+<td>阿里微服务生态</td>
+<td>Spring Cloud Alibaba</td>
+<td align="right">2023.0.1.2</td>
+</tr>
+<tr>
+<td>持久层</td>
+<td>MyBatis-Plus</td>
+<td align="right">3.5.10</td>
+</tr>
+<tr>
+<td>通用工具</td>
+<td>Hutool</td>
+<td align="right">5.8.16</td>
+</tr>
+<tr>
+<td>数据库连接池</td>
+<td>Druid</td>
+<td align="right">1.2.23</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Fastjson2</td>
+<td align="right">2.0.53</td>
+</tr>
+<tr>
+<td>令牌</td>
+<td>JWT</td>
+<td align="right">0.9.1</td>
+</tr>
+<tr>
+<td>文件存储</td>
+<td>MinIO</td>
+<td align="right">8.2.2</td>
+</tr>
+<tr>
+<td>代码模板</td>
+<td>Velocity</td>
+<td align="right">2.3</td>
+</tr>
+<tr>
+<td>API 文档</td>
+<td>Springdoc</td>
+<td align="right">2.6.0</td>
+</tr>
+<tr>
+<td>前端框架</td>
+<td>Vue</td>
+<td align="right">2.6.12</td>
+</tr>
+<tr>
+<td>前端 UI</td>
+<td>Element UI</td>
+<td align="right">2.15.14</td>
+</tr>
+<tr>
+<td>前端包名与版本</td>
+<td><code>ruoyi@3.6.5</code></td>
+<td align="right">3.6.5</td>
+</tr>
+<tr>
+<td>后端工程 artifactId</td>
+<td><code>zealux-ai</code></td>
+<td align="right">3.6.5</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">根 pom.xml:12-130</span></li>
+<li><span class="fileref">前端 package.json:1-20</span></li>
+</ul>
+</article>
+<div class="pager">
+    <span></span>
+    <a class="next" href="../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#核心组件">核心组件</a></li><li class="d2"><a href="#架构总览">架构总览</a></li><li class="d2"><a href="#详细组件分析">详细组件分析</a></li><li class="d3"><a href="#微服务与网关">微服务与网关</a></li><li class="d3"><a href="#认证与-RBAC-权限">认证与 RBAC 权限</a></li><li class="d3"><a href="#代码生成器与定时任务">代码生成器与定时任务</a></li><li class="d3"><a href="#文件服务与-MinIO">文件服务与 MinIO</a></li><li class="d3"><a href="#AI-leads-扩展：现状与未完成点">AI leads 扩展：现状与未完成点</a></li><li class="d3"><a href="#前端工程结构">前端工程结构</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与可扩展性">性能与可扩展性</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d2"><a href="#结论">结论</a></li><li class="d2"><a href="#附录：技术栈版本表">附录：技术栈版本表</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html";</script>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

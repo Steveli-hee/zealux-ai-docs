@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用户管理 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="stylesheet" href="../../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec" open><summary>后端架构设计</summary><ul><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html" class="active">用户管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec"><summary>API 接口文档</summary><ul><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html">API 接口文档</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">后端架构设计 / <b>用户管理</b></div><article><h1 id="用户管理"><a class="anchor" href="#用户管理">#</a>用户管理</h1><cite>
+**本文引用的文件**   
+- [SysUserController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserController.java)
+- [SysUserServiceImpl.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/service/impl/SysUserServiceImpl.java)
+- [SysUser.java](file://zealux-ai-master/zealux-ai-api/zealux-ai-api-system/src/main/java/com/zealux/system/api/domain/SysUser.java)
+- [SysUserMapper.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/mapper/SysUserMapper.java)
+- [SysUserRole.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysUserRole.java)
+- [SysUserPost.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysUserPost.java)
+- [SysPost.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/domain/SysPost.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构定位">项目结构定位</a></li>
+<li><a href="#核心组件总览">核心组件总览</a></li>
+<li><a href="#系统架构与调用链路">系统架构与调用链路</a></li>
+<li><a href="#接口定义与权限说明">接口定义与权限说明</a></li>
+<li><a href="#实体字段与约束">实体字段与约束</a></li>
+<li><a href="#核心业务逻辑">核心业务逻辑</a></li>
+<li><a href="#登录认证与缓存">登录、认证与缓存</a></li>
+<li><a href="#典型操作示例">典型操作示例</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与大数据量优化">性能与大数据量优化</a></li>
+<li><a href="#常见问题与排错建议">常见问题与排错建议</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="引言"><a class="anchor" href="#引言">#</a>引言</h2><p>本页面聚焦于 RuoYi-Cloud 二次开发仓库中的用户管理功能。当前代码以 <code>SysUserController</code> 暴露 REST 接口，以 <code>SysUserServiceImpl</code> 实现用户新增、修改、删除、状态变更、角色授权、岗位关联、数据导入导出等核心逻辑，并以 <code>SysUser</code> 作为前后端共享的用户领域模型。需要特别说明：该系统是开源 RuoYi-Cloud 的重命名二次开发，模块名、启动类名称仍保留原框架痕迹；文档描述应基于实际源码，不将未落地的 CRM 或 AI 能力当作已实现功能。</p>
+<h2 id="项目结构定位"><a class="anchor" href="#项目结构定位">#</a>项目结构定位</h2><p>用户管理后端代码位于系统模块中，对外通过 <code>/user</code> 前缀暴露接口；领域模型在 API 子模块中定义，数据库访问由 <code>SysUserMapper</code> 抽象，多对多关系通过 <code>SysUserRole</code> 和 <code>SysUserPost</code> 维护。前端独立仓库 <code>zealux-ai-ui-master</code> 负责调用这些接口，但本页面重点在后端实现。</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Client[&quot;前端或其他客户端&quot;] --&gt; Gateway[&quot;网关路由&lt;br/&gt;/system/** 等&quot;]
+    Gateway --&gt; Controller[&quot;SysUserController&lt;br/&gt;/user/*&quot;]
+    Controller --&gt; Service[&quot;SysUserServiceImpl&lt;br/&gt;业务实现&quot;]
+    Service --&gt; Mapper[&quot;SysUserMapper&lt;br/&gt;MyBatis 接口&quot;]
+    Mapper --&gt; DB[&quot;MySQL/MariaDB&lt;br/&gt;sys_user 等相关表&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:255-549</span></li>
+<li><span class="fileref">SysUserMapper.java:19-126</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:255-549</span></li>
+<li><span class="fileref">SysUserMapper.java:19-126</span></li>
+</ul>
+<h2 id="核心组件总览"><a class="anchor" href="#核心组件总览">#</a>核心组件总览</h2><ul>
+<li><strong>控制器层</strong>：<code>SysUserController</code> 负责接收 HTTP 请求、参数校验、权限检查、日志注解、部门/角色数据范围校验，并委托服务层完成持久化。</li>
+<li><strong>服务层</strong>：<code>SysUserServiceImpl</code> 实现用户唯一性校验、管理员保护、数据权限校验、用户与角色/岗位的多对多关系维护、批量删除、密码重置、状态更新和用户导入。</li>
+<li><strong>领域模型</strong>：<code>SysUser</code> 是跨模块共享的用户对象，包含用户名、昵称、邮箱、手机号、性别、头像、密码、状态、删除标志、最后登录信息、部门、角色、岗位等字段。</li>
+<li><strong>数据访问层</strong>：<code>SysUserMapper</code> 声明用户查询、插入、更新、删除、唯一性校验等方法；具体 SQL 由 MyBatis XML 提供（本页面仅引用 Java 接口）。</li>
+<li><strong>关系模型</strong>：<code>SysUserRole</code> 表示用户与角色的多对多关系，<code>SysUserPost</code> 表示用户与岗位的多对多关系，<code>SysPost</code> 表示岗位主数据。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:255-549</span></li>
+<li><span class="fileref">SysUser.java:20-324</span></li>
+<li><span class="fileref">SysUserMapper.java:19-126</span></li>
+<li><span class="fileref">SysUserRole.java:1-46</span></li>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+<li><span class="fileref">SysPost.java:1-124</span></li>
+</ul>
+<h2 id="系统架构与调用链路"><a class="anchor" href="#系统架构与调用链路">#</a>系统架构与调用链路</h2><p>用户管理的主要调用链如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant FE as &quot;前端&quot;
+    participant GW as &quot;网关&quot;
+    participant UC as &quot;SysUserController&quot;
+    participant US as &quot;SysUserServiceImpl&quot;
+    participant MAP as &quot;SysUserMapper&quot;
+    participant DB as &quot;数据库&quot;
+
+    FE-&gt;&gt;GW: &quot;POST /system/user&quot;
+    GW-&gt;&gt;UC: &quot;转发到 /user&quot;
+    UC-&gt;&gt;UC: &quot;权限校验、数据范围校验&quot;
+    UC-&gt;&gt;US: &quot;insertUser(user)&quot;
+    US-&gt;&gt;MAP: &quot;insertUser&quot;
+    MAP-&gt;&gt;DB: &quot;写入 sys_user&quot;
+    US-&gt;&gt;MAP: &quot;批量写入 sys_user_role / sys_user_post&quot;
+    DB--&gt;&gt;MAP: &quot;返回影响行数&quot;
+    MAP--&gt;&gt;US: &quot;返回结果&quot;
+    US--&gt;&gt;UC: &quot;返回成功标记&quot;
+    UC--&gt;&gt;FE: &quot;AjaxResult&quot;</pre></div><p>该链路体现了控制器只做入口校验与日志，真实数据一致性由服务层事务保证。</p>
+<p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:261-270</span></li>
+<li><span class="fileref">SysUserMapper.java:60-102</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:261-270</span></li>
+</ul>
+<h2 id="接口定义与权限说明"><a class="anchor" href="#接口定义与权限说明">#</a>接口定义与权限说明</h2><p><code>SysUserController</code> 以 <code>/user</code> 为路径前缀，提供以下能力：</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>方法</th>
+<th>权限标识</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获取用户列表</td>
+<td><code>GET /list</code></td>
+<td><code>system:user:list</code></td>
+<td>分页查询用户，受数据权限控制</td>
+</tr>
+<tr>
+<td>导出用户</td>
+<td><code>POST /export</code></td>
+<td><code>system:user:export</code></td>
+<td>使用 Excel 工具导出用户列表</td>
+</tr>
+<tr>
+<td>导入用户</td>
+<td><code>POST /importData</code></td>
+<td><code>system:user:import</code></td>
+<td>读取 Excel 并调用服务层导入逻辑</td>
+</tr>
+<tr>
+<td>下载导入模板</td>
+<td><code>POST /importTemplate</code></td>
+<td>无显式权限注解</td>
+<td>生成用户导入模板</td>
+</tr>
+<tr>
+<td>内部信息查询</td>
+<td><code>GET /info/{username}</code></td>
+<td><code>@InnerAuth</code></td>
+<td>供认证中心等内部服务根据用户名加载用户信息</td>
+</tr>
+<tr>
+<td>内部注册</td>
+<td><code>POST /register</code></td>
+<td><code>@InnerAuth</code></td>
+<td>根据配置开关判断是否允许注册，并做用户名唯一性校验</td>
+</tr>
+<tr>
+<td>记录登录信息</td>
+<td><code>PUT /recordlogin</code></td>
+<td><code>@InnerAuth</code></td>
+<td>更新最后登录 IP 与时间</td>
+</tr>
+<tr>
+<td>当前用户信息</td>
+<td><code>GET getInfo</code></td>
+<td>依赖当前登录上下文</td>
+<td>返回当前用户、角色集合与菜单权限集合</td>
+</tr>
+<tr>
+<td>查询用户详情</td>
+<td><code>GET /</code> 或 <code>GET /{userId}</code></td>
+<td><code>system:user:query</code></td>
+<td>按用户 ID 查询详情、角色、岗位</td>
+</tr>
+<tr>
+<td>新增用户</td>
+<td><code>POST /</code></td>
+<td><code>system:user:add</code></td>
+<td>校验唯一性、加密密码、插入用户及角色岗位</td>
+</tr>
+<tr>
+<td>修改用户</td>
+<td><code>PUT /</code></td>
+<td><code>system:user:edit</code></td>
+<td>校验可操作性和数据权限后更新</td>
+</tr>
+<tr>
+<td>删除用户</td>
+<td><code>DELETE /{userIds}</code></td>
+<td><code>system:user:remove</code></td>
+<td>禁止删除当前用户，再批量删除</td>
+</tr>
+<tr>
+<td>重置密码</td>
+<td><code>PUT /resetPwd</code></td>
+<td><code>system:user:edit</code></td>
+<td>校验后可操作用户并加密新密码</td>
+</tr>
+<tr>
+<td>修改状态</td>
+<td><code>PUT /changeStatus</code></td>
+<td><code>system:user:edit</code></td>
+<td>更新用户状态</td>
+</tr>
+<tr>
+<td>查询授权角色</td>
+<td><code>GET /authRole/{userId}</code></td>
+<td><code>system:user:query</code></td>
+<td>返回用户及其可选角色</td>
+</tr>
+<tr>
+<td>分配角色</td>
+<td><code>PUT /authRole</code></td>
+<td><code>system:user:edit</code></td>
+<td>清空旧角色并写入新角色</td>
+</tr>
+<tr>
+<td>获取部门树</td>
+<td><code>GET /deptTree</code></td>
+<td><code>system:user:list</code></td>
+<td>返回部门树供选择</td>
+</tr>
+</tbody></table>
+<p>所有写操作都使用了 <code>@Log(title = &quot;用户管理&quot;, businessType = ...)</code> 注解，用于记录操作日志；读操作如列表查询则没有日志注解。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+</ul>
+<h2 id="实体字段与约束"><a class="anchor" href="#实体字段与约束">#</a>实体字段与约束</h2><p><code>SysUser</code> 继承基础实体，并扩展了用户相关字段。以下字段对用户管理最关键：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>类型</th>
+<th>约束或行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>userId</code></td>
+<td>用户编号</td>
+<td><code>Long</code></td>
+<td>主键编号，不参与普通表单必填校验</td>
+</tr>
+<tr>
+<td><code>deptId</code></td>
+<td>部门编号</td>
+<td><code>Long</code></td>
+<td>导入时参与部门数据范围校验</td>
+</tr>
+<tr>
+<td><code>userName</code></td>
+<td>登录账号</td>
+<td><code>String</code></td>
+<td>非空、长度不超过 30、防 XSS</td>
+</tr>
+<tr>
+<td><code>nickName</code></td>
+<td>用户昵称</td>
+<td><code>String</code></td>
+<td>长度不超过 30、防 XSS</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>邮箱</td>
+<td><code>String</code></td>
+<td>格式校验、长度不超过 50</td>
+</tr>
+<tr>
+<td><code>phonenumber</code></td>
+<td>手机号</td>
+<td><code>String</code></td>
+<td>长度不超过 11；唯一性由服务层校验</td>
+</tr>
+<tr>
+<td><code>sex</code></td>
+<td>性别</td>
+<td><code>String</code></td>
+<td>导出时支持“男/女/未知”转换</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td>头像地址</td>
+<td><code>String</code></td>
+<td>无额外校验</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>密码</td>
+<td><code>String</code></td>
+<td>新增或重置时由 <code>SecurityUtils.encryptPassword</code> 加密后再入库</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>帐号状态</td>
+<td><code>String</code></td>
+<td>“0”正常、“1”停用</td>
+</tr>
+<tr>
+<td><code>delFlag</code></td>
+<td>删除标志</td>
+<td><code>String</code></td>
+<td>通常“0”存在、“2”删除</td>
+</tr>
+<tr>
+<td><code>loginIp</code></td>
+<td>最后登录 IP</td>
+<td><code>String</code></td>
+<td>登录成功后由内部接口更新</td>
+</tr>
+<tr>
+<td><code>loginDate</code></td>
+<td>最后登录时间</td>
+<td><code>Date</code></td>
+<td>登录成功后由内部接口更新</td>
+</tr>
+<tr>
+<td><code>dept</code></td>
+<td>部门对象</td>
+<td><code>SysDept</code></td>
+<td>导出时可输出部门名称与负责人</td>
+</tr>
+<tr>
+<td><code>roles</code></td>
+<td>角色集合</td>
+<td><code>List&lt;SysRole&gt;</code></td>
+<td>查询详情时返回</td>
+</tr>
+<tr>
+<td><code>roleIds</code></td>
+<td>角色编号数组</td>
+<td><code>Long[]</code></td>
+<td>新增、修改、授权时传入</td>
+</tr>
+<tr>
+<td><code>postIds</code></td>
+<td>岗位编号数组</td>
+<td><code>Long[]</code></td>
+<td>新增、修改时传入</td>
+</tr>
+<tr>
+<td><code>roleId</code></td>
+<td>单个角色编号</td>
+<td><code>Long</code></td>
+<td>部分查询场景使用</td>
+</tr>
+<tr>
+<td><code>isAdmin()</code></td>
+<td>是否管理员</td>
+<td><code>boolean</code></td>
+<td>通过 <code>UserConstants.isAdmin(userId)</code> 判断</td>
+</tr>
+</tbody></table>
+<p>其中，管理员标识不是布尔字段，而是通过用户编号与常量比较得出；状态字段是字符串而非布尔值，且“正常/停用”的语义由业务层和导入导出转换器约定。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUser.java:20-324</span></li>
+</ul>
+<h2 id="核心业务逻辑"><a class="anchor" href="#核心业务逻辑">#</a>核心业务逻辑</h2><h3 id="用户新增"><a class="anchor" href="#用户新增">#</a>用户新增</h3><p>新增流程先进行权限校验和数据范围校验，再分别校验用户名、手机号、邮箱的唯一性；随后设置创建人和加密后的密码，最后调用服务层保存用户、岗位和角色。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start([&quot;进入新增接口&quot;]) --&gt; CheckPerm[&quot;权限校验 system:user:add&quot;]
+    CheckPerm --&gt; DataScope[&quot;校验部门与角色数据范围&quot;]
+    DataScope --&gt; UniqueCheck{&quot;用户名唯一？&quot;}
+    UniqueCheck --&gt;|否| ReturnDupUser[&quot;返回用户名已存在&quot;]
+    UniqueCheck --&gt;|是| PhoneCheck{&quot;手机号为空或不重复？&quot;}
+    PhoneCheck --&gt;|否| ReturnDupPhone[&quot;返回手机号已存在&quot;]
+    PhoneCheck --&gt;|是| EmailCheck{&quot;邮箱为空或不重复？&quot;}
+    EmailCheck --&gt;|否| ReturnDupEmail[&quot;返回邮箱已存在&quot;]
+    EmailCheck --&gt;|是| EncryptPwd[&quot;加密密码并设置创建人&quot;]
+    EncryptPwd --&gt; Save[&quot;调用 insertUser&quot;]
+    Save --&gt; InsertRole[&quot;写入用户角色关联&quot;]
+    InsertRole --&gt; InsertPost[&quot;写入用户岗位关联&quot;]
+    InsertPost --&gt; End([&quot;返回新增结果&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:261-270</span></li>
+</ul>
+<p>关键点：</p>
+<ul>
+<li>密码在控制器层加密，不在服务层再次加密。</li>
+<li>新增失败可能来自唯一性校验、部门或角色数据范围校验。</li>
+<li>新增成功后会同时插入用户与岗位、用户与角色关联。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:261-270</span></li>
+</ul>
+<h3 id="用户修改"><a class="anchor" href="#用户修改">#</a>用户修改</h3><p>修改接口先检查目标用户是否可操作、是否具有数据权限，再校验部门与角色数据范围，然后执行用户名、手机号、邮箱唯一性校验；之后设置更新人并调用更新逻辑。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    EditStart([&quot;进入修改接口&quot;]) --&gt; Allowed[&quot;checkUserAllowed 校验是否可操作&quot;]
+    Allowed --&gt; Scope[&quot;checkUserDataScope 校验数据权限&quot;]
+    Scope --&gt; DeptRole[&quot;校验部门与角色数据范围&quot;]
+    DeptRole --&gt; UniqueEdit{&quot;用户名/手机/邮箱唯一？&quot;}
+    UniqueEdit --&gt;|否| ReturnError[&quot;返回唯一性错误&quot;]
+    UniqueEdit --&gt;|是| UpdateUser[&quot;调用 updateUser&quot;]
+    UpdateUser --&gt; DeleteOldRoles[&quot;删除旧用户角色关联&quot;]
+    DeleteOldRoles --&gt; InsertNewRoles[&quot;写入新角色关联&quot;]
+    InsertNewRoles --&gt; DeleteOldPosts[&quot;删除旧用户岗位关联&quot;]
+    DeleteOldPosts --&gt; InsertNewPosts[&quot;写入新岗位关联&quot;]
+    InsertNewPosts --&gt; Persist[&quot;更新 sys_user&quot;]
+    Persist --&gt; EditEnd([&quot;返回修改结果&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:245-271</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:292-306</span></li>
+</ul>
+<p>注意：<code>updateUser</code> 先处理角色和岗位关联，再更新用户基本信息，因此角色和岗位变更会影响最终持久化结果。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:245-271</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:292-306</span></li>
+</ul>
+<h3 id="用户删除"><a class="anchor" href="#用户删除">#</a>用户删除</h3><p>删除接口拒绝删除当前登录用户，然后调用服务层批量删除。服务层对每个待删除用户再次执行管理员保护和数据权限校验，再依次删除角色关联、岗位关联和用户记录。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    DelStart([&quot;删除用户&quot;]) --&gt; SelfCheck{&quot;是否删除当前用户？&quot;}
+    SelfCheck --&gt;|是| DenySelf[&quot;返回不能删除当前用户&quot;]
+    SelfCheck --&gt;|否| BatchDelete[&quot;deleteUserByIds&quot;]
+    BatchDelete --&gt; ForEach[&quot;遍历每个 userId&quot;]
+    ForEach --&gt; AdminCheck[&quot;checkUserAllowed&quot;]
+    AdminCheck --&gt; DataScopeCheck[&quot;checkUserDataScope&quot;]
+    DataScopeCheck --&gt; DelRoles[&quot;删除用户角色关联&quot;]
+    DelRoles --&gt; DelPosts[&quot;删除用户岗位关联&quot;]
+    DelPosts --&gt; DelUser[&quot;删除用户记录&quot;]
+    DelUser --&gt; DelEnd([&quot;返回删除结果&quot;])</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:273-287</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:451-478</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:273-287</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:451-478</span></li>
+</ul>
+<h3 id="用户状态修改与密码重置"><a class="anchor" href="#用户状态修改与密码重置">#</a>用户状态修改与密码重置</h3><ul>
+<li>状态修改：调用 <code>updateUserStatus</code>，底层直接调用 <code>userMapper.updateUser</code> 更新状态字段。</li>
+<li>密码重置：控制器层用 <code>SecurityUtils.encryptPassword</code> 加密新密码，然后调用 <code>resetPwd</code>。</li>
+</ul>
+<p>这两个接口都会记录操作日志，并对目标用户执行可操作性和数据权限校验。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:288-315</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:327-366</span></li>
+</ul>
+<h3 id="用户与角色、岗位的关联"><a class="anchor" href="#用户与角色、岗位的关联">#</a>用户与角色、岗位的关联</h3><ul>
+<li>用户与角色通过 <code>SysUserRole</code> 关联，字段包括 <code>userId</code> 和 <code>roleId</code>。</li>
+<li>用户与岗位通过 <code>SysUserPost</code> 关联，字段包括 <code>userId</code> 和 <code>postId</code>。</li>
+<li>新增用户时，若传入 <code>roleIds</code> 或 <code>postIds</code>，服务层会批量写入对应关联表。</li>
+<li>修改用户时，先删除旧关联，再写入新关联。</li>
+<li>单独授权角色接口 <code>PUT /authRole</code> 会清空旧角色并写入新角色。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">erDiagram
+  SYS_USER {
+    bigint user_id PK
+    varchar user_name
+    varchar password
+    varchar status
+    varchar del_flag
+  }
+  SYS_ROLE {
+    bigint role_id PK
+    varchar role_name
+  }
+  SYS_POST {
+    bigint post_id PK
+    varchar post_code
+    varchar post_name
+  }
+  SYS_USER_ROLE {
+    bigint user_id FK
+    bigint role_id FK
+  }
+  SYS_USER_POST {
+    bigint user_id FK
+    bigint post_id FK
+  }
+
+  SYS_USER ||--o{ SYS_USER_ROLE : &quot;拥有&quot;
+  SYS_ROLE ||--o{ SYS_USER_ROLE : &quot;被分配&quot;
+  SYS_USER ||--o{ SYS_USER_POST : &quot;担任&quot;
+  SYS_POST ||--o{ SYS_USER_POST : &quot;被担任&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUser.java:20-324</span></li>
+<li><span class="fileref">SysUserRole.java:1-46</span></li>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+<li><span class="fileref">SysPost.java:1-124</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:387-449</span></li>
+<li><span class="fileref">SysUserController.java:317-344</span></li>
+</ul>
+<h3 id="数据权限过滤"><a class="anchor" href="#数据权限过滤">#</a>数据权限过滤</h3><p>列表查询方法上使用了 <code>@DataScope(deptAlias = &quot;d&quot;, userAlias = &quot;u&quot;)</code>，表明查询会注入部门或用户维度的数据权限条件；服务层还提供 <code>checkUserDataScope</code>，用于判断某个用户 ID 是否在当前登录用户的数据权限范围内。超级管理员不受该限制。</p>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    QueryStart[&quot;selectUserList&quot;] --&gt; DataScopeAnn[&quot;DataScope 注解注入数据权限条件&quot;]
+    DataScopeAnn --&gt; MapperQuery[&quot;调用 SysUserMapper.selectUserList&quot;]
+    MapperQuery --&gt; DbFilter[&quot;SQL 层附加部门/用户数据范围&quot;]
+    DbFilter --&gt; Result[&quot;返回符合数据权限的用户列表&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:60-84</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:220-239</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:60-84</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:220-239</span></li>
+</ul>
+<h3 id="@Operlog-操作日志"><a class="anchor" href="#@Operlog-操作日志">#</a>@Operlog 操作日志</h3><p>控制器上的写操作使用 <code>@Log(title = &quot;用户管理&quot;, businessType = ...)</code>, 而不是 <code>@Operlog</code>。常见业务类型包括新增、修改、删除、导入、导出、授权等。日志由通用日志注解拦截记录，便于审计追踪。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:85-344</span></li>
+</ul>
+<h2 id="登录、认证与缓存"><a class="anchor" href="#登录、认证与缓存">#</a>登录、认证与缓存</h2><h3 id="认证中心如何加载用户"><a class="anchor" href="#认证中心如何加载用户">#</a>认证中心如何加载用户</h3><p><code>SysUserController</code> 提供了两个内部接口：</p>
+<ul>
+<li><code>GET /info/{username}</code>：根据用户名查询用户，再通过权限服务获取角色集合和菜单权限集合，封装成 <code>LoginUser</code> 返回。</li>
+<li><code>GET getInfo</code>：从当前安全上下文获取已登录用户，重新计算角色和菜单权限，并在权限发生变化时刷新 Token。</li>
+</ul>
+<p>这意味着用户信息、角色和菜单权限并非完全由控制器自行组装；控制器调用权限服务获取角色与菜单权限，再由上层认证中心决定是否缓存。</p>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant Auth as &quot;认证中心&quot;
+    participant Ctl as &quot;SysUserController&quot;
+    participant Perm as &quot;权限服务&quot;
+    participant Svc as &quot;用户服务&quot;
+
+    Auth-&gt;&gt;Ctl: &quot;GET /info/{username}&quot;
+    Ctl-&gt;&gt;Svc: &quot;selectUserByUserName(username)&quot;
+    Svc--&gt;&gt;Ctl: &quot;SysUser&quot;
+    Ctl-&gt;&gt;Perm: &quot;getRolePermission(sysUser)&quot;
+    Perm--&gt;&gt;Ctl: &quot;角色集合&quot;
+    Ctl-&gt;&gt;Perm: &quot;getMenuPermission(sysUser)&quot;
+    Perm--&gt;&gt;Ctl: &quot;菜单权限集合&quot;
+    Ctl--&gt;&gt;Auth: &quot;LoginUser(用户、角色、权限)&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:118-158</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:120-129</span></li>
+</ul>
+<h3 id="Redis-缓存-Key-结构与失效策略"><a class="anchor" href="#Redis-缓存-Key-结构与失效策略">#</a>Redis 缓存 Key 结构与失效策略</h3><p>在已分析的源码片段中，未发现直接读写 Redis 的 <code>RedisCache</code>、缓存 Key 构造或过期策略代码。因此，不能断言用户信息缓存 Key 一定是某种固定前缀。更稳妥的描述是：</p>
+<ul>
+<li>用户信息、角色和菜单权限可能由认证中心或安全模块负责缓存。</li>
+<li>当 <code>getInfo</code> 发现权限集合发生变化时，控制器会调用 <code>tokenService.refreshToken(loginUser)</code> 刷新 Token。</li>
+<li>本页面只确认 Token 刷新动作，不确认 Redis Key 的具体结构和过期时间。</li>
+</ul>
+<p>如果需要排查缓存问题，应优先查看安全模块、认证模块和 Redis 配置，而不是把当前控制器中的行为解释为完整的缓存实现。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:171-194</span></li>
+</ul>
+<h2 id="典型操作示例"><a class="anchor" href="#典型操作示例">#</a>典型操作示例</h2><h3 id="新增用户"><a class="anchor" href="#新增用户">#</a>新增用户</h3><p>请求体示例结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>userName</code></td>
+<td><code>&quot;zhangsan&quot;</code></td>
+<td>登录账号，必须唯一</td>
+</tr>
+<tr>
+<td><code>nickName</code></td>
+<td><code>&quot;张三&quot;</code></td>
+<td>可选昵称</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>&quot;zhangsan@example.com&quot;</code></td>
+<td>可选邮箱，需合法格式</td>
+</tr>
+<tr>
+<td><code>phonenumber</code></td>
+<td><code>&quot;13800001111&quot;</code></td>
+<td>可选手机号，需唯一</td>
+</tr>
+<tr>
+<td><code>deptId</code></td>
+<td><code>100</code></td>
+<td>所属部门编号</td>
+</tr>
+<tr>
+<td><code>postIds</code></td>
+<td><code>[1, 2]</code></td>
+<td>岗位编号数组</td>
+</tr>
+<tr>
+<td><code>roleIds</code></td>
+<td><code>[1]</code></td>
+<td>角色编号数组</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>&quot;admin123&quot;</code></td>
+<td>明文密码，由服务端加密</td>
+</tr>
+</tbody></table>
+<p>响应示例结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>code</code></td>
+<td><code>200</code></td>
+<td>业务状态码</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td><code>&quot;操作成功&quot;</code></td>
+<td>提示信息</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>true</code></td>
+<td>新增结果</td>
+</tr>
+</tbody></table>
+<p>失败场景可能返回“登录账号已存在”“手机号码已存在”“邮箱账号已存在”，以及部门或角色数据权限不足。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+</ul>
+<h3 id="分配角色"><a class="anchor" href="#分配角色">#</a>分配角色</h3><p>请求示例结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>userId</code></td>
+<td><code>100</code></td>
+<td>目标用户编号</td>
+</tr>
+<tr>
+<td><code>roleIds</code></td>
+<td><code>[1, 2]</code></td>
+<td>要分配的角色编号数组</td>
+</tr>
+</tbody></table>
+<p>响应示例结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>code</code></td>
+<td><code>200</code></td>
+<td>业务状态码</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td><code>&quot;操作成功&quot;</code></td>
+<td>提示信息</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>null</code></td>
+<td>授权接口不返回主体数据</td>
+</tr>
+</tbody></table>
+<p>该接口会清空用户原有角色，再写入新角色。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:332-344</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:314-320</span></li>
+</ul>
+<h3 id="批量导入用户"><a class="anchor" href="#批量导入用户">#</a>批量导入用户</h3><p>请求方式：<code>POST /user/importData</code>，携带 Excel 文件和 <code>updateSupport</code> 标志。</p>
+<p>导入逻辑要点：</p>
+<ul>
+<li>如果用户不存在，则校验输入、校验部门数据范围、使用配置项中的初始密码加密后插入。</li>
+<li>如果用户已存在且开启更新支持，则校验可操作性、数据权限、部门范围后更新。</li>
+<li>如果用户已存在但未开启更新支持，则记录失败消息。</li>
+<li>只要存在任意失败行，最终抛出服务异常，并汇总错误信息。</li>
+</ul>
+<p>响应示例结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>code</code></td>
+<td><code>200</code> 或失败时抛出异常</td>
+<td>成功时返回成功消息字符串</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>成功或失败汇总信息</td>
+<td>包含成功条数和失败原因</td>
+</tr>
+</tbody></table>
+<p>导入模板可通过 <code>POST /user/importTemplate</code> 获取。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:95-115</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:486-549</span></li>
+</ul>
+<h2 id="依赖关系分析"><a class="anchor" href="#依赖关系分析">#</a>依赖关系分析</h2><div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class SysUserController {
+        +list()
+        +add()
+        +edit()
+        +remove()
+        +resetPwd()
+        +changeStatus()
+        +authRole()
+        +insertAuthRole()
+        +importData()
+        +export()
+    }
+
+    class SysUserServiceImpl {
+        +selectUserList()
+        +insertUser()
+        +updateUser()
+        +deleteUserByIds()
+        +insertUserAuth()
+        +updateUserStatus()
+        +importUser()
+        +checkUserNameUnique()
+        +checkPhoneUnique()
+        +checkEmailUnique()
+        +checkUserAllowed()
+        +checkUserDataScope()
+    }
+
+    class SysUserMapper {
+        +selectUserList()
+        +insertUser()
+        +updateUser()
+        +deleteUserByIds()
+        +checkUserNameUnique()
+        +checkPhoneUnique()
+        +checkEmailUnique()
+    }
+
+    class SysUser {
+        +userId
+        +userName
+        +email
+        +phonenumber
+        +status
+        +roles
+        +roleIds
+        +postIds
+    }
+
+    class SysUserRole {
+        +userId
+        +roleId
+    }
+
+    class SysUserPost {
+        +userId
+        +postId
+    }
+
+    SysUserController --&gt; SysUserServiceImpl : &quot;调用&quot;
+    SysUserServiceImpl --&gt; SysUserMapper : &quot;调用&quot;
+    SysUserServiceImpl --&gt; SysUser : &quot;使用&quot;
+    SysUserServiceImpl --&gt; SysUserRole : &quot;维护&quot;
+    SysUserServiceImpl --&gt; SysUserPost : &quot;维护&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-549</span></li>
+<li><span class="fileref">SysUserMapper.java:19-126</span></li>
+<li><span class="fileref">SysUser.java:20-324</span></li>
+<li><span class="fileref">SysUserRole.java:1-46</span></li>
+<li><span class="fileref">SysUserPost.java:1-46</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:49-346</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-549</span></li>
+<li><span class="fileref">SysUserMapper.java:19-126</span></li>
+</ul>
+<h2 id="性能与大数据量优化"><a class="anchor" href="#性能与大数据量优化">#</a>性能与大数据量优化</h2><h3 id="分页查询"><a class="anchor" href="#分页查询">#</a>分页查询</h3><p>列表接口调用 <code>startPage()</code> 后调用 <code>userService.selectUserList(user)</code>，服务层再交给 <code>SysUserMapper.selectUserList</code>。当前实现依赖分页插件和 SQL 层条件拼装。对于大数据量查询，建议关注：</p>
+<ul>
+<li>分页参数合理性：避免过大的页大小。</li>
+<li>查询条件尽量命中索引：例如用户名、手机号、邮箱、部门编号等常用筛选字段。</li>
+<li>减少不必要字段：导出时使用 Excel 导出，查询列表时避免返回过多关联数据。</li>
+<li>数据权限 SQL：<code>@DataScope</code> 注入的条件可能增加复杂查询，应确保部门与用户维度条件有合适索引。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:77-84</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:60-84</span></li>
+<li><span class="fileref">SysUserMapper.java:19-23</span></li>
+</ul>
+<h3 id="批量导入"><a class="anchor" href="#批量导入">#</a>批量导入</h3><p>导入采用逐行处理，每行可能触发唯一性查询、部门数据范围校验、用户插入或更新。对于大批量导入：</p>
+<ul>
+<li>建议分批提交，避免单事务过大。</li>
+<li>前端分片上传或后台异步任务更适合超大规模数据。</li>
+<li>对导入模板字段做好前端校验，减少服务端异常分支。</li>
+<li>明确 <code>updateSupport</code> 行为：已存在且不更新时会直接计入失败。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserServiceImpl.java:486-549</span></li>
+</ul>
+<h3 id="密码复杂度校验"><a class="anchor" href="#密码复杂度校验">#</a>密码复杂度校验</h3><p>当前源码没有在 <code>SysUserServiceImpl</code> 中看到密码强度规则校验逻辑；新增和重置密码时只是调用 <code>SecurityUtils.encryptPassword</code> 进行加密。因此，密码复杂度校验属于外部增强点，不应描述为系统已内置规则。建议在生产环境中补充复杂度校验，例如长度、大小写字母、数字、特殊字符组合等。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-244</span></li>
+<li><span class="fileref">SysUserController.java:288-301</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:366-370</span></li>
+</ul>
+<h3 id="重复用户名处理"><a class="anchor" href="#重复用户名处理">#</a>重复用户名处理</h3><ul>
+<li>新增时：若用户名已存在，返回“登录账号已存在”。</li>
+<li>修改时：若用户名与其他用户冲突，返回“登录账号已存在”。</li>
+<li>服务层唯一性校验会排除当前用户自身，避免修改自己时误判。</li>
+<li>导入时：已存在用户会根据 <code>updateSupport</code> 决定更新或报错。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-271</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:172-218</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:486-549</span></li>
+</ul>
+<h2 id="常见问题与排错建议"><a class="anchor" href="#常见问题与排错建议">#</a>常见问题与排错建议</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>可能原因</th>
+<th>排查建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新增用户提示用户名已存在</td>
+<td>用户名重复</td>
+<td>检查 <code>checkUserNameUnique</code> 返回值及数据库中是否存在同名用户</td>
+</tr>
+<tr>
+<td>新增用户提示手机号已存在</td>
+<td>手机号重复</td>
+<td>检查 <code>checkPhoneUnique</code> 及手机号唯一性</td>
+</tr>
+<tr>
+<td>新增用户提示邮箱已存在</td>
+<td>邮箱重复</td>
+<td>检查 <code>checkEmailUnique</code> 及邮箱唯一性</td>
+</tr>
+<tr>
+<td>修改用户失败</td>
+<td>目标用户是管理员或无数据权限</td>
+<td>检查 <code>checkUserAllowed</code> 和 <code>checkUserDataScope</code></td>
+</tr>
+<tr>
+<td>删除用户失败</td>
+<td>尝试删除当前登录用户</td>
+<td>检查前端是否传入了当前用户 ID</td>
+</tr>
+<tr>
+<td>导入部分失败</td>
+<td>某行数据格式错误或已存在且不允许更新</td>
+<td>查看导入返回的错误汇总信息</td>
+</tr>
+<tr>
+<td>登录后权限变化但前端未刷新</td>
+<td>权限集合变化后需刷新 Token</td>
+<td>检查 <code>getInfo</code> 中权限比较和 <code>tokenService.refreshToken</code> 调用</td>
+</tr>
+<tr>
+<td>列表数据不符合预期</td>
+<td>数据权限限制</td>
+<td>检查当前用户是否管理员，以及 <code>@DataScope</code> 注入条件</td>
+</tr>
+<tr>
+<td>密码无法登录</td>
+<td>密码未加密或密文不一致</td>
+<td>确认新增和重置时是否调用了密码加密</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:218-344</span></li>
+<li><span class="fileref">SysUserServiceImpl.java:172-549</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>用户管理模块以 <code>SysUserController</code> 作为统一入口，以 <code>SysUserServiceImpl</code> 为核心业务实现，围绕用户唯一性、管理员保护、数据权限、角色与岗位关联、导入导出和操作日志构建了完整闭环。其优势在于职责清晰、事务边界明确；需要注意的地方包括：密码复杂度校验未在当前服务实现中体现、Redis 缓存 Key 和失效策略不在已分析代码中、数据权限依赖注解和 SQL 层配合。未来优化可集中在大数据导入异步化、密码复杂度增强、缓存策略透明化以及数据库索引与 SQL 性能调优上。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">← 系统模块总览</a>
+    <a class="next" href="../../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#引言">引言</a></li><li class="d2"><a href="#项目结构定位">项目结构定位</a></li><li class="d2"><a href="#核心组件总览">核心组件总览</a></li><li class="d2"><a href="#系统架构与调用链路">系统架构与调用链路</a></li><li class="d2"><a href="#接口定义与权限说明">接口定义与权限说明</a></li><li class="d2"><a href="#实体字段与约束">实体字段与约束</a></li><li class="d2"><a href="#核心业务逻辑">核心业务逻辑</a></li><li class="d3"><a href="#用户新增">用户新增</a></li><li class="d3"><a href="#用户修改">用户修改</a></li><li class="d3"><a href="#用户删除">用户删除</a></li><li class="d3"><a href="#用户状态修改与密码重置">用户状态修改与密码重置</a></li><li class="d3"><a href="#用户与角色、岗位的关联">用户与角色、岗位的关联</a></li><li class="d3"><a href="#数据权限过滤">数据权限过滤</a></li><li class="d3"><a href="#@Operlog-操作日志">@Operlog 操作日志</a></li><li class="d2"><a href="#登录、认证与缓存">登录、认证与缓存</a></li><li class="d3"><a href="#认证中心如何加载用户">认证中心如何加载用户</a></li><li class="d3"><a href="#Redis-缓存-Key-结构与失效策略">Redis 缓存 Key 结构与失效策略</a></li><li class="d2"><a href="#典型操作示例">典型操作示例</a></li><li class="d3"><a href="#新增用户">新增用户</a></li><li class="d3"><a href="#分配角色">分配角色</a></li><li class="d3"><a href="#批量导入用户">批量导入用户</a></li><li class="d2"><a href="#依赖关系分析">依赖关系分析</a></li><li class="d2"><a href="#性能与大数据量优化">性能与大数据量优化</a></li><li class="d3"><a href="#分页查询">分页查询</a></li><li class="d3"><a href="#批量导入">批量导入</a></li><li class="d3"><a href="#密码复杂度校验">密码复杂度校验</a></li><li class="d3"><a href="#重复用户名处理">重复用户名处理</a></li><li class="d2"><a href="#常见问题与排错建议">常见问题与排错建议</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html";</script>
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

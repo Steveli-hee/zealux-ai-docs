@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API 接口文档 · 项目文档 Wiki</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/hljs.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../index.html">📘 项目文档 Wiki</a>
+  <div class="searchbox">
+    <input id="search-input" type="search" placeholder="搜索文档…（Ctrl+K）" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="sidebar"><details class="sec"><summary>项目概述</summary><ul><li><a href="../../p/%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0.html">项目概述</a></li></ul></details><details class="sec"><summary>快速开始</summary><ul><li><a href="../../p/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.html">快速开始</a></li></ul></details><details class="sec"><summary>后端架构设计</summary><ul><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">后端架构设计</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88Gen%EF%BC%89.html">代码生成器（Gen）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%88Job%EF%BC%89.html">定时任务（Job）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%8F%AF%E8%A7%86%E5%8C%96%E7%9B%91%E6%8E%A7%EF%BC%88Monitor%EF%BC%89.html">可视化监控（Monitor）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%EF%BC%88Auth%EF%BC%89.html">认证中心（Auth）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%EF%BC%88security%EF%BC%89.html">安全模块（security）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%EF%BC%88core%EF%BC%89.html">核心模块（core）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97%EF%BC%88log%EF%BC%89.html">日志模块（log）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97%EF%BC%88datascope%EF%BC%89.html">数据权限模块（datascope）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97%EF%BC%88sensitive%EF%BC%89.html">数据脱敏模块（sensitive）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97%EF%BC%88datasource%EF%BC%89.html">数据源模块（datasource）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89.html">通用模块（Common）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/AI%20%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88ai%EF%BC%89.html">AI 通用模块（ai）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Redis%20%E6%A8%A1%E5%9D%97%EF%BC%88redis%EF%BC%89.html">Redis 模块（redis）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97%EF%BC%88Common%EF%BC%89/Swagger%20%E6%A8%A1%E5%9D%97%EF%BC%88swagger%EF%BC%89.html">Swagger 模块（swagger）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%BD%91%E5%85%B3%E6%A8%A1%E5%9D%97%EF%BC%88Gateway%EF%BC%89.html">网关模块（Gateway）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%EF%BC%88File%EF%BC%89.html">文件服务（File）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E9%83%A8%E9%97%A8%E7%AE%A1%E7%90%86.html">部门管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.html">菜单管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">岗位管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86.html">角色管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89.html">系统模块（System）</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%E6%80%BB%E8%A7%88.html">系统模块总览</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9D%97%EF%BC%88System%EF%BC%89/%E5%AD%97%E5%85%B8%E4%B8%8E%E5%8F%82%E6%95%B0%E7%AE%A1%E7%90%86.html">字典与参数管理</a></li><li><a href="../../p/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/AI%20Leads%20%E6%A8%A1%E5%9D%97%EF%BC%88Zealux-AI-Leads%EF%BC%89.html">AI Leads 模块（Zealux-AI-Leads）</a></li></ul></details><details class="sec"><summary>前端架构设计</summary><ul><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html">前端架构设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AF%BC%E8%88%AA.html">布局系统与导航</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E5%BA%93%E8%AE%BE%E8%AE%A1.html">公共组件库设计</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.html">路由与动态权限控制</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E8%A7%86%E5%9B%BE%E9%A1%B5%E9%9D%A2.html">业务视图页面</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E5%BA%94%E7%94%A8%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.html">应用入口与工程配置</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81.html">状态管理与数据流</a></li><li><a href="../../p/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/API%20%E8%B0%83%E7%94%A8%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AF%B7%E6%B1%82%E5%B1%82.html">API 调用封装与请求层</a></li></ul></details><details class="sec"><summary>通用模块(common)设计</summary><ul><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1.html">通用模块(common)设计</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/ai%20%E9%80%9A%E7%94%A8%20AI%20%E6%A8%A1%E5%9D%97.html">ai 通用 AI 模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/core%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97.html">core 核心模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datascope%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%E6%A8%A1%E5%9D%97.html">datascope 数据权限模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/datasource%20%E6%95%B0%E6%8D%AE%E6%BA%90%E6%A8%A1%E5%9D%97.html">datasource 数据源模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/log%20%E6%97%A5%E5%BF%97%E6%A8%A1%E5%9D%97.html">log 日志模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/redis%20%E7%BC%93%E5%AD%98%E6%A8%A1%E5%9D%97.html">redis 缓存模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/security%20%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97.html">security 安全模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/sensitive%20%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E6%A8%A1%E5%9D%97.html">sensitive 数据脱敏模块</a></li><li><a href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">swagger API 文档模块</a></li></ul></details><details class="sec" open><summary>API 接口文档</summary><ul><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html" class="active">API 接口文档</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">定时任务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E8%AE%A4%E8%AF%81%E6%8E%A5%E5%8F%A3.html">认证接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3.html">文件服务接口</a></li><li><a href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3.html">系统管理接口</a></li></ul></details><details class="sec"><summary>业务功能详解</summary><ul><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3.html">业务功能详解</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E9%83%A8%E9%97%A8%E5%B2%97%E4%BD%8D%E7%AE%A1%E7%90%86.html">部门岗位管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">菜单权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8.html">代码生成器</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6.html">定时任务调度</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html">角色权限管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1.html">文件服务</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7.html">系统监控</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.html">用户管理</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/%E5%AD%97%E5%85%B8%E5%8F%82%E6%95%B0%E4%B8%8E%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">字典参数与通知公告</a></li><li><a href="../../p/%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD%E8%AF%A6%E8%A7%A3/AI%20Leads%20%E6%A8%A1%E5%9D%97.html">AI Leads 模块</a></li></ul></details><details class="sec"><summary>数据库设计</summary><ul><li><a href="../../p/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1.html">数据库设计</a></li></ul></details><details class="sec"><summary>扩展开发指南</summary><ul><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.html">扩展开发指南</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E5%89%8D%E7%AB%AF%E7%BB%84%E4%BB%B6%E4%B8%8E%E9%A1%B5%E9%9D%A2.html">扩展前端组件与页面</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90.html">扩展权限模型与数据权限</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%89%A9%E5%B1%95%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97.html">扩展通用模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E6%96%B0%E5%A2%9E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9D%97.html">新增微服务模块</a></li><li><a href="../../p/%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%A8%A1%E6%9D%BF.html">修改代码生成模板</a></li></ul></details><details class="sec"><summary>部署与运维</summary><ul><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4.html">部署与运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E6%B8%85%E5%8D%95.html">故障排查清单</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E4%B8%8E%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4.html">监控与日常运维</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">开发环境部署</a></li><li><a href="../../p/%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2.html">生产环境部署</a></li></ul></details><details class="sec"><summary>常见问题与排错</summary><ul><li><a href="../../p/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E6%8E%92%E9%94%99.html">常见问题与排错</a></li></ul></details></nav>
+  <main class="main ">
+<div class="crumbs">API 接口文档 / <b>API 接口文档</b></div><article><h1 id="API-接口文档"><a class="anchor" href="#API-接口文档">#</a>API 接口文档</h1><cite>
+**本文引用的文件**   
+- [RouterFunctionConfiguration.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/config/RouterFunctionConfiguration.java)
+- [AuthFilter.java](file://zealux-ai-master/zealux-ai-gateway/src/main/java/com/zealux/gateway/filter/AuthFilter.java)
+- [TokenController.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/controller/TokenController.java)
+- [LoginBody.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/form/LoginBody.java)
+- [RegisterBody.java](file://zealux-ai-master/zealux-ai-auth/src/main/java/com/zealux/auth/form/RegisterBody.java)
+- [SysUserController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysUserController.java)
+- [SysMenuController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysMenuController.java)
+- [SysRoleController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysRoleController.java)
+- [SysDeptController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDeptController.java)
+- [SysConfigController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysConfigController.java)
+- [SysDictTypeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictTypeController.java)
+- [SysDictDataController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysDictDataController.java)
+- [SysPostController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysPostController.java)
+- [SysNoticeController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-system/src/main/java/com/zealux/system/controller/SysNoticeController.java)
+- [GenController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-gen/src/main/java/com/zealux/gen/controller/GenController.java)
+- [SysJobController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/controller/SysJobController.java)
+- [SysJobLogController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-job/src/main/java/com/zealux/job/controller/SysJobLogController.java)
+- [SysFileController.java](file://zealux-ai-master/zealux-ai-modules/zealux-ai-file/src/main/java/com/zealux/file/controller/SysFileController.java)
+</cite><h2 id="目录"><a class="anchor" href="#目录">#</a>目录</h2><ol>
+<li><a href="#简介">简介</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#认证流程总览">认证流程总览</a></li>
+<li><a href="#通用请求与响应约定">通用请求与响应约定</a></li>
+<li><a href="#网关路由说明">网关路由说明</a></li>
+<li><a href="#认证接口">认证接口</a></li>
+<li><a href="#系统管理接口">系统管理接口</a></li>
+<li><a href="#代码生成接口">代码生成接口</a></li>
+<li><a href="#定时任务接口">定时任务接口</a></li>
+<li><a href="#文件接口">文件接口</a></li>
+<li><a href="#swagger-与-springdoc-openapi-说明">Swagger 与 springdoc-openapi 说明</a></li>
+<li><a href="#依赖关系图">依赖关系图</a></li>
+<li><a href="#常见问题排查">常见问题排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="简介"><a class="anchor" href="#简介">#</a>简介</h2><p>本仓库是 RuoYi-Cloud 3.6.5 的重命名二次开发。根 <code>pom.xml</code> 的 artifactId 为 <code>zealux-ai</code>，版本仍为 <code>3.6.5</code>；前端包名仍是 <code>ruoyi@3.6.5</code>；后端多个服务启动类仍沿用 <code>RuoYi*Application.java</code>。因此，从架构角度应将其视为基于 RuoYi-Cloud 的微服务系统，而不是自研框架。</p>
+<p>本 API 文档覆盖网关实际暴露的五条前缀路由：</p>
+<table>
+<thead>
+<tr>
+<th>路由前缀</th>
+<th>所属服务</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/auth/**</code></td>
+<td><code>zealux-ai-auth</code></td>
+<td>登录、登出、刷新 token、注册</td>
+</tr>
+<tr>
+<td><code>/system/**</code></td>
+<td><code>zealux-ai-system</code></td>
+<td>用户、角色、部门、菜单、岗位、字典、配置、公告等系统管理能力</td>
+</tr>
+<tr>
+<td><code>/code/**</code></td>
+<td><code>zealux-ai-gen</code></td>
+<td>代码生成、表结构同步、预览与下载</td>
+</tr>
+<tr>
+<td><code>/schedule/**</code></td>
+<td><code>zealux-ai-job</code></td>
+<td>定时任务与调度日志管理</td>
+</tr>
+<tr>
+<td><code>/file/**</code></td>
+<td><code>zealux-ai-file</code></td>
+<td>文件上传并返回访问地址</td>
+</tr>
+</tbody></table>
+<p>需要特别注意：<strong>本仓库没有 <code>/leads/**</code> 路由</strong>。<code>zealux-ai-leads</code> 模块当前只有少量 Java 文件，缺少前端页面、菜单入口、Nacos 配置和网关路由，本地 Redis 也缺少 RediSearch 模块，因此该模块不具备对外可用 API，本文不提供任何 <code>/leads/**</code> 承诺或路径定义。</p>
+<h2 id="项目结构"><a class="anchor" href="#项目结构">#</a>项目结构</h2><p>后端采用微服务结构，核心模块如下：</p>
+<div class="mermaid-wrap"><pre class="mermaid">graph TB
+    Client[&quot;客户端&quot;] --&gt; Gateway[&quot;网关&lt;br/&gt;zealux-ai-gateway&quot;]
+    Gateway --&gt; Auth[&quot;认证服务&lt;br/&gt;zealux-ai-auth&quot;]
+    Gateway --&gt; System[&quot;系统服务&lt;br/&gt;zealux-ai-system&quot;]
+    Gateway --&gt; Gen[&quot;代码生成服务&lt;br/&gt;zealux-ai-gen&quot;]
+    Gateway --&gt; Job[&quot;定时任务服务&lt;br/&gt;zealux-ai-job&quot;]
+    Gateway --&gt; File[&quot;文件服务&lt;br/&gt;zealux-ai-file&quot;]
+    Auth --&gt; Redis[&quot;Redis&quot;]
+    System --&gt; DB[&quot;数据库&quot;]
+    Gen --&gt; DB
+    Job --&gt; DB
+    File --&gt; Storage[&quot;本地存储或对象存储&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">RouterFunctionConfiguration.java:1-31</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">SysFileController.java:1-48</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RouterFunctionConfiguration.java:1-31</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="认证流程总览"><a class="anchor" href="#认证流程总览">#</a>认证流程总览</h2><p>系统的鉴权流程由网关层和服务层共同完成：</p>
+<ol>
+<li>客户端调用 <code>/auth/login</code> 获取 JWT token。</li>
+<li>客户端将 token 放入后续请求的 <code>Authorization</code> 请求头中。</li>
+<li>网关 <code>AuthFilter</code> 拦截请求，读取 <code>Authorization</code>，校验 JWT 是否有效。</li>
+<li><code>AuthFilter</code> 在 Redis 中检查对应登录会话是否仍存在。</li>
+<li>校验通过后，网关向下游服务注入用户标识、用户名等信息。</li>
+<li>业务接口通过 <code>@RequiresPermissions</code> 进行权限控制。</li>
+</ol>
+<div class="mermaid-wrap"><pre class="mermaid">sequenceDiagram
+    participant C as &quot;客户端&quot;
+    participant G as &quot;网关&quot;
+    participant A as &quot;认证服务&quot;
+    participant S as &quot;业务服务&quot;
+    participant R as &quot;Redis&quot;
+
+    C-&gt;&gt;A: POST /auth/login
+    A--&gt;&gt;C: 返回包含 token 的结果
+
+    C-&gt;&gt;G: 携带 Authorization 请求业务接口
+    G-&gt;&gt;G: 解析 Authorization
+    G-&gt;&gt;R: 检查登录会话
+    R--&gt;&gt;G: 存在或不存在
+    alt 令牌无效或未登录
+        G--&gt;&gt;C: 401 未授权
+    else 校验通过
+        G-&gt;&gt;S: 转发并注入用户信息
+        S-&gt;&gt;S: 校验 @RequiresPermissions
+        S--&gt;&gt;C: 业务结果
+    end</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:26-77</span></li>
+<li><span class="fileref">AuthFilter.java:36-112</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="通用请求与响应约定"><a class="anchor" href="#通用请求与响应约定">#</a>通用请求与响应约定</h2><h3 id="请求头"><a class="anchor" href="#请求头">#</a>请求头</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th align="right">是否必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Authorization</code></td>
+<td align="right">否</td>
+<td>受保护接口必需。值为 <code>Bearer &lt;token&gt;</code>；若前端配置了 token 前缀，网关会按实现逻辑裁剪前缀后再解析</td>
+</tr>
+<tr>
+<td><code>Content-Type</code></td>
+<td align="right">视接口而定</td>
+<td>JSON 接口通常为 <code>application/json</code>；文件上传使用 <code>multipart/form-data</code></td>
+</tr>
+<tr>
+<td><code>Accept</code></td>
+<td align="right">视接口而定</td>
+<td>文件下载接口通常期望二进制内容；验证码接口要求 <code>text/plain</code></td>
+</tr>
+</tbody></table>
+<h3 id="统一响应结构"><a class="anchor" href="#统一响应结构">#</a>统一响应结构</h3><p>多数接口返回包装后的结果对象。常见字段含义如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>code</code></td>
+<td>数字</td>
+<td>状态码；成功通常为 <code>200</code></td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>字符串</td>
+<td>提示信息</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>任意</td>
+<td>业务数据；可能为空对象、数组、分页对象或具体实体</td>
+</tr>
+</tbody></table>
+<p>部分列表接口返回分页对象，典型字段包括：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>rows</code></td>
+<td>数组</td>
+<td>当前页数据</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>数字</td>
+<td>总记录数</td>
+</tr>
+<tr>
+<td><code>pageNum</code></td>
+<td>数字</td>
+<td>当前页码</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>数字</td>
+<td>每页大小</td>
+</tr>
+</tbody></table>
+<h3 id="分页参数"><a class="anchor" href="#分页参数">#</a>分页参数</h3><p>列表接口普遍继承基类并提供分页能力。默认分页参数为：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th align="right">类型</th>
+<th align="right">默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pageNum</code></td>
+<td align="right">数字</td>
+<td align="right">1</td>
+<td>页码</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td align="right">数字</td>
+<td align="right">10</td>
+<td>每页数量</td>
+</tr>
+</tbody></table>
+<h3 id="状态码"><a class="anchor" href="#状态码">#</a>状态码</h3><table>
+<thead>
+<tr>
+<th align="right">HTTP 状态码</th>
+<th>含义</th>
+<th>触发位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">200</td>
+<td>请求成功</td>
+<td>大多数业务接口成功时</td>
+</tr>
+<tr>
+<td align="right">401</td>
+<td>未授权</td>
+<td>网关 <code>AuthFilter</code> 检测到无 token、JWT 无效或 Redis 中无登录会话</td>
+</tr>
+<tr>
+<td align="right">403</td>
+<td>权限不足</td>
+<td>业务层权限校验失败（例如缺少 <code>@RequiresPermissions</code> 所需权限）</td>
+</tr>
+<tr>
+<td align="right">404</td>
+<td>资源不存在</td>
+<td>路由不存在或资源查询不到</td>
+</tr>
+<tr>
+<td align="right">500</td>
+<td>服务器异常</td>
+<td>控制器抛异常或内部错误</td>
+</tr>
+</tbody></table>
+<h3 id="鉴权要求"><a class="anchor" href="#鉴权要求">#</a>鉴权要求</h3><ul>
+<li><code>/auth/login</code>、<code>/auth/register</code>、验证码相关接口属于认证与白名单路径。</li>
+<li>其他接口通常需要在请求头携带有效 <code>Authorization</code>。</li>
+<li>业务接口还依赖 <code>@RequiresPermissions</code> 注解决定是否需要特定权限点，例如 <code>system:user:list</code>、<code>monitor:job:list</code>、<code>tool:gen:list</code> 等。</li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:36-112</span></li>
+<li><span class="fileref">SysUserController.java:47-75</span></li>
+<li><span class="fileref">SysJobController.java:37-53</span></li>
+<li><span class="fileref">GenController.java:33-45</span></li>
+</ul>
+<h2 id="网关路由说明"><a class="anchor" href="#网关路由说明">#</a>网关路由说明</h2><p>网关当前只定义了显式的路由处理 Bean，以及全局鉴权过滤器。根据源码分析，系统中实际可被调用的前缀路由为：</p>
+<table>
+<thead>
+<tr>
+<th>路由前缀</th>
+<th>匹配方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/auth/**</code></td>
+<td>由认证服务暴露</td>
+<td>登录、登出、刷新 token、注册</td>
+</tr>
+<tr>
+<td><code>/system/**</code></td>
+<td>由系统服务暴露</td>
+<td>用户、角色、部门、菜单、岗位、字典、配置、公告等</td>
+</tr>
+<tr>
+<td><code>/code/**</code></td>
+<td>由代码生成服务暴露</td>
+<td>代码生成、预览、下载、同步数据库</td>
+</tr>
+<tr>
+<td><code>/schedule/**</code></td>
+<td>由定时任务服务暴露</td>
+<td>定时任务与调度日志</td>
+</tr>
+<tr>
+<td><code>/file/**</code></td>
+<td>由文件服务暴露</td>
+<td>文件上传</td>
+</tr>
+<tr>
+<td><code>/code</code></td>
+<td>网关内静态路由</td>
+<td>仅匹配 GET <code>/code</code>，且要求 <code>Accept: text/plain</code>，用于验证码</td>
+</tr>
+</tbody></table>
+<p>注意：<code>/code</code> 在网关层有单独路由定义，同时 <code>/code/**</code> 作为代码生成服务的前缀也存在；两者用途不同，前者是验证码相关，后者是代码生成功能。</p>
+<p>此外，本地运行环境中并未发现 <code>/leads/**</code> 路由；<code>zealux-ai-leads</code> 模块当前不可运行，不应被视为已提供对外 API。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RouterFunctionConfiguration.java:15-31</span></li>
+<li><span class="fileref">AuthFilter.java:36-112</span></li>
+</ul>
+<h2 id="认证接口"><a class="anchor" href="#认证接口">#</a>认证接口</h2><h3 id="登录"><a class="anchor" href="#登录">#</a>登录</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP 方法</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/auth/login</code></td>
+</tr>
+<tr>
+<td>请求头</td>
+<td>不需要 <code>Authorization</code></td>
+</tr>
+<tr>
+<td>请求体</td>
+<td>JSON，包含 <code>username</code> 与 <code>password</code></td>
+</tr>
+<tr>
+<td>成功响应</td>
+<td>返回包装对象，<code>data</code> 中包含 token</td>
+</tr>
+<tr>
+<td>失败响应</td>
+<td>返回包装对象，<code>code</code> 非成功状态，<code>msg</code> 描述错误原因</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td>200</td>
+</tr>
+<tr>
+<td>鉴权要求</td>
+<td>无需登录</td>
+</tr>
+</tbody></table>
+<p>请求体 schema：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th align="right">是否必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>username</code></td>
+<td>字符串</td>
+<td align="right">是</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>字符串</td>
+<td align="right">是</td>
+<td>密码</td>
+</tr>
+</tbody></table>
+<p>示例请求体：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;username&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;示例账号&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;示例口令&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre><p>示例成功响应：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiJ9...&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre><p>示例失败响应：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">500</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;用户名或密码错误&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre><h3 id="登出"><a class="anchor" href="#登出">#</a>登出</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP 方法</td>
+<td><code>DELETE</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/auth/logout</code></td>
+</tr>
+<tr>
+<td>请求头</td>
+<td>需要 <code>Authorization</code></td>
+</tr>
+<tr>
+<td>请求体</td>
+<td>空</td>
+</tr>
+<tr>
+<td>成功响应</td>
+<td>返回包装对象，<code>data</code> 可为空</td>
+</tr>
+<tr>
+<td>失败响应</td>
+<td>返回包装对象，<code>msg</code> 描述错误原因</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td>200</td>
+</tr>
+<tr>
+<td>鉴权要求</td>
+<td>已登录</td>
+</tr>
+</tbody></table>
+<h3 id="刷新-token"><a class="anchor" href="#刷新-token">#</a>刷新 token</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP 方法</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/auth/refresh</code></td>
+</tr>
+<tr>
+<td>请求头</td>
+<td>需要 <code>Authorization</code></td>
+</tr>
+<tr>
+<td>请求体</td>
+<td>空</td>
+</tr>
+<tr>
+<td>成功响应</td>
+<td>返回包装对象，<code>data</code> 可为空</td>
+</tr>
+<tr>
+<td>失败响应</td>
+<td>返回包装对象，表示未登录或 token 无效</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td>200</td>
+</tr>
+<tr>
+<td>鉴权要求</td>
+<td>已登录</td>
+</tr>
+</tbody></table>
+<h3 id="注册"><a class="anchor" href="#注册">#</a>注册</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP 方法</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/auth/register</code></td>
+</tr>
+<tr>
+<td>请求头</td>
+<td>不需要 <code>Authorization</code></td>
+</tr>
+<tr>
+<td>请求体</td>
+<td>JSON，包含 <code>username</code> 与 <code>password</code></td>
+</tr>
+<tr>
+<td>成功响应</td>
+<td>返回包装对象，<code>data</code> 可为空</td>
+</tr>
+<tr>
+<td>失败响应</td>
+<td>返回包装对象，描述注册失败原因</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td>200</td>
+</tr>
+<tr>
+<td>鉴权要求</td>
+<td>无需登录</td>
+</tr>
+</tbody></table>
+<p>请求体 schema 与登录相同，继承自登录表单对象。</p>
+<h3 id="认证接口流程图"><a class="anchor" href="#认证接口流程图">#</a>认证接口流程图</h3><div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Start[&quot;开始&quot;] --&gt; Login[&quot;POST /auth/login&quot;]
+    Login --&gt; Validate{&quot;用户名与密码有效？&quot;}
+    Validate --&gt;|否| Fail[&quot;返回失败响应&quot;]
+    Validate --&gt;|是| CreateToken[&quot;创建 JWT&quot;]
+    CreateToken --&gt; ReturnToken[&quot;返回 token&quot;]
+    ReturnToken --&gt; Next[&quot;后续接口携带 Authorization&quot;]
+    Next --&gt; GateCheck[&quot;网关校验 JWT 与会话&quot;]
+    GateCheck --&gt;|失败| Unauthorized[&quot;401 未授权&quot;]
+    GateCheck --&gt;|成功| Business[&quot;业务接口执行&quot;]</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:26-77</span></li>
+<li><span class="fileref">AuthFilter.java:36-112</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">LoginBody.java:1-39</span></li>
+<li><span class="fileref">RegisterBody.java:1-11</span></li>
+</ul>
+<h2 id="系统管理接口"><a class="anchor" href="#系统管理接口">#</a>系统管理接口</h2><p>系统服务位于 <code>/system/**</code>，涵盖用户、角色、部门、菜单、岗位、字典、参数配置和公告等功能。以下列出常用接口。</p>
+<h3 id="用户管理"><a class="anchor" href="#用户管理">#</a>用户管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/user</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/user/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/user/{userId}</code></td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST /system/user/export</code></td>
+</tr>
+<tr>
+<td>导入模板</td>
+<td><code>POST /system/user/importTemplate</code></td>
+</tr>
+<tr>
+<td>导入数据</td>
+<td><code>POST /system/user/importData</code></td>
+</tr>
+<tr>
+<td>当前用户信息</td>
+<td><code>GET /system/user/getInfo</code></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th align="right">是否必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pageNum</code></td>
+<td>数字</td>
+<td align="right">否</td>
+<td>页码</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>数字</td>
+<td align="right">否</td>
+<td>每页大小</td>
+</tr>
+<tr>
+<td><code>userName</code></td>
+<td>字符串</td>
+<td align="right">否</td>
+<td>用户名筛选</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>字符串</td>
+<td align="right">否</td>
+<td>状态筛选</td>
+</tr>
+</tbody></table>
+<p>列表接口返回分页对象；导出接口返回 Excel 文件流；导入接口使用 <code>multipart/form-data</code> 上传 Excel。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysUserController.java:47-135</span></li>
+</ul>
+<h3 id="角色管理"><a class="anchor" href="#角色管理">#</a>角色管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/role</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/role/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/role/{roleId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/role</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/role</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/role/{roleIds}</code></td>
+</tr>
+<tr>
+<td>导出数据</td>
+<td><code>POST /system/role/export</code></td>
+</tr>
+<tr>
+<td>数据权限</td>
+<td><code>PUT /system/role/dataScope</code></td>
+</tr>
+<tr>
+<td>状态修改</td>
+<td><code>PUT /system/role/changeStatus</code></td>
+</tr>
+<tr>
+<td>选项选择</td>
+<td><code>GET /system/role/optionselect</code></td>
+</tr>
+<tr>
+<td>已分配用户</td>
+<td><code>GET /system/role/authUser/allocatedList</code></td>
+</tr>
+<tr>
+<td>未分配用户</td>
+<td><code>GET /system/role/authUser/unallocatedList</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysRoleController.java:1-239</span></li>
+</ul>
+<h3 id="部门管理"><a class="anchor" href="#部门管理">#</a>部门管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/dept</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/dept/list</code></td>
+</tr>
+<tr>
+<td>排除节点列表</td>
+<td><code>GET /system/dept/list/exclude/{deptId}</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/dept/{deptId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/dept</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/dept</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/dept/{deptId}</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDeptController.java:1-133</span></li>
+</ul>
+<h3 id="菜单管理"><a class="anchor" href="#菜单管理">#</a>菜单管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/menu</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/menu/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/menu/{menuId}</code></td>
+</tr>
+<tr>
+<td>下拉树</td>
+<td><code>GET /system/menu/treeselect</code></td>
+</tr>
+<tr>
+<td>角色菜单树</td>
+<td><code>GET /system/menu/roleMenuTreeselect/{roleId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/menu</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/menu</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/menu/{menuId}</code></td>
+</tr>
+<tr>
+<td>动态路由</td>
+<td><code>GET /system/menu/getRouters</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysMenuController.java:1-159</span></li>
+</ul>
+<h3 id="岗位管理"><a class="anchor" href="#岗位管理">#</a>岗位管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/post</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/post/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/post/{postId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/post</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/post</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/post/{postIds}</code></td>
+</tr>
+<tr>
+<td>选项选择</td>
+<td><code>GET /system/post/optionselect</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysPostController.java:1-130</span></li>
+</ul>
+<h3 id="字典类型"><a class="anchor" href="#字典类型">#</a>字典类型</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/dict/type</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/dict/type/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/dict/type/{dictId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/dict/type</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/dict/type</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/dict/type/{dictIds}</code></td>
+</tr>
+<tr>
+<td>刷新缓存</td>
+<td><code>DELETE /system/dict/type/refreshCache</code></td>
+</tr>
+<tr>
+<td>选项选择</td>
+<td><code>GET /system/dict/type/optionselect</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictTypeController.java:1-132</span></li>
+</ul>
+<h3 id="字典数据"><a class="anchor" href="#字典数据">#</a>字典数据</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/dict/data</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/dict/data/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/dict/data/{dictCode}</code></td>
+</tr>
+<tr>
+<td>按类型查询</td>
+<td><code>GET /system/dict/data/type/{dictType}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/dict/data</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/dict/data</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/dict/data/{dictCodes}</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysDictDataController.java:1-122</span></li>
+</ul>
+<h3 id="参数配置"><a class="anchor" href="#参数配置">#</a>参数配置</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/config</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/config/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/config/{configId}</code></td>
+</tr>
+<tr>
+<td>按键查询</td>
+<td><code>GET /system/config/configKey/{configKey}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/config</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/config</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/config/{configIds}</code></td>
+</tr>
+<tr>
+<td>刷新缓存</td>
+<td><code>DELETE /system/config/refreshCache</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysConfigController.java:1-133</span></li>
+</ul>
+<h3 id="通知公告"><a class="anchor" href="#通知公告">#</a>通知公告</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/system/notice</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /system/notice/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /system/notice/{noticeId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /system/notice</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /system/notice</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /system/notice/{noticeIds}</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysNoticeController.java:1-92</span></li>
+</ul>
+<h2 id="代码生成接口"><a class="anchor" href="#代码生成接口">#</a>代码生成接口</h2><p>代码生成服务位于 <code>/code/**</code>，用于根据数据库表结构生成后端代码、前端代码及相关配置文件。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/code</code></td>
+</tr>
+<tr>
+<td>生成列表</td>
+<td><code>GET /code/gen/list</code></td>
+</tr>
+<tr>
+<td>表结构列表</td>
+<td><code>GET /code/gen/db/list</code></td>
+</tr>
+<tr>
+<td>字段列表</td>
+<td><code>GET /code/gen/column/{tableId}</code></td>
+</tr>
+<tr>
+<td>生成详情</td>
+<td><code>GET /code/gen/{tableId}</code></td>
+</tr>
+<tr>
+<td>导入表结构</td>
+<td><code>POST /code/gen/importTable</code></td>
+</tr>
+<tr>
+<td>编辑生成配置</td>
+<td><code>PUT /code/gen</code></td>
+</tr>
+<tr>
+<td>删除生成配置</td>
+<td><code>DELETE /code/gen/{tableIds}</code></td>
+</tr>
+<tr>
+<td>预览代码</td>
+<td><code>GET /code/gen/preview/{tableId}</code></td>
+</tr>
+<tr>
+<td>批量生成代码</td>
+<td><code>GET /code/gen/batchGenCode</code></td>
+</tr>
+<tr>
+<td>下载代码</td>
+<td><code>GET /code/gen/download/{tableName}</code></td>
+</tr>
+<tr>
+<td>指定路径生成</td>
+<td><code>GET /code/gen/genCode/{tableName}</code></td>
+</tr>
+<tr>
+<td>同步数据库</td>
+<td><code>GET /code/gen/synchDb/{tableName}</code></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th align="right">是否必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pageNum</code></td>
+<td>数字</td>
+<td align="right">否</td>
+<td>页码</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>数字</td>
+<td align="right">否</td>
+<td>每页大小</td>
+</tr>
+<tr>
+<td><code>tableName</code></td>
+<td>字符串</td>
+<td align="right">视接口而定</td>
+<td>表名</td>
+</tr>
+<tr>
+<td><code>tableId</code></td>
+<td>数字</td>
+<td align="right">视接口而定</td>
+<td>生成配置主键</td>
+</tr>
+<tr>
+<td><code>tables</code></td>
+<td>字符串</td>
+<td align="right">视接口而定</td>
+<td>批量导入或批量生成时使用逗号分隔的表名</td>
+</tr>
+</tbody></table>
+<p>下载接口返回二进制文件流；预览接口返回文件名到代码内容的映射对象。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">GenController.java:1-216</span></li>
+</ul>
+<h2 id="定时任务接口"><a class="anchor" href="#定时任务接口">#</a>定时任务接口</h2><p>定时任务服务位于 <code>/schedule/**</code>，基于 Quartz 管理调度任务与执行日志。</p>
+<h3 id="任务管理"><a class="anchor" href="#任务管理">#</a>任务管理</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/schedule/job</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /schedule/job/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /schedule/job/{jobId}</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>POST /schedule/job</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>PUT /schedule/job</code></td>
+</tr>
+<tr>
+<td>状态修改</td>
+<td><code>PUT /schedule/job/changeStatus</code></td>
+</tr>
+<tr>
+<td>立即执行</td>
+<td><code>PUT /schedule/job/run</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /schedule/job/{jobIds}</code></td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST /schedule/job/export</code></td>
+</tr>
+</tbody></table>
+<p>新增与修改接口会对 <code>cronExpression</code> 表达式、目标字符串和白名单做校验。</p>
+<h3 id="任务日志"><a class="anchor" href="#任务日志">#</a>任务日志</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基础路径</td>
+<td><code>/schedule/job/log</code></td>
+</tr>
+<tr>
+<td>列表</td>
+<td><code>GET /schedule/job/log/list</code></td>
+</tr>
+<tr>
+<td>详情</td>
+<td><code>GET /schedule/job/log/{jobLogId}</code></td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>DELETE /schedule/job/log/{jobLogIds}</code></td>
+</tr>
+<tr>
+<td>清空日志</td>
+<td><code>DELETE /schedule/job/log/clean</code></td>
+</tr>
+<tr>
+<td>导出</td>
+<td><code>POST /schedule/job/log/export</code></td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysJobController.java:1-186</span></li>
+<li><span class="fileref">SysJobLogController.java:1-91</span></li>
+</ul>
+<h2 id="文件接口"><a class="anchor" href="#文件接口">#</a>文件接口</h2><p>文件服务位于 <code>/file/**</code>，当前源码中只实现了文件上传接口。</p>
+<h3 id="文件上传"><a class="anchor" href="#文件上传">#</a>文件上传</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP 方法</td>
+<td><code>POST</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/file/upload</code></td>
+</tr>
+<tr>
+<td>请求头</td>
+<td>需要 <code>Authorization</code></td>
+</tr>
+<tr>
+<td>请求体</td>
+<td><code>multipart/form-data</code>，字段名为 <code>file</code></td>
+</tr>
+<tr>
+<td>成功响应</td>
+<td>返回包装对象，<code>data</code> 包含文件名与访问地址</td>
+</tr>
+<tr>
+<td>失败响应</td>
+<td>返回包装对象，<code>msg</code> 包含异常消息</td>
+</tr>
+<tr>
+<td>状态码</td>
+<td>200</td>
+</tr>
+<tr>
+<td>鉴权要求</td>
+<td>已登录</td>
+</tr>
+</tbody></table>
+<p>请求体 schema：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th align="right">是否必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>file</code></td>
+<td>文件</td>
+<td align="right">是</td>
+<td>待上传的文件</td>
+</tr>
+</tbody></table>
+<p>示例成功响应：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;操作成功&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;example.png&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://oss.example.com/example.png&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><h3 id="文件预览与删除"><a class="anchor" href="#文件预览与删除">#</a>文件预览与删除</h3><p>当前 <code>SysFileController</code> 中只暴露了 <code>upload</code> 接口。代码中没有独立的文件预览或删除 REST 接口；但文件服务通常会通过 MinIO 或本地文件系统提供访问地址，前端可直接使用该地址打开文件。若需要删除或预览能力，应在后续扩展中添加相应 Controller。</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">SysFileController.java:1-48</span></li>
+</ul>
+<h2 id="Swagger-与-springdoc-openapi-说明"><a class="anchor" href="#Swagger-与-springdoc-openapi-说明">#</a>Swagger 与 springdoc-openapi 说明</h2><p>本项目使用了 SpringDoc OpenAPI 与 Swagger 相关的公共组件。关键证据包括：</p>
+<ul>
+<li>网关中存在 <code>SpringDocConfig</code>。</li>
+<li>网关中存在 <code>Swagger</code> 相关公共子模块。</li>
+<li>各服务引入 <code>common-swagger</code> 依赖。</li>
+<li>业务 Controller 广泛使用 Spring MVC 注解，适合由 OpenAPI 工具扫描。</li>
+</ul>
+<p>需要注意：</p>
+<ul>
+<li>文档中出现的 Swagger 注解不能直接等同于已部署的在线文档地址。</li>
+<li>在线文档路径通常取决于网关路由、服务端口、上下文路径和部署配置。</li>
+<li>如果网关没有暴露 <code>/swagger/**</code> 或 <code>/v3/api-docs/**</code> 路由，则外部无法通过网关访问 OpenAPI 文档。</li>
+<li>建议在本地启动服务后，以实际运行的 SpringDoc 地址为准。</li>
+</ul>
+<div class="mermaid-wrap"><pre class="mermaid">flowchart TD
+    Dev[&quot;开发者&quot;] --&gt; UI[&quot;浏览器&quot;]
+    UI --&gt; Gateway[&quot;网关&quot;]
+    Gateway --&gt; Service[&quot;业务服务&quot;]
+    Service --&gt; OpenAPI[&quot;springdoc-openapi&quot;]
+    OpenAPI --&gt; Json[&quot;OpenAPI JSON/YAML&quot;]
+    Json --&gt; UI</pre></div><p>[此图为概念流程图，不直接映射具体源码文件]</p>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">RouterFunctionConfiguration.java:1-31</span></li>
+</ul>
+<h2 id="依赖关系图"><a class="anchor" href="#依赖关系图">#</a>依赖关系图</h2><p>下图展示认证流程中涉及的核心类及其依赖关系：</p>
+<div class="mermaid-wrap"><pre class="mermaid">classDiagram
+    class TokenController {
+        +login(form)
+        +logout(request)
+        +refresh(request)
+        +register(registerBody)
+    }
+
+    class SysLoginService {
+        +login(username, password)
+        +logout(username)
+        +register(username, password)
+    }
+
+    class TokenService {
+        +createToken(loginUser)
+        +getLoginUser(request)
+        +refreshToken(loginUser)
+    }
+
+    class AuthFilter {
+        +filter(exchange, chain)
+        -getToken(request)
+        -unauthorizedResponse(exchange, msg)
+    }
+
+    class RedisService {
+        +hasKey(key)
+    }
+
+    TokenController --&gt; SysLoginService : &quot;调用&quot;
+    TokenController --&gt; TokenService : &quot;调用&quot;
+    AuthFilter --&gt; RedisService : &quot;检查登录会话&quot;</pre></div><p><strong>图表来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:16-77</span></li>
+<li><span class="fileref">AuthFilter.java:27-112</span></li>
+</ul>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">TokenController.java:1-78</span></li>
+<li><span class="fileref">AuthFilter.java:1-135</span></li>
+</ul>
+<h2 id="常见问题排查"><a class="anchor" href="#常见问题排查">#</a>常见问题排查</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>可能原因</th>
+<th>处理方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>所有接口返回 401</td>
+<td>请求头缺少 <code>Authorization</code></td>
+<td>登录后把 token 放入 <code>Authorization: Bearer &lt;token&gt;</code></td>
+</tr>
+<tr>
+<td>提示“令牌已过期或验证不正确”</td>
+<td>JWT 无效或签名不匹配</td>
+<td>重新登录获取新 token</td>
+</tr>
+<tr>
+<td>提示“登录状态已过期”</td>
+<td>Redis 中对应登录会话不存在</td>
+<td>重新登录，检查 Redis 连接与 token 过期策略</td>
+</tr>
+<tr>
+<td>接口返回 403</td>
+<td>当前用户缺少 <code>@RequiresPermissions</code> 所需权限</td>
+<td>检查角色与权限配置</td>
+</tr>
+<tr>
+<td>列表接口分页无效</td>
+<td>未传入 <code>pageNum</code> 或 <code>pageSize</code></td>
+<td>传入分页参数或使用默认值</td>
+</tr>
+<tr>
+<td>文件上传失败</td>
+<td>文件格式、大小或服务端存储不可用</td>
+<td>检查文件大小限制、MinIO 或本地存储配置</td>
+</tr>
+<tr>
+<td>无法访问在线文档</td>
+<td>网关未暴露 OpenAPI 路由</td>
+<td>确认网关与服务是否启用 SpringDoc 路由</td>
+</tr>
+<tr>
+<td>无法访问 <code>/leads/**</code></td>
+<td>该模块未配置网关路由且服务不可运行</td>
+<td>不要调用该路径；如需接入需先完善模块与配置</td>
+</tr>
+</tbody></table>
+<p><strong>章节来源</strong></p>
+<ul>
+<li><span class="fileref">AuthFilter.java:36-112</span></li>
+<li><span class="fileref">SysJobController.java:64-147</span></li>
+<li><span class="fileref">SysFileController.java:26-47</span></li>
+</ul>
+<h2 id="结论"><a class="anchor" href="#结论">#</a>结论</h2><p>本 API 文档基于源码对五条实际存在的网关前缀路由进行了完整整理：</p>
+<ul>
+<li><code>/auth/**</code> 提供登录、登出、刷新 token 与注册能力。</li>
+<li><code>/system/**</code> 提供完整的系统管理能力，包括用户、角色、部门、菜单、岗位、字典、参数配置和公告。</li>
+<li><code>/code/**</code> 提供代码生成、预览、下载与数据库同步能力。</li>
+<li><code>/schedule/**</code> 提供定时任务管理与调度日志查询能力。</li>
+<li><code>/file/**</code> 当前只暴露文件上传接口。</li>
+</ul>
+<p>认证流程由网关 <code>AuthFilter</code> 与业务层 <code>@RequiresPermissions</code> 共同保障：前端必须先从 <code>/auth/login</code> 获取 token，再将其放入 <code>Authorization</code> 请求头。未通过网关鉴权的请求会直接返回 401；通过鉴权但缺少权限的请求会在业务层被拒绝。</p>
+<p>对于尚未实现的 <code>/leads/**</code>，本文明确不给出任何 API 承诺。如需启用该模块，应先补齐前端、菜单、Nacos 配置、网关路由及依赖中间件，并在实现完成后另行补充接口文档。</p>
+</article>
+<div class="pager">
+    <a class="prev" href="../../p/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9D%97(common)%E8%AE%BE%E8%AE%A1/swagger%20API%20%E6%96%87%E6%A1%A3%E6%A8%A1%E5%9D%97.html">← swagger API 文档模块</a>
+    <a class="next" href="../../p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3.html">代码生成接口 →</a>
+  </div>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="d2"><a href="#目录">目录</a></li><li class="d2"><a href="#简介">简介</a></li><li class="d2"><a href="#项目结构">项目结构</a></li><li class="d2"><a href="#认证流程总览">认证流程总览</a></li><li class="d2"><a href="#通用请求与响应约定">通用请求与响应约定</a></li><li class="d3"><a href="#请求头">请求头</a></li><li class="d3"><a href="#统一响应结构">统一响应结构</a></li><li class="d3"><a href="#分页参数">分页参数</a></li><li class="d3"><a href="#状态码">状态码</a></li><li class="d3"><a href="#鉴权要求">鉴权要求</a></li><li class="d2"><a href="#网关路由说明">网关路由说明</a></li><li class="d2"><a href="#认证接口">认证接口</a></li><li class="d3"><a href="#登录">登录</a></li><li class="d3"><a href="#登出">登出</a></li><li class="d3"><a href="#刷新-token">刷新 token</a></li><li class="d3"><a href="#注册">注册</a></li><li class="d3"><a href="#认证接口流程图">认证接口流程图</a></li><li class="d2"><a href="#系统管理接口">系统管理接口</a></li><li class="d3"><a href="#用户管理">用户管理</a></li><li class="d3"><a href="#角色管理">角色管理</a></li><li class="d3"><a href="#部门管理">部门管理</a></li><li class="d3"><a href="#菜单管理">菜单管理</a></li><li class="d3"><a href="#岗位管理">岗位管理</a></li><li class="d3"><a href="#字典类型">字典类型</a></li><li class="d3"><a href="#字典数据">字典数据</a></li><li class="d3"><a href="#参数配置">参数配置</a></li><li class="d3"><a href="#通知公告">通知公告</a></li><li class="d2"><a href="#代码生成接口">代码生成接口</a></li><li class="d2"><a href="#定时任务接口">定时任务接口</a></li><li class="d3"><a href="#任务管理">任务管理</a></li><li class="d3"><a href="#任务日志">任务日志</a></li><li class="d2"><a href="#文件接口">文件接口</a></li><li class="d3"><a href="#文件上传">文件上传</a></li><li class="d3"><a href="#文件预览与删除">文件预览与删除</a></li><li class="d2"><a href="#Swagger-与-springdoc-openapi-说明">Swagger 与 springdoc-openapi 说明</a></li><li class="d2"><a href="#依赖关系图">依赖关系图</a></li><li class="d2"><a href="#常见问题排查">常见问题排查</a></li><li class="d2"><a href="#结论">结论</a></li></ul></aside>
+</div>
+<script>window.__PAGE__="p/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/API%20%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.html";</script>
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>
