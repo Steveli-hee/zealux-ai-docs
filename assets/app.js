@@ -1,5 +1,8 @@
-// app.js — 搜索 + 目录高亮
+// app.js — 搜索 + mermaid 渲染 + 目录高亮
 const PAGE = window.__PAGE__ || "";
+// 页面在 /p/ 下的目录深度，用于计算相对路径前缀
+const DEPTH = PAGE ? PAGE.split("/").length - 1 : 0;
+const ASSETS = "../".repeat(DEPTH) + "assets";
 
 // ---------- 侧边栏当前页滚动到可视区 ----------
 const active = document.querySelector(".sidebar a.active");
@@ -14,9 +17,7 @@ let results = [];
 
 async function loadIndex() {
   if (index) return index;
-  const depth = (PAGE.match(///g) || []).length;
-  const base = "../".repeat(depth) + "assets";
-  const res = await fetch(base + "/search-index.json");
+  const res = await fetch(ASSETS + "/search-index.json");
   index = await res.json();
   return index;
 }
@@ -48,7 +49,7 @@ function renderResults(q) {
         .map((r, i) => {
           const pos = r.ch.c.toLowerCase().indexOf(q.toLowerCase().split(/\s+/)[0]);
           const snip = pos >= 0 ? "…" + r.ch.c.slice(Math.max(0, pos - 20), pos + 80) + "…" : r.ch.c.slice(0, 80);
-          const u = (PAGE ? "../".repeat((PAGE.match(///g) || []).length) : "") + r.ch.u;
+          const u = (PAGE ? "../".repeat(DEPTH) : "") + r.ch.u;
           return `<a href="${u}" data-i="${i}"><div class="st">${r.ch.t}</div><div class="ss">${r.ch.s}</div><div class="snippet">${snip}</div></a>`;
         })
         .join("")
@@ -79,28 +80,36 @@ document.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); input.focus(); }
 });
 
-// ---------- Mermaid 图渲染 ----------
-if (document.querySelector(".mermaid")) {
-  const depth = (PAGE.match(///g) || []).length;
-  const base = "../".repeat(depth) + "assets";
-  const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js";
-  script.onload = () => {
-    const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    window.mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral", securityLevel: "loose" });
-    window.mermaid.run({ querySelector: ".mermaid" }).catch(() => {
+// ---------- Mermaid 图渲染（本地打包，无需外网 CDN） ----------
+function runMermaid() {
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  window.mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral", securityLevel: "loose" });
+  window.mermaid
+    .run({ querySelector: ".mermaid", suppressErrors: true })
+    .catch(() => {
       document.querySelectorAll(".mermaid").forEach((el) => el.classList.add("mermaid-error"));
     });
-  };
-  script.onerror = () => {
-    document.querySelectorAll(".mermaid").forEach((el) => {
-      const tip = document.createElement("div");
-      tip.className = "mermaid-tip";
-      tip.textContent = "（图表渲染失败：未能加载 mermaid 库，以下为源码）";
-      el.before(tip);
-    });
-  };
+}
+function loadMermaid(src, onFail) {
+  const script = document.createElement("script");
+  script.src = src;
+  script.onload = runMermaid;
+  script.onerror = onFail;
   document.head.appendChild(script);
+}
+if (document.querySelector(".mermaid")) {
+  // 优先加载本地打包的 mermaid（国内无需依赖外网 CDN）
+  loadMermaid(ASSETS + "/mermaid.min.js", () => {
+    // 本地意外缺失时回退 CDN
+    loadMermaid("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js", () => {
+      document.querySelectorAll(".mermaid").forEach((el) => {
+        const tip = document.createElement("div");
+        tip.className = "mermaid-tip";
+        tip.textContent = "（图表渲染失败：未能加载 mermaid 库，以下为源码）";
+        el.before(tip);
+      });
+    });
+  });
 }
 
 // ---------- 右侧目录滚动高亮 ----------
